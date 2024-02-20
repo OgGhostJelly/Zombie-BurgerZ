@@ -15,24 +15,30 @@ var invincible: bool = false
 @onready var health_ui: Control = $HealthUI
 @onready var ammo_ui: Control = $AmmoUI
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var reload_path: Path2D = $ReloadPath
-@onready var reload_path_follow: TrackPathFollow2D = $ReloadPath/ReloadPathFollow
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
 
+var last_mouse_position: Vector2
+var reload_percentage: float = 0.0
+
 
 func _ready() -> void:
+	last_mouse_position = get_global_mouse_position()
+	
 	gun.ammo_changed.connect(func():
 		ammo_ui.ammo = gun.ammo)
 	
 	gun.max_ammo_changed.connect(func():
 		ammo_ui.max_ammo = gun.max_ammo)
 	
+	gun.fired.connect(func():
+		reload_percentage = 0.0)
+	
 	ammo_ui.ammo = gun.ammo
 	ammo_ui.max_ammo = gun.max_ammo
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	velocity = Input.get_vector(
 		&"move_left",
 		&"move_right",
@@ -50,47 +56,32 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 	
-	if gun.can_reload() and reload_path_follow.update(get_global_mouse_position()):
-		gun.force_reload()
+	if gun.can_reload():
+		var mouse_position: Vector2 = get_global_mouse_position()
+		if global_position.distance_squared_to(mouse_position) < 64**2: 
+			reload_percentage += mouse_position.distance_to(last_mouse_position) * delta * 0.15
+		last_mouse_position = mouse_position
+		
+		if reload_percentage > 1.0:
+			reload_percentage -= 1.0
+			gun.force_reload()
+	else:
+		reload_percentage = 0.0
+	
+	for i in gun.max_ammo:
+		var ui: TextureRect = ammo_ui.get_node_or_null("%s" % i)
+		if ui != null:
+			ui.material.set_shader_parameter(&"top", (
+				1.0
+				if i < gun.ammo else
+				0.0
+				if i != gun.ammo else
+				reload_percentage
+			))
 	
 	global_position = global_position.clamp(Vector2.ZERO + Vector2(4.0, 16.0), Vector2(480.0, 360.0)  - Vector2(4.0, 16.0))
 	
 	queue_redraw()
-
-
-func _draw() -> void:
-	var points0: PackedVector2Array = []
-	
-	for i in reload_path.curve.point_count:
-		for j in 10:
-			var k = j / 10.0
-			points0.append(reload_path.curve.sample(i, k) + reload_path.position)
-	
-	draw_polyline(
-		points0,
-		reload_empty_color if gun.can_reload() else reload_fill_color,
-		-1.0 if gun.can_reload() else 2.0
-	)
-	
-	var points1: PackedVector2Array = []
-	var length: float = reload_path.curve.get_baked_length()
-	
-	for i in length:
-		if i > reload_path_follow.progress:
-			break
-		
-		points1.append(reload_path.curve.sample_baked(i) + reload_path.position)
-	
-	if points1.size() == 1:
-		points1.append(points1[0])
-	
-	draw_polyline(
-		points1,
-		reload_fill_color,
-		2.0
-	)
-	
-	draw_circle(reload_path_follow.position.rotated(-rotation) + reload_path.position, 4.0, reload_fill_color)
 
 
 func set_health(value: int) -> void:

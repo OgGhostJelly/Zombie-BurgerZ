@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 
 func update_elements() -> void:
 	for element in get_children():
+		remove_child(element)
 		element.queue_free()
 	
 	for i in max_ammo:
@@ -32,7 +33,10 @@ func update_elements() -> void:
 		obj.flip_v = randf() > 0.8
 		obj.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		obj.texture = texture if i < ammo else empty_texture
+		obj.material = ShaderMaterial.new()
+		obj.material.shader = preload("res://userinterfaces/ammo_ui/ammo_ui.gdshader")
 		add_child(obj)
+		obj.name = str(i)
 
 
 func update_value() -> void:

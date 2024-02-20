@@ -1,6 +1,8 @@
 extends Node2D
 
 signal ammo_changed
+signal reloaded
+signal fired
 signal max_ammo_changed
 
 
@@ -64,6 +66,7 @@ func force_shoot() -> void:
 	var amount: int = min(bullets_per_shot, ammo)
 	ammo -= amount
 	spawn(amount)
+	fired.emit()
 
 
 func can_reload() -> bool:
@@ -79,6 +82,7 @@ func force_reload() -> void:
 	reload_particles.emitting = true
 	reload_audio.play()
 	ammo += bullets_per_reload
+	reloaded.emit()
 
 
 func spawn(amount: int) -> void:
