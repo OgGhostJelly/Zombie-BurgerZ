@@ -45,8 +45,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		animated_sprite.play(&"walk")
 	
-	if Input.is_action_just_pressed(&"shoot"):
-		gun.shoot()
+	if Input.is_action_just_pressed(&"fire"):
+		gun.fire()
 	
 	move_and_slide()
 	

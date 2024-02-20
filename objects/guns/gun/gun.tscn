@@ -75,7 +75,7 @@ scale_amount_curve = SubResource("Curve_eigvx")
 color = Color(1, 1, 0, 1)
 color_ramp = SubResource("Gradient_fjsn3")
 
-[node name="ShootParticles" type="CPUParticles2D" parent="."]
+[node name="FireParticles" type="CPUParticles2D" parent="."]
 position = Vector2(24.5, -2.25)
 emitting = false
 amount = 4
@@ -94,7 +94,7 @@ color_ramp = SubResource("Gradient_msh5n")
 stream = SubResource("AudioStreamRandomizer_epgwq")
 volume_db = -5.0
 
-[node name="ShootAudio" type="AudioStreamPlayer" parent="."]
+[node name="FireAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hashf")
 volume_db = -5.0
 
