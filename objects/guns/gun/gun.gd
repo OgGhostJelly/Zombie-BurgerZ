@@ -4,8 +4,6 @@ signal ammo_changed
 signal reloaded
 signal fired
 signal max_ammo_changed
-signal fired
-signal reloaded
 
 
 ## How many bullets will be fired per shot.
