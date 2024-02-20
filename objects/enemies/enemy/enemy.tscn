@@ -106,6 +106,14 @@ volume_db = -5.0
 
 [node name="ContextSteerer" type="Node2D" parent="."]
 script = ExtResource("13_833qm")
+sight_distance = 1.0
 collision_mask = 4
+
+[node name="SightDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetector"]
+shape = SubResource("RectangleShape2D_fc24u")
 
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
