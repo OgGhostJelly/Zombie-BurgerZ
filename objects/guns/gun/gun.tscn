@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://dajayqy7ycoxw"]
+
+[ext_resource type="Script" path="res://objects/guns/gun/gun.gd" id="1_dm84q"]
+[ext_resource type="Texture2D" uid="uid://ej3thgdt0ekr" path="res://assets/gun/pistol/pistol.svg" id="4_5gpee"]
+[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="4_v3eey"]
+[ext_resource type="Script" path="res://classes/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="5_25q3x"]
+[ext_resource type="AudioStream" uid="uid://7eg48tcm0hae" path="res://assets/gun/pistol/pistol-reload.wav" id="5_fde0t"]
+[ext_resource type="AudioStream" uid="uid://5duh0ds7hwqy" path="res://assets/gun/pistol/pistol-shoot.wav" id="6_b1p1b"]
+[ext_resource type="AudioStream" uid="uid://buh1jfr8ysl4u" path="res://assets/gun/pistol/pistol-empty.wav" id="7_p7iee"]
+
+[sub_resource type="Resource" id="Resource_vughb"]
+script = ExtResource("5_25q3x")
+scene = ExtResource("4_v3eey")
+
+[sub_resource type="Curve" id="Curve_eigvx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fjsn3"]
+offsets = PackedFloat32Array(0.58, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_msh5n"]
+offsets = PackedFloat32Array(0.72, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_epgwq"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("5_fde0t")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hashf"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("6_b1p1b")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l1o8m"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_p7iee")
+stream_0/weight = 1.0
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_dm84q")
+spread = 5.0
+supplier = SubResource("Resource_vughb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_5gpee")
+
+[node name="ReloadParticles" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.2
+emission_shape = 2
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+angular_velocity_min = 12.0
+angular_velocity_max = 12.0
+orbit_velocity_min = -1.2
+orbit_velocity_max = 1.2
+damping_min = 32.0
+damping_max = 32.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_eigvx")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("Gradient_fjsn3")
+
+[node name="ShootParticles" type="CPUParticles2D" parent="."]
+position = Vector2(24.5, -2.25)
+emitting = false
+amount = 4
+lifetime = 0.1
+one_shot = true
+lifetime_randomness = 0.2
+local_coords = true
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 32.0
+angle_min = -90.0
+angle_max = 90.0
+color_ramp = SubResource("Gradient_msh5n")
+
+[node name="ReloadAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_epgwq")
+volume_db = -5.0
+
+[node name="ShootAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_hashf")
+volume_db = -5.0
+
+[node name="EmptyAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_l1o8m")
+volume_db = -5.0

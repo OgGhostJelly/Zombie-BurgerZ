@@ -1,0 +1,148 @@
+[gd_scene load_steps=21 format=3 uid="uid://j6yyqdar5jqj"]
+
+[ext_resource type="Script" path="res://objects/player/player.gd" id="1_26mew"]
+[ext_resource type="Texture2D" uid="uid://ddpl4vmsev6cl" path="res://assets/player/player-idle.svg" id="2_k4tsx"]
+[ext_resource type="Texture2D" uid="uid://b06stgcbj1xvu" path="res://assets/player/player-walk-1.svg" id="3_x2kh8"]
+[ext_resource type="Texture2D" uid="uid://b7fwprwt5rt6x" path="res://assets/player/player-walk-2.svg" id="4_nmh6p"]
+[ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun/gun.tscn" id="5_4t7ox"]
+[ext_resource type="PackedScene" uid="uid://bv8qbklcmdk5x" path="res://userinterfaces/ammo_ui/ammo_ui.tscn" id="6_o3iah"]
+[ext_resource type="Texture2D" uid="uid://c6mv0s3o00rdv" path="res://assets/ammo/ammo.svg" id="7_p4qbv"]
+[ext_resource type="Texture2D" uid="uid://bcreik4mwnqse" path="res://assets/ammo/ammo-empty.svg" id="8_l58h2"]
+[ext_resource type="PackedScene" uid="uid://buweeb74gwfjw" path="res://userinterfaces/health_ui/health_ui.tscn" id="9_a3l4y"]
+[ext_resource type="Script" path="res://classes/TrackPathFollow2D/TrackPathFollow2D.gd" id="9_ju1oc"]
+[ext_resource type="Texture2D" uid="uid://d4gojkktwd1i6" path="res://assets/health/health.svg" id="10_ystek"]
+[ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
+[ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhhaw"]
+size = Vector2(8, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anpcg"]
+size = Vector2(8, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_etwkc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k4tsx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x2kh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nmh6p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_xrnh2"]
+_data = {
+"points": PackedVector2Array(25, 0, -15, 0, 0, -30, 0, -15, 0, 15, -30, 0, -15, 0, 15, 0, 0, 30, 0, 15, 0, -15, 30, 0, 15, 0, 0, 0, 0, -30)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_gei4t"]
+_data = {
+"points": PackedVector2Array(25, 0, -25, 0, 0, -50, 0, -25, 0, 25, -50, 0, -25, 0, 25, 0, 0, 50, 0, 25, 0, -25, 50, 0, 25, 0, 0, 0, 0, -50)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_xmdd1"]
+_data = {
+"points": PackedVector2Array(25, 0, -25, 0, 0, -50, 0, -25, 0, 25, -50, 0, -25, 0, 25, 0, 0, 50, 0, 25, 0, -25, 50, 0, 25, 0, -25, 0, 0, -50, 0, 25, 0, -25, -50, -100, -25, 0, 25, 0, 0, -150, 0, -25, 0, 25, 50, -100, 25, 0, 0, 0, 0, -50)
+}
+point_count = 9
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qsqxf"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("13_26jhs")
+stream_0/weight = 1.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_26mew")
+reload_empty_color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mhhaw")
+
+[node name="HitDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
+shape = SubResource("RectangleShape2D_anpcg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_etwkc")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Gun" parent="." instance=ExtResource("5_4t7ox")]
+
+[node name="AmmoUI" parent="." instance=ExtResource("6_o3iah")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -75.0
+offset_right = 5.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p4qbv")
+empty_texture = ExtResource("8_l58h2")
+
+[node name="HealthUI" parent="." instance=ExtResource("9_a3l4y")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -51.0
+offset_right = 5.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+health = 5
+texture = ExtResource("10_ystek")
+empty_texture = ExtResource("11_hq7yn")
+
+[node name="ReloadPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xrnh2")
+
+[node name="ReloadPathFollow" type="PathFollow2D" parent="ReloadPath"]
+position = Vector2(0, -30)
+rotation = 3.14159
+script = ExtResource("9_ju1oc")
+
+[node name="Circle" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_gei4t")
+
+[node name="FigureEight" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_xmdd1")
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="DamageAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_qsqxf")
+
+[connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
