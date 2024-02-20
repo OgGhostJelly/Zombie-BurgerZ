@@ -4,6 +4,8 @@ signal ammo_changed
 signal reloaded
 signal fired
 signal max_ammo_changed
+signal fired
+signal reloaded
 
 
 ## How many bullets will be fired per shot.
@@ -20,10 +22,10 @@ signal max_ammo_changed
 var ammo: int = max_ammo: set = set_ammo
 
 @onready var empty_audio: AudioStreamPlayer = $EmptyAudio
-@onready var shoot_audio: AudioStreamPlayer = $ShootAudio
+@onready var fire_audio: AudioStreamPlayer = $FireAudio
 @onready var reload_audio: AudioStreamPlayer = $ReloadAudio
 @onready var reload_particles: CPUParticles2D = $ReloadParticles
-@onready var shoot_particles: CPUParticles2D = $ShootParticles
+@onready var fire_particles: CPUParticles2D = $FireParticles
 @onready var sprite: Sprite2D = $Sprite2D
 
 
@@ -38,7 +40,7 @@ func _process(_delta: float) -> void:
 	
 	sprite.position.x = (
 		16.0 - 4.0
-		if Input.is_action_pressed(&"shoot") else
+		if Input.is_action_pressed(&"fire") else
 		16.0
 	)
 	
@@ -49,20 +51,20 @@ func _process(_delta: float) -> void:
 	)
 
 
-func can_shoot() -> bool:
+func can_fire() -> bool:
 	return ammo > 0
 
 
-func shoot() -> void:
-	if can_shoot():
-		force_shoot()
+func fire() -> void:
+	if can_fire():
+		force_fire()
 	else:
 		empty_audio.play()
 
 
-func force_shoot() -> void:
-	shoot_particles.emitting = true
-	shoot_audio.play()
+func force_fire() -> void:
+	fire_particles.emitting = true
+	fire_audio.play()
 	var amount: int = min(bullets_per_shot, ammo)
 	ammo -= amount
 	spawn(amount)

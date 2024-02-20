@@ -10,6 +10,9 @@ signal died
 @onready var context_steerer: ContextSteerer = $ContextSteerer
 @onready var death_audio: AudioStreamPlayer = $DeathAudio
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sight_detector: Area2D = $SightDetector
+
+var preferred_angle: float = PI/2.0 if randf() > 0.5 else -PI/2.0
 
 
 func _ready() -> void:
@@ -20,6 +23,10 @@ func _process(_delta: float) -> void:
 	var player: Node2D = get_player()
 	
 	context_steerer.target_direction = to_local(player.global_position)
+	
+	for area in sight_detector.get_overlapping_areas():
+		context_steerer.target_direction = context_steerer.target_direction.rotated(preferred_angle)
+	
 	context_steerer.update_direction()
 	velocity = context_steerer.direction * speed
 	
