@@ -7,18 +7,20 @@ extends Node2D
 @onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
 
 var kill_count: int = 0
+var time: float = 0.0
 
 
 func _ready() -> void:
 	assert(enemy_supplier)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"info"):
-		$CanvasLayer/Info.visible = not $CanvasLayer/Info.visible
-		$CanvasLayer/PressU.visible = not $CanvasLayer/Info.visible
+		$FrontLayer/Info.visible = not $FrontLayer/Info.visible
+		$FrontLayer/PressU.visible = not $FrontLayer/Info.visible
 	
-	$CanvasLayer/Time.text = "%.2f" % (float(Time.get_ticks_msec() / 1000.0) + 1)
+	$FrontLayer/Time.text = "%.2f" % (time + 1.0)
+	time += delta
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -33,7 +35,7 @@ func _on_spawn_timer_timeout() -> void:
 	
 	obj.died.connect(func():
 		kill_count += 1
-		$CanvasLayer/KillCount.text = "%s/20" % kill_count)
+		$FrontLayer/KillCount.text = "%s/20" % kill_count)
 	
 	if not FileAccess.file_exists("user://thething.save") and kill_count == 15:
 		var file: FileAccess = FileAccess.open("user://thething.save", FileAccess.WRITE)

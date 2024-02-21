@@ -1,5 +1,6 @@
 extends Character2D
 
+signal moved
 
 #@export var max_health: int = 5: set = set_max_health
 @export var reload_empty_color: Color = Color.BLUE
@@ -52,6 +53,9 @@ func _physics_process(_delta: float) -> void:
 		gun.fire()
 	
 	move_and_slide()
+	
+	if not velocity.is_zero_approx():
+		moved.emit()
 	
 	if gun.can_reload() and reload_path_follow.update(get_global_mouse_position()):
 		gun.force_reload()

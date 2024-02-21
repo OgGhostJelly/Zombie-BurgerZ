@@ -1,14 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=11 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="Texture2D" uid="uid://bpis1qgliv700" path="res://assets/level/level-background.svg" id="1_4xwit"]
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="3_5ob25"]
 [ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_ivdfp"]
+[ext_resource type="PackedScene" uid="uid://h3y3hjyf4gwx" path="res://userinterfaces/player_objective_ui/player_objective_ui.tscn" id="6_7cgiu"]
 
 [sub_resource type="Resource" id="Resource_vi7tg"]
 script = ExtResource("3_ivdfp")
 scene = ExtResource("3_5ob25")
+
+[sub_resource type="Curve2D" id="Curve2D_mo7e7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -18, -16, 0, 0, 0, 0, 493, -14, 0, 0, 0, 0, 489, 374, 0, 0, 0, 0, -20, 371, 0, 0, 0, 0, -18, -16)
+}
+point_count = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_wjxe4"]
 outline_size = 3
@@ -18,66 +25,17 @@ outline_color = Color(0, 0, 0, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Curve2D" id="Curve2D_mo7e7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -18, -16, 0, 0, 0, 0, 493, -14, 0, 0, 0, 0, 489, 374, 0, 0, 0, 0, -20, 371, 0, 0, 0, 0, -18, -16)
-}
-point_count = 5
-
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r6cjg")
 enemy_supplier = SubResource("Resource_vi7tg")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BackLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="BackLayer"]
 offset_right = 480.0
 offset_bottom = 360.0
 texture = ExtResource("1_4xwit")
-
-[node name="Time" type="Label" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = -32.0
-offset_right = 97.0
-offset_bottom = -9.0
-grow_vertical = 0
-text = "1"
-
-[node name="KillCount" type="Label" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 164.0
-offset_top = -32.0
-offset_right = 204.0
-offset_bottom = -9.0
-grow_vertical = 0
-text = "0/20"
-
-[node name="Info" type="Label" parent="CanvasLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "This is a demo for Zombie Burgerz. Everything showcased in this demo is subject to change. Also try to play a round where you dont allow yourself to move the player, that can actually be pretty fun.
-
-Beat my highscore of 20! There isn't a prize for beating it but... idk
-
-Press 'U' to collapse."
-label_settings = SubResource("LabelSettings_wjxe4")
-autowrap_mode = 2
-
-[node name="PressU" type="Label" parent="CanvasLayer"]
-offset_right = 172.0
-offset_bottom = 23.0
-text = "Press 'U' for more info"
-label_settings = SubResource("LabelSettings_1dc45")
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -94,10 +52,54 @@ rotation = 0.00391387
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 4.0
 
-[node name="GracePeriodTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
+[node name="FrontLayer" type="CanvasLayer" parent="."]
+
+[node name="Info" type="Label" parent="FrontLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 1479.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is a demo for Zombie Burgerz. Everything showcased in this demo is subject to change. Also try to play a round where you dont allow yourself to move the player, that can actually be pretty fun.
+
+Beat my highscore of 20! There isn't a prize for beating it but... idk
+
+Press 'U' to collapse."
+label_settings = SubResource("LabelSettings_wjxe4")
+autowrap_mode = 2
+
+[node name="PressU" type="Label" parent="FrontLayer"]
+offset_right = 172.0
+offset_bottom = 23.0
+text = "Press 'U' for more info"
+label_settings = SubResource("LabelSettings_1dc45")
+
+[node name="Time" type="Label" parent="FrontLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -32.0
+offset_right = 97.0
+offset_bottom = -9.0
+grow_vertical = 0
+text = "1"
+
+[node name="KillCount" type="Label" parent="FrontLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 164.0
+offset_top = -32.0
+offset_right = 204.0
+offset_bottom = -9.0
+grow_vertical = 0
+text = "0/20"
+
+[node name="PlayerObjectiveUI" parent="FrontLayer" node_paths=PackedStringArray("player") instance=ExtResource("6_7cgiu")]
+player = NodePath("../../Player")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="GracePeriodTimer" to="SpawnTimer" method="start"]

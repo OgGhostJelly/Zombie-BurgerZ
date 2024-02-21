@@ -1,4 +1,4 @@
-- [ ] Try ask to move and then ask to reload before starting game
+- [x] Try ask to move and then ask to reload before starting game
 - [ ] Try scrolling camera
 - [ ] Try dynamically adjusting difficulty
 - [ ] Try badges/achievements
