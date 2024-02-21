@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcqf1gycu32mf"]
+[gd_scene load_steps=19 format=3 uid="uid://bcqf1gycu32mf"]
 
 [ext_resource type="Script" path="res://objects/enemies/enemy/enemy.gd" id="1_2kard"]
 [ext_resource type="Texture2D" uid="uid://c3h1abprn0l4a" path="res://assets/enemy/zombie/zombie0-walk1.svg" id="2_ecdyq"]
+[ext_resource type="Script" path="res://classes/objects/Hurtbox2D/Hurtbox2D.gd" id="2_r6qsg"]
 [ext_resource type="Texture2D" uid="uid://2jnq8gvfl8tt" path="res://assets/enemy/zombie/zombie-death0.svg" id="2_tse48"]
 [ext_resource type="Texture2D" uid="uid://beuxya4hherlp" path="res://assets/enemy/zombie/zombie-death1.svg" id="3_2ksu5"]
 [ext_resource type="Texture2D" uid="uid://becrkp1pw0evq" path="res://assets/enemy/zombie/zombie0-walk2.svg" id="3_nm6dn"]
@@ -12,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://85oxw4efhjri" path="res://assets/enemy/zombie/zombie2-walk2.svg" id="7_mve5a"]
 [ext_resource type="AudioStream" uid="uid://bfny17d358opw" path="res://assets/enemy/zombie/zombie-death0.wav" id="11_owbg4"]
 [ext_resource type="AudioStream" uid="uid://ca0rx8u572uuv" path="res://assets/enemy/zombie/zombie-death1.wav" id="12_4h4l8"]
-[ext_resource type="Script" path="res://classes/ContextSteerer/ContextSteerer.gd" id="13_833qm"]
+[ext_resource type="Script" path="res://classes/objects/ContextSteerer/ContextSteerer.gd" id="13_833qm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgi7v"]
 size = Vector2(8, 32)
@@ -82,13 +83,16 @@ stream_1/weight = 1.0
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_2kard")
+max_health = 3
+health = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sgi7v")
 
 [node name="HitDetector" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
+script = ExtResource("2_r6qsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
 shape = SubResource("RectangleShape2D_fc24u")
@@ -116,4 +120,4 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetector"]
 shape = SubResource("RectangleShape2D_fc24u")
 
-[connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
+[connection signal="hurt" from="HitDetector" to="." method="_on_hit_detector_hurt"]

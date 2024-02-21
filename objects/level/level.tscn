@@ -4,17 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="3_5ob25"]
-[ext_resource type="Script" path="res://classes/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_ivdfp"]
+[ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_ivdfp"]
 
 [sub_resource type="Resource" id="Resource_vi7tg"]
 script = ExtResource("3_ivdfp")
 scene = ExtResource("3_5ob25")
-
-[sub_resource type="Curve2D" id="Curve2D_mo7e7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -18, -16, 0, 0, 0, 0, 493, -14, 0, 0, 0, 0, 489, 374, 0, 0, 0, 0, -20, 371, 0, 0, 0, 0, -18, -16)
-}
-point_count = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_wjxe4"]
 outline_size = 3
@@ -24,36 +18,23 @@ outline_color = Color(0, 0, 0, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Curve2D" id="Curve2D_mo7e7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -18, -16, 0, 0, 0, 0, 493, -14, 0, 0, 0, 0, 489, 374, 0, 0, 0, 0, -20, 371, 0, 0, 0, 0, -18, -16)
+}
+point_count = 5
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r6cjg")
 enemy_supplier = SubResource("Resource_vi7tg")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_4xwit")
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("1_lmdvn")]
-position = Vector2(240, 180)
-
-[node name="SpawnPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_mo7e7")
-
-[node name="SpawnPathFollow" type="PathFollow2D" parent="SpawnPath"]
-position = Vector2(-18, -16)
-rotation = 0.00391387
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
-
-[node name="GracePeriodTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 480.0
+offset_bottom = 360.0
+texture = ExtResource("1_4xwit")
 
 [node name="Time" type="Label" parent="CanvasLayer"]
 anchors_preset = 2
@@ -97,6 +78,26 @@ offset_right = 172.0
 offset_bottom = 23.0
 text = "Press 'U' for more info"
 label_settings = SubResource("LabelSettings_1dc45")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_lmdvn")]
+position = Vector2(240, 180)
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_mo7e7")
+
+[node name="SpawnPathFollow" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2(-18, -16)
+rotation = 0.00391387
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="GracePeriodTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="GracePeriodTimer" to="SpawnTimer" method="start"]

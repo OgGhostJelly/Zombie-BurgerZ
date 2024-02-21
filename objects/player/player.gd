@@ -1,14 +1,11 @@
-extends CharacterBody2D
+extends Character2D
 
 
-# close-up to reload is fine cus being close to player worsens aim
-
-
-@export var max_health: int = 5: set = set_max_health
+#@export var max_health: int = 5: set = set_max_health
 @export var reload_empty_color: Color = Color.BLUE
 @export var reload_fill_color: Color = Color.YELLOW
 
-var health: int = max_health: set = set_health
+#var health: int = max_health: set = set_health
 var invincible: bool = false
 
 @onready var gun: Node2D = $Gun
@@ -22,6 +19,12 @@ var invincible: bool = false
 
 
 func _ready() -> void:
+	health_changed.connect(func():
+		health_ui.health = health)
+	
+	max_health_changed.connect(func():
+		health_ui.max_health = max_health)
+	
 	gun.ammo_changed.connect(func():
 		ammo_ui.ammo = gun.ammo)
 	
@@ -93,14 +96,8 @@ func _draw() -> void:
 	draw_circle(reload_path_follow.position.rotated(-rotation) + reload_path.position, 4.0, reload_fill_color)
 
 
-func set_health(value: int) -> void:
-	health = clampi(value, 0, max_health)
-	health_ui.health = value
-
-
-func set_max_health(value: int) -> void:
-	max_health = value
-	health_ui.max_health = value
+func _die() -> void:
+	get_tree().call_deferred(&"reload_current_scene")
 
 
 func _on_hit_detector_area_entered(_area: Area2D) -> void:
@@ -112,9 +109,6 @@ func _on_hit_detector_area_entered(_area: Area2D) -> void:
 	invincible = true
 	animated_sprite.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	health -= 1
-	
-	if health <= 0:
-		get_tree().quit()
 
 
 func _on_invincibility_timer_timeout() -> void:

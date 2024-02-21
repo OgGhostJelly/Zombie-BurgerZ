@@ -1,4 +1,4 @@
-extends Area2D
+extends Hitbox2D
 
 
 @export var speed: float = 450.0
@@ -9,9 +9,9 @@ var direction: Vector2
 
 
 func _ready() -> void:
-	var info: Dictionary = get_meta(&"spawner_info")
-	global_position = info.global_position
-	global_rotation = info.global_rotation
+	var spawner_info: Dictionary = get_meta(&"spawner_info")
+	global_position = spawner_info.global_position
+	global_rotation = spawner_info.global_rotation
 	direction = Vector2.from_angle(rotation)
 	sprite.flip_v = rotation < -PI/2.0 or rotation > PI/2.0
 

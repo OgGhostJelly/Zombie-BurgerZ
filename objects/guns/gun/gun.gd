@@ -24,6 +24,7 @@ var ammo: int = max_ammo: set = set_ammo
 @onready var reload_audio: AudioStreamPlayer = $ReloadAudio
 @onready var reload_particles: CPUParticles2D = $ReloadParticles
 @onready var fire_particles: CPUParticles2D = $FireParticles
+@onready var spawn_marker: Marker2D = $SpawnMarker
 @onready var sprite: Sprite2D = $Sprite2D
 
 
@@ -99,15 +100,12 @@ func spawn_single(_amount: int, _idx: int) -> void:
 		return
 	
 	var obj = scene.instantiate()
-	if obj is Node2D:
-		obj.transform = transform
-	
-	
 	
 	obj.set_meta(&"spawner_info", {
-		&"global_rotation": global_rotation + deg_to_rad(randf_range(-spread, spread)),
-		&"global_position": global_position,
+		&"global_rotation": spawn_marker.global_rotation + deg_to_rad(randf_range(-spread, spread)),
+		&"global_position": spawn_marker.global_position,
 	})
+	
 	get_tree().current_scene.add_child(obj)
 
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://objects/guns/gun/gun.gd" id="1_dm84q"]
 [ext_resource type="Texture2D" uid="uid://ej3thgdt0ekr" path="res://assets/gun/pistol/pistol.svg" id="4_5gpee"]
 [ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="4_v3eey"]
-[ext_resource type="Script" path="res://classes/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="5_25q3x"]
+[ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="5_25q3x"]
 [ext_resource type="AudioStream" uid="uid://7eg48tcm0hae" path="res://assets/gun/pistol/pistol-reload.wav" id="5_fde0t"]
 [ext_resource type="AudioStream" uid="uid://5duh0ds7hwqy" path="res://assets/gun/pistol/pistol-shoot.wav" id="6_b1p1b"]
 [ext_resource type="AudioStream" uid="uid://buh1jfr8ysl4u" path="res://assets/gun/pistol/pistol-empty.wav" id="7_p7iee"]
@@ -109,3 +109,6 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SightArea"]
 polygon = PackedVector2Array(50, 0, 150, -24, 150, 24)
+
+[node name="SpawnMarker" type="Marker2D" parent="."]
+position = Vector2(24.5, -2.25)
