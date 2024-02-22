@@ -33,6 +33,9 @@ signal finished
 
 func _ready() -> void:
 	for objective in objectives:
+		if objective.is_done:
+			continue
+		
 		objective_label.text = objective.text
 		animation_player.play(&"show")
 		await animation_player.animation_finished
