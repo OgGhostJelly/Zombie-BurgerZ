@@ -37,7 +37,7 @@ func _ready() -> void:
 	gun.max_ammo_changed.connect(func():
 		ammo_ui.max_ammo = gun.max_ammo)
 	
-	gun.fired.connect(func():
+	gun.fired.connect(func(_bullets):
 		reload_percentage = 0.0)
 	
 	ammo_ui.ammo = gun.ammo
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	if gun.can_reload():
 		var mouse_position: Vector2 = get_global_mouse_position()
 		if global_position.distance_squared_to(mouse_position) < 64**2: 
-			reload_percentage += mouse_position.distance_to(last_mouse_position) * delta * 0.15
+			reload_percentage += mouse_position.distance_to(last_mouse_position) * delta * 0.06
 		last_mouse_position = mouse_position
 		
 		if reload_percentage > 1.0:
@@ -93,17 +93,8 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 
 
-func set_health(value: int) -> void:
-	health = clampi(value, 0, max_health)
-	health_ui.health = value
-
-
-func set_max_health(value: int) -> void:
-	max_health = value
-	health_ui.max_health = value
-
 func _die() -> void:
-	get_tree().call_deferred(&"reload_current_scene") main
+	get_tree().call_deferred(&"reload_current_scene")
 
 
 func _on_hit_detector_area_entered(_area: Area2D) -> void:

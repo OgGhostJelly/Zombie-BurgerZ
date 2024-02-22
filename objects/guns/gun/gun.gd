@@ -5,7 +5,6 @@ signal ammo_changed
 signal max_ammo_changed
 signal fired(bullets: Array[Node])
 signal reloaded
-signal max_ammo_changed
 
 
 ## How many bullets will be fired per shot.
