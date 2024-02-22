@@ -5,20 +5,36 @@ extends Node2D
 
 @onready var enemies: Node2D = $Enemies
 @onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
+@onready var player: Player = $Player
+@onready var grace_period_timer: Timer = $GracePeriodTimer
+@onready var spawn_timer: Timer = $SpawnTimer
 
 var kill_count: int = 0
+var time: float = 0.0
 
 
 func _ready() -> void:
 	assert(enemy_supplier)
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(&"info"):
-		$CanvasLayer/Info.visible = not $CanvasLayer/Info.visible
-		$CanvasLayer/PressU.visible = not $CanvasLayer/Info.visible
 	
-	$CanvasLayer/Time.text = "%.2f" % (float(Time.get_ticks_msec() / 1000.0) + 1)
+	grace_period_timer.timeout.connect(func():
+		spawn_timer.paused = false)
+	
+	player.health_changed.connect(func():
+		grace_period_timer.start()
+		spawn_timer.paused = true
+		spawn_timer.wait_time += 2.0)
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(&"info"):
+		$FrontLayer/Info.visible = not $FrontLayer/Info.visible
+		$FrontLayer/PressU.visible = not $FrontLayer/Info.visible
+	
+	$FrontLayer/Time.text = "%.2f" % time
+	if not spawn_timer.is_stopped():
+		time += delta
+	
+	spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 4.0, delta * 0.025)
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -32,8 +48,9 @@ func _on_spawn_timer_timeout() -> void:
 	obj.global_position = spawn_path_follow.global_position
 	
 	obj.died.connect(func():
+		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 1.0, 0.2)
 		kill_count += 1
-		$CanvasLayer/KillCount.text = "%s/20" % kill_count)
+		$FrontLayer/KillCount.text = "%s/20" % kill_count)
 	
 	if not FileAccess.file_exists("user://thething.save") and kill_count == 15:
 		var file: FileAccess = FileAccess.open("user://thething.save", FileAccess.WRITE)
@@ -41,3 +58,7 @@ func _on_spawn_timer_timeout() -> void:
 		obj.speed *= 4
 	
 	enemies.add_child(obj)
+
+
+func _on_player_objective_ui_finished() -> void:
+	spawn_timer.start()

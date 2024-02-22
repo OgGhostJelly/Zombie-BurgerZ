@@ -1,0 +1,11 @@
+- [x] Try ask to move and then ask to reload before starting game
+- [ ] Try scrolling camera
+- [ ] Try dynamically adjusting difficulty
+- [ ] Try badges/achievements
+- [ ] Try shop
+
+- You get to keep your items on death
+- There will be a shop
+- There are challenges you can do to get a cool badge
+- The dynamic difficulty will try to adjust to the players skill level
+- The difficulty options describe the player experience, not the "difficulty level"

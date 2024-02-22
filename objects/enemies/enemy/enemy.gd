@@ -1,10 +1,6 @@
-extends CharacterBody2D
-
-signal died
+extends Character2D
 
 
-@export var max_health: int = 3
-@export var health: int = 3: set = set_health
 @export var speed: float = 45.0
 
 @onready var context_steerer: ContextSteerer = $ContextSteerer
@@ -12,11 +8,14 @@ signal died
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sight_detector: Area2D = $SightDetector
 
-var preferred_angle: float = PI/2.0 if randf() > 0.5 else -PI/2.0
+var preferred_angle: float = 1 if randf() > 0.5 else -1
 
 
 func _ready() -> void:
 	animated_sprite.play(&"walk0")
+	
+	health_changed.connect(func():
+		if health > 0: animated_sprite.play(&"walk" + str(max_health - health)))
 
 
 func _process(_delta: float) -> void:
@@ -25,7 +24,8 @@ func _process(_delta: float) -> void:
 	context_steerer.target_direction = to_local(player.global_position)
 	
 	for area in sight_detector.get_overlapping_areas():
-		context_steerer.target_direction = context_steerer.target_direction.rotated(preferred_angle)
+		context_steerer.target_direction = context_steerer.target_direction.rotated(
+			preferred_angle * lerpf(0.0, PI/2.0, player.stats_tracker.accuracy_score))
 	
 	context_steerer.update_direction()
 	velocity = context_steerer.direction * speed
@@ -46,23 +46,18 @@ func get_player() -> CharacterBody2D:
 	return players[0]
 
 
-func _on_hit_detector_area_entered(_area: Area2D) -> void:
-	health -= 1
-
-
-func set_health(value: int) -> void:
-	health = value
+func _die() -> void:
+	animated_sprite.play(&"death")
+	animated_sprite.z_index -= 1
+	animated_sprite.reparent(get_parent())
 	
-	if health <= 0:
-		animated_sprite.play(&"death")
-		animated_sprite.reparent(get_parent())
-		
-		death_audio.play()
-		death_audio.finished.connect(func():
-			death_audio.queue_free())
-		death_audio.reparent(get_parent())
-		
-		died.emit()
-		queue_free()
-	else:
-		animated_sprite.play(&"walk" + str(max_health - health))
+	death_audio.play()
+	death_audio.finished.connect(func():
+		death_audio.queue_free())
+	death_audio.reparent(get_parent())
+	
+	queue_free()
+
+
+func _on_hit_detector_hurt(_hitbox: HitInfo2D) -> void:
+	health -= 1

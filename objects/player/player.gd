@@ -1,22 +1,22 @@
-extends CharacterBody2D
+extends Character2D
+class_name Player
 
+signal moved
 
-# close-up to reload is fine cus being close to player worsens aim
-
-
-@export var max_health: int = 5: set = set_max_health
+#@export var max_health: int = 5: set = set_max_health
 @export var reload_empty_color: Color = Color.BLUE
 @export var reload_fill_color: Color = Color.YELLOW
 
-var health: int = max_health: set = set_health
+#var health: int = max_health: set = set_health
 var invincible: bool = false
 
-@onready var gun: Node2D = $Gun
+@onready var gun: Gun = $Gun
 @onready var health_ui: Control = $HealthUI
 @onready var ammo_ui: Control = $AmmoUI
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
+@onready var stats_tracker: StatsTracker = $StatsTracker
 
 var last_mouse_position: Vector2
 var reload_percentage: float = 0.0
@@ -24,6 +24,12 @@ var reload_percentage: float = 0.0
 
 func _ready() -> void:
 	last_mouse_position = get_global_mouse_position()
+	
+	health_changed.connect(func():
+		health_ui.health = health)
+	
+	max_health_changed.connect(func():
+		health_ui.max_health = max_health)
 	
 	gun.ammo_changed.connect(func():
 		ammo_ui.ammo = gun.ammo)
@@ -56,6 +62,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if not velocity.is_zero_approx():
+		moved.emit()
+
 	if gun.can_reload():
 		var mouse_position: Vector2 = get_global_mouse_position()
 		if global_position.distance_squared_to(mouse_position) < 64**2: 
@@ -93,6 +102,9 @@ func set_max_health(value: int) -> void:
 	max_health = value
 	health_ui.max_health = value
 
+func _die() -> void:
+	get_tree().call_deferred(&"reload_current_scene") main
+
 
 func _on_hit_detector_area_entered(_area: Area2D) -> void:
 	if invincible:
@@ -103,9 +115,6 @@ func _on_hit_detector_area_entered(_area: Area2D) -> void:
 	invincible = true
 	animated_sprite.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	health -= 1
-	
-	if health <= 0:
-		get_tree().quit()
 
 
 func _on_invincibility_timer_timeout() -> void:
