@@ -56,7 +56,6 @@ func _die() -> void:
 		death_audio.queue_free())
 	death_audio.reparent(get_parent())
 	
-	died.emit()
 	queue_free()
 
 
