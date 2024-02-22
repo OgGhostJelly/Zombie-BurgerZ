@@ -1,4 +1,5 @@
 extends Character2D
+class_name Player
 
 signal moved
 
@@ -9,7 +10,7 @@ signal moved
 #var health: int = max_health: set = set_health
 var invincible: bool = false
 
-@onready var gun: Node2D = $Gun
+@onready var gun: Gun = $Gun
 @onready var health_ui: Control = $HealthUI
 @onready var ammo_ui: Control = $AmmoUI
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -17,6 +18,7 @@ var invincible: bool = false
 @onready var reload_path_follow: TrackPathFollow2D = $ReloadPath/ReloadPathFollow
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
+@onready var stats_tracker: StatsTracker = $StatsTracker
 
 
 func _ready() -> void:

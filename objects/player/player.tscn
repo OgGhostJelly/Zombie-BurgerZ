@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://j6yyqdar5jqj"]
+[gd_scene load_steps=22 format=3 uid="uid://j6yyqdar5jqj"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_26mew"]
 [ext_resource type="Texture2D" uid="uid://ddpl4vmsev6cl" path="res://assets/player/player-idle.svg" id="2_k4tsx"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d4gojkktwd1i6" path="res://assets/health/health.svg" id="10_ystek"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
+[ext_resource type="Script" path="res://classes/objects/StatsTracker/StatsTracker.gd" id="14_mu3q3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhhaw"]
 size = Vector2(8, 32)
@@ -143,6 +144,10 @@ one_shot = true
 
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_qsqxf")
+
+[node name="StatsTracker" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("14_mu3q3")
+player = NodePath("..")
 
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

@@ -1,8 +1,9 @@
 extends Node2D
+class_name Gun
 
 signal ammo_changed
 signal max_ammo_changed
-signal fired
+signal fired(bullets: Array[Node])
 signal reloaded
 
 
@@ -66,8 +67,7 @@ func force_fire() -> void:
 	fire_audio.play()
 	var amount: int = min(bullets_per_shot, ammo)
 	ammo -= amount
-	spawn(amount)
-	fired.emit()
+	fired.emit(spawn(amount))
 
 
 func can_reload() -> bool:
@@ -86,20 +86,24 @@ func force_reload() -> void:
 	reloaded.emit()
 
 
-func spawn(amount: int) -> void:
+func spawn(amount: int) -> Array[Node]:
 	assert(amount != 0, "%s no scenes will be spawned if `amount` is zero!" % self)
 	assert(amount > -1, "%s `amount` cannot be a negative value!" % self)
 	
+	var spawns: Array[Node] = []
+	
 	for i in amount:
-		spawn_single(amount, i)
+		spawns.append(spawn_single(amount, i))
+	
+	return spawns
 
 
-func spawn_single(_amount: int, _idx: int) -> void:
+func spawn_single(_amount: int, _idx: int) -> Node:
 	var scene: PackedScene = supplier.supply()
 	if scene == null:
 		return
 	
-	var obj = scene.instantiate()
+	var obj: Node = scene.instantiate()
 	
 	obj.set_meta(&"spawner_info", {
 		&"global_rotation": spawn_marker.global_rotation + deg_to_rad(randf_range(-spread, spread)),
@@ -107,6 +111,7 @@ func spawn_single(_amount: int, _idx: int) -> void:
 	})
 	
 	get_tree().current_scene.add_child(obj)
+	return obj
 
 
 func set_ammo(value: int) -> void:

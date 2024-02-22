@@ -52,6 +52,10 @@ rotation = 0.00391387
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 4.0
 
+[node name="GracePeriodTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
 [node name="FrontLayer" type="CanvasLayer" parent="."]
 
 [node name="Info" type="Label" parent="FrontLayer"]

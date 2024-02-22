@@ -5,6 +5,9 @@ extends Node2D
 
 @onready var enemies: Node2D = $Enemies
 @onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
+@onready var player: Player = $Player
+@onready var grace_period_timer: Timer = $GracePeriodTimer
+@onready var spawn_timer: Timer = $SpawnTimer
 
 var kill_count: int = 0
 var time: float = 0.0
@@ -12,6 +15,14 @@ var time: float = 0.0
 
 func _ready() -> void:
 	assert(enemy_supplier)
+	
+	grace_period_timer.timeout.connect(func():
+		spawn_timer.paused = false)
+	
+	player.health_changed.connect(func():
+		grace_period_timer.start()
+		spawn_timer.paused = true
+		spawn_timer.wait_time += 2.0)
 
 
 func _process(delta: float) -> void:
@@ -20,8 +31,10 @@ func _process(delta: float) -> void:
 		$FrontLayer/PressU.visible = not $FrontLayer/Info.visible
 	
 	$FrontLayer/Time.text = "%.2f" % time
-	if not $SpawnTimer.is_stopped():
+	if not spawn_timer.is_stopped():
 		time += delta
+	
+	spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 4.0, delta * 0.025)
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -35,6 +48,7 @@ func _on_spawn_timer_timeout() -> void:
 	obj.global_position = spawn_path_follow.global_position
 	
 	obj.died.connect(func():
+		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 1.0, 0.2)
 		kill_count += 1
 		$FrontLayer/KillCount.text = "%s/20" % kill_count)
 	
@@ -47,4 +61,4 @@ func _on_spawn_timer_timeout() -> void:
 
 
 func _on_player_objective_ui_finished() -> void:
-	$SpawnTimer.start()
+	spawn_timer.start()

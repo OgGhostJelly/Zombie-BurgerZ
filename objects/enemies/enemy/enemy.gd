@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 	
 	for area in sight_detector.get_overlapping_areas():
 		context_steerer.target_direction = context_steerer.target_direction.rotated(
-			preferred_angle * PI/2.0)
+			preferred_angle * lerpf(0.0, PI/2.0, player.stats_tracker.accuracy_score))
 	
 	context_steerer.update_direction()
 	velocity = context_steerer.direction * speed

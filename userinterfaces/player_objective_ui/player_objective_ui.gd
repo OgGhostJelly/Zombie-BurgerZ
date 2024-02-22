@@ -9,7 +9,8 @@ class Objective:
 	func _init(p_sig: Signal, p_text: String) -> void:
 		text = p_text
 		sig = p_sig
-		sig.connect(func():
+		
+		sig.connect(func(_a = null, _b = null, _c = null):
 			is_done = true)
 	
 	func wait() -> void:
