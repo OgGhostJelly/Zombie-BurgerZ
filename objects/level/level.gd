@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 		$FrontLayer/Info.visible = not $FrontLayer/Info.visible
 		$FrontLayer/PressU.visible = not $FrontLayer/Info.visible
 	
-	$FrontLayer/Time.text = "%.2f" % (time + 1.0)
-	time += delta
+	$FrontLayer/Time.text = "%.2f" % time
+	if not $SpawnTimer.is_stopped():
+		time += delta
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -43,3 +44,7 @@ func _on_spawn_timer_timeout() -> void:
 		obj.speed *= 4
 	
 	enemies.add_child(obj)
+
+
+func _on_player_objective_ui_finished() -> void:
+	$SpawnTimer.start()

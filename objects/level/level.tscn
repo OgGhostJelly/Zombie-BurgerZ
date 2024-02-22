@@ -103,3 +103,4 @@ text = "0/20"
 player = NodePath("../../Player")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="finished" from="FrontLayer/PlayerObjectiveUI" to="." method="_on_player_objective_ui_finished"]
