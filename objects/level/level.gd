@@ -8,6 +8,8 @@ extends Node2D
 @onready var player: Player = $Player
 @onready var grace_period_timer: Timer = $GracePeriodTimer
 @onready var spawn_timer: Timer = $SpawnTimer
+@onready var time_label: Label = $FrontLayer/Time
+@onready var kill_count_label: Label = $FrontLayer/KillCount
 
 var kill_count: int = 0
 var time: float = 0.0
@@ -27,14 +29,18 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"info"):
-		$FrontLayer/Info.visible = not $FrontLayer/Info.visible
-		$FrontLayer/PressU.visible = not $FrontLayer/Info.visible
+		$FrontLayer/DebugInfo.visible = not $FrontLayer/DebugInfo.visible
 	
-	$FrontLayer/Time.text = "%.2f" % time
+	$FrontLayer/DebugInfo/AccuracyScore.text = \
+		"Accuracy Score: %.3f" % player.stats_tracker.accuracy_score
+	
+	$FrontLayer/DebugInfo/ZombieSpawnSpeed.text = \
+		"Spawn Speed: %.3f" % spawn_timer.wait_time
+	
+	time_label.text = "%.2f" % time
 	if not spawn_timer.is_stopped():
 		time += delta
-	
-	spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 4.0, delta * 0.025)
+		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 6.0, delta * 0.05)
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -48,9 +54,9 @@ func _on_spawn_timer_timeout() -> void:
 	obj.global_position = spawn_path_follow.global_position
 	
 	obj.died.connect(func():
-		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 1.0, 0.2)
+		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 2.0, 0.3)
 		kill_count += 1
-		$FrontLayer/KillCount.text = "%s/20" % kill_count)
+		kill_count_label.text = "%s/20" % kill_count)
 	
 	if not FileAccess.file_exists("user://thething.save") and kill_count == 15:
 		var file: FileAccess = FileAccess.open("user://thething.save", FileAccess.WRITE)

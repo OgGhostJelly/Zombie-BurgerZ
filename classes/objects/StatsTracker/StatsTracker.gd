@@ -4,10 +4,10 @@ class_name StatsTracker
 
 @export var player: Player
 
-var accuracy_score: float = 1.0:
+var accuracy_score: float = 0.0:
 	set(value): accuracy_score = clampf(value, 0.0, 1.0)
-var accuracy_adjustment_rate: float = 0.05
-var accuracy_miss_penalty: float = 0.2
+var accuracy_miss_penalty: float = 0.1
+var accuracy_hit_bonus: float = 0.05
 
 
 func _ready() -> void:
@@ -24,4 +24,4 @@ func _on_player_gun_fired(bullets: Array[Node]) -> void:
 		accuracy_score -= accuracy_miss_penalty
 		
 		bullet.hit.connect(func(_info) -> void:
-			accuracy_score += accuracy_miss_penalty)
+			accuracy_score += accuracy_miss_penalty + accuracy_hit_bonus)

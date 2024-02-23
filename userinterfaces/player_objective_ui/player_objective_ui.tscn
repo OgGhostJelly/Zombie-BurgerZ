@@ -1,22 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://h3y3hjyf4gwx"]
+[gd_scene load_steps=7 format=3 uid="uid://h3y3hjyf4gwx"]
 
 [ext_resource type="Script" path="res://userinterfaces/player_objective_ui/player_objective_ui.gd" id="1_vrlv8"]
 
-[sub_resource type="Animation" id="Animation_j6txq"]
-resource_name = "show"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ObjectiveLabel:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [-24.0, 24.0]
-}
+[sub_resource type="LabelSettings" id="LabelSettings_tkni3"]
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_qobkk"]
 resource_name = "RESET"
@@ -50,6 +38,22 @@ tracks/0/keys = {
 "values": [24.0, -24.0]
 }
 
+[sub_resource type="Animation" id="Animation_j6txq"]
+resource_name = "show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveLabel:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [-24.0, 24.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wyywe"]
 _data = {
 "RESET": SubResource("Animation_qobkk"),
@@ -76,6 +80,8 @@ offset_top = -24.0
 offset_right = 65.5
 offset_bottom = -1.0
 grow_horizontal = 2
+text = "Example Text"
+label_settings = SubResource("LabelSettings_tkni3")
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

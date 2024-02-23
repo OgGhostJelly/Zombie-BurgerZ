@@ -1,8 +1,12 @@
 - [x] Try ask to move and then ask to reload before starting game
 - [ ] Try scrolling camera
-- [ ] Try dynamically adjusting difficulty
+- [x] Try dynamically adjusting difficulty
+- [ ] Try difficulty select
 - [ ] Try badges/achievements
 - [ ] Try shop
+- [ ] Add Main Menu
+- [ ] COMBOS !!
+- [ ] Make code more component-based
 
 - You get to keep your items on death
 - There will be a shop
