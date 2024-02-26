@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://j6yyqdar5jqj"]
+[gd_scene load_steps=18 format=3 uid="uid://j6yyqdar5jqj"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_26mew"]
 [ext_resource type="Texture2D" uid="uid://ddpl4vmsev6cl" path="res://assets/player/player-idle.svg" id="2_k4tsx"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://c6mv0s3o00rdv" path="res://assets/ammo/ammo.svg" id="7_p4qbv"]
 [ext_resource type="Texture2D" uid="uid://bcreik4mwnqse" path="res://assets/ammo/ammo-empty.svg" id="8_l58h2"]
 [ext_resource type="PackedScene" uid="uid://buweeb74gwfjw" path="res://userinterfaces/health_ui/health_ui.tscn" id="9_a3l4y"]
-[ext_resource type="Script" path="res://classes/objects/TrackPathFollow2D/TrackPathFollow2D.gd" id="9_ju1oc"]
 [ext_resource type="Texture2D" uid="uid://d4gojkktwd1i6" path="res://assets/health/health.svg" id="10_ystek"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
@@ -42,24 +41,6 @@ animations = [{
 "name": &"walk",
 "speed": 12.0
 }]
-
-[sub_resource type="Curve2D" id="Curve2D_xrnh2"]
-_data = {
-"points": PackedVector2Array(25, 0, -15, 0, 0, -30, 0, -15, 0, 15, -30, 0, -15, 0, 15, 0, 0, 30, 0, 15, 0, -15, 30, 0, 15, 0, 0, 0, 0, -30)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_gei4t"]
-_data = {
-"points": PackedVector2Array(25, 0, -25, 0, 0, -50, 0, -25, 0, 25, -50, 0, -25, 0, 25, 0, 0, 50, 0, 25, 0, -25, 50, 0, 25, 0, 0, 0, 0, -50)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_xmdd1"]
-_data = {
-"points": PackedVector2Array(25, 0, -25, 0, 0, -50, 0, -25, 0, 25, -50, 0, -25, 0, 25, 0, 0, 50, 0, 25, 0, -25, 50, 0, 25, 0, -25, 0, 0, -50, 0, 25, 0, -25, -50, -100, -25, 0, 25, 0, 0, -150, 0, -25, 0, 25, 50, -100, 25, 0, 0, 0, 0, -50)
-}
-point_count = 9
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qsqxf"]
 random_pitch = 1.4
@@ -128,22 +109,6 @@ health = 5
 texture = ExtResource("10_ystek")
 empty_texture = ExtResource("11_hq7yn")
 
-[node name="ReloadPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_xrnh2")
-
-[node name="ReloadPathFollow" type="PathFollow2D" parent="ReloadPath"]
-position = Vector2(0, -30)
-rotation = 3.14159
-script = ExtResource("9_ju1oc")
-
-[node name="Circle" type="Path2D" parent="."]
-visible = false
-curve = SubResource("Curve2D_gei4t")
-
-[node name="FigureEight" type="Path2D" parent="."]
-visible = false
-curve = SubResource("Curve2D_xmdd1")
-
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -151,5 +116,9 @@ one_shot = true
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_qsqxf")
 
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
