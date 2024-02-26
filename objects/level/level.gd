@@ -21,7 +21,7 @@ func _ready() -> void:
 	grace_period_timer.timeout.connect(func():
 		spawn_timer.paused = false)
 	
-	player.health_changed.connect(func():
+	player.health.value_changed.connect(func():
 		grace_period_timer.start()
 		spawn_timer.paused = true
 		spawn_timer.wait_time += 2.0)
@@ -30,9 +30,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"info"):
 		$FrontLayer/DebugInfo.visible = not $FrontLayer/DebugInfo.visible
-	
-	$FrontLayer/DebugInfo/AccuracyScore.text = \
-		"Accuracy Score: %.3f" % player.stats_tracker.accuracy_score
 	
 	$FrontLayer/DebugInfo/ZombieSpawnSpeed.text = \
 		"Spawn Speed: %.3f" % spawn_timer.wait_time

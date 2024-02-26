@@ -12,20 +12,21 @@ var preferred_angle: float = 1 if randf() > 0.5 else -1
 
 
 func _ready() -> void:
+	super()
 	animated_sprite.play(&"walk0")
 	
-	health_changed.connect(func():
-		if health > 0: animated_sprite.play(&"walk" + str(max_health - health)))
+	health.value_changed.connect(func():
+		if health.value > 0: animated_sprite.play(&"walk" + str(health.max_value - health.value)))
 
 
 func _process(_delta: float) -> void:
 	var player: Node2D = get_player()
 	
-	context_steerer.target_direction = to_local(player.global_position)
+	context_steerer.target_direction = global_position.direction_to(player.global_position)
 	
 	for area in sight_detector.get_overlapping_areas():
 		context_steerer.target_direction = context_steerer.target_direction.rotated(
-			preferred_angle * lerpf(0.0, PI/2.0, player.stats_tracker.accuracy_score))
+			preferred_angle * (PI/4.0))
 	
 	context_steerer.update_direction()
 	velocity = context_steerer.direction * speed
@@ -48,7 +49,6 @@ func get_player() -> CharacterBody2D:
 
 func _die() -> void:
 	animated_sprite.play(&"death")
-	animated_sprite.z_index -= 1
 	animated_sprite.reparent(get_parent())
 	
 	death_audio.play()
@@ -60,4 +60,4 @@ func _die() -> void:
 
 
 func _on_hit_detector_hurt(_hitbox: HitInfo2D) -> void:
-	health -= 1
+	health.value -= 1

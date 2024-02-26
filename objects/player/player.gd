@@ -18,15 +18,15 @@ var invincible: bool = false
 @onready var reload_path_follow: TrackPathFollow2D = $ReloadPath/ReloadPathFollow
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
-@onready var stats_tracker: StatsTracker = $StatsTracker
 
 
 func _ready() -> void:
-	health_changed.connect(func():
-		health_ui.health = health)
+	super()
+	health.value_changed.connect(func():
+		health_ui.health = health.value)
 	
-	max_health_changed.connect(func():
-		health_ui.max_health = max_health)
+	health.max_value_changed.connect(func():
+		health_ui.max_health = health.max_value)
 	
 	gun.ammo_changed.connect(func():
 		ammo_ui.ammo = gun.ammo)
@@ -61,8 +61,6 @@ func _physics_process(_delta: float) -> void:
 	
 	if gun.can_reload() and reload_path_follow.update(get_global_mouse_position()):
 		gun.force_reload()
-	
-	global_position = global_position.clamp(Vector2.ZERO + Vector2(4.0, 16.0), Vector2(480.0, 360.0)  - Vector2(4.0, 16.0))
 	
 	queue_redraw()
 
@@ -114,7 +112,7 @@ func _on_hit_detector_area_entered(_area: Area2D) -> void:
 	invincibility_timer.start()
 	invincible = true
 	animated_sprite.modulate = Color(1.0, 1.0, 1.0, 0.5)
-	health -= 1
+	health.value -= 1
 
 
 func _on_invincibility_timer_timeout() -> void:

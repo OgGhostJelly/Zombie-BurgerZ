@@ -62,10 +62,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AccuracyScore" type="Label" parent="FrontLayer/DebugInfo"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_tkni3")
-
 [node name="ZombieSpawnSpeed" type="Label" parent="FrontLayer/DebugInfo"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_tkni3")

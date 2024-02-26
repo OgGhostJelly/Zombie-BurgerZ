@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcqf1gycu32mf"]
+[gd_scene load_steps=20 format=3 uid="uid://bcqf1gycu32mf"]
 
 [ext_resource type="Script" path="res://objects/enemies/enemy/enemy.gd" id="1_2kard"]
 [ext_resource type="Texture2D" uid="uid://c3h1abprn0l4a" path="res://assets/enemy/zombie/zombie0-walk1.svg" id="2_ecdyq"]
 [ext_resource type="Script" path="res://classes/objects/Hurtbox2D/Hurtbox2D.gd" id="2_r6qsg"]
+[ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="2_tim7i"]
 [ext_resource type="Texture2D" uid="uid://2jnq8gvfl8tt" path="res://assets/enemy/zombie/zombie-death0.svg" id="2_tse48"]
 [ext_resource type="Texture2D" uid="uid://beuxya4hherlp" path="res://assets/enemy/zombie/zombie-death1.svg" id="3_2ksu5"]
 [ext_resource type="Texture2D" uid="uid://becrkp1pw0evq" path="res://assets/enemy/zombie/zombie0-walk2.svg" id="3_nm6dn"]
@@ -79,12 +80,16 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("12_4h4l8")
 stream_1/weight = 1.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_2kard")
-max_health = 3
-health = 3
+health = NodePath("Health")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_tim7i")
+max_value = 3
+value = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sgi7v")
@@ -110,7 +115,6 @@ volume_db = -5.0
 
 [node name="ContextSteerer" type="Node2D" parent="."]
 script = ExtResource("13_833qm")
-sight_distance = 1.0
 collision_mask = 4
 
 [node name="SightDetector" type="Area2D" parent="."]

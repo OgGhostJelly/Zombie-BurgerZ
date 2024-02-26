@@ -5,11 +5,21 @@
 - [ ] Try badges/achievements
 - [ ] Try shop
 - [ ] Add Main Menu
-- [ ] COMBOS !!
-- [ ] Make code more component-based
+- [ ] COMBOS !! aka STYLE
+- [x] Make code more component-based
+- [ ] Wider range of movement. (dodge-roll babeee)
 
 - You get to keep your items on death
 - There will be a shop
 - There are challenges you can do to get a cool badge
 - The dynamic difficulty will try to adjust to the players skill level
 - The difficulty options describe the player experience, not the "difficulty level"
+
+- Elevation/Walls/Obstacles
+- More Weapons/Melee Weapons
+- Primary/Secondary
+- smack zombies with pistols
+- environmental damage
+- grenades
+- new ways to kill zombies
+- random generated levels

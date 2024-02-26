@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d4gojkktwd1i6" path="res://assets/health/health.svg" id="10_ystek"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
-[ext_resource type="Script" path="res://classes/objects/StatsTracker/StatsTracker.gd" id="14_mu3q3"]
+[ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="15_7piqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhhaw"]
 size = Vector2(8, 32)
@@ -67,11 +67,17 @@ streams_count = 1
 stream_0/stream = ExtResource("13_26jhs")
 stream_0/weight = 1.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_26mew")
 reload_empty_color = Color(0.384314, 0.384314, 0.384314, 1)
+health = NodePath("Health")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("15_7piqp")
+max_value = 5
+value = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mhhaw")
@@ -144,10 +150,6 @@ one_shot = true
 
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_qsqxf")
-
-[node name="StatsTracker" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("14_mu3q3")
-player = NodePath("..")
 
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
