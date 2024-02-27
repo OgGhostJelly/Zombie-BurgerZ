@@ -8,8 +8,6 @@ extends Character2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sight_detector: Area2D = $SightDetector
 
-var preferred_angle: float = 1 if randf() > 0.5 else -1
-
 
 func _ready() -> void:
 	super()
@@ -25,8 +23,7 @@ func _process(_delta: float) -> void:
 	context_steerer.target_direction = global_position.direction_to(player.global_position)
 	
 	for area in sight_detector.get_overlapping_areas():
-		context_steerer.target_direction = context_steerer.target_direction.rotated(
-			preferred_angle * (PI/4.0))
+		context_steerer.target_direction = context_steerer.target_direction.rotated(PI/4.0)
 	
 	context_steerer.update_direction()
 	velocity = context_steerer.direction * speed
