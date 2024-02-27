@@ -37,7 +37,9 @@ func _process(delta: float) -> void:
 	time_label.text = "%.2f" % time
 	if not spawn_timer.is_stopped():
 		time += delta
-		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 6.0, delta * 0.05)
+		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 4.0, delta * 0.05)
+	
+	$SpawnPath.global_position = player.global_position -  Vector2(480.0, 360.0) / 2.0
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -51,7 +53,7 @@ func _on_spawn_timer_timeout() -> void:
 	obj.global_position = spawn_path_follow.global_position
 	
 	obj.died.connect(func():
-		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 2.0, 0.3)
+		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 1.0, 0.3)
 		kill_count += 1
 		kill_count_label.text = "%s/20" % kill_count)
 	

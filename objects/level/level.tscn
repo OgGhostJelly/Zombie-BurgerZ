@@ -25,12 +25,11 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_r6cjg")
 enemy_supplier = SubResource("Resource_vi7tg")
 
-[node name="BackLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="BackLayer"]
-offset_right = 480.0
-offset_bottom = 360.0
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -720.0
+offset_top = -540.0
+offset_right = 1200.0
+offset_bottom = 900.0
 texture = ExtResource("1_4xwit")
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -46,7 +45,7 @@ position = Vector2(-18, -16)
 rotation = 0.00391387
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 
 [node name="GracePeriodTimer" type="Timer" parent="."]
 wait_time = 6.0

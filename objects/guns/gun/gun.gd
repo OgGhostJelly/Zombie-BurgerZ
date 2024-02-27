@@ -49,9 +49,12 @@ func can_fire() -> bool:
 	return not animation_player.is_playing()
 
 
-func fire() -> void:
+func fire() -> bool:
 	if can_fire():
 		force_fire()
+		return true
+	else:
+		return false
 
 
 func force_fire() -> void:

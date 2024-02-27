@@ -26,21 +26,24 @@ func _ready() -> void:
 		health_ui.max_health = health.max_value)
 
 
-func _physics_process(_delta: float) -> void:
-	velocity = Input.get_vector(
+func _physics_process(delta: float) -> void:
+	var input_vector: Vector2 = Input.get_vector(
 		&"move_left",
 		&"move_right",
 		&"move_up",
 		&"move_down",
-	) * 90.0
+	)
+	
+	velocity = velocity.move_toward(input_vector * 90.0, 430.0 * delta)
 	
 	if velocity.is_zero_approx():
 		animated_sprite.play(&"idle")
 	else:
 		animated_sprite.play(&"walk")
 	
-	if Input.is_action_just_pressed(&"fire"):
-		gun.fire()
+	if Input.is_action_just_pressed(&"fire") and gun.fire():
+		velocity += Vector2.from_angle(gun.global_rotation) * -120.0
+		velocity -= input_vector * -40.0
 	
 	move_and_slide()
 	
@@ -48,6 +51,8 @@ func _physics_process(_delta: float) -> void:
 		moved.emit()
 	
 	queue_redraw()
+	
+	global_position = global_position.clamp(Vector2(-720.0, -540.0), Vector2(1200.0, 900.0))
 
 
 func _die() -> void:
