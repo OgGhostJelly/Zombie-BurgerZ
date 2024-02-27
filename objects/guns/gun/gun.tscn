@@ -92,7 +92,7 @@ color_ramp = SubResource("Gradient_msh5n")
 
 [node name="ReloadAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_epgwq")
-volume_db = -5.0
+volume_db = -20.0
 
 [node name="FireAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hashf")
@@ -112,3 +112,9 @@ polygon = PackedVector2Array(50, 0, 150, -24, 150, 24)
 
 [node name="SpawnMarker" type="Marker2D" parent="."]
 position = Vector2(24.5, -2.25)
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

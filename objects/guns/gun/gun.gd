@@ -1,8 +1,6 @@
 extends Node2D
 class_name Gun
 
-signal ammo_changed
-signal max_ammo_changed
 signal fired(bullets: Array[Node])
 signal reloaded
 
@@ -15,10 +13,7 @@ signal reloaded
 @export_range(0, 180.0) var spread: float = 0.0
 ## The resource that supplies the scenes that will be spawned.
 @export var supplier: PackedSceneSupplier
-## The maximum ammo the gun can store.
-@export var max_ammo: int = 5: set = set_max_ammo
 
-var ammo: int = max_ammo: set = set_ammo
 
 @onready var empty_audio: AudioStreamPlayer = $EmptyAudio
 @onready var fire_audio: AudioStreamPlayer = $FireAudio
@@ -27,6 +22,7 @@ var ammo: int = max_ammo: set = set_ammo
 @onready var fire_particles: CPUParticles2D = $FireParticles
 @onready var spawn_marker: Marker2D = $SpawnMarker
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var reload_timer: Timer = $ReloadTimer
 
 
 func _ready() -> void:
@@ -52,7 +48,7 @@ func _process(_delta: float) -> void:
 
 
 func can_fire() -> bool:
-	return ammo > 0
+	return reload_timer.is_stopped()
 
 
 func fire() -> void:
@@ -65,25 +61,8 @@ func fire() -> void:
 func force_fire() -> void:
 	fire_particles.emitting = true
 	fire_audio.play()
-	var amount: int = min(bullets_per_shot, ammo)
-	ammo -= amount
-	fired.emit(spawn(amount))
-
-
-func can_reload() -> bool:
-	return ammo < max_ammo
-
-
-func reload() -> void:
-	if can_reload():
-		force_reload()
-
-
-func force_reload() -> void:
-	reload_particles.emitting = true
-	reload_audio.play()
-	ammo += bullets_per_reload
-	reloaded.emit()
+	fired.emit(spawn(bullets_per_shot))
+	reload_timer.start()
 
 
 func spawn(amount: int) -> Array[Node]:
@@ -114,11 +93,5 @@ func spawn_single(_amount: int, _idx: int) -> Node:
 	return obj
 
 
-func set_ammo(value: int) -> void:
-	ammo = clampi(value, 0, max_ammo)
-	ammo_changed.emit()
-
-
-func set_max_ammo(value: int) -> void:
-	max_ammo = value
-	max_ammo_changed.emit()
+func _on_reload_timer_timeout() -> void:
+	reload_audio.play()

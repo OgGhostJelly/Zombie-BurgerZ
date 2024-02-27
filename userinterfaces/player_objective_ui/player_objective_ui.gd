@@ -29,7 +29,6 @@ signal finished
 @onready var objectives: Array[Objective] = [
 	Objective.new(player.moved, "Move with WASD"),
 	Objective.new(player.gun.fired, "Shoot with LMB"),
-	Objective.new(player.gun.reloaded, "Reload by spinning the circle"),
 ]
 
 func _ready() -> void:
