@@ -75,7 +75,7 @@ offset_top = -32.0
 offset_right = 97.0
 offset_bottom = -9.0
 grow_vertical = 0
-text = "1"
+text = "0.00"
 
 [node name="KillCount" type="Label" parent="FrontLayer"]
 anchors_preset = 2
