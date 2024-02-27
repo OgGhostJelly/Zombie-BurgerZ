@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dajayqy7ycoxw"]
+[gd_scene load_steps=14 format=3 uid="uid://dajayqy7ycoxw"]
 
 [ext_resource type="Script" path="res://objects/guns/gun/gun.gd" id="1_dm84q"]
 [ext_resource type="Texture2D" uid="uid://ej3thgdt0ekr" path="res://assets/gun/pistol/pistol.svg" id="4_5gpee"]
 [ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="4_v3eey"]
 [ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="5_25q3x"]
-[ext_resource type="AudioStream" uid="uid://7eg48tcm0hae" path="res://assets/gun/pistol/pistol-reload.wav" id="5_fde0t"]
 [ext_resource type="AudioStream" uid="uid://5duh0ds7hwqy" path="res://assets/gun/pistol/pistol-shoot.wav" id="6_b1p1b"]
-[ext_resource type="AudioStream" uid="uid://buh1jfr8ysl4u" path="res://assets/gun/pistol/pistol-empty.wav" id="7_p7iee"]
 
 [sub_resource type="Resource" id="Resource_vughb"]
 script = ExtResource("5_25q3x")
@@ -24,23 +22,48 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 offsets = PackedFloat32Array(0.72, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_epgwq"]
-random_pitch = 1.4
-streams_count = 1
-stream_0/stream = ExtResource("5_fde0t")
-stream_0/weight = 1.0
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hashf"]
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("6_b1p1b")
 stream_0/weight = 1.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l1o8m"]
-random_pitch = 1.2
-streams_count = 1
-stream_0/stream = ExtResource("7_p7iee")
-stream_0/weight = 1.0
+[sub_resource type="Animation" id="Animation_8wtaj"]
+resource_name = "reload"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_s2lsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6g1y1"]
+_data = {
+"RESET": SubResource("Animation_s2lsq"),
+"reload": SubResource("Animation_8wtaj")
+}
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_dm84q")
@@ -90,16 +113,8 @@ angle_min = -90.0
 angle_max = 90.0
 color_ramp = SubResource("Gradient_msh5n")
 
-[node name="ReloadAudio" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_epgwq")
-volume_db = -20.0
-
 [node name="FireAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hashf")
-volume_db = -5.0
-
-[node name="EmptyAudio" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_l1o8m")
 volume_db = -5.0
 
 [node name="SightArea" type="Area2D" parent="."]
@@ -113,8 +128,7 @@ polygon = PackedVector2Array(50, 0, 150, -24, 150, 24)
 [node name="SpawnMarker" type="Marker2D" parent="."]
 position = Vector2(24.5, -2.25)
 
-[node name="ReloadTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6g1y1")
+}

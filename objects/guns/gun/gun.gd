@@ -15,14 +15,12 @@ signal reloaded
 @export var supplier: PackedSceneSupplier
 
 
-@onready var empty_audio: AudioStreamPlayer = $EmptyAudio
 @onready var fire_audio: AudioStreamPlayer = $FireAudio
-@onready var reload_audio: AudioStreamPlayer = $ReloadAudio
 @onready var reload_particles: CPUParticles2D = $ReloadParticles
 @onready var fire_particles: CPUParticles2D = $FireParticles
 @onready var spawn_marker: Marker2D = $SpawnMarker
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var reload_timer: Timer = $ReloadTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
@@ -48,21 +46,19 @@ func _process(_delta: float) -> void:
 
 
 func can_fire() -> bool:
-	return reload_timer.is_stopped()
+	return not animation_player.is_playing()
 
 
 func fire() -> void:
 	if can_fire():
 		force_fire()
-	else:
-		empty_audio.play()
 
 
 func force_fire() -> void:
 	fire_particles.emitting = true
 	fire_audio.play()
 	fired.emit(spawn(bullets_per_shot))
-	reload_timer.start()
+	animation_player.play(&"reload")
 
 
 func spawn(amount: int) -> Array[Node]:
@@ -91,7 +87,3 @@ func spawn_single(_amount: int, _idx: int) -> Node:
 	
 	get_tree().current_scene.add_child(obj)
 	return obj
-
-
-func _on_reload_timer_timeout() -> void:
-	reload_audio.play()
