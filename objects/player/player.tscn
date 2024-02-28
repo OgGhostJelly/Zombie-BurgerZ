@@ -49,7 +49,6 @@ stream_0/weight = 1.0
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_26mew")
-reload_empty_color = Color(0.384314, 0.384314, 0.384314, 1)
 health = NodePath("Health")
 
 [node name="Health" type="Node" parent="."]
