@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpis1qgliv700"
-path="res://.godot/imported/level-background.svg-7160ed8b0d77f5a855f393181a0e6c0a.ctex"
+uid="uid://c7abfnqb6q1w"
+path="res://.godot/imported/level-background.png-7b7524773cdae73af6373b174ce694c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level/level-background.svg"
-dest_files=["res://.godot/imported/level-background.svg-7160ed8b0d77f5a855f393181a0e6c0a.ctex"]
+source_file="res://assets/level/level-background.png"
+dest_files=["res://.godot/imported/level-background.png-7b7524773cdae73af6373b174ce694c0.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
