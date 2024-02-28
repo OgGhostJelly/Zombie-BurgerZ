@@ -14,10 +14,11 @@ var invincible: bool = false
 @onready var health_ui: Control = $HealthUI
 @onready var ammo_ui: Control = $AmmoUI
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var reload_path: Path2D = $ReloadPath
-@onready var reload_path_follow: TrackPathFollow2D = $ReloadPath/ReloadPathFollow
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
+
+var _reload_progress: float = 0.0
+var _last_gun_direction: Vector2
 
 
 func _ready() -> void:
@@ -59,45 +60,61 @@ func _physics_process(_delta: float) -> void:
 	if not velocity.is_zero_approx():
 		moved.emit()
 	
-	if gun.can_reload() and reload_path_follow.update(get_global_mouse_position()):
-		gun.force_reload()
+	var gun_direction: Vector2 = Vector2.from_angle(gun.global_rotation)
+	_reload_progress += _last_gun_direction.angle_to(gun_direction) / TAU
+	_last_gun_direction = gun_direction
+	
+	if abs(_reload_progress) > 1.0:
+		reset_reload_progress()
+		gun.reload()
+	
+	if not gun.can_reload():
+		reset_reload_progress()
 	
 	queue_redraw()
 
 
+func reset_reload_progress() -> void:
+	_reload_progress = sremap(gun.global_rotation) / TAU
+
+
+func sremap(value: float) -> float:
+	if value >= PI/2.0 and value <= PI:
+		return value - PI - PI/2.0
+	
+	return value + PI/2.0
+
+
 func _draw() -> void:
-	var points0: PackedVector2Array = []
-	
-	for i in reload_path.curve.point_count:
-		for j in 10:
-			var k = j / 10.0
-			points0.append(reload_path.curve.sample(i, k) + reload_path.position)
-	
-	draw_polyline(
-		points0,
-		reload_empty_color if gun.can_reload() else reload_fill_color,
-		-1.0 if gun.can_reload() else 2.0
+	draw_arc(
+		Vector2.ZERO,
+		32.0,
+		-PI/2.0,
+		TAU - PI/2.0,
+		64,
+		reload_empty_color,
+		1.0
 	)
 	
-	var points1: PackedVector2Array = []
-	var length: float = reload_path.curve.get_baked_length()
-	
-	for i in length:
-		if i > reload_path_follow.progress:
-			break
-		
-		points1.append(reload_path.curve.sample_baked(i) + reload_path.position)
-	
-	if points1.size() == 1:
-		points1.append(points1[0])
-	
-	draw_polyline(
-		points1,
+	draw_arc(
+		Vector2.ZERO,
+		32.0,
+		-PI/2.0,
+		((TAU * _reload_progress) - PI/2.0)
+		if gun.can_reload() else
+		(TAU - PI/2.0),
+		64,
 		reload_fill_color,
 		2.0
 	)
 	
-	draw_circle(reload_path_follow.position.rotated(-rotation) + reload_path.position, 4.0, reload_fill_color)
+	draw_circle(
+		(Vector2.from_angle(gun.global_rotation) * 32.0)
+		if gun.can_reload() else
+		(Vector2.UP * 32.0),
+		4.0,
+		reload_fill_color
+	)
 
 
 func _die() -> void:
