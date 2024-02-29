@@ -1,19 +1,10 @@
-- [x] Try ask to move and then ask to reload before starting game
-- [ ] Try scrolling camera
-- [x] Try dynamically adjusting difficulty
-- [ ] Try difficulty select
-- [ ] Try badges/achievements
-- [ ] Try shop
-- [ ] Add Main Menu
-- [ ] COMBOS !! aka STYLE
-- [x] Make code more component-based
-- [ ] Wider range of movement. (dodge-roll babeee)
+- [ ] SCORE !! aka STYLE
+- [ ] Try counting your shots style of playing
 
 - You get to keep your items on death
 - There will be a shop
 - There are challenges you can do to get a cool badge
-- The dynamic difficulty will try to adjust to the players skill level
-- The difficulty options describe the player experience, not the "difficulty level"
+- NO STINKY DIRECT UPGRADES (except for the pistol bcus pistol sucks)
 
 - Elevation/Walls/Obstacles
 - More Weapons/Melee Weapons

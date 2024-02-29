@@ -23,21 +23,16 @@ func _ready() -> void:
 	
 	player.health.value_changed.connect(func():
 		grace_period_timer.start()
-		spawn_timer.paused = true
-		spawn_timer.wait_time += 2.0)
+		spawn_timer.paused = true)
 
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"info"):
 		$FrontLayer/DebugInfo.visible = not $FrontLayer/DebugInfo.visible
 	
-	$FrontLayer/DebugInfo/ZombieSpawnSpeed.text = \
-		"Spawn Speed: %.3f" % spawn_timer.wait_time
-	
-	time_label.text = "%.2f" % time
 	if not spawn_timer.is_stopped():
 		time += delta
-		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 6.0, delta * 0.05)
+		time_label.text = "%.2f" % time
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -51,7 +46,6 @@ func _on_spawn_timer_timeout() -> void:
 	obj.global_position = spawn_path_follow.global_position
 	
 	obj.died.connect(func():
-		spawn_timer.wait_time = move_toward(spawn_timer.wait_time, 2.0, 0.3)
 		kill_count += 1
 		kill_count_label.text = "%s/20" % kill_count)
 	

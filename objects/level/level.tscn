@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=10 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
@@ -17,10 +17,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -18, -16, 0, 0, 0, 0, 493, -14, 0, 0, 0, 0, 489, 374, 0, 0, 0, 0, -20, 371, 0, 0, 0, 0, -18, -16)
 }
 point_count = 5
-
-[sub_resource type="LabelSettings" id="LabelSettings_tkni3"]
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r6cjg")
@@ -62,10 +58,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ZombieSpawnSpeed" type="Label" parent="FrontLayer/DebugInfo"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_tkni3")
 
 [node name="Time" type="Label" parent="FrontLayer"]
 anchors_preset = 2
