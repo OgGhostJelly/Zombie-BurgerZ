@@ -35,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not input_vector.is_zero_approx():
 		velocity = velocity.move_toward(input_vector * speed, acceleration * delta)
+		moved.emit()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 	
@@ -47,9 +48,6 @@ func _physics_process(delta: float) -> void:
 		velocity = (velocity + -Vector2.from_angle(gun.global_rotation) * 160.0).limit_length(velocity.length() + 80.0)
 	
 	move_and_slide()
-	
-	if not velocity.is_zero_approx():
-		moved.emit()
 	
 	queue_redraw()
 

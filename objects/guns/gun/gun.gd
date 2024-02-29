@@ -7,8 +7,6 @@ signal reloaded
 
 ## How many bullets will be fired per shot.
 @export var bullets_per_shot: int = 1
-## How many bullets will be reloaded when a reload occurs.
-@export var bullets_per_reload: int = 1
 ## The spread the bullets will spawn with.
 @export_range(0, 180.0) var spread: float = 0.0
 ## The resource that supplies the scenes that will be spawned.
@@ -21,6 +19,7 @@ signal reloaded
 @onready var spawn_marker: Marker2D = $SpawnMarker
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var handle: Marker2D = $Sprite2D/Handle
 
 
 func _ready() -> void:
@@ -43,6 +42,11 @@ func _process(_delta: float) -> void:
 		if sprite.flip_v else
 		0.0
 	)
+	
+	if sprite.flip_v:
+		handle.position.y = -abs(handle.position.y)
+	else:
+		handle.position.y = abs(handle.position.y)
 
 
 func can_fire() -> bool:
