@@ -69,11 +69,20 @@ func force_fire() -> void:
 	ammo.value -= 1
 	
 	if ammo.value <= 0:
-		animation_player.play(&"reload")
+		animation_player.play(
+			&"reload-left"
+			if sprite.flip_v else
+			&"reload-right"
+		)
+		
 		animation_player.animation_finished.connect(func(_a):
 			ammo.value = ammo.max_value, CONNECT_ONE_SHOT)
 	else:
-		animation_player.play(&"shoot")
+		animation_player.play(
+			&"shoot-left"
+			if sprite.flip_v else
+			&"shoot-right"
+		)
 
 
 func spawn(amount: int) -> Array[Node]:
