@@ -5,6 +5,7 @@ signal fired(bullets: Array[Node])
 signal reloaded
 
 
+@export var ammo: StatRangeInt
 ## How many bullets will be fired per shot.
 @export var bullets_per_shot: int = 1
 ## The spread the bullets will spawn with.
@@ -13,7 +14,6 @@ signal reloaded
 @export var supplier: PackedSceneSupplier
 
 
-@onready var ammo: StatRangeInt = $Ammo
 @onready var fire_audio: AudioStreamPlayer = $FireAudio
 @onready var reload_particles: CPUParticles2D = $ReloadParticles
 @onready var fire_particles: CPUParticles2D = $FireParticles

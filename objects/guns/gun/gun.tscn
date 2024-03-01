@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dajayqy7ycoxw"]
+[gd_scene load_steps=15 format=3 uid="uid://dajayqy7ycoxw"]
 
 [ext_resource type="Script" path="res://objects/guns/gun/gun.gd" id="1_dm84q"]
 [ext_resource type="Texture2D" uid="uid://ej3thgdt0ekr" path="res://assets/gun/pistol/pistol.svg" id="4_5gpee"]
 [ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="4_v3eey"]
 [ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="5_25q3x"]
-[ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="6_07aa3"]
 [ext_resource type="AudioStream" uid="uid://5duh0ds7hwqy" path="res://assets/gun/pistol/pistol-shoot.wav" id="6_b1p1b"]
 
 [sub_resource type="Resource" id="Resource_vughb"]
@@ -87,11 +86,6 @@ _data = {
 script = ExtResource("1_dm84q")
 spread = 5.0
 supplier = SubResource("Resource_vughb")
-
-[node name="Ammo" type="Node" parent="."]
-script = ExtResource("6_07aa3")
-max_value = 3
-value = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 0)
