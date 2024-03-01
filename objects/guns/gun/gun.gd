@@ -13,6 +13,7 @@ signal reloaded
 @export var supplier: PackedSceneSupplier
 
 
+@onready var ammo: StatRangeInt = $Ammo
 @onready var fire_audio: AudioStreamPlayer = $FireAudio
 @onready var reload_particles: CPUParticles2D = $ReloadParticles
 @onready var fire_particles: CPUParticles2D = $FireParticles
@@ -64,7 +65,15 @@ func force_fire() -> void:
 	fire_particles.emitting = true
 	fire_audio.play()
 	fired.emit(spawn(bullets_per_shot))
-	animation_player.play(&"reload")
+	
+	ammo.value -= 1
+	
+	if ammo.value <= 0:
+		animation_player.play(&"reload")
+		animation_player.animation_finished.connect(func(_a):
+			ammo.value = ammo.max_value, CONNECT_ONE_SHOT)
+	else:
+		animation_player.play(&"shoot")
 
 
 func spawn(amount: int) -> Array[Node]:

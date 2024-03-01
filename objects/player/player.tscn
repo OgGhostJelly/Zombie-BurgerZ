@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://j6yyqdar5jqj"]
+[gd_scene load_steps=18 format=3 uid="uid://j6yyqdar5jqj"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_26mew"]
 [ext_resource type="Texture2D" uid="uid://ddpl4vmsev6cl" path="res://assets/player/player-idle.svg" id="2_k4tsx"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun/gun.tscn" id="5_4t7ox"]
 [ext_resource type="PackedScene" uid="uid://buweeb74gwfjw" path="res://userinterfaces/health_ui/health_ui.tscn" id="9_a3l4y"]
 [ext_resource type="Texture2D" uid="uid://d4gojkktwd1i6" path="res://assets/health/health.svg" id="10_ystek"]
+[ext_resource type="Texture2D" uid="uid://c6mv0s3o00rdv" path="res://assets/ammo/ammo.svg" id="11_56lcf"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
+[ext_resource type="PackedScene" uid="uid://bv8qbklcmdk5x" path="res://userinterfaces/ammo_ui/ammo_ui.tscn" id="11_nsf5n"]
+[ext_resource type="Texture2D" uid="uid://bcreik4mwnqse" path="res://assets/ammo/ammo-empty.svg" id="11_oipba"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="15_7piqp"]
 
@@ -89,6 +92,23 @@ grow_vertical = 2
 health = 5
 texture = ExtResource("10_ystek")
 empty_texture = ExtResource("11_hq7yn")
+
+[node name="AmmoUI" parent="." instance=ExtResource("11_nsf5n")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -65.0
+offset_right = 5.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+ammo = 3
+max_ammo = 3
+texture = ExtResource("11_56lcf")
+empty_texture = ExtResource("11_oipba")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 1.5

@@ -11,6 +11,7 @@ var invincible: bool = false
 
 @onready var gun: Gun = $Gun
 @onready var health_ui: Control = $HealthUI
+@onready var ammo_ui: Control = $AmmoUI
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
@@ -23,6 +24,12 @@ func _ready() -> void:
 	
 	health.max_value_changed.connect(func():
 		health_ui.max_health = health.max_value)
+	
+	gun.ammo.value_changed.connect(func():
+		ammo_ui.ammo = gun.ammo.value)
+	
+	gun.ammo.max_value_changed.connect(func():
+		ammo_ui.max_ammo = gun.ammo.max_value)
 
 
 func _physics_process(delta: float) -> void:
