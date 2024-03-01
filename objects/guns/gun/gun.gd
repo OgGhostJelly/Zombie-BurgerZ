@@ -79,7 +79,7 @@ func spawn(amount: int) -> Array[Node]:
 	return spawns
 
 
-func spawn_single(_amount: int, _idx: int) -> Node:
+func spawn_single(amount: int, idx: int) -> Node:
 	var scene: PackedScene = supplier.supply()
 	if scene == null:
 		return
@@ -87,7 +87,7 @@ func spawn_single(_amount: int, _idx: int) -> Node:
 	var obj: Node = scene.instantiate()
 	
 	obj.set_meta(&"spawner_info", {
-		&"global_rotation": spawn_marker.global_rotation + deg_to_rad(randf_range(-spread, spread)),
+		&"global_rotation": spawn_marker.global_rotation + deg_to_rad(remap(idx + 0.5, 0, amount, -spread, spread)),
 		&"global_position": spawn_marker.global_position,
 	})
 	
