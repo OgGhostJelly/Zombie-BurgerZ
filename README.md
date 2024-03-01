@@ -1,5 +1,4 @@
 - [ ] SCORE !! aka STYLE
-- [ ] Try counting your shots style of playing
 
 - You get to keep your items on death
 - There will be a shop
