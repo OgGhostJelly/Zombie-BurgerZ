@@ -43,7 +43,7 @@ position = Vector2(-18, -16)
 rotation = 0.00391387
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 
 [node name="GracePeriodTimer" type="Timer" parent="."]
 wait_time = 6.0
