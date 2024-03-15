@@ -43,9 +43,9 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_xsy5e"]
-resource_name = "shoot-right"
-length = 0.2
+[sub_resource type="Animation" id="Animation_63ygj"]
+resource_name = "reload-left"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,10 +53,26 @@ tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(-2, 0.25, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [0.0, -0.785398, 0.0]
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_8wtaj"]
+resource_name = "reload-right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [0.0, -6.28319]
 }
 
 [sub_resource type="Animation" id="Animation_xdy5a"]
@@ -75,9 +91,9 @@ tracks/0/keys = {
 "values": [0.0, 0.785398, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_8wtaj"]
-resource_name = "reload-right"
-length = 0.4
+[sub_resource type="Animation" id="Animation_xsy5e"]
+resource_name = "shoot-right"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -85,26 +101,10 @@ tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(-2, 0.25, 1),
 "update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_63ygj"]
-resource_name = "reload-left"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [0.0, -6.28319]
+"values": [0.0, -0.785398, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6g1y1"]
