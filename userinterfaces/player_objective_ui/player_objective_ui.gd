@@ -42,5 +42,6 @@ func _ready() -> void:
 		await objective.wait()
 		animation_player.play(&"hide")
 		await animation_player.animation_finished
+	
 	visible = false
 	finished.emit()

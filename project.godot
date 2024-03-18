@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zombie BurgerZ: Oh No Edition"
-run/main_scene="res://objects/level/level.tscn"
+run/main_scene="res://objects/levels/level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -73,6 +73,7 @@ info={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="player sight"
+2d_physics/layer_5="walls"
 
 [rendering]
 

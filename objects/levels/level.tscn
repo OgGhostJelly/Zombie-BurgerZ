@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgh2sns3omtq1"]
+
+[ext_resource type="Script" path="res://objects/levels/level.gd" id="1_0qrwr"]
+[ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
+[ext_resource type="PackedScene" uid="uid://h3y3hjyf4gwx" path="res://userinterfaces/player_objective_ui/player_objective_ui.tscn" id="4_e1a8f"]
+[ext_resource type="Texture2D" uid="uid://c7abfnqb6q1w" path="res://assets/level/level-background.png" id="4_t414c"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_0qrwr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 480.0
+offset_bottom = 360.0
+texture = ExtResource("4_t414c")
+
+[node name="Player" parent="." instance=ExtResource("1_lmdvn")]
+position = Vector2(240, 180)
+collision_mask = 16
+
+[node name="FrontLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugInfo" type="VBoxContainer" parent="FrontLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerObjectiveUI" parent="FrontLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_e1a8f")]
+player = NodePath("../../Player")
