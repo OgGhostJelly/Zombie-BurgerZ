@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://v3sbgs7moh0h"]
+
+[ext_resource type="PackedScene" uid="uid://caqnnbilwp0tr" path="res://objects/levels/level.tscn" id="1_mtlkg"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_iwyye"]
+
+[node name="ShieldLevel" instance=ExtResource("1_mtlkg")]
+is_door_down = false
+is_door_right = false
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(131077, 0, 65536, 196614, 0, 65536, 196615, 0, 65536, 196616, 0, 65536, 131081, 0, 65536, 458754, 0, 65536, 393219, 0, 65536, 327683, 0, 65536, 262146, 0, 65536)
+
+[node name="Enemy" parent="." index="6" instance=ExtResource("2_iwyye")]
+position = Vector2(240, 144)
+
+[node name="Enemy4" parent="." index="7" instance=ExtResource("2_iwyye")]
+position = Vector2(112, 144)
+
+[node name="Enemy5" parent="." index="8" instance=ExtResource("2_iwyye")]
+position = Vector2(112, 240)
+
+[node name="Enemy6" parent="." index="9" instance=ExtResource("2_iwyye")]
+position = Vector2(144, 176)
+
+[node name="Enemy2" parent="." index="10" instance=ExtResource("2_iwyye")]
+position = Vector2(176, 112)
+
+[node name="Enemy3" parent="." index="11" instance=ExtResource("2_iwyye")]
+position = Vector2(304, 112)

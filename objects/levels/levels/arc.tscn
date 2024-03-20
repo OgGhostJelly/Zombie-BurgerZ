@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi8f7avefl6k2"]
+
+[ext_resource type="PackedScene" uid="uid://caqnnbilwp0tr" path="res://objects/levels/level.tscn" id="1_u2iq6"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_62xok"]
+
+[node name="ArcLevel" instance=ExtResource("1_u2iq6")]
+is_door_up = false
+is_door_left = false
+is_door_right = false
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(458759, 0, 65536, 393224, 0, 65536, 393222, 0, 65536, 327689, 0, 65536, 327685, 0, 65536)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("2_62xok")]
+position = Vector2(240, 176)
+
+[node name="Enemy2" parent="." index="6" instance=ExtResource("2_62xok")]
+position = Vector2(112, 144)
+
+[node name="Enemy3" parent="." index="7" instance=ExtResource("2_62xok")]
+position = Vector2(368, 144)
+
+[node name="Enemy4" parent="." index="8" instance=ExtResource("2_62xok")]
+position = Vector2(368, 208)
+
+[node name="Enemy5" parent="." index="9" instance=ExtResource("2_62xok")]
+position = Vector2(112, 208)

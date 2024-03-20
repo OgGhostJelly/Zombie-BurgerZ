@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zombie BurgerZ: Oh No Edition"
-run/main_scene="res://objects/levels/level.tscn"
+run/main_scene="res://objects/level_manager/level_manager.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 

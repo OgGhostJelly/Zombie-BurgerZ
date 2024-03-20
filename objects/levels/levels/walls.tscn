@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cemya5dt6rv8o"]
+
+[ext_resource type="PackedScene" uid="uid://caqnnbilwp0tr" path="res://objects/levels/level.tscn" id="1_6bypv"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_ds88s"]
+
+[node name="WallsLevel" instance=ExtResource("1_6bypv")]
+is_door_down = false
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(196618, 0, 65536, 196617, 0, 65536, 262154, 0, 65536, 458762, 0, 65536, 524298, 0, 65536, 524297, 0, 65536, 196613, 0, 65536, 196612, 0, 65536, 262148, 0, 65536, 458756, 0, 65536, 524292, 0, 65536, 524293, 0, 65536)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("2_ds88s")]
+position = Vector2(208, 176)
+
+[node name="Enemy2" parent="." index="6" instance=ExtResource("2_ds88s")]
+position = Vector2(272, 176)
+
+[node name="Enemy3" parent="." index="7" instance=ExtResource("2_ds88s")]
+position = Vector2(208, 208)
+
+[node name="Enemy4" parent="." index="8" instance=ExtResource("2_ds88s")]
+position = Vector2(272, 208)
+
+[node name="Enemy5" parent="." index="9" instance=ExtResource("2_ds88s")]
+position = Vector2(240, 192)

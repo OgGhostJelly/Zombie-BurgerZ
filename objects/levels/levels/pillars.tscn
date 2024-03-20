@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbdypjcbubyqr"]
+
+[ext_resource type="PackedScene" uid="uid://caqnnbilwp0tr" path="res://objects/levels/level.tscn" id="1_sdk8s"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_5de78"]
+
+[node name="PillarsLevel" instance=ExtResource("1_sdk8s")]
+is_door_up = false
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(131074, 0, 65536, 131084, 0, 65536, 524290, 0, 65536, 524300, 0, 65536)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("2_5de78")]
+position = Vector2(240, 176)
+
+[node name="Enemy2" parent="." index="6" instance=ExtResource("2_5de78")]
+position = Vector2(48, 48)
+
+[node name="Enemy3" parent="." index="7" instance=ExtResource("2_5de78")]
+position = Vector2(432, 48)
+
+[node name="Enemy4" parent="." index="8" instance=ExtResource("2_5de78")]
+position = Vector2(432, 304)
+
+[node name="Enemy5" parent="." index="9" instance=ExtResource("2_5de78")]
+position = Vector2(48, 304)

@@ -1,3 +1,6 @@
+- the ai completely breaks with walls or if the player is clipped inside a zombie
+- combos for when multiple piercing shots
+
 # Specification
 
 ## Movement

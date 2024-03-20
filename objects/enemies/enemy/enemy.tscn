@@ -80,11 +80,10 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("12_4h4l8")
 stream_1/weight = 1.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+[node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("1_2kard")
-health = NodePath("Health")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_tim7i")

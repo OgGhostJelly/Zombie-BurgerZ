@@ -53,6 +53,7 @@ func _draw() -> void:
 	
 	for i in range(number_of_rays):
 		draw_line(Vector2.ZERO, _ray_directions[i] * _ray_interests[i] * sight_distance, Color.GREEN)
+		draw_line(Vector2.ZERO, _ray_directions[i] * _ray_dangers[i] * sight_distance, Color.RED)
 	
 	draw_line(Vector2.ZERO, direction * 50, Color.BLUE, 2)
 	draw_line(Vector2.ZERO, target_direction * 25, Color.YELLOW, 2)

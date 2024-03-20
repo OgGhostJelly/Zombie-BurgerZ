@@ -10,6 +10,8 @@ extends Character2D
 
 
 func _ready() -> void:
+	add_to_group(&"enemies")
+	
 	super()
 	animated_sprite.play(&"walk0")
 	

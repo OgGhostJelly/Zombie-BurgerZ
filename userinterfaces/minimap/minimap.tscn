@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://bocb6wyp5k3wt"]
+
+[ext_resource type="Script" path="res://userinterfaces/minimap/minimap.gd" id="1_6ely5"]
+
+[sub_resource type="Gradient" id="Gradient_rqyqq"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u61s4"]
+gradient = SubResource("Gradient_rqyqq")
+width = 8
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_4hxk6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i4srm"]
+gradient = SubResource("Gradient_4hxk6")
+width = 8
+height = 8
+fill = 1
+
+[sub_resource type="Gradient" id="Gradient_4o1jd"]
+colors = PackedColorArray(0.310617, 0.310617, 0.310617, 1, 0.381703, 0.381703, 0.381703, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4uu5p"]
+gradient = SubResource("Gradient_4o1jd")
+width = 8
+height = 8
+fill = 1
+
+[node name="Minimap" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+script = ExtResource("1_6ely5")
+selected_texture = SubResource("GradientTexture2D_u61s4")
+tile_texture = SubResource("GradientTexture2D_i4srm")
+unknown_texture = SubResource("GradientTexture2D_4uu5p")
