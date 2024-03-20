@@ -26,8 +26,6 @@ offset_right = 480.0
 offset_bottom = 360.0
 texture = ExtResource("3_rhgfj")
 
-[node name="Level" type="Node2D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("4_2vdmu")]
 position = Vector2(240, 0)
 

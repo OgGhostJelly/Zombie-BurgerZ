@@ -40,6 +40,9 @@ func try_generate_current_level() -> void:
 		levels[current_position] = gen_level(current_position)
 	
 	call_deferred(&"add_child", levels[current_position])
+	
+	for bullet in get_tree().get_nodes_in_group(&"bullets"):
+		bullet.queue_free()
 
 
 func update_player_position(door: int) -> void:

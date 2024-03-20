@@ -1,12 +1,15 @@
 - the ai completely breaks with walls or if the player is clipped inside a zombie
 - combos for when multiple piercing shots
 
+- add ammo pickup
+- improve hitbox/hurtbox data sending and projectile data sending
+
 # Specification
 
 ## Movement
 
 - Simple WASD movement
-- Your can has recoil which you can use to get a slight speed boost.
+- Your gun has recoil which you can use to get a slight speed boost.
 
 ## Combat
 

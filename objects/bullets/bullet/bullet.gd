@@ -9,6 +9,8 @@ var direction: Vector2
 
 
 func _ready() -> void:
+	add_to_group(&"bullets")
+	
 	var spawner_info: Dictionary = get_meta(&"spawner_info")
 	global_position = spawner_info.global_position
 	global_rotation = spawner_info.global_rotation
