@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcqf1gycu32mf"]
+[gd_scene load_steps=21 format=3 uid="uid://bcqf1gycu32mf"]
 
 [ext_resource type="Script" path="res://objects/enemies/enemy/enemy.gd" id="1_2kard"]
 [ext_resource type="Texture2D" uid="uid://c3h1abprn0l4a" path="res://assets/enemy/zombie/zombie0-walk1.svg" id="2_ecdyq"]
@@ -80,9 +80,12 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("12_4h4l8")
 stream_1/weight = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gc0um"]
+radius = 192.0
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("1_2kard")
 health = NodePath("Health")
 
@@ -115,13 +118,24 @@ volume_db = -5.0
 
 [node name="ContextSteerer" type="Node2D" parent="."]
 script = ExtResource("13_833qm")
-collision_mask = 4
+collision_mask = 20
 
-[node name="SightDetector" type="Area2D" parent="."]
+[node name="GunSightDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GunSightDetector"]
 shape = SubResource("RectangleShape2D_fc24u")
 
+[node name="PlayerSightDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSightDetector"]
+shape = SubResource("CircleShape2D_gc0um")
+
+[node name="RandomMoveTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="hurt" from="HitDetector" to="." method="_on_hit_detector_hurt"]
+[connection signal="timeout" from="RandomMoveTimer" to="." method="_on_random_move_timer_timeout"]

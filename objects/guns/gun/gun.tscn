@@ -171,12 +171,12 @@ color_ramp = SubResource("Gradient_msh5n")
 stream = SubResource("AudioStreamRandomizer_hashf")
 volume_db = -5.0
 
-[node name="SightArea" type="Area2D" parent="."]
+[node name="GunSightArea" type="Area2D" parent="."]
 position = Vector2(24.5, -2.25)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SightArea"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GunSightArea"]
 polygon = PackedVector2Array(50, 0, 150, -24, 150, 24)
 
 [node name="SpawnMarker" type="Marker2D" parent="."]
