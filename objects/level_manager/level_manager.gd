@@ -12,7 +12,7 @@ var current_position: Vector2i = Vector2i.ZERO
 
 
 func _ready() -> void:
-	try_generate_current_level()
+	add_level(current_position)
 	
 	var arr: Array[Level.DoorType] = []
 	
@@ -29,17 +29,16 @@ func _ready() -> void:
 	minimap.update_minimap(current_position, levels)
 
 
-func clear_current_level() -> void:
+func remove_current_level() -> void:
 	var level: Level = levels.get(current_position)
 	if is_instance_valid(level):
 		call_deferred(&"remove_child", level)
 
 
-func try_generate_current_level() -> void:
-	if not levels.has(current_position):
-		levels[current_position] = gen_level(current_position)
+func add_level(at: Vector2i) -> void:
+	var level = get_level(at)
 	
-	call_deferred(&"add_child", levels[current_position])
+	call_deferred(&"add_child", level)
 	
 	for bullet in get_tree().get_nodes_in_group(&"bullets"):
 		bullet.queue_free()
@@ -55,21 +54,24 @@ func update_player_position(door: int) -> void:
 
 
 func move_to(from: Level.DoorType, to: Vector2i) -> void:
-	clear_current_level()
+	remove_current_level()
 	update_player_position(from)
 	
-	# We have to wait a process_frame for the players position to update
-	# or else they will enter multiple doors without getting their position reset.
+	# We want to spawn the level after the players position has been updated.
+	# since godot takes one frame to update the position of nodes, we wait.
 	await get_tree().process_frame
 	
 	current_position = to
 	
-	try_generate_current_level()
+	add_level(current_position)
 	
 	minimap.update_minimap(current_position, levels)
 
 
-func gen_level(at: Vector2i) -> Level:
+func get_level(at: Vector2i) -> Level:
+	if levels.get(at):
+		return levels[at]
+	
 	var obj: Level
 	
 	for i in 32:
@@ -94,11 +96,33 @@ func gen_level(at: Vector2i) -> Level:
 		obj = value
 		break
 	
+	# If no level is found, generate a default empty one.
+	if obj == null:
+		obj = preload("res://objects/levels/level.tscn").instantiate()
+		
+		var up: Level = levels.get(at + Vector2i.UP)
+		if is_instance_valid(up):
+			obj.is_door_up = up.is_door_down
+		
+		var down: Level = levels.get(at + Vector2i.DOWN)
+		if is_instance_valid(down):
+			obj.is_door_down = down.is_door_up
+		
+		var left: Level = levels.get(at + Vector2i.LEFT)
+		if is_instance_valid(left):
+			obj.is_door_left = left.is_door_right
+		
+		var right: Level = levels.get(at + Vector2i.RIGHT)
+		if is_instance_valid(right):
+			obj.is_door_right = right.is_door_left
+	
 	obj.door_entered.connect(func(from):
 		if get_tree().get_nodes_in_group(&"enemies").size() > 0:
 			return
 		
 		move_to(from, current_position + Level.DIRECTION[from]))
+	
+	levels[at] = obj
 	
 	return obj
 

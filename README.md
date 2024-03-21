@@ -1,6 +1,7 @@
 - the ai completely breaks with walls or if the player is clipped inside a zombie
-- combos for when multiple piercing shots
+- money + combos for when multiple piercing shots
 
+- add floors and limited room size
 - add ammo pickup
 - improve hitbox/hurtbox data sending and projectile data sending
 
