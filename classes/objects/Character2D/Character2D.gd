@@ -3,7 +3,7 @@ class_name Character2D
 
 signal died
 
-@export var health: StatRangeInt
+@onready var health: StatRangeInt = $Health
 
 func _ready() -> void:
 	health.lowest.connect(func():

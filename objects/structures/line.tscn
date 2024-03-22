@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw1ca2g1nlorf"]
+
+[ext_resource type="PackedScene" uid="uid://bn68kucqfpeds" path="res://objects/structures/structure.tscn" id="1_s1wf5"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_87ply"]
+
+[node name="LineStructure" instance=ExtResource("1_s1wf5")]
+
+[node name="Enemy" parent="." index="0" instance=ExtResource("2_87ply")]
+position = Vector2(-144, -80)
+
+[node name="Enemy2" parent="." index="1" instance=ExtResource("2_87ply")]
+position = Vector2(144, -80)
+
+[node name="Enemy3" parent="." index="2" instance=ExtResource("2_87ply")]
+position = Vector2(144, 48)
+
+[node name="Enemy4" parent="." index="3" instance=ExtResource("2_87ply")]
+position = Vector2(-144, 48)
+
+[node name="Enemy5" parent="." index="4" instance=ExtResource("2_87ply")]
+position = Vector2(-16, -80)
+
+[node name="Enemy6" parent="." index="5" instance=ExtResource("2_87ply")]
+position = Vector2(-16, 48)
+
+[node name="TileMap" parent="." index="6"]
+layer_0/tile_data = PackedInt32Array(-6, 0, 65536, -5, 0, 65536, -4, 0, 65536, -65533, 0, 65536, -65532, 0, 65536, -65531, 0, 65536, -65534, 0, 65536, -65535, 0, 65536, -65536, 0, 65536, -1, 0, 65536, -2, 0, 65536, -3, 0, 65536)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b53oxi7pffpat"]
+
+[ext_resource type="PackedScene" uid="uid://bn68kucqfpeds" path="res://objects/structures/structure.tscn" id="1_viwl7"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_prnko"]
+
+[node name="DiamondStructure" instance=ExtResource("1_viwl7")]
+
+[node name="Enemy" parent="." index="0" instance=ExtResource("2_prnko")]
+position = Vector2(-16, -16)
+
+[node name="Enemy2" parent="." index="1" instance=ExtResource("2_prnko")]
+position = Vector2(16, -16)
+
+[node name="Enemy3" parent="." index="2" instance=ExtResource("2_prnko")]
+position = Vector2(16, 16)
+
+[node name="Enemy4" parent="." index="3" instance=ExtResource("2_prnko")]
+position = Vector2(-16, 16)
+
+[node name="Enemy5" parent="." index="4" instance=ExtResource("2_prnko")]
+
+[node name="TileMap" parent="." index="5"]
+layer_0/tile_data = PackedInt32Array(-131073, 0, 65536, -196608, 0, 65536, -65534, 0, 65536, 2, 0, 65536, -3, 0, 65536, 65533, 0, 65536, 196607, 0, 65536, 131072, 0, 65536)

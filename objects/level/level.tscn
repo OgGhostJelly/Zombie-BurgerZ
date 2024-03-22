@@ -1,30 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=14 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
+[ext_resource type="PackedScene" uid="uid://djlpvalklhkoe" path="res://objects/structures/house.tscn" id="2_dov0f"]
 [ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="3_5ob25"]
-[ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_ivdfp"]
+[ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_jnvtd"]
+[ext_resource type="PackedScene" uid="uid://cm4otjptbkni" path="res://objects/structures/corners.tscn" id="3_yyjvk"]
+[ext_resource type="PackedScene" uid="uid://b53oxi7pffpat" path="res://objects/structures/diamond.tscn" id="4_2yg2p"]
 [ext_resource type="Texture2D" uid="uid://c7abfnqb6q1w" path="res://assets/level/level-background.png" id="4_t414c"]
-[ext_resource type="Texture2D" uid="uid://ddyxu83nsy3dg" path="res://assets/level/level-decals.png" id="5_63yv8"]
+[ext_resource type="PackedScene" uid="uid://cf88p3212j3n7" path="res://objects/structures/zed.tscn" id="5_3meb5"]
 [ext_resource type="PackedScene" uid="uid://h3y3hjyf4gwx" path="res://userinterfaces/player_objective_ui/player_objective_ui.tscn" id="6_7cgiu"]
-[ext_resource type="Texture2D" uid="uid://bwomnn1sa0jb7" path="res://icon.svg" id="8_t6nc2"]
+[ext_resource type="PackedScene" uid="uid://cw1ca2g1nlorf" path="res://objects/structures/line.tscn" id="6_pl4j3"]
+[ext_resource type="PackedScene" uid="uid://dkr2borto5mhh" path="res://objects/structures/circle.tscn" id="7_sbtd5"]
 
-[sub_resource type="Resource" id="Resource_vi7tg"]
-script = ExtResource("3_ivdfp")
+[sub_resource type="Resource" id="Resource_qaipm"]
+script = ExtResource("3_jnvtd")
 scene = ExtResource("3_5ob25")
-
-[sub_resource type="Curve2D" id="Curve2D_mo7e7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -18, -16, 0, 0, 0, 0, 493, -14, 0, 0, 0, 0, 489, 374, 0, 0, 0, 0, -20, 371, 0, 0, 0, 0, -18, -16)
-}
-point_count = 5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qmjx"]
-size = Vector2(64.5, 83.5)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r6cjg")
-enemy_supplier = SubResource("Resource_vi7tg")
+structure_scenes = Array[PackedScene]([ExtResource("2_dov0f"), ExtResource("3_yyjvk"), ExtResource("4_2yg2p"), ExtResource("5_3meb5"), ExtResource("6_pl4j3"), ExtResource("7_sbtd5")])
+enemy_supplier = SubResource("Resource_qaipm")
 
 [node name="BackLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -34,24 +30,8 @@ offset_right = 480.0
 offset_bottom = 360.0
 texture = ExtResource("4_t414c")
 
-[node name="Enemies" type="Node2D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("1_lmdvn")]
 position = Vector2(240, 180)
-
-[node name="SpawnPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_mo7e7")
-
-[node name="SpawnPathFollow" type="PathFollow2D" parent="SpawnPath"]
-position = Vector2(-18, -16)
-rotation = 0.00391387
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="GracePeriodTimer" type="Timer" parent="."]
-wait_time = 6.0
-one_shot = true
 
 [node name="FrontLayer" type="CanvasLayer" parent="."]
 
@@ -63,51 +43,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Time" type="Label" parent="FrontLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = -32.0
-offset_right = 97.0
-offset_bottom = -9.0
-grow_vertical = 0
-text = "0.00"
-
-[node name="KillCount" type="Label" parent="FrontLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 164.0
-offset_top = -32.0
-offset_right = 204.0
-offset_bottom = -9.0
-grow_vertical = 0
-text = "0/20"
-
 [node name="PlayerObjectiveUI" parent="FrontLayer" node_paths=PackedStringArray("player") instance=ExtResource("6_7cgiu")]
 player = NodePath("../../Player")
-
-[node name="Decals" type="TextureRect" parent="FrontLayer"]
-offset_right = 480.0
-offset_bottom = 360.0
-texture = ExtResource("5_63yv8")
-
-[node name="Enemy" parent="." instance=ExtResource("3_5ob25")]
-position = Vector2(54, 76)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(157, 136)
-shape = SubResource("RectangleShape2D_1qmjx")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(157, 136.5)
-scale = Vector2(0.5, 0.664062)
-texture = ExtResource("8_t6nc2")
-
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="finished" from="FrontLayer/PlayerObjectiveUI" to="." method="_on_player_objective_ui_finished"]

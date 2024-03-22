@@ -83,11 +83,10 @@ stream_1/weight = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_gc0um"]
 radius = 192.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+[node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_2kard")
-health = NodePath("Health")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_tim7i")

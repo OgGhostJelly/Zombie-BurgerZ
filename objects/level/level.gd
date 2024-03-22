@@ -1,61 +1,73 @@
 extends Node2D
 
 
+@export var structure_scenes: Array[PackedScene]
 @export var enemy_supplier: PackedSceneSupplier
+@export var tile_size: Vector2 = Vector2(32.0, 32.0)
+@export var generation_size: Vector2i = Vector2i(25, 25)
 
-@onready var enemies: Node2D = $Enemies
-@onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
 @onready var player: Player = $Player
-@onready var grace_period_timer: Timer = $GracePeriodTimer
-@onready var spawn_timer: Timer = $SpawnTimer
-@onready var time_label: Label = $FrontLayer/Time
-@onready var kill_count_label: Label = $FrontLayer/KillCount
+@onready var debug_info: Control = $FrontLayer/DebugInfo
 
-var kill_count: int = 0
-var time: float = 0.0
+var generated_tiles: Dictionary = {}
+
+
+func global_to_tile(pos: Vector2) -> Vector2i:
+	return (pos - (tile_size / 2.0)).snapped(tile_size) / tile_size
+
+
+func tile_to_global_corner(pos: Vector2i) -> Vector2:
+	return (Vector2(pos.x, pos.y) * tile_size)
+
+
+func tile_to_global_center(pos: Vector2i) -> Vector2:
+	return tile_to_global_corner(pos) + (tile_size / 2.0)
 
 
 func _ready() -> void:
-	assert(enemy_supplier)
-	
-	grace_period_timer.timeout.connect(func():
-		spawn_timer.paused = false)
-	
-	player.health.value_changed.connect(func():
-		grace_period_timer.start()
-		spawn_timer.paused = true)
+	iterate_generation_tiles(func(pos: Vector2i) -> void:
+		generated_tiles[pos] = true)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"info"):
-		$FrontLayer/DebugInfo.visible = not $FrontLayer/DebugInfo.visible
+		debug_info.visible = not debug_info.visible
 	
-	if not spawn_timer.is_stopped():
-		time += delta
-		time_label.text = "%.2f" % time
+	iterate_generation_tiles(func(pos: Vector2i) -> void:
+		if generated_tiles.has(pos):
+			return
+		
+		if randf() > 0.99:
+			var obj: Node2D = structure_scenes.pick_random().instantiate()
+			if obj == null:
+				push_warning("Failed to spawn enemy instance!")
+				return
+			obj.global_position = tile_to_global_corner(pos)
+			add_child(obj)
+		elif randf() > 0.99:
+			var obj: Node2D = enemy_supplier.supply_instance()
+			if obj == null:
+				push_warning("Failed to spawn enemy instance!")
+				return
+			obj.global_position = tile_to_global_corner(pos)
+			add_child(obj)
+		
+		generated_tiles[pos] = true)
 
 
-func _on_spawn_timer_timeout() -> void:
-	var enemy: PackedScene = enemy_supplier.supply()
-	if enemy == null:
-		return
-	
-	spawn_path_follow.progress_ratio = randf()
-	
-	var obj: Node2D = enemy.instantiate()
-	obj.global_position = spawn_path_follow.global_position
-	
-	obj.died.connect(func():
-		kill_count += 1
-		kill_count_label.text = "%s/20" % kill_count)
-	
-	if not FileAccess.file_exists("user://thething.save") and kill_count == 15:
-		var file: FileAccess = FileAccess.open("user://thething.save", FileAccess.WRITE)
-		file.store_line('')
-		obj.speed *= 4
-	
-	enemies.add_child(obj)
+func iterate_generation_tiles(f: Callable) -> void:
+	for y in generation_size.y:
+		for x in generation_size.x:
+			var pos: Vector2i = Vector2i(x, y) - (generation_size / 2) + global_to_tile(player.global_position)
+			f.call(pos)
 
 
-func _on_player_objective_ui_finished() -> void:
-	spawn_timer.start()
+# Visualize generation_size
+	#for y in generation_size.y:
+		#for x in generation_size.x:
+			#var pos: Vector2i = Vector2i(x, y) - (generation_size / 2) + global_to_tile(player.global_position)
+			#
+			#var ratio_x: float = float(x) / generation_size.x
+			#var ratio_y: float = float(y) / generation_size.y
+			#
+			#draw_rect(Rect2(to_local(tile_to_global_corner(pos)), tile_size), Color(ratio_x, ratio_y, 1.0 - ratio_x - ratio_y))

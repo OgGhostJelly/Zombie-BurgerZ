@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf88p3212j3n7"]
+
+[ext_resource type="PackedScene" uid="uid://bn68kucqfpeds" path="res://objects/structures/structure.tscn" id="1_auoek"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="2_1up87"]
+
+[node name="ZedStructure" instance=ExtResource("1_auoek")]
+
+[node name="Enemy" parent="." index="0" instance=ExtResource("2_1up87")]
+position = Vector2(-16, -80)
+
+[node name="Enemy2" parent="." index="1" instance=ExtResource("2_1up87")]
+position = Vector2(80, -80)
+
+[node name="Enemy3" parent="." index="2" instance=ExtResource("2_1up87")]
+position = Vector2(16, -16)
+
+[node name="Enemy4" parent="." index="3" instance=ExtResource("2_1up87")]
+position = Vector2(-80, 48)
+
+[node name="Enemy5" parent="." index="4" instance=ExtResource("2_1up87")]
+position = Vector2(-48, -16)
+
+[node name="Enemy6" parent="." index="5" instance=ExtResource("2_1up87")]
+position = Vector2(-16, 48)
+
+[node name="TileMap" parent="." index="6"]
+layer_0/tile_data = PackedInt32Array(-196611, 0, 65536, -196610, 0, 65536, -196609, 0, 65536, -262144, 0, 65536, -262143, 0, 65536, -262142, 0, 65536, 196606, 0, 65536, 196607, 0, 65536, 131072, 0, 65536, 131073, 0, 65536, 131074, 0, 65536, 196605, 0, 65536, 131070, 0, 65536, 65535, 0, 65536, -1, 0, 65536, -131072, 0, 65536, -196607, 0, 65536)
