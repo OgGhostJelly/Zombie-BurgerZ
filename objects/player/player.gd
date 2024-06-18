@@ -41,6 +41,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	global_position = global_position.clamp(Vector2.ZERO, Vector2(480.0, 360.0))
+	
 	queue_redraw()
 
 
