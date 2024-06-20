@@ -1,0 +1,240 @@
+[gd_scene load_steps=19 format=3 uid="uid://b5ml0pa2wknk0"]
+
+[ext_resource type="Script" path="res://userinterfaces/main_menu/main_menu.gd" id="1_t014t"]
+[ext_resource type="Texture2D" uid="uid://8wenyiv0ma4t" path="res://assets/main_menu/bg.svg" id="2_ugncc"]
+[ext_resource type="Texture2D" uid="uid://xupmipdm4cav" path="res://assets/main_menu/sign.png" id="3_c8dnx"]
+[ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="6_gfujy"]
+[ext_resource type="PackedScene" uid="uid://dgh2sns3omtq1" path="res://objects/level/level.tscn" id="6_p5rk7"]
+[ext_resource type="PackedScene" uid="uid://c1nuca1jeb6ja" path="res://userinterfaces/shop_menu/shop_menu.tscn" id="7_hg7au"]
+[ext_resource type="Texture2D" uid="uid://by6f47yhrymlu" path="res://assets/main_menu/shop.svg" id="7_sfmd4"]
+[ext_resource type="Texture2D" uid="uid://chf7tn8hg3tk6" path="res://assets/main_menu/play.svg" id="7_vvth5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ac1ck"]
+font_color = Color(0.921569, 0.831373, 0.831373, 1)
+outline_size = 4
+outline_color = Color(0.458824, 0.294118, 0.294118, 1)
+
+[sub_resource type="Animation" id="Animation_2bia6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-156.5, -70)]
+}
+
+[sub_resource type="Animation" id="Animation_nar1m"]
+resource_name = "start"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, -2),
+"update": 0,
+"values": [Vector2(-156.5, -70), Vector2(-156.5, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BopAnimation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["bop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqq8n"]
+_data = {
+"RESET": SubResource("Animation_2bia6"),
+"start": SubResource("Animation_nar1m")
+}
+
+[sub_resource type="Animation" id="Animation_ukjb6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jcccf"]
+resource_name = "swing"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0174533, -0.0174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73pv7"]
+_data = {
+"RESET": SubResource("Animation_ukjb6"),
+"swing": SubResource("Animation_jcccf")
+}
+
+[sub_resource type="Animation" id="Animation_cx74l"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_tniq1"]
+resource_name = "bop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-156.5, 0), Vector2(-156.5, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6st6i"]
+_data = {
+"RESET": SubResource("Animation_cx74l"),
+"bop": SubResource("Animation_tniq1")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t014t")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 63.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ugncc")
+
+[node name="Presents" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.5
+offset_top = 8.0
+offset_right = 122.5
+offset_bottom = 57.0
+grow_horizontal = 2
+text = "SerifAnimates and OgGhostJelly
+presents:"
+label_settings = SubResource("LabelSettings_ac1ck")
+horizontal_alignment = 1
+
+[node name="Sign" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_top = -164.0
+offset_right = 14.0
+offset_bottom = -124.0
+grow_horizontal = 2
+
+[node name="Sign" type="TextureRect" parent="Sign"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -156.5
+offset_top = -70.0
+offset_right = 196.5
+offset_bottom = 279.0
+grow_horizontal = 2
+pivot_offset = Vector2(180, 0)
+texture = ExtResource("3_c8dnx")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="EntranceAnimation" type="AnimationPlayer" parent="Sign/Sign"]
+libraries = {
+"": SubResource("AnimationLibrary_wqq8n")
+}
+autoplay = "start"
+
+[node name="SwingAnimation" type="AnimationPlayer" parent="Sign/Sign"]
+libraries = {
+"": SubResource("AnimationLibrary_73pv7")
+}
+autoplay = "swing"
+
+[node name="BopAnimation" type="AnimationPlayer" parent="Sign/Sign"]
+libraries = {
+"": SubResource("AnimationLibrary_6st6i")
+}
+
+[node name="Buttons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="Buttons" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+
+[node name="PlayButton" parent="Buttons/Buttons" instance=ExtResource("6_gfujy")]
+custom_minimum_size = Vector2(72, 114)
+layout_mode = 2
+size_flags_horizontal = 3
+scene = ExtResource("6_p5rk7")
+texture = ExtResource("7_vvth5")
+
+[node name="ShopButton" parent="Buttons/Buttons" instance=ExtResource("6_gfujy")]
+custom_minimum_size = Vector2(90, 106)
+layout_mode = 2
+size_flags_horizontal = 3
+scene = ExtResource("7_hg7au")
+texture = ExtResource("7_sfmd4")

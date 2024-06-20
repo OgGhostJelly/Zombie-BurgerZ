@@ -1,15 +1,5 @@
-- [ ] SCORE !! aka STYLE
-
-- You get to keep your items on death
-- There will be a shop
-- There are challenges you can do to get a cool badge
-- NO STINKY DIRECT UPGRADES (except for the pistol bcus pistol sucks)
-
-- Elevation/Walls/Obstacles
-- More Weapons/Melee Weapons
-- Primary/Secondary
-- smack zombies with pistols
-- environmental damage
-- grenades
-- new ways to kill zombies
-- random generated levels
+- somehow get money when in play mode
+- go to shop and buy weapons (no uselss weapons maybe? augments to power up old weapons)
+- acheivements (perhaps rewards for completing them, or just a badge of honor)
+- skins with abilities (maybe accessorioes)
+- (could have secondary weapons?)

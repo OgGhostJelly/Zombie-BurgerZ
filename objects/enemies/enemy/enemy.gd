@@ -13,6 +13,8 @@ func _ready() -> void:
 	super()
 	animated_sprite.play(&"walk0")
 	
+	speed = randf_range(45.0 - 7.5, 45.0 + 7.5)
+	
 	health.value_changed.connect(func():
 		if health.value > 0: animated_sprite.play(&"walk" + str(health.max_value - health.value)))
 

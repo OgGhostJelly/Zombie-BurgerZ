@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Zombie BurgerZ: Oh No Edition"
-run/main_scene="res://objects/level/level.tscn"
+run/main_scene="res://userinterfaces/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneTransition="*res://autoloads/scene_transition.tscn"
 
 [display]
 
