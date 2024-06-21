@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneTransition="*res://autoloads/scene_transition.tscn"
+SceneTransition="*res://autoloads/scene_transition/scene_transition.tscn"
+PlayerData="*res://autoloads/player_data/player_data.gd"
 
 [display]
 

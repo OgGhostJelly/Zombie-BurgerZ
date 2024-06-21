@@ -1,12 +1,14 @@
 extends Character2D
+class_name Enemy
 
 
 @export var speed: float = 45.0
+@export var money_count: int = 0
 
 @onready var context_steerer: ContextSteerer = $ContextSteerer
-@onready var death_audio: AudioStreamPlayer = $DeathAudio
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sight_detector: Area2D = $SightDetector
+@onready var hit_audio: AudioStreamPlayer = $HitAudio
 
 
 func _ready() -> void:
@@ -14,6 +16,7 @@ func _ready() -> void:
 	animated_sprite.play(&"walk0")
 	
 	speed = randf_range(45.0 - 7.5, 45.0 + 7.5)
+	money_count = randi_range(2, 4)
 	
 	health.value_changed.connect(func():
 		if health.value > 0: animated_sprite.play(&"walk" + str(health.max_value - health.value)))
@@ -47,16 +50,29 @@ func get_player() -> CharacterBody2D:
 
 
 func _die() -> void:
-	animated_sprite.play(&"death")
-	animated_sprite.reparent(get_parent())
+	var debris: Node2D = preload("res://objects/enemy_debris/enemy_debris.tscn").instantiate()
+	debris.global_position = global_position
+	debris.set_enemy(self)
+	get_parent().add_child(debris)
 	
-	death_audio.play()
-	death_audio.finished.connect(func():
-		death_audio.queue_free())
-	death_audio.reparent(get_parent())
+	if randf() < 1.0 / 25.0:
+		if Player.player.health.value < Player.player.health.max_value:
+			_drop(preload("res://objects/pickup/health_pickup.tscn"), 1)
+		else:
+			_drop(preload("res://objects/pickup/money_pickup.tscn"), 10)
+	
+	_drop(preload("res://objects/pickup/money_pickup.tscn"), money_count)
 	
 	queue_free()
 
 
+func _drop(scene: PackedScene, amount: int) -> void:
+	for i in amount:
+		var drop: Node2D = scene.instantiate()
+		drop.global_position = global_position
+		get_parent().call_deferred(&"add_child", drop)
+
+
 func _on_hit_detector_hurt(_hitbox: HitInfo2D) -> void:
+	hit_audio.play()
 	health.value -= 1

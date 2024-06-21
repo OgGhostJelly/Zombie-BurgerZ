@@ -168,6 +168,7 @@ angle_max = 90.0
 color_ramp = SubResource("Gradient_msh5n")
 
 [node name="FireAudio" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_hashf")
 volume_db = -5.0
 

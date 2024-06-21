@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgme3oteywi72"]
+
+[ext_resource type="PackedScene" uid="uid://be7gusr2sh02b" path="res://objects/pickup/pickup.tscn" id="1_777j6"]
+[ext_resource type="Texture2D" uid="uid://bomet1rbb5byq" path="res://assets/money.svg" id="2_5qack"]
+[ext_resource type="Script" path="res://objects/pickup/money_pickup.gd" id="2_da2br"]
+
+[node name="MoneyPickup" instance=ExtResource("1_777j6")]
+script = ExtResource("2_da2br")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_5qack")
+
+[node name="Label" type="Label" parent="Sprite2D" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.5
+offset_right = 2.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "$"
+horizontal_alignment = 1
+
+[node name="Particles" parent="." index="2"]
+color = Color(0.188235, 0.521569, 0.25098, 1)

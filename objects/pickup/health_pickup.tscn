@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://drflgbrudx50f"]
+
+[ext_resource type="PackedScene" uid="uid://be7gusr2sh02b" path="res://objects/pickup/pickup.tscn" id="1_yb40h"]
+[ext_resource type="Script" path="res://objects/pickup/health_pickup.gd" id="2_7xsq6"]
+[ext_resource type="Texture2D" uid="uid://d4gojkktwd1i6" path="res://assets/health/health.svg" id="3_7rxkl"]
+
+[node name="HealthPickup" instance=ExtResource("1_yb40h")]
+script = ExtResource("2_7xsq6")
+fade_time = 10.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_7rxkl")
+
+[node name="Particles" parent="." index="2"]
+color = Color(1, 0.101961, 0.101961, 1)

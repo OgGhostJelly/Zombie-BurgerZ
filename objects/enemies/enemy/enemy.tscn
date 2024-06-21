@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cgtlp40d3kgwq" path="res://assets/enemy/zombie/zombie1-walk2.svg" id="5_w4i83"]
 [ext_resource type="Texture2D" uid="uid://ce2am2u4nwfnf" path="res://assets/enemy/zombie/zombie2-walk1.svg" id="6_peueq"]
 [ext_resource type="Texture2D" uid="uid://85oxw4efhjri" path="res://assets/enemy/zombie/zombie2-walk2.svg" id="7_mve5a"]
-[ext_resource type="AudioStream" uid="uid://bfny17d358opw" path="res://assets/enemy/zombie/zombie-death0.wav" id="11_owbg4"]
-[ext_resource type="AudioStream" uid="uid://ca0rx8u572uuv" path="res://assets/enemy/zombie/zombie-death1.wav" id="12_4h4l8"]
 [ext_resource type="Script" path="res://classes/objects/ContextSteerer/ContextSteerer.gd" id="13_833qm"]
+[ext_resource type="AudioStream" uid="uid://by8kehgwq2f4d" path="res://assets/enemy/hit_0.wav" id="14_d4lso"]
+[ext_resource type="AudioStream" uid="uid://dn1qwi6rrj2v4" path="res://assets/enemy/hit_1.wav" id="15_h14bw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgi7v"]
 size = Vector2(8, 32)
@@ -72,12 +72,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hauct"]
-random_pitch = 1.4
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_38vwa"]
+playback_mode = 1
+random_pitch = 1.2
 streams_count = 2
-stream_0/stream = ExtResource("11_owbg4")
+stream_0/stream = ExtResource("14_d4lso")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("12_4h4l8")
+stream_1/stream = ExtResource("15_h14bw")
 stream_1/weight = 1.0
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
@@ -107,11 +108,6 @@ position = Vector2(5, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ab06s")
 animation = &"walk0"
-frame_progress = 0.479722
-
-[node name="DeathAudio" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_hauct")
-volume_db = -5.0
 
 [node name="ContextSteerer" type="Node2D" parent="."]
 script = ExtResource("13_833qm")
@@ -123,5 +119,9 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SightDetector"]
 shape = SubResource("RectangleShape2D_fc24u")
+
+[node name="HitAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_38vwa")
+volume_db = -5.0
 
 [connection signal="hurt" from="HitDetector" to="." method="_on_hit_detector_hurt"]

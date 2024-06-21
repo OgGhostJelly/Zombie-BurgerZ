@@ -120,6 +120,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_qsqxf")
 
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]

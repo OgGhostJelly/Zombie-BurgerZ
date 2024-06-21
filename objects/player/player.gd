@@ -16,6 +16,13 @@ var invincible: bool = false
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
 
+static var player: Player
+
+
+func _ready() -> void:
+	super()
+	player = self
+
 
 func _physics_process(delta: float) -> void:
 	var input_vector: Vector2 = Input.get_vector(
@@ -47,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _die() -> void:
-	get_tree().call_deferred(&"reload_current_scene")
+	pass
 
 
 func _on_hit_detector_area_entered(_area: Area2D) -> void:

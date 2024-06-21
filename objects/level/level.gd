@@ -10,13 +10,17 @@ extends Node2D
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var time_label: Label = $FrontLayer/Time
 @onready var kill_count_label: Label = $FrontLayer/KillCount
+@onready var game_over_menu: Control = $FrontLayer/GameOverMenu
 
+var initial_money: int = 0
 var kill_count: int = 0
 var time: float = 0.0
 
 
 func _ready() -> void:
 	assert(enemy_supplier)
+	
+	initial_money = PlayerData.money
 	
 	grace_period_timer.timeout.connect(func():
 		spawn_timer.paused = false)
@@ -32,7 +36,7 @@ func _process(delta: float) -> void:
 	
 	if not spawn_timer.is_stopped():
 		time += delta
-		time_label.text = "%.2f" % time
+		time_label.text = "%.2fs" % time
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -59,3 +63,7 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_player_objective_ui_finished() -> void:
 	spawn_timer.start()
+
+
+func _on_player_died() -> void:
+	game_over_menu.game_over(time, PlayerData.money - initial_money, kill_count)
