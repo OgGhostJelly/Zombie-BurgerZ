@@ -2,6 +2,9 @@ extends Resource
 class_name HurtInfo2D
 
 
+@export var last_health: int
+@export var new_health: int
+
 var hurtbox: Hurtbox2D
 
 

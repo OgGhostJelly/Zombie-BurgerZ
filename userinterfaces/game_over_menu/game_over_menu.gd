@@ -7,6 +7,7 @@ extends Control
 
 func game_over(time: float, money_earnt: int, kill_count: int) -> void:
 	get_tree().paused = true
+	PlayerData.data_save()
 	stats_label.text = stats_label.text % [time, money_earnt, kill_count]
 	animation_player.play(&"show")
 

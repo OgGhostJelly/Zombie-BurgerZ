@@ -5,6 +5,7 @@ extends Hitbox2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+var already_killed: bool = false
 var direction: Vector2
 
 
@@ -22,3 +23,19 @@ func _physics_process(delta: float) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+
+func _on_hit(info: HurtInfo2D) -> void:
+	var count: int = (
+		1
+		if info.new_health <= 0 and already_killed else
+		0
+	)
+	
+	for i in count:
+		var drop: Node2D = load("res://objects/pickup/money_pickup.tscn").instantiate()
+		drop.global_position = global_position
+		get_parent().call_deferred(&"add_child", drop)
+	
+	if info.new_health <= 0:
+		already_killed = true

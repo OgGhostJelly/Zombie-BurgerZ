@@ -25,4 +25,5 @@ position = Vector2(1, 0)
 scale = Vector2(0.5, 0.666667)
 rect = Rect2(-6, -3, 12, 6)
 
+[connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

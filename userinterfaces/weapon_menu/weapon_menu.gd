@@ -31,6 +31,7 @@ func _on_buy_button_pressed() -> void:
 	
 	PlayerData.owned_guns.append(selected)
 	PlayerData.money -= Gun.gun_data[selected].cost
+	PlayerData.data_save()
 	selected = selected
 
 

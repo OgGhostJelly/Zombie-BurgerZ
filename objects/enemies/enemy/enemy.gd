@@ -9,6 +9,7 @@ class_name Enemy
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sight_detector: Area2D = $SightDetector
 @onready var hit_audio: AudioStreamPlayer = $HitAudio
+@onready var hurtbox: Hurtbox2D = $HitDetector
 
 
 func _ready() -> void:
@@ -75,4 +76,7 @@ func _drop(scene: PackedScene, amount: int) -> void:
 
 func _on_hit_detector_hurt(_hitbox: HitInfo2D) -> void:
 	hit_audio.play()
+	hurtbox.hurt_info = HurtInfo2D.new()
+	hurtbox.hurt_info.last_health = health.value
 	health.value -= 1
+	hurtbox.hurt_info.new_health = health.value

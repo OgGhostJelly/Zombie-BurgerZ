@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhd8kegukmys8"]
+
+[ext_resource type="Script" path="res://autoloads/player_data/player_data.gd" id="1_bjrbs"]
+
+[node name="PlayerData" type="Node"]
+process_mode = 3
+script = ExtResource("1_bjrbs")
+
+[node name="AutoSaveTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="AutoSaveTimer" to="." method="_on_auto_save_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c26imj8rbe8pl"]
+[gd_scene load_steps=11 format=3 uid="uid://c26imj8rbe8pl"]
 
 [ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="1_cf140"]
 [ext_resource type="Script" path="res://userinterfaces/weapon_menu/weapon_menu.gd" id="1_mvpp8"]
@@ -23,6 +23,11 @@ font_color = Color(0, 1, 0, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_a7mcp"]
+font_color = Color(1, 0.27451, 0.211765, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="WeaponMenu" type="HBoxContainer"]
 offset_right = 194.0
 offset_bottom = 96.0
@@ -42,6 +47,7 @@ texture = ExtResource("3_w8dwc")
 stretch_mode = 3
 
 [node name="OwnedLabel" type="Label" parent="WeaponTexture"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -73,7 +79,6 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="PriceLabel" type="Label" parent="WeaponTexture"]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -88,7 +93,6 @@ label_settings = SubResource("LabelSettings_wq4vi")
 horizontal_alignment = 1
 
 [node name="BuyButton" parent="WeaponTexture" instance=ExtResource("1_cf140")]
-visible = false
 custom_minimum_size = Vector2(46, 21)
 layout_mode = 1
 anchors_preset = 7
@@ -135,6 +139,7 @@ offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "TOO BROKE"
+label_settings = SubResource("LabelSettings_a7mcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,5 +1,3 @@
-- improve gun visuals system
-- multi-kill combo money
 - ammo powerup
 
 - more enemies
