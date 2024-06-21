@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.play(&"walk")
 	
-	if Input.is_action_just_pressed(&"fire") and gun.fire():
+	if gun.fire_action():
 		velocity = (velocity + -Vector2.from_angle(gun.global_rotation) * 160.0).limit_length(velocity.length() + 80.0)
 	
 	move_and_slide()

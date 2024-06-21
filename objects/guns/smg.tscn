@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3 uid="uid://bihhboc3yhcb"]
+
+[ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun.tscn" id="1_cput6"]
+[ext_resource type="Texture2D" uid="uid://kdv8eb80hvyp" path="res://assets/gun/smg/smg.svg" id="2_k4sgc"]
+[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="2_y6uy8"]
+[ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_a5pvi"]
+
+[sub_resource type="Resource" id="Resource_vughb"]
+script = ExtResource("3_a5pvi")
+scene = ExtResource("2_y6uy8")
+
+[sub_resource type="Animation" id="Animation_s2lsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_63ygj"]
+resource_name = "reload-left"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.2),
+"transitions": PackedFloat32Array(-2, -2, -0.5, 2, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.698132, 0.785398, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8wtaj"]
+resource_name = "reload-right"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.2),
+"transitions": PackedFloat32Array(-2, -2, -0.5, 2, 1),
+"update": 0,
+"values": [0.0, -0.785398, -0.698132, -0.785398, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xdy5a"]
+resource_name = "shoot-left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(-2, 0.25, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xsy5e"]
+resource_name = "shoot-right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(-2, 0.25, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6g1y1"]
+_data = {
+"RESET": SubResource("Animation_s2lsq"),
+"reload-left": SubResource("Animation_63ygj"),
+"reload-right": SubResource("Animation_8wtaj"),
+"shoot-left": SubResource("Animation_xdy5a"),
+"shoot-right": SubResource("Animation_xsy5e")
+}
+
+[node name="SMG" instance=ExtResource("1_cput6")]
+spread = 20.0
+supplier = SubResource("Resource_vughb")
+automatic = true
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(20, 0)
+rotation = 0.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_k4sgc")
+
+[node name="LeftHandle" parent="Sprite2D" index="0"]
+position = Vector2(-14, 0)
+
+[node name="RightHandle" parent="Sprite2D" index="1"]
+position = Vector2(12, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_6g1y1")
+}
+
+[node name="End" parent="." index="4"]
+position = Vector2(37, -4)
+
+[node name="Ammo" parent="." index="5"]
+max_value = 5
+value = 5
