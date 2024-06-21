@@ -19,6 +19,12 @@ var invincible: bool = false
 static var player: Player
 
 
+func _init() -> void:
+	var obj: Gun = Gun.gun_data[PlayerData.selected_gun].scene.instantiate()
+	obj.name = "Gun"
+	add_child(obj)
+
+
 func _ready() -> void:
 	super()
 	player = self

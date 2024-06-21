@@ -98,9 +98,11 @@ _data = {
 }
 
 [node name="SMG" instance=ExtResource("1_cput6")]
-spread = 20.0
+spread = 25.0
 supplier = SubResource("Resource_vughb")
 automatic = true
+knockback = 160.0
+max_knockback = 80.0
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(20, 0)

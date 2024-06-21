@@ -101,6 +101,8 @@ _data = {
 bullets_per_shot = 3
 spread = 25.0
 supplier = SubResource("Resource_vughb")
+knockback = 480.0
+max_knockback = 240.0
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(21, 0)

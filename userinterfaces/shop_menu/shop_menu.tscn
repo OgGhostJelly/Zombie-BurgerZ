@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1nuca1jeb6ja"]
+[gd_scene load_steps=6 format=3 uid="uid://c1nuca1jeb6ja"]
 
 [ext_resource type="Texture2D" uid="uid://bovtu1db1slcc" path="res://assets/shop_menu/shop.svg" id="1_k4sb2"]
-[ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="2_26swi"]
-[ext_resource type="Texture2D" uid="uid://b8q148tiayiq7" path="res://assets/back.png" id="3_v7n8s"]
+[ext_resource type="Texture2D" uid="uid://b8q148tiayiq7" path="res://assets/shop_menu/back.png" id="3_sioju"]
 [ext_resource type="PackedScene" uid="uid://cfgv66mdvrjbp" path="res://userinterfaces/money_counter/money_counter.tscn" id="4_6y7d4"]
+[ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="5_hu8ak"]
+[ext_resource type="PackedScene" uid="uid://c26imj8rbe8pl" path="res://userinterfaces/weapon_menu/weapon_menu.tscn" id="5_wkuo5"]
 
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
@@ -26,20 +27,31 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_k4sb2")
 
-[node name="BackButton" parent="." instance=ExtResource("2_26swi")]
+[node name="BackButton" parent="." instance=ExtResource("5_hu8ak")]
 custom_minimum_size = Vector2(132, 65)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+layout_mode = 0
 offset_left = 6.0
-offset_top = -38.0
+offset_top = 322.0
 offset_right = 138.0
-offset_bottom = 27.0
-grow_vertical = 0
+offset_bottom = 387.0
 scale = Vector2(0.5, 0.5)
+scene = Object(AudioStreamPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","stream":null,"volume_db":0.0,"pitch_scale":0.8,"autoplay":false,"stream_paused":false,"mix_target":0,"max_polyphony":1,"bus":&"Master","script":null)
+
 scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
-texture = ExtResource("3_v7n8s")
+texture = ExtResource("3_sioju")
+float_speed = null
+float_distance = null
 
 [node name="Money" parent="." instance=ExtResource("4_6y7d4")]
 layout_mode = 1
+
+[node name="WeaponMenu" parent="." instance=ExtResource("5_wkuo5")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = -12.0
+offset_right = 89.0
+offset_bottom = 84.0
+grow_horizontal = 2

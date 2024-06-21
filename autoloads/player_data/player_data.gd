@@ -4,6 +4,8 @@ signal money_changed
 
 
 @export var money: int = 0: set = set_money
+@export var selected_gun: Gun.GunType = Gun.GunType.Pistol
+@export var owned_guns: Array = [Gun.GunType.Pistol]
 
 
 func set_money(value: int) -> void:

@@ -1,11 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5ml0pa2wknk0"]
+[gd_scene load_steps=17 format=3 uid="uid://b5ml0pa2wknk0"]
 
 [ext_resource type="Script" path="res://userinterfaces/main_menu/main_menu.gd" id="1_t014t"]
 [ext_resource type="Texture2D" uid="uid://8wenyiv0ma4t" path="res://assets/main_menu/bg.svg" id="2_ugncc"]
 [ext_resource type="Texture2D" uid="uid://xupmipdm4cav" path="res://assets/main_menu/sign.png" id="3_c8dnx"]
-[ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="6_gfujy"]
-[ext_resource type="PackedScene" uid="uid://dgh2sns3omtq1" path="res://objects/level/level.tscn" id="6_p5rk7"]
-[ext_resource type="PackedScene" uid="uid://c1nuca1jeb6ja" path="res://userinterfaces/shop_menu/shop_menu.tscn" id="7_hg7au"]
+[ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="6_i7gt2"]
 [ext_resource type="Texture2D" uid="uid://by6f47yhrymlu" path="res://assets/main_menu/shop.svg" id="7_sfmd4"]
 [ext_resource type="Texture2D" uid="uid://chf7tn8hg3tk6" path="res://assets/main_menu/play.svg" id="7_vvth5"]
 
@@ -230,20 +228,18 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayButton" parent="Buttons/Buttons/Play" instance=ExtResource("6_gfujy")]
+[node name="PlayButton" parent="Buttons/Buttons/Play" instance=ExtResource("6_i7gt2")]
 custom_minimum_size = Vector2(72, 114)
 layout_mode = 2
-size_flags_horizontal = 4
-scene = ExtResource("6_p5rk7")
+scene_filepath = "res://objects/level/level.tscn"
 texture = ExtResource("7_vvth5")
 
 [node name="Shop" type="CenterContainer" parent="Buttons/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShopButton" parent="Buttons/Buttons/Shop" instance=ExtResource("6_gfujy")]
+[node name="ShopButton" parent="Buttons/Buttons/Shop" instance=ExtResource("6_i7gt2")]
 custom_minimum_size = Vector2(90, 106)
 layout_mode = 2
-size_flags_horizontal = 4
-scene = ExtResource("7_hg7au")
+scene_filepath = "res://userinterfaces/shop_menu/shop_menu.tscn"
 texture = ExtResource("7_sfmd4")

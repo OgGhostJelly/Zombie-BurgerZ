@@ -5,6 +5,31 @@ signal fired(bullets: Array[Node])
 signal reloaded
 
 
+enum GunType {
+	Pistol,
+	SMG,
+	Shotgun,
+}
+
+static  var gun_data: Dictionary = {
+	GunType.Pistol: {
+		scene = preload("res://objects/guns/pistol.tscn"),
+		texture = preload("res://assets/gun/pistol/pistol.svg"),
+		cost = 0,
+	},
+	GunType.SMG: {
+		scene = preload("res://objects/guns/smg.tscn"),
+		texture = preload("res://assets/gun/smg/smg.svg"),
+		cost = 100,
+	},
+	GunType.Shotgun: {
+		scene = preload("res://objects/guns/shotgun.tscn"),
+		texture = preload("res://assets/gun/shotgun/shotgun.svg"),
+		cost = 100,
+	},
+}
+
+
 ## How many bullets will be fired per shot.
 @export var bullets_per_shot: int = 1
 ## The spread the bullets will spawn with.

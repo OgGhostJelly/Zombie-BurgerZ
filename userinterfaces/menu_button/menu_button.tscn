@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite"]
-position = Vector2(0, -3.10013)
+position = Vector2(0, 0.871894)
 
 [node name="PressAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ul518")

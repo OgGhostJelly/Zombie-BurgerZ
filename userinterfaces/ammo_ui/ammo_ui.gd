@@ -1,14 +1,17 @@
 extends HBoxContainer
 
 
-@export var ammo: StatRangeInt
 @export var texture: Texture
 @export var empty_texture: Texture
+
+var ammo: StatRangeInt
 
 
 func _ready() -> void:
 	assert(texture, "Missing `texture`")
 	assert(empty_texture, "Missing `empty_texture`")
+	
+	ammo = $"../Gun".ammo
 	
 	ammo.value_changed.connect(update_value)
 	ammo.range_changed.connect(update_elements)

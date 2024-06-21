@@ -1,6 +1,6 @@
 - improve gun visuals system
+- multi-kill combo money
 - ammo powerup
-- go to shop and buy weapons (no uselss weapons maybe? augments to power up old weapons)
 
 - more enemies
 

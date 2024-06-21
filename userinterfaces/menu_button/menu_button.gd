@@ -1,10 +1,11 @@
 @tool
 extends Button
+class_name FloatingMenuButton
 
 
-@export var scene: PackedScene
-@export_file var scene_filepath: String
 @export var texture: Texture2D : set = set_texture
+@export var float_speed: float = 0.002
+@export var float_distance: float = 4.0
 
 @onready var sprite: Sprite2D = $Sprite/Sprite2D
 @onready var press_audio: AudioStreamPlayer = $PressAudio
@@ -13,14 +14,12 @@ var desired_scale: Vector2 = Vector2.ONE
 
 
 func _ready() -> void:
-	assert(scene or scene_filepath, "%s" % self)
-	
 	update_texture()
 
 
 func _process(delta: float) -> void:
 	sprite.scale = sprite.scale.lerp(desired_scale, 1.0 - 0.01 ** delta)
-	sprite.position.y = sin(Time.get_ticks_msec() * 0.002) * 4.0
+	sprite.position.y = sin(Time.get_ticks_msec() * float_speed) * float_distance
 
 
 func _on_mouse_entered() -> void:
@@ -34,10 +33,6 @@ func _on_mouse_exited() -> void:
 func _on_pressed() -> void:
 	sprite.scale = Vector2.ONE
 	press_audio.play()
-	if scene:
-		SceneTransition.to_packed(scene)
-	elif scene_filepath:
-		SceneTransition.to_file(scene_filepath)
 
 
 func update_texture() -> void:
