@@ -1,5 +1,5 @@
+- improve gun visuals system
 - ammo powerup
-- customizable gun kb
 - go to shop and buy weapons (no uselss weapons maybe? augments to power up old weapons)
 
 - more enemies
@@ -9,4 +9,3 @@
 - skins with abilities (maybe accessorioes)
 - (could have secondary weapons?)
 - (difficulty select/slider)
-

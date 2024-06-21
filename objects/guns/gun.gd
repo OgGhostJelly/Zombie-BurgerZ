@@ -14,6 +14,9 @@ signal reloaded
 ## Whether this gun is an automatic.
 @export var automatic: bool = false
 
+@export var knockback: float = 0.0
+@export var max_knockback: float = 0.0
+
 
 @onready var ammo: StatRangeInt = $Ammo
 @onready var fire_audio: AudioStreamPlayer = $FireAudio

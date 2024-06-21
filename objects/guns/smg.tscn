@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_63ygj"]
 resource_name = "reload-left"
-length = 1.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,15 +34,15 @@ tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.2),
-"transitions": PackedFloat32Array(-2, -2, -0.5, 2, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [0.0, 0.785398, 0.698132, 0.785398, 0.0]
+"values": [0.0, 6.28319]
 }
 
 [sub_resource type="Animation" id="Animation_8wtaj"]
 resource_name = "reload-right"
-length = 1.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,10 +50,10 @@ tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.2),
-"transitions": PackedFloat32Array(-2, -2, -0.5, 2, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [0.0, -0.785398, -0.698132, -0.785398, 0.0]
+"values": [0.0, -6.28319]
 }
 
 [sub_resource type="Animation" id="Animation_xdy5a"]
@@ -118,6 +118,7 @@ position = Vector2(12, 2)
 libraries = {
 "": SubResource("AnimationLibrary_6g1y1")
 }
+speed_scale = 2.0
 
 [node name="End" parent="." index="4"]
 position = Vector2(37, -4)
