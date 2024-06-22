@@ -1,13 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bihhboc3yhcb"]
+[gd_scene load_steps=10 format=3 uid="uid://bihhboc3yhcb"]
 
 [ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun.tscn" id="1_cput6"]
 [ext_resource type="PackedScene" uid="uid://d32b8ok8ihvcs" path="res://objects/bullets/smg_bullet.tscn" id="2_2koqm"]
 [ext_resource type="Texture2D" uid="uid://kdv8eb80hvyp" path="res://assets/gun/smg/smg.svg" id="2_k4sgc"]
-[ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_a5pvi"]
-
-[sub_resource type="Resource" id="Resource_vughb"]
-script = ExtResource("3_a5pvi")
-scene = ExtResource("2_2koqm")
 
 [sub_resource type="Animation" id="Animation_s2lsq"]
 length = 0.001
@@ -99,7 +94,7 @@ _data = {
 
 [node name="SMG" instance=ExtResource("1_cput6")]
 spread = 25.0
-supplier = SubResource("Resource_vughb")
+bullet_scene = ExtResource("2_2koqm")
 automatic = true
 knockback = 160.0
 max_knockback = 80.0

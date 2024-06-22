@@ -50,7 +50,7 @@ static  var gun_data: Dictionary = {
 ## The spread the bullets will spawn with.
 @export_range(0, 180.0) var spread: float = 0.0
 ## The resource that supplies the scenes that will be spawned.
-@export var supplier: PackedSceneSupplier
+@export var bullet_scene: PackedScene
 ## Whether this gun is an automatic.
 @export var automatic: bool = false
 
@@ -72,7 +72,7 @@ var _sprite_offset: float = 0.0
 
 
 func _ready() -> void:
-	assert(supplier, "%s is missing a `supplier`" % self)
+	assert(bullet_scene, "%s is missing a `bullet_scene`" % self)
 	assert(ammo, "%s is missing `ammo`" % self)
 	
 	_sprite_offset = sprite.position.x
@@ -159,11 +159,7 @@ func spawn(amount: int) -> Array[Node]:
 
 
 func spawn_single(amount: int, idx: int) -> Node:
-	var scene: PackedScene = supplier.supply()
-	if scene == null:
-		return
-	
-	var obj: Node = scene.instantiate()
+	var obj: Node = bullet_scene.instantiate()
 	
 	obj.set_meta(&"spawner_info", {
 		&"global_rotation": spawn_marker.global_rotation + deg_to_rad(

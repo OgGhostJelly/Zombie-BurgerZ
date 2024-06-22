@@ -1,4 +1,5 @@
-- acheivements (perhaps rewards for completing them, or just a badge of honor)
 - skins with abilities (maybe accessorioes)
+- acheivements and some acheivement exclusive skins + weapons
 - (could have secondary weapons?)
 - (difficulty select/slider)
+- (bestiary)

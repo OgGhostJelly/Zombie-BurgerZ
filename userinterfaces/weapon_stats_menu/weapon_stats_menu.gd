@@ -24,7 +24,7 @@ func update() -> void:
 	ammo_texture.texture = data.ammo_texture
 	ammo_label.text = "%s" % gun.ammo.max_value
 	
-	var bullet: Node2D = gun.supplier.supply().instantiate()
+	var bullet: Node2D = gun.bullet_scene.instantiate()
 	pierce_label.text = "%s" % bullet.pierce
 	
 	spread_label.text = "%s" % gun.spread
