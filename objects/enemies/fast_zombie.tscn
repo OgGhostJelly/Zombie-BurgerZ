@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjha660hrr04e"]
+
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy.tscn" id="1_ore27"]
+[ext_resource type="Texture2D" uid="uid://de5qmc8dlmjml" path="res://assets/enemy/fast_zombie/zombie-death0.svg" id="2_md7lw"]
+[ext_resource type="Texture2D" uid="uid://b6qarvedrsxw" path="res://assets/enemy/fast_zombie/zombie-death1.svg" id="3_y63q1"]
+[ext_resource type="Texture2D" uid="uid://ckk1c6sw0gtvx" path="res://assets/enemy/fast_zombie/zombie-death2.svg" id="4_pteiw"]
+[ext_resource type="Texture2D" uid="uid://ef6olh4d23o2" path="res://assets/enemy/fast_zombie/zombie0-walk1.svg" id="5_pse3a"]
+[ext_resource type="Texture2D" uid="uid://btgbih6dmioq" path="res://assets/enemy/fast_zombie/zombie0-walk2.svg" id="6_sug3x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w7l7d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_md7lw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y63q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pteiw")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_pse3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sug3x")
+}],
+"loop": true,
+"name": &"walk0",
+"speed": 5.0
+}]
+
+[node name="FastZombie" instance=ExtResource("1_ore27")]
+speeds = 112.5
+money_count = Vector2i(2, 4)
+
+[node name="Health" parent="." index="0"]
+max_value = 1
+value = 1
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_w7l7d")
+animation = &"death"
+speed_scale = 2.5

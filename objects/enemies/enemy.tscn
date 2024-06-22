@@ -14,6 +14,17 @@ size = Vector2(8, 32)
 size = Vector2(12, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n4l1l"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk0",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_38vwa"]
 playback_mode = 1
@@ -38,10 +49,11 @@ value = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sgi7v")
 
-[node name="HitDetector" type="Area2D" parent="."]
+[node name="HitDetector" type="Area2D" parent="." node_paths=PackedStringArray("root")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_r6qsg")
+root = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
 shape = SubResource("RectangleShape2D_fc24u")
@@ -50,6 +62,7 @@ shape = SubResource("RectangleShape2D_fc24u")
 position = Vector2(5, 0)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_n4l1l")
+animation = &"walk0"
 
 [node name="ContextSteerer" type="Node2D" parent="."]
 script = ExtResource("13_833qm")

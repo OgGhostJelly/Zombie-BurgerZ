@@ -92,9 +92,6 @@ skin_pierce_strength = 1
 max_value = 5
 value = 5
 
-[node name="HitDetector" parent="." index="2" node_paths=PackedStringArray("root")]
-root = NodePath("..")
-
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_hdbdu")
-animation = &"walk0"
+speed_scale = 0.5

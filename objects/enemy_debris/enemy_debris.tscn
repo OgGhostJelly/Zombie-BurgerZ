@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxsxqvcx8kmnt"]
 
 [ext_resource type="Script" path="res://objects/enemy_debris/enemy_debris.gd" id="1_avg2l"]
-[ext_resource type="AudioStream" uid="uid://bfny17d358opw" path="res://assets/enemy/normal_zombie/zombie-death0.wav" id="11_h34hs"]
-[ext_resource type="AudioStream" uid="uid://ca0rx8u572uuv" path="res://assets/enemy/normal_zombie/zombie-death1.wav" id="12_ls5fd"]
+[ext_resource type="AudioStream" uid="uid://bfny17d358opw" path="res://assets/enemy/zombie-death0.wav" id="11_h34hs"]
+[ext_resource type="AudioStream" uid="uid://ca0rx8u572uuv" path="res://assets/enemy/zombie-death1.wav" id="12_ls5fd"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_avtvv"]
 random_pitch = 1.4

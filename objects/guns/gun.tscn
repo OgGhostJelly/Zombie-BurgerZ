@@ -23,6 +23,7 @@ offsets = PackedFloat32Array(0.72, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Gun" type="Node2D"]
+z_index = 1
 script = ExtResource("1_0a6k8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
