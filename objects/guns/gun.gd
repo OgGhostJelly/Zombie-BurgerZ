@@ -16,16 +16,25 @@ static  var gun_data: Dictionary = {
 		scene = preload("res://objects/guns/pistol.tscn"),
 		texture = preload("res://assets/gun/pistol/pistol.svg"),
 		cost = 0,
+		
+		ammo_texture = preload("res://assets/ammo/pistol-ammo.svg"),
+		ammo_empty_texture = preload("res://assets/ammo/pistol-ammo-empty.svg"),
 	},
 	GunType.SMG: {
 		scene = preload("res://objects/guns/smg.tscn"),
 		texture = preload("res://assets/gun/smg/smg.svg"),
 		cost = 100,
+		
+		ammo_texture = preload("res://assets/ammo/smg-ammo.svg"),
+		ammo_empty_texture = preload("res://assets/ammo/smg-ammo-empty.svg"),
 	},
 	GunType.Shotgun: {
 		scene = preload("res://objects/guns/shotgun.tscn"),
 		texture = preload("res://assets/gun/shotgun/shotgun.svg"),
 		cost = 200,
+		
+		ammo_texture = preload("res://assets/ammo/shotgun-ammo.svg"),
+		ammo_empty_texture = preload("res://assets/ammo/shotgun-ammo-empty.svg"),
 	},
 }
 

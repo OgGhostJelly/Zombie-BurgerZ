@@ -1,13 +1,15 @@
 extends HBoxContainer
 
 
-@export var texture: Texture
-@export var empty_texture: Texture
-
+var texture: Texture
+var empty_texture: Texture
 var ammo: StatRangeInt
 
 
 func _ready() -> void:
+	texture = Gun.gun_data[PlayerData.selected_gun].ammo_texture
+	empty_texture = Gun.gun_data[PlayerData.selected_gun].ammo_empty_texture
+	
 	assert(texture, "Missing `texture`")
 	assert(empty_texture, "Missing `empty_texture`")
 	

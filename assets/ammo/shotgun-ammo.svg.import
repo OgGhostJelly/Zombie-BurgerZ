@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcreik4mwnqse"
-path="res://.godot/imported/ammo-empty.svg-dc9b64e85c69555870aa4d742a6aa619.ctex"
+uid="uid://dao0snfeb1axq"
+path="res://.godot/imported/shotgun-ammo.svg-6ef0a8b35e7d1c09f5fe855e91a9c62a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ammo/ammo-empty.svg"
-dest_files=["res://.godot/imported/ammo-empty.svg-dc9b64e85c69555870aa4d742a6aa619.ctex"]
+source_file="res://assets/ammo/shotgun-ammo.svg"
+dest_files=["res://.godot/imported/shotgun-ammo.svg-6ef0a8b35e7d1c09f5fe855e91a9c62a.ctex"]
 
 [params]
 
@@ -32,6 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=0.5
+svg/scale=1.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

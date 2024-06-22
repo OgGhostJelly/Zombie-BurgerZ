@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6mv0s3o00rdv"
-path="res://.godot/imported/ammo.svg-90610da2394c19a84420441521d74031.ctex"
+path="res://.godot/imported/pistol-ammo.svg-4a02a16879a19cce67a43021e5a73247.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ammo/ammo.svg"
-dest_files=["res://.godot/imported/ammo.svg-90610da2394c19a84420441521d74031.ctex"]
+source_file="res://assets/ammo/pistol-ammo.svg"
+dest_files=["res://.godot/imported/pistol-ammo.svg-4a02a16879a19cce67a43021e5a73247.ctex"]
 
 [params]
 
