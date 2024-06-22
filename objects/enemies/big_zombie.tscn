@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://dx4qmyytrh6bw"]
+
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy.tscn" id="1_5f4em"]
+[ext_resource type="Texture2D" uid="uid://sbe3dfvthbma" path="res://assets/enemy/big_zombie/zombie-death0.svg" id="2_8eqnn"]
+[ext_resource type="Texture2D" uid="uid://dv76kydy1hafk" path="res://assets/enemy/big_zombie/zombie-death1.svg" id="3_xicqs"]
+[ext_resource type="Texture2D" uid="uid://cuclqfsnmhwtn" path="res://assets/enemy/big_zombie/zombie-death2.svg" id="4_yojhm"]
+[ext_resource type="Texture2D" uid="uid://bpqmgurof62hy" path="res://assets/enemy/big_zombie/zombie0-walk1.svg" id="5_x65m5"]
+[ext_resource type="Texture2D" uid="uid://dib208cmtdanx" path="res://assets/enemy/big_zombie/zombie0-walk2.svg" id="6_e43v1"]
+[ext_resource type="Texture2D" uid="uid://trgn6mdf8eug" path="res://assets/enemy/big_zombie/zombie1-walk1.svg" id="7_cd52l"]
+[ext_resource type="Texture2D" uid="uid://brkr23dqcyw7s" path="res://assets/enemy/big_zombie/zombie1-walk2.svg" id="8_4f0nq"]
+[ext_resource type="Texture2D" uid="uid://dvlfld4b3hjrc" path="res://assets/enemy/big_zombie/zombie2-walk1.svg" id="9_wuy30"]
+[ext_resource type="Texture2D" uid="uid://bg1eo67fi04ke" path="res://assets/enemy/big_zombie/zombie2-walk2.svg" id="10_guhws"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdbdu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8eqnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xicqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yojhm")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_x65m5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e43v1")
+}],
+"loop": true,
+"name": &"walk0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cd52l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4f0nq")
+}],
+"loop": true,
+"name": &"walk1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cd52l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4f0nq")
+}],
+"loop": true,
+"name": &"walk2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_wuy30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_guhws")
+}],
+"loop": true,
+"name": &"walk3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_wuy30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_guhws")
+}],
+"loop": true,
+"name": &"walk4",
+"speed": 5.0
+}]
+
+[node name="BigZombie" instance=ExtResource("1_5f4em")]
+speeds = 25.0
+money_count = Vector2i(3, 6)
+skin_pierce_strength = 1
+
+[node name="Health" parent="." index="0"]
+max_value = 5
+value = 5
+
+[node name="HitDetector" parent="." index="2" node_paths=PackedStringArray("root")]
+root = NodePath("..")
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_hdbdu")
+animation = &"walk0"

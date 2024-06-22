@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
-[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy/enemy.tscn" id="3_5ob25"]
+[ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemies/big_zombie.tscn" id="2_gxf2g"]
 [ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_ivdfp"]
 [ext_resource type="Texture2D" uid="uid://c7abfnqb6q1w" path="res://assets/level/level-background.png" id="4_t414c"]
 [ext_resource type="Texture2D" uid="uid://ddyxu83nsy3dg" path="res://assets/level/level-decals.png" id="5_63yv8"]
@@ -12,7 +12,7 @@
 
 [sub_resource type="Resource" id="Resource_vi7tg"]
 script = ExtResource("3_ivdfp")
-scene = ExtResource("3_5ob25")
+scene = ExtResource("2_gxf2g")
 
 [sub_resource type="Curve2D" id="Curve2D_mo7e7"]
 _data = {
@@ -94,8 +94,6 @@ texture = ExtResource("5_63yv8")
 [node name="Money" parent="FrontLayer" instance=ExtResource("8_naacc")]
 
 [node name="GameOverMenu" parent="FrontLayer" instance=ExtResource("9_rau86")]
-offset_right = 480.0
-offset_bottom = 360.0
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

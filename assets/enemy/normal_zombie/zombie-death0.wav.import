@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bfny17d358opw"
-path="res://.godot/imported/zombie-death0.wav-a2c46f5b929ab56d6ce3ec8847c05997.sample"
+path="res://.godot/imported/zombie-death0.wav-942b81d8a776b38b54a2de65a6ddebb7.sample"
 
 [deps]
 
-source_file="res://assets/enemy/zombie/zombie-death0.wav"
-dest_files=["res://.godot/imported/zombie-death0.wav-a2c46f5b929ab56d6ce3ec8847c05997.sample"]
+source_file="res://assets/enemy/normal_zombie/zombie-death0.wav"
+dest_files=["res://.godot/imported/zombie-death0.wav-942b81d8a776b38b54a2de65a6ddebb7.sample"]
 
 [params]
 

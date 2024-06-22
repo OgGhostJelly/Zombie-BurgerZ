@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://bdb2hfft8v7ih"]
 
 [ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun.tscn" id="1_eteqr"]
-[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="2_cv5mf"]
+[ext_resource type="PackedScene" uid="uid://b4uojtcguo1n1" path="res://objects/bullets/pistol_bullet.tscn" id="2_6dnhj"]
 [ext_resource type="Texture2D" uid="uid://ej3thgdt0ekr" path="res://assets/gun/pistol/pistol.svg" id="2_rsgv3"]
 [ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_tghch"]
 
 [sub_resource type="Resource" id="Resource_vughb"]
 script = ExtResource("3_tghch")
-scene = ExtResource("2_cv5mf")
+scene = ExtResource("2_6dnhj")
 
 [sub_resource type="Animation" id="Animation_s2lsq"]
 length = 0.001

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceodw7ann0p2j"
-path="res://.godot/imported/zombie1-walk1.svg-fb525aafea4ece6d01ed997125651144.ctex"
+uid="uid://85oxw4efhjri"
+path="res://.godot/imported/zombie2-walk2.svg-bc042cceea458b0d5562634ad6a8ee6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/zombie/zombie1-walk1.svg"
-dest_files=["res://.godot/imported/zombie1-walk1.svg-fb525aafea4ece6d01ed997125651144.ctex"]
+source_file="res://assets/enemy/normal_zombie/zombie2-walk2.svg"
+dest_files=["res://.godot/imported/zombie2-walk2.svg-bc042cceea458b0d5562634ad6a8ee6f.ctex"]
 
 [params]
 

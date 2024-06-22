@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bce27nip2odea"]
 
-[ext_resource type="Script" path="res://objects/bullets/bullet/bullet.gd" id="1_i05xf"]
-[ext_resource type="Texture2D" uid="uid://dejwr46btymdd" path="res://assets/gun/pistol/pistol-bullet.svg" id="2_0y3f0"]
+[ext_resource type="Script" path="res://objects/bullets/bullet.gd" id="1_s75qq"]
+[ext_resource type="Texture2D" uid="uid://dejwr46btymdd" path="res://assets/gun/pistol/pistol-bullet.svg" id="2_o3p35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5exn7"]
 size = Vector2(6, 4)
@@ -9,7 +9,7 @@ size = Vector2(6, 4)
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("1_i05xf")
+script = ExtResource("1_s75qq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
@@ -18,7 +18,7 @@ shape = SubResource("RectangleShape2D_5exn7")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_0y3f0")
+texture = ExtResource("2_o3p35")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, 0)

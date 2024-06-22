@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3aal3rhnt1p"]
+
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy.tscn" id="1_vgdmx"]
+[ext_resource type="Texture2D" uid="uid://2jnq8gvfl8tt" path="res://assets/enemy/normal_zombie/zombie-death0.svg" id="2_enif2"]
+[ext_resource type="Texture2D" uid="uid://beuxya4hherlp" path="res://assets/enemy/normal_zombie/zombie-death1.svg" id="3_ydkwg"]
+[ext_resource type="Texture2D" uid="uid://cdues7k61bmlx" path="res://assets/enemy/normal_zombie/zombie-death2.svg" id="4_s7241"]
+[ext_resource type="Texture2D" uid="uid://c3h1abprn0l4a" path="res://assets/enemy/normal_zombie/zombie0-walk1.svg" id="5_qgalm"]
+[ext_resource type="Texture2D" uid="uid://becrkp1pw0evq" path="res://assets/enemy/normal_zombie/zombie0-walk2.svg" id="6_cjaov"]
+[ext_resource type="Texture2D" uid="uid://ceodw7ann0p2j" path="res://assets/enemy/normal_zombie/zombie1-walk1.svg" id="7_m1ghp"]
+[ext_resource type="Texture2D" uid="uid://cgtlp40d3kgwq" path="res://assets/enemy/normal_zombie/zombie1-walk2.svg" id="8_ry2r8"]
+[ext_resource type="Texture2D" uid="uid://ce2am2u4nwfnf" path="res://assets/enemy/normal_zombie/zombie2-walk1.svg" id="9_kxdr1"]
+[ext_resource type="Texture2D" uid="uid://85oxw4efhjri" path="res://assets/enemy/normal_zombie/zombie2-walk2.svg" id="10_ftbrt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qklno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_enif2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ydkwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s7241")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qgalm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cjaov")
+}],
+"loop": true,
+"name": &"walk0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_m1ghp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ry2r8")
+}],
+"loop": true,
+"name": &"walk1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_kxdr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ftbrt")
+}],
+"loop": true,
+"name": &"walk2",
+"speed": 5.0
+}]
+
+[node name="NormalZombie" instance=ExtResource("1_vgdmx")]
+money_count = Vector2i(2, 4)
+
+[node name="HitDetector" parent="." index="2" node_paths=PackedStringArray("root")]
+root = NodePath("..")
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_qklno")
+animation = &"walk2"

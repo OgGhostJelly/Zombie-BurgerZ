@@ -25,7 +25,7 @@ static  var gun_data: Dictionary = {
 	GunType.Shotgun: {
 		scene = preload("res://objects/guns/shotgun.tscn"),
 		texture = preload("res://assets/gun/shotgun/shotgun.svg"),
-		cost = 100,
+		cost = 200,
 	},
 }
 

@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://bs0th4yyumu86"]
 
 [ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun.tscn" id="1_j0do8"]
-[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet/bullet.tscn" id="2_2hymv"]
 [ext_resource type="Texture2D" uid="uid://nssls06mjlg2" path="res://assets/gun/shotgun/shotgun.svg" id="2_rfla4"]
+[ext_resource type="PackedScene" uid="uid://b5ufjf3sl2le" path="res://objects/bullets/shotgun_bullet.tscn" id="2_wj131"]
 [ext_resource type="Script" path="res://classes/objects/PackedSceneSupplier/SinglePackedSceneSupplier.gd" id="3_egyq1"]
 
 [sub_resource type="Resource" id="Resource_vughb"]
 script = ExtResource("3_egyq1")
-scene = ExtResource("2_2hymv")
+scene = ExtResource("2_wj131")
 
 [sub_resource type="Animation" id="Animation_s2lsq"]
 length = 0.001
@@ -124,5 +124,5 @@ libraries = {
 position = Vector2(42, -3)
 
 [node name="Ammo" parent="." index="5"]
-max_value = 1
-value = 1
+max_value = 2
+value = 2

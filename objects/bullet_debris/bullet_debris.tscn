@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://6i0g2lcd8gve"]
+
+[ext_resource type="Script" path="res://objects/bullet_debris/bullet_debris.gd" id="1_3ibg6"]
+[ext_resource type="Texture2D" uid="uid://ckopdatuhrbsc" path="res://assets/boom.svg" id="1_687an"]
+
+[node name="BulletDebris" type="Node2D"]
+script = ExtResource("1_3ibg6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.4
+one_shot = true
+texture = ExtResource("1_687an")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

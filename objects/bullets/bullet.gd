@@ -2,10 +2,10 @@ extends Hitbox2D
 
 
 @export var speed: float = 450.0
+@export var pierce: int = 1
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-var already_killed: bool = false
 var direction: Vector2
 
 
@@ -26,16 +26,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 func _on_hit(info: HurtInfo2D) -> void:
-	var count: int = (
-		1
-		if info.new_health <= 0 and already_killed else
-		0
-	)
+	pierce -= info.hurtbox.root.skin_pierce_strength
 	
-	for i in count:
-		var drop: Node2D = load("res://objects/pickup/money_pickup.tscn").instantiate()
-		drop.global_position = global_position
-		get_parent().call_deferred(&"add_child", drop)
-	
-	if info.new_health <= 0:
-		already_killed = true
+	if pierce <= 0:
+		var debris: Node2D = preload("res://objects/bullet_debris/bullet_debris.tscn").instantiate()
+		debris.global_position = global_position
+		get_parent().add_child(debris)
+		queue_free()

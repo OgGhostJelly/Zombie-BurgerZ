@@ -1,84 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxsxqvcx8kmnt"]
+[gd_scene load_steps=5 format=3 uid="uid://bxsxqvcx8kmnt"]
 
 [ext_resource type="Script" path="res://objects/enemy_debris/enemy_debris.gd" id="1_avg2l"]
-[ext_resource type="Texture2D" uid="uid://2jnq8gvfl8tt" path="res://assets/enemy/zombie/zombie-death0.svg" id="2_1e2fq"]
-[ext_resource type="Texture2D" uid="uid://beuxya4hherlp" path="res://assets/enemy/zombie/zombie-death1.svg" id="3_cu287"]
-[ext_resource type="Texture2D" uid="uid://cdues7k61bmlx" path="res://assets/enemy/zombie/zombie-death2.svg" id="4_1ecb3"]
-[ext_resource type="Texture2D" uid="uid://c3h1abprn0l4a" path="res://assets/enemy/zombie/zombie0-walk1.svg" id="5_rvksx"]
-[ext_resource type="Texture2D" uid="uid://becrkp1pw0evq" path="res://assets/enemy/zombie/zombie0-walk2.svg" id="6_6g0em"]
-[ext_resource type="Texture2D" uid="uid://ceodw7ann0p2j" path="res://assets/enemy/zombie/zombie1-walk1.svg" id="7_1y1fb"]
-[ext_resource type="Texture2D" uid="uid://cgtlp40d3kgwq" path="res://assets/enemy/zombie/zombie1-walk2.svg" id="8_bgloi"]
-[ext_resource type="Texture2D" uid="uid://ce2am2u4nwfnf" path="res://assets/enemy/zombie/zombie2-walk1.svg" id="9_q6umi"]
-[ext_resource type="Texture2D" uid="uid://85oxw4efhjri" path="res://assets/enemy/zombie/zombie2-walk2.svg" id="10_wg8ht"]
-[ext_resource type="AudioStream" uid="uid://bfny17d358opw" path="res://assets/enemy/zombie/zombie-death0.wav" id="11_5wmtx"]
-[ext_resource type="AudioStream" uid="uid://ca0rx8u572uuv" path="res://assets/enemy/zombie/zombie-death1.wav" id="12_gw5gj"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c1gld"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_1e2fq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_cu287")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_1ecb3")
-}],
-"loop": false,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_rvksx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_6g0em")
-}],
-"loop": true,
-"name": &"walk0",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_1y1fb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_bgloi")
-}],
-"loop": true,
-"name": &"walk1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_q6umi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_wg8ht")
-}],
-"loop": true,
-"name": &"walk2",
-"speed": 5.0
-}]
+[ext_resource type="AudioStream" uid="uid://bfny17d358opw" path="res://assets/enemy/normal_zombie/zombie-death0.wav" id="11_h34hs"]
+[ext_resource type="AudioStream" uid="uid://ca0rx8u572uuv" path="res://assets/enemy/normal_zombie/zombie-death1.wav" id="12_ls5fd"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_avtvv"]
 random_pitch = 1.4
 streams_count = 2
-stream_0/stream = ExtResource("11_5wmtx")
+stream_0/stream = ExtResource("11_h34hs")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("12_gw5gj")
+stream_1/stream = ExtResource("12_ls5fd")
 stream_1/weight = 1.0
 
 [node name="EnemyDebris" type="Node2D"]
 script = ExtResource("1_avg2l")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(5, 0)
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_c1gld")
-animation = &"death"
 
 [node name="DeathAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_avtvv")
