@@ -19,6 +19,8 @@ static  var gun_data: Dictionary = {
 		
 		ammo_texture = preload("res://assets/ammo/pistol-ammo.svg"),
 		ammo_empty_texture = preload("res://assets/ammo/pistol-ammo-empty.svg"),
+		
+		description = "Simple but reliable",
 	},
 	GunType.SMG: {
 		scene = preload("res://objects/guns/smg.tscn"),
@@ -27,6 +29,8 @@ static  var gun_data: Dictionary = {
 		
 		ammo_texture = preload("res://assets/ammo/smg-ammo.svg"),
 		ammo_empty_texture = preload("res://assets/ammo/smg-ammo-empty.svg"),
+		
+		description = "pew pew pew",
 	},
 	GunType.Shotgun: {
 		scene = preload("res://objects/guns/shotgun.tscn"),
@@ -35,6 +39,8 @@ static  var gun_data: Dictionary = {
 		
 		ammo_texture = preload("res://assets/ammo/shotgun-ammo.svg"),
 		ammo_empty_texture = preload("res://assets/ammo/shotgun-ammo-empty.svg"),
+		
+		description = "Shotgun.",
 	},
 }
 

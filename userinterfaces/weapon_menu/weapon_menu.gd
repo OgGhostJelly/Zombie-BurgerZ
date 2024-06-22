@@ -1,5 +1,7 @@
 extends HBoxContainer
 
+signal selected_changed
+
 
 @onready var texture: TextureRect = $WeaponTexture
 @onready var owned_label: Label = $WeaponTexture/OwnedLabel
@@ -55,3 +57,5 @@ func set_selected(value: Gun.GunType) -> void:
 			buy_button.visible = true
 		else:
 			insufficient_funds_label.visible = true
+	
+	selected_changed.emit()
