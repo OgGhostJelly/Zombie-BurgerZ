@@ -37,7 +37,7 @@ animations = [{
 
 [node name="FastZombie" instance=ExtResource("1_ore27")]
 speeds = 112.5
-money_count = Vector2i(2, 4)
+money_count = Vector2i(1, 2)
 
 [node name="Health" parent="." index="0"]
 max_value = 1

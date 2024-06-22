@@ -62,10 +62,7 @@ animations = [{
 }]
 
 [node name="NormalZombie" instance=ExtResource("1_vgdmx")]
-money_count = Vector2i(2, 4)
-
-[node name="HitDetector" parent="." index="2" node_paths=PackedStringArray("root")]
-root = NodePath("..")
+money_count = Vector2i(1, 2)
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_qklno")

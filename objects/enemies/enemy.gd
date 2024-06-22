@@ -62,7 +62,7 @@ func _die() -> void:
 		if Player.player.health.value < Player.player.health.max_value:
 			_drop(preload("res://objects/pickup/health_pickup.tscn"), 1)
 		else:
-			_drop(preload("res://objects/pickup/money_pickup.tscn"), 10)
+			_drop(preload("res://objects/pickup/money_pickup.tscn"), money_count.y * 2)
 	
 	_drop(preload("res://objects/pickup/money_pickup.tscn"), randi_range(money_count.x, money_count.y))
 	

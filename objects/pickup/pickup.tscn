@@ -42,4 +42,8 @@ script = ExtResource("2_eitb7")
 [node name="PickupAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_3nh36")
 
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

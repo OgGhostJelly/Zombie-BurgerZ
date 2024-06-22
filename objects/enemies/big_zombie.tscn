@@ -85,7 +85,7 @@ animations = [{
 
 [node name="BigZombie" instance=ExtResource("1_5f4em")]
 speeds = 25.0
-money_count = Vector2i(3, 6)
+money_count = Vector2i(2, 4)
 skin_pierce_strength = 1
 
 [node name="Health" parent="." index="0"]
