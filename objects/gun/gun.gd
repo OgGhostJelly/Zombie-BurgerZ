@@ -13,7 +13,7 @@ enum GunType {
 
 static  var gun_data: Dictionary = {
 	GunType.Pistol: {
-		scene = preload("res://objects/guns/pistol.tscn"),
+		scene = preload("res://objects/gun/pistol.tscn"),
 		texture = preload("res://assets/gun/pistol/pistol.svg"),
 		cost = 0,
 		
@@ -23,7 +23,7 @@ static  var gun_data: Dictionary = {
 		description = "Simple but reliable",
 	},
 	GunType.SMG: {
-		scene = preload("res://objects/guns/smg.tscn"),
+		scene = preload("res://objects/gun/smg.tscn"),
 		texture = preload("res://assets/gun/smg/smg.svg"),
 		cost = 100,
 		
@@ -33,7 +33,7 @@ static  var gun_data: Dictionary = {
 		description = "pew pew pew",
 	},
 	GunType.Shotgun: {
-		scene = preload("res://objects/guns/shotgun.tscn"),
+		scene = preload("res://objects/gun/shotgun.tscn"),
 		texture = preload("res://assets/gun/shotgun/shotgun.svg"),
 		cost = 200,
 		

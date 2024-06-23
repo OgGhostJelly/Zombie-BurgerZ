@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
-[ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemies/big_zombie.tscn" id="2_gxf2g"]
-[ext_resource type="PackedScene" uid="uid://cjha660hrr04e" path="res://objects/enemies/fast_zombie.tscn" id="2_h8txr"]
-[ext_resource type="PackedScene" uid="uid://b3aal3rhnt1p" path="res://objects/enemies/normal_zombie.tscn" id="2_rymd6"]
+[ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemy/big_zombie.tscn" id="2_gxf2g"]
+[ext_resource type="PackedScene" uid="uid://cjha660hrr04e" path="res://objects/enemy/fast_zombie.tscn" id="2_h8txr"]
+[ext_resource type="PackedScene" uid="uid://b3aal3rhnt1p" path="res://objects/enemy/normal_zombie.tscn" id="2_rymd6"]
 [ext_resource type="Texture2D" uid="uid://c7abfnqb6q1w" path="res://assets/level/level-background.png" id="4_t414c"]
 [ext_resource type="Texture2D" uid="uid://ddyxu83nsy3dg" path="res://assets/level/level-decals.png" id="5_63yv8"]
 [ext_resource type="PackedScene" uid="uid://h3y3hjyf4gwx" path="res://userinterfaces/player_objective_ui/player_objective_ui.tscn" id="6_7cgiu"]

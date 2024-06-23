@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d32b8ok8ihvcs"]
 
-[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullets/bullet.tscn" id="1_j76i3"]
+[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullet/bullet.tscn" id="1_j76i3"]
 [ext_resource type="Texture2D" uid="uid://n1c4uxa1rfip" path="res://assets/gun/smg/smg-bullet.svg" id="2_18li1"]
 
 [node name="SMGBullet" instance=ExtResource("1_j76i3")]

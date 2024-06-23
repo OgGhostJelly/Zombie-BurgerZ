@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bdb2hfft8v7ih"]
 
-[ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun.tscn" id="1_eteqr"]
-[ext_resource type="PackedScene" uid="uid://b4uojtcguo1n1" path="res://objects/bullets/pistol_bullet.tscn" id="2_6dnhj"]
+[ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/gun/gun.tscn" id="1_eteqr"]
+[ext_resource type="PackedScene" uid="uid://b4uojtcguo1n1" path="res://objects/bullet/pistol_bullet.tscn" id="2_6dnhj"]
 [ext_resource type="Texture2D" uid="uid://ej3thgdt0ekr" path="res://assets/gun/pistol/pistol.svg" id="2_rsgv3"]
 
 [sub_resource type="Animation" id="Animation_s2lsq"]

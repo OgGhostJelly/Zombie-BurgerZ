@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b3aal3rhnt1p"]
 
-[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemies/enemy.tscn" id="1_vgdmx"]
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemy/enemy.tscn" id="1_vgdmx"]
 [ext_resource type="Texture2D" uid="uid://2jnq8gvfl8tt" path="res://assets/enemy/normal_zombie/zombie-death0.svg" id="2_enif2"]
 [ext_resource type="Texture2D" uid="uid://beuxya4hherlp" path="res://assets/enemy/normal_zombie/zombie-death1.svg" id="3_ydkwg"]
 [ext_resource type="Texture2D" uid="uid://cdues7k61bmlx" path="res://assets/enemy/normal_zombie/zombie-death2.svg" id="4_s7241"]

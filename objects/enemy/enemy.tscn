@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bcqf1gycu32mf"]
 
-[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1_2kard"]
+[ext_resource type="Script" path="res://objects/enemy/enemy.gd" id="1_2kard"]
 [ext_resource type="Script" path="res://classes/objects/Hurtbox2D/Hurtbox2D.gd" id="2_r6qsg"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="2_tim7i"]
 [ext_resource type="Script" path="res://classes/objects/ContextSteerer/ContextSteerer.gd" id="13_833qm"]

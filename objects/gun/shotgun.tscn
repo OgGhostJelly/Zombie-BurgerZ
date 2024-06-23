@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bs0th4yyumu86"]
 
-[ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/guns/gun.tscn" id="1_j0do8"]
+[ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/gun/gun.tscn" id="1_j0do8"]
 [ext_resource type="Texture2D" uid="uid://nssls06mjlg2" path="res://assets/gun/shotgun/shotgun.svg" id="2_rfla4"]
-[ext_resource type="PackedScene" uid="uid://b5ufjf3sl2le" path="res://objects/bullets/shotgun_bullet.tscn" id="2_wj131"]
+[ext_resource type="PackedScene" uid="uid://b5ufjf3sl2le" path="res://objects/bullet/shotgun_bullet.tscn" id="2_wj131"]
 
 [sub_resource type="Animation" id="Animation_s2lsq"]
 length = 0.001
