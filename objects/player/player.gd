@@ -19,6 +19,9 @@ static var player: Player
 
 
 func _init() -> void:
+	if scene_file_path:
+		return
+	
 	var obj: Gun = Gun.gun_data[PlayerData.selected_gun].scene.instantiate()
 	obj.name = "Gun"
 	add_child(obj)
