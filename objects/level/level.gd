@@ -21,6 +21,9 @@ var kill_count_req: int = 20
 
 func _ready() -> void:
 	assert(enemy_scenes)
+	assert(player)
+	
+	player.died.connect(_on_player_died)
 	
 	initial_money = PlayerData.money
 	

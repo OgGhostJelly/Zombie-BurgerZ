@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://og338o612gh3"]
+
+[ext_resource type="Script" path="res://objects/energy_bar/energy_bar.gd" id="1_ndv7u"]
+
+[node name="EnergyBar" type="Node2D"]
+position = Vector2(0, -15)
+script = ExtResource("1_ndv7u")
+start_angle = -1.57119
+end_angle = 4.71281
+radius = 12.0
+point_count = 64
+width = 2.0
+color = Color(1, 0, 0, 1)

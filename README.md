@@ -1,3 +1,5 @@
+- gain energy by killing
+
 - more skins
 
 - skins with abilities (maybe accessorioes)

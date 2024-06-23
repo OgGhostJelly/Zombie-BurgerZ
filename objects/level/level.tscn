@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://dgh2sns3omtq1"]
 
-[ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_lmdvn"]
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemy/big_zombie.tscn" id="2_gxf2g"]
 [ext_resource type="PackedScene" uid="uid://cjha660hrr04e" path="res://objects/enemy/fast_zombie.tscn" id="2_h8txr"]
 [ext_resource type="PackedScene" uid="uid://b3aal3rhnt1p" path="res://objects/enemy/normal_zombie.tscn" id="2_rymd6"]
 [ext_resource type="Texture2D" uid="uid://c7abfnqb6q1w" path="res://assets/level/level-background.png" id="4_t414c"]
 [ext_resource type="PackedScene" uid="uid://h3y3hjyf4gwx" path="res://userinterfaces/player_objective_ui/player_objective_ui.tscn" id="6_7cgiu"]
+[ext_resource type="PackedScene" uid="uid://c7ismsn7vn55t" path="res://objects/player/dash_player.tscn" id="6_bydw8"]
 [ext_resource type="PackedScene" uid="uid://cfgv66mdvrjbp" path="res://userinterfaces/money_counter/money_counter.tscn" id="8_naacc"]
 [ext_resource type="PackedScene" uid="uid://dc4vwx3ougyp1" path="res://userinterfaces/game_over_menu/game_over_menu.tscn" id="9_rau86"]
 [ext_resource type="Texture2D" uid="uid://c6t2h54m6yjwd" path="res://assets/level/clock.png" id="10_dsnvk"]
@@ -32,8 +32,8 @@ texture = ExtResource("4_t414c")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("1_lmdvn")]
-position = Vector2(240, 180)
+[node name="Player" parent="." instance=ExtResource("6_bydw8")]
+position = Vector2(241, 188)
 
 [node name="SpawnPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_mo7e7")
@@ -102,9 +102,6 @@ text = "0/20"
 player = NodePath("../../Player")
 
 [node name="GameOverMenu" parent="FrontLayer" instance=ExtResource("9_rau86")]
-offset_right = 0.0
-offset_bottom = 0.0
 
-[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="finished" from="FrontLayer/PlayerObjectiveUI" to="." method="_on_player_objective_ui_finished"]
