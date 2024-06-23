@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddyxu83nsy3dg"
-path="res://.godot/imported/level-decals.png-ccc072690588e4374513fc794761a448.ctex"
+uid="uid://c6t2h54m6yjwd"
+path="res://.godot/imported/clock.png-01891d3c083f66fbf058e45a51d33d2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level/level-decals.png"
-dest_files=["res://.godot/imported/level-decals.png-ccc072690588e4374513fc794761a448.ctex"]
+source_file="res://assets/level/clock.png"
+dest_files=["res://.godot/imported/clock.png-01891d3c083f66fbf058e45a51d33d2d.ctex"]
 
 [params]
 

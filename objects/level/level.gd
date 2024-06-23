@@ -8,8 +8,8 @@ extends Node2D
 @onready var player: Player = $Player
 @onready var grace_period_timer: Timer = $GracePeriodTimer
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var time_label: Label = $FrontLayer/Time
-@onready var kill_count_label: Label = $FrontLayer/KillCount
+@onready var time_label: Label = $FrontLayer/Time/TimeLabel
+@onready var kill_count_label: Label = $FrontLayer/KillCount/KillCountLabel
 @onready var game_over_menu: Control = $FrontLayer/GameOverMenu
 
 var initial_money: int = 0
