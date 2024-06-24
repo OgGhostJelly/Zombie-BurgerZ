@@ -1,4 +1,8 @@
 extends Node2D
+class_name Level
+
+signal kill_count_changed
+
 
 
 @export var enemy_scenes: Array[PackedScene] = []
@@ -14,7 +18,10 @@ extends Node2D
 
 
 var initial_money: int = 0
-var kill_count: int = 0
+var kill_count: int = 0:
+	set(v):
+		kill_count = v
+		kill_count_changed.emit()
 var time: float = 0.0
 var wave: int = 0
 var kill_count_req: int = 20
@@ -64,6 +71,7 @@ func _on_spawn_timer_timeout() -> void:
 	
 	obj.died.connect(func():
 		kill_count += 1
+		PlayerData.total_kills += 1
 		
 		if wave > 2:
 			spawn_timer.wait_time *= 0.95

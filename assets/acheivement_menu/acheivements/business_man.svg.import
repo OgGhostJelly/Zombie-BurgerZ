@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cawh73y3t3rwv"
-path="res://.godot/imported/agrostophobic.svg-75325059b98e27ec3ace6f10c78196c0.ctex"
+uid="uid://bth62yvn3cfkr"
+path="res://.godot/imported/business_man.svg-ad2efa77e975690d7c5b0e219153f0c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/agrostophobic.svg"
-dest_files=["res://.godot/imported/agrostophobic.svg-75325059b98e27ec3ace6f10c78196c0.ctex"]
+source_file="res://assets/acheivement_menu/acheivements/business_man.svg"
+dest_files=["res://.godot/imported/business_man.svg-ad2efa77e975690d7c5b0e219153f0c3.ctex"]
 
 [params]
 
