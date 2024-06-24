@@ -1,5 +1,8 @@
 extends Hitbox2D
+class_name Bullet
 
+signal killed(enemy: Node)
+signal checked_hit(info: HurtInfo2D)
 
 @export var speed: float = 450.0
 @export var pierce: int = 1
@@ -7,6 +10,7 @@ extends Hitbox2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 var direction: Vector2
+var history: Array[HurtInfo2D]
 
 
 func _ready() -> void:
@@ -26,6 +30,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 func _on_hit(info: HurtInfo2D) -> void:
+	if info.hurtbox.root.killer:
+		return
+	
+	history.append(info)
+	
 	pierce -= info.hurtbox.root.skin_pierce_strength
 	
 	if pierce <= 0:
@@ -33,3 +42,9 @@ func _on_hit(info: HurtInfo2D) -> void:
 		debris.global_position = global_position
 		get_parent().add_child(debris)
 		queue_free()
+	
+	if info.hurtbox.root.health.is_lowest():
+		info.hurtbox.root.killer = self
+		killed.emit(info.hurtbox.root)
+	
+	checked_hit.emit(info)

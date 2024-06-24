@@ -3,6 +3,8 @@ class_name Gun
 
 signal fired(bullets: Array[Node])
 signal reloaded
+signal killed(bullet: Bullet, enemy: Enemy)
+signal hit(bullet: Bullet, info: HurtInfo2D)
 
 
 enum GunType {
@@ -158,17 +160,31 @@ func spawn(amount: int) -> Array[Node]:
 	return spawns
 
 
-func spawn_single(amount: int, idx: int) -> Node:
+func spawn_single(amount: int, idx: int, p_global_position: Vector2 = Vector2.ZERO, p_global_rotaton: float = -0.0) -> Node:
 	var obj: Node = bullet_scene.instantiate()
 	
 	obj.set_meta(&"spawner_info", {
-		&"global_rotation": spawn_marker.global_rotation + deg_to_rad(
-			remap(idx + 0.5, 0, amount, -spread, spread)
-			if bullets_per_shot > 1 else
-			randf_range(-spread, spread)
+		&"global_rotation": (
+			p_global_rotaton
+			if p_global_rotaton != 0.0 else
+			spawn_marker.global_rotation + deg_to_rad(
+				remap(idx + 0.5, 0, amount, -spread, spread)
+				if bullets_per_shot > 1 else
+				randf_range(-spread, spread)
+			)
 		),
-		&"global_position": spawn_marker.global_position,
+		&"global_position": (
+			p_global_position
+			if p_global_position != Vector2.ZERO else
+			spawn_marker.global_position
+		),
 	})
+	
+	if obj is Bullet:
+		obj.killed.connect(func(target):
+			killed.emit(obj as Bullet, target as Enemy))
+		obj.checked_hit.connect(func(info):
+			hit.emit(obj as Bullet, info as HurtInfo2D))
 	
 	get_tree().current_scene.add_child(obj)
 	return obj

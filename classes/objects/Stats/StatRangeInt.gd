@@ -32,9 +32,9 @@ func set_value(v: int) -> void:
 	value = clampi(v, min_value, max_value)
 	value_changed.emit()
 	
-	if value >= max_value:
+	if is_highest():
 		highest.emit()
-	if value <= min_value:
+	if is_lowest():
 		lowest.emit()
 
 func set_max_value(v: int) -> void:
@@ -50,3 +50,9 @@ func set_min_value(v: int) -> void:
 	notify_property_list_changed()
 	min_value_changed.emit()
 	range_changed.emit()
+
+func is_highest() -> bool:
+	return value >= max_value
+
+func is_lowest() -> bool:
+	return value <= min_value

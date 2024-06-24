@@ -12,6 +12,7 @@ class_name Enemy
 @onready var hit_audio: AudioStreamPlayer = $HitAudio
 @onready var hurtbox: Hurtbox2D = $HitDetector
 
+var killer: Bullet
 var speed: float
 
 
@@ -79,3 +80,4 @@ func _drop(scene: PackedScene, amount: int) -> void:
 func _on_hit_detector_hurt(_hitbox: HitInfo2D) -> void:
 	hit_audio.play()
 	health.value -= 1
+	hurtbox.hurt_info = HurtInfo2D.new()

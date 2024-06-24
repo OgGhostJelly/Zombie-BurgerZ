@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjha660hrr04e"]
+[gd_scene load_steps=9 format=3 uid="uid://cjha660hrr04e"]
 
 [ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemy/enemy.tscn" id="1_ore27"]
+[ext_resource type="Script" path="res://objects/enemy/fast_zombie.gd" id="2_guahc"]
 [ext_resource type="Texture2D" uid="uid://de5qmc8dlmjml" path="res://assets/enemy/fast_zombie/zombie-death0.svg" id="2_md7lw"]
 [ext_resource type="Texture2D" uid="uid://b6qarvedrsxw" path="res://assets/enemy/fast_zombie/zombie-death1.svg" id="3_y63q1"]
 [ext_resource type="Texture2D" uid="uid://ckk1c6sw0gtvx" path="res://assets/enemy/fast_zombie/zombie-death2.svg" id="4_pteiw"]
@@ -36,8 +37,8 @@ animations = [{
 }]
 
 [node name="FastZombie" instance=ExtResource("1_ore27")]
+script = ExtResource("2_guahc")
 speeds = 112.5
-money_count = Vector2i(1, 2)
 
 [node name="Health" parent="." index="0"]
 max_value = 1

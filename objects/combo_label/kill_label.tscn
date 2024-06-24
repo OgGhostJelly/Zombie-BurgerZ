@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bppcsb3m325ti"]
+
+[ext_resource type="PackedScene" uid="uid://dhmber4gfrpdg" path="res://objects/combo_label/combo_label.tscn" id="1_8o8dw"]
+
+[node name="KillLabel" instance=ExtResource("1_8o8dw")]
+modulate = Color(1, 0.231373, 0, 1)
+
+[node name="Label" parent="." index="0"]
+text = "kill"
