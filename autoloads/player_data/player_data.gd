@@ -8,6 +8,7 @@ signal money_changed
 @export var selected_skin: Player.PlayerType = Player.PlayerType.Normal
 @export var owned_guns: Array = [Gun.GunType.Pistol]
 @export var owned_skins: Array = [Player.PlayerType.Normal]
+@export var acheivements: Array = []
 
 
 func _ready() -> void:

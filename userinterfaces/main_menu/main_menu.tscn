@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b5ml0pa2wknk0"]
+[gd_scene load_steps=18 format=3 uid="uid://b5ml0pa2wknk0"]
 
 [ext_resource type="Script" path="res://userinterfaces/main_menu/main_menu.gd" id="1_t014t"]
 [ext_resource type="Texture2D" uid="uid://8wenyiv0ma4t" path="res://assets/main_menu/bg.svg" id="2_ugncc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="6_i7gt2"]
 [ext_resource type="Texture2D" uid="uid://by6f47yhrymlu" path="res://assets/main_menu/shop.svg" id="7_sfmd4"]
 [ext_resource type="Texture2D" uid="uid://chf7tn8hg3tk6" path="res://assets/main_menu/play.svg" id="7_vvth5"]
+[ext_resource type="Texture2D" uid="uid://ckifgfyevpnqf" path="res://assets/main_menu/trophy.svg" id="8_kpogu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac1ck"]
 font_color = Color(0.921569, 0.831373, 0.831373, 1)
@@ -180,9 +181,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -176.5
+offset_left = -156.5
 offset_top = -70.0
-offset_right = 176.5
+offset_right = 196.5
 offset_bottom = 279.0
 grow_horizontal = 2
 pivot_offset = Vector2(180, 0)
@@ -243,3 +244,13 @@ custom_minimum_size = Vector2(90, 106)
 layout_mode = 2
 scene_filepath = "res://userinterfaces/shop_menu/shop_menu.tscn"
 texture = ExtResource("7_sfmd4")
+
+[node name="AcheivementButton" parent="." instance=ExtResource("6_i7gt2")]
+custom_minimum_size = Vector2(52, 47)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 60.0
+offset_bottom = 63.0
+scene_filepath = "res://userinterfaces/acheivement_menu/acheivement_menu.tscn"
+texture = ExtResource("8_kpogu")
