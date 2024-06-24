@@ -6,3 +6,4 @@
 
 [node name="EnergyBar" parent="." index="8"]
 visible = false
+disabled = true

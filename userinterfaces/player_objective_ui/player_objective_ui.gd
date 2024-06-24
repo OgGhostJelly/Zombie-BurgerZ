@@ -21,18 +21,23 @@ class Objective:
 
 signal finished
 
-@export var player: Node2D
+@export var player_path: NodePath
+var player: Player
 
 @onready var objective_label: Label = $ObjectiveLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var objectives: Array[Objective] = [
-	Objective.new(player.moved, "Move with WASD"),
-	Objective.new(player.gun.fired, "Shoot with LMB"),
-	Objective.new(player.energy_bar.used, "Ability with SPACE"),
-]
-
 func _ready() -> void:
+	player = get_node(player_path)
+	
+	var objectives: Array[Objective] = [
+		Objective.new(player.moved, "Move with WASD"),
+		Objective.new(player.gun.fired, "Shoot with LMB"),
+	]
+	
+	if not player.energy_bar.disabled:
+		objectives.append(Objective.new(player.energy_bar.used, "Ability with SPACE"))
+	
 	for objective in objectives:
 		if objective.is_done:
 			continue

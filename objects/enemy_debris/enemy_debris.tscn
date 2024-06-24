@@ -13,6 +13,7 @@ stream_1/stream = ExtResource("12_ls5fd")
 stream_1/weight = 1.0
 
 [node name="EnemyDebris" type="Node2D"]
+z_index = -1
 script = ExtResource("1_avg2l")
 
 [node name="DeathAudio" type="AudioStreamPlayer" parent="."]

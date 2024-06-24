@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=12 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemy/big_zombie.tscn" id="2_gxf2g"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b3aal3rhnt1p" path="res://objects/enemy/normal_zombie.tscn" id="2_rymd6"]
 [ext_resource type="Texture2D" uid="uid://c7abfnqb6q1w" path="res://assets/level/level-background.png" id="4_t414c"]
 [ext_resource type="PackedScene" uid="uid://h3y3hjyf4gwx" path="res://userinterfaces/player_objective_ui/player_objective_ui.tscn" id="6_7cgiu"]
-[ext_resource type="PackedScene" uid="uid://frpqwwnygjvk" path="res://objects/player/blast_player.tscn" id="6_jovr6"]
 [ext_resource type="PackedScene" uid="uid://cfgv66mdvrjbp" path="res://userinterfaces/money_counter/money_counter.tscn" id="8_naacc"]
 [ext_resource type="PackedScene" uid="uid://dc4vwx3ougyp1" path="res://userinterfaces/game_over_menu/game_over_menu.tscn" id="9_rau86"]
 [ext_resource type="Texture2D" uid="uid://c6t2h54m6yjwd" path="res://assets/level/clock.png" id="10_dsnvk"]
@@ -29,9 +28,6 @@ layer = -1
 offset_right = 480.0
 offset_bottom = 360.0
 texture = ExtResource("4_t414c")
-
-[node name="Player" parent="." instance=ExtResource("6_jovr6")]
-position = Vector2(239, 184)
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -98,10 +94,12 @@ stretch_mode = 5
 layout_mode = 2
 text = "0/20"
 
-[node name="PlayerObjectiveUI" parent="FrontLayer" node_paths=PackedStringArray("player") instance=ExtResource("6_7cgiu")]
-player = NodePath("../../Player")
+[node name="PlayerObjectiveUI" parent="FrontLayer" instance=ExtResource("6_7cgiu")]
+player_path = NodePath("../../Player")
 
 [node name="GameOverMenu" parent="FrontLayer" instance=ExtResource("9_rau86")]
+offset_right = 0.0
+offset_bottom = 0.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="finished" from="FrontLayer/PlayerObjectiveUI" to="." method="_on_player_objective_ui_finished"]

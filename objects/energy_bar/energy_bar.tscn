@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://objects/energy_bar/energy_bar.gd" id="1_ndv7u"]
 
 [node name="EnergyBar" type="Node2D"]
-position = Vector2(0, -15)
 script = ExtResource("1_ndv7u")
 start_angle = -1.57119
 end_angle = 4.71281

@@ -9,6 +9,7 @@ signal used
 @export var energy_per_pierce: float = 0.0
 @export var energy_per_piercekill: float = 0.0
 @export var regeneration_speed: float = 0.0
+@export var disabled: bool = false
 
 
 func _ready() -> void:

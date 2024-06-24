@@ -13,7 +13,7 @@ enum GunType {
 	Shotgun,
 }
 
-static  var gun_data: Dictionary = {
+static var gun_data: Dictionary = {
 	GunType.Pistol: {
 		scene = preload("res://objects/gun/pistol.tscn"),
 		texture = preload("res://assets/gun/pistol/pistol.svg"),

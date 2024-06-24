@@ -32,23 +32,15 @@ animations = [{
 script = ExtResource("2_4l56d")
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_qi1lu")
 frame_progress = 0.656385
-
-[node name="HealthUI" parent="." index="4"]
-visible = false
-
-[node name="AmmoUI" parent="." index="5"]
-visible = false
 
 [node name="DashTimer" type="Timer" parent="." index="7"]
 one_shot = true
 
 [node name="EnergyBar" parent="." index="9"]
-position = Vector2(0, -39)
-energy_per_kill = 0.05
-energy_per_pierce = 0.025
-energy_per_piercekill = 0.1
+energy_per_kill = 0.2
+energy_per_pierce = 0.1
+energy_per_piercekill = 0.4
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]

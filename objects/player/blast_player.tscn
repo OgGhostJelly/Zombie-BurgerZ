@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://frpqwwnygjvk"]
+[gd_scene load_steps=9 format=3 uid="uid://frpqwwnygjvk"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_egbxa"]
 [ext_resource type="Script" path="res://objects/player/blast_player.gd" id="2_koglh"]
 [ext_resource type="Texture2D" uid="uid://duqdt7vl22ssf" path="res://assets/player/blast_player/player-idle.svg" id="3_il6w5"]
 [ext_resource type="Texture2D" uid="uid://urqpex5ygpur" path="res://assets/player/blast_player/player-walk1.svg" id="4_hrgjo"]
 [ext_resource type="Texture2D" uid="uid://cfgwq1v56ilqo" path="res://assets/player/blast_player/player-walk2.svg" id="5_yyscx"]
+[ext_resource type="Shader" path="res://objects/player/blur.gdshader" id="6_5jghc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_523m7"]
 animations = [{
@@ -28,15 +29,29 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12jqu"]
+shader = ExtResource("6_5jghc")
+shader_parameter/lod = 0.5
+
 [node name="BlastPlayer" instance=ExtResource("1_egbxa")]
 script = ExtResource("2_koglh")
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_523m7")
 animation = &"walk"
 
 [node name="EnergyBar" parent="." index="8"]
-regeneration_speed = 60.0
+regeneration_speed = 50.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
+layer = 0
+
+[node name="BlurEffect" type="ColorRect" parent="CanvasLayer" index="0"]
+material = SubResource("ShaderMaterial_12jqu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]

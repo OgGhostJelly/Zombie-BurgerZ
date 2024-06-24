@@ -1,9 +1,14 @@
 extends Player
 
 
+@onready var blur_effect: ColorRect = $CanvasLayer/BlurEffect
+
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"special"):
 		energy_bar.use()
+	
+	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", clampf(remap(health.value, health.min_value, health.max_value, 1.0, 0.0), 0.0, 1.0) * 3.0)
 
 
 func _on_energy_bar_used() -> void:

@@ -12,11 +12,19 @@ extends Node2D
 @onready var kill_count_label: Label = $FrontLayer/KillCount/KillCountLabel
 @onready var game_over_menu: Control = $FrontLayer/GameOverMenu
 
+
 var initial_money: int = 0
 var kill_count: int = 0
 var time: float = 0.0
 var wave: int = 0
 var kill_count_req: int = 20
+
+
+func _init() -> void:
+	var obj: Player = Player.player_data[PlayerData.selected_skin].scene.instantiate()
+	obj.global_position = Vector2(480.0, 360.0) / 2.0
+	obj.name = "Player"
+	add_child(obj)
 
 
 func _ready() -> void:

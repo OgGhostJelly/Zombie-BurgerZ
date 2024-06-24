@@ -3,6 +3,36 @@ class_name Player
 
 signal moved
 
+enum PlayerType {
+	Normal,
+	Dash,
+	Blast
+}
+
+static var player_data: Dictionary = {
+	PlayerType.Normal: {
+		scene = preload("res://objects/player/normal_player.tscn"),
+		texture = preload("res://assets/player/normal_player/player-idle.svg"),
+		cost = 0,
+		
+		description = "normal guy. probably called joe",
+	},
+	PlayerType.Dash: {
+		scene = preload("res://objects/player/dash_player.tscn"),
+		texture = preload("res://assets/player/dash_player/player-idle.svg"),
+		cost = 100,
+		
+		description = "kill to charge up a dash",
+	},
+	PlayerType.Blast: {
+		scene = preload("res://objects/player/blast_player.tscn"),
+		texture = preload("res://assets/player/blast_player/player-idle.svg"),
+		cost = 200,
+		
+		description = "likes touhou. has bad eyesight",
+	},
+}
+
 @export var speed: float = 120.0
 @export var acceleration: float = 600.0
 @export var deceleration: float = 400.0
@@ -33,6 +63,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	energy_bar.global_position = gun.sprite.global_position
+	
 	if is_invincible():
 		animated_sprite.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	else:
