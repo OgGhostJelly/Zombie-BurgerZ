@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c26imj8rbe8pl"]
+[gd_scene load_steps=13 format=3 uid="uid://c26imj8rbe8pl"]
 
 [ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="1_cf140"]
 [ext_resource type="Script" path="res://userinterfaces/weapon_menu/weapon_menu.gd" id="1_mvpp8"]
@@ -25,6 +25,17 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_a7mcp"]
 font_color = Color(1, 0.27451, 0.211765, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6hu1"]
+font_color = Color(0.51855, 0.606701, 0.59908, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ha42"]
+font_size = 12
+font_color = Color(0.51855, 0.606701, 0.59908, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -79,6 +90,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="PriceLabel" type="Label" parent="WeaponTexture"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -93,6 +105,7 @@ label_settings = SubResource("LabelSettings_wq4vi")
 horizontal_alignment = 1
 
 [node name="BuyButton" parent="WeaponTexture" instance=ExtResource("1_cf140")]
+visible = false
 custom_minimum_size = Vector2(46, 21)
 layout_mode = 1
 anchors_preset = 7
@@ -142,6 +155,37 @@ text = "TOO BROKE"
 label_settings = SubResource("LabelSettings_a7mcp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LockedLabel" type="Label" parent="WeaponTexture"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "LOCKED"
+label_settings = SubResource("LabelSettings_p6hu1")
+horizontal_alignment = 1
+
+[node name="LockedDescriptionLabel" type="Label" parent="WeaponTexture/LockedLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "extra description"
+label_settings = SubResource("LabelSettings_5ha42")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="RightButton" parent="." instance=ExtResource("1_cf140")]
 custom_minimum_size = Vector2(29, 38)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5x31ccxy8wg7"]
+
+[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullet/bullet.tscn" id="1_mfaf7"]
+
+[node name="SniperRifleBullet" instance=ExtResource("1_mfaf7")]
+speed = 675.0
+pierce = 3
+damage = 5

@@ -8,6 +8,8 @@ signal selected_changed
 @onready var price_label: Label = $WeaponTexture/PriceLabel
 @onready var insufficient_funds_label: Label = $WeaponTexture/InsufficientFundsLabel
 @onready var buy_button: Button = $WeaponTexture/BuyButton
+@onready var locked_label: Label = $WeaponTexture/LockedLabel
+@onready var locked_description_label: Label = $WeaponTexture/LockedLabel/LockedDescriptionLabel
 
 var selected: Gun.GunType: set = set_selected
 
@@ -45,11 +47,12 @@ func set_selected(value: Gun.GunType) -> void:
 	price_label.visible = false
 	insufficient_funds_label.visible = false
 	buy_button.visible = false
+	locked_label.visible = false
 	
 	if PlayerData.owned_guns.has(selected):
 		owned_label.visible = true
 		PlayerData.selected_gun = selected
-	else:
+	elif Gun.gun_data[selected].get("cost"):
 		price_label.text = "$%s" % Gun.gun_data[selected].cost
 		price_label.visible = true
 		
@@ -57,5 +60,8 @@ func set_selected(value: Gun.GunType) -> void:
 			buy_button.visible = true
 		else:
 			insufficient_funds_label.visible = true
+	else:
+		locked_label.visible = true
+		locked_description_label.text = Gun.gun_data[selected].locked_description
 	
 	selected_changed.emit()

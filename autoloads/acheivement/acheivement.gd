@@ -160,6 +160,8 @@ func _process(_delta: float) -> void:
 			return
 		
 		if bullet.kills >= 3:
+			if not PlayerData.owned_guns.has(Gun.GunType.SniperRifle):
+				PlayerData.owned_guns.append(Gun.GunType.SniperRifle)
 			give_acheivement(AcheivementType.TripleKill)
 		if bullet.hits >= 5:
 			give_acheivement(AcheivementType.QuintuplePierce)

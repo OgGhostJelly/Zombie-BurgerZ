@@ -6,6 +6,7 @@ signal checked_hit(info: HurtInfo2D)
 
 @export var speed: float = 450.0
 @export var pierce: int = 1
+@export var damage: int = 1
 
 @onready var sprite: Sprite2D = $Sprite2D
 

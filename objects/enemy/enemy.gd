@@ -77,7 +77,7 @@ func _drop(scene: PackedScene, amount: int) -> void:
 		get_parent().call_deferred(&"add_child", drop)
 
 
-func _on_hit_detector_hurt(_hitbox: HitInfo2D) -> void:
+func _on_hit_detector_hurt(info: HitInfo2D) -> void:
 	hit_audio.play()
-	health.value -= 1
+	health.value -= info.hitbox.root.damage
 	hurtbox.hurt_info = HurtInfo2D.new()
