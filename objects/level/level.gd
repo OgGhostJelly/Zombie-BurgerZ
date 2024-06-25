@@ -78,7 +78,7 @@ func _on_spawn_timer_timeout() -> void:
 		kill_count += 1
 		PlayerData.total_kills += 1
 		
-		if wave > 2:
+		if wave >= 2:
 			spawn_timer.wait_time *= 0.95
 		
 		if kill_count >= kill_count_req:

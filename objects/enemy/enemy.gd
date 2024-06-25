@@ -81,3 +81,7 @@ func _on_hit_detector_hurt(info: HitInfo2D) -> void:
 	hit_audio.play()
 	health.value -= info.hitbox.root.damage
 	hurtbox.hurt_info = HurtInfo2D.new()
+
+
+func _on_hit_player() -> void:
+	pass

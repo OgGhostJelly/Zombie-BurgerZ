@@ -126,9 +126,11 @@ func is_invincible() -> bool:
 	return not invincibility_timer.is_stopped()
 
 
-func _on_hit_detector_area_entered(_area: Area2D) -> void:
+func _on_hit_detector_area_entered(area: Area2D) -> void:
 	if is_invincible():
 		return
+	
+	area.root._on_hit_player()
 	
 	damage_audio.play()
 	invincibility_timer.start()
