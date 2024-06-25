@@ -6,4 +6,4 @@
 
 [node name="Label" parent="." index="0"]
 modulate = Color(0, 1, 1, 1)
-text = "pierce"
+text = "pierce 20"

@@ -10,6 +10,8 @@ signal used
 @export var energy_per_piercekill: float = 0.0
 @export var regeneration_speed: float = 0.0
 @export var disabled: bool = false
+@export var cost: float = 1.0
+@export var require_full: bool = true
 
 
 func _ready() -> void:
@@ -43,7 +45,10 @@ func _on_gun_hit(bullet: Bullet, info: HurtInfo2D) -> void:
 
 
 func can_use() -> bool:
-	return value <= 0.0
+	if require_full:
+		return value <= 0.0
+	else:
+		return value < 0.999 
 
 
 func use() -> bool:
@@ -54,7 +59,7 @@ func use() -> bool:
 
 
 func force_use() -> void:
-	value += 1.0
+	value += cost
 	used.emit()
 
 

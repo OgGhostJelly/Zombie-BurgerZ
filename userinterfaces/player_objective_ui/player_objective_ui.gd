@@ -36,7 +36,7 @@ func _ready() -> void:
 	]
 	
 	if not player.energy_bar.disabled:
-		objectives.append(Objective.new(player.energy_bar.used, "Ability with SPACE"))
+		objectives.append(Objective.new(player.energy_bar.used, "Ability with RMB"))
 	
 	for objective in objectives:
 		if objective.is_done:

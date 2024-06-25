@@ -6,3 +6,5 @@
 - abilities for dev skin
 - make business man skin
 - business man skin for buying everything
+- using kb to move I LOVE I LOVE
+- replace blast player with trap placing player

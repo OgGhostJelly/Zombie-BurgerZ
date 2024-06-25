@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7ismsn7vn55t"]
+[gd_scene load_steps=8 format=3 uid="uid://c7ismsn7vn55t"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_v08pg"]
-[ext_resource type="Script" path="res://objects/player/dash_player.gd" id="2_4l56d"]
+[ext_resource type="Script" path="res://objects/player/dash/dash_player.gd" id="2_4l56d"]
 [ext_resource type="Texture2D" uid="uid://dadfv8crcapvt" path="res://assets/player/dash_player/player-idle.svg" id="3_v3l02"]
 [ext_resource type="Texture2D" uid="uid://dyf1lxbxocs0" path="res://assets/player/dash_player/player-walk1.svg" id="4_2ji5v"]
 [ext_resource type="Texture2D" uid="uid://dpaxccffrjg67" path="res://assets/player/dash_player/player-walk2.svg" id="5_m558v"]
@@ -28,6 +28,10 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Curve" id="Curve_5be6p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="DashPlayer" instance=ExtResource("1_v08pg")]
 script = ExtResource("2_4l56d")
 
@@ -35,12 +39,27 @@ script = ExtResource("2_4l56d")
 sprite_frames = SubResource("SpriteFrames_qi1lu")
 frame_progress = 0.656385
 
-[node name="DashTimer" type="Timer" parent="." index="7"]
-one_shot = true
-
-[node name="EnergyBar" parent="." index="9"]
+[node name="EnergyBar" parent="." index="8"]
 energy_per_kill = 0.2
 energy_per_pierce = 0.1
-energy_per_piercekill = 0.4
+energy_per_piercekill = 0.6
+cost = 0.2
+require_full = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="9"]
+position = Vector2(0, 21)
+emitting = false
+amount = 64
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.3
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_5be6p")
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]

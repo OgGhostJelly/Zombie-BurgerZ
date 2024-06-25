@@ -13,35 +13,35 @@ enum PlayerType {
 
 static var player_data: Dictionary = {
 	PlayerType.Normal: {
-		scene = preload("res://objects/player/normal_player.tscn"),
+		scene = preload("res://objects/player/normal/normal_player.tscn"),
 		texture = preload("res://assets/player/normal_player/player-idle.svg"),
 		cost = 0,
 		
 		description = "normal guy. probably called joe",
 	},
 	PlayerType.Dash: {
-		scene = preload("res://objects/player/dash_player.tscn"),
+		scene = preload("res://objects/player/dash/dash_player.tscn"),
 		texture = preload("res://assets/player/dash_player/player-idle.svg"),
 		cost = 200,
 		
-		description = "kill to charge up a dash",
+		description = "(over)kill to charge up a dash",
 	},
 	PlayerType.Blast: {
-		scene = preload("res://objects/player/blast_player.tscn"),
+		scene = preload("res://objects/player/blast/blast_player.tscn"),
 		texture = preload("res://assets/player/blast_player/player-idle.svg"),
 		cost = 200,
 		
-		description = "likes touhou. has bad eyesight",
+		description = "likes touhou",
 	},
 	
 	PlayerType.OgGhostJelly: {
-		scene = preload("res://objects/player/ogghostjelly_player.tscn"),
+		scene = preload("res://objects/player/ogghostjelly/ogghostjelly_player.tscn"),
 		texture = preload("res://assets/player/ogghostjelly_player/player-idle.svg"),
 		
 		description = "addicted to code",
 	},
 	PlayerType.SirF_: {
-		scene = preload("res://objects/player/sirf_player.tscn"),
+		scene = preload("res://objects/player/sirf/sirf_player.tscn"),
 		texture = preload("res://assets/player/sirf_player/player-idle.svg"),
 		
 		description = "addicted to art",

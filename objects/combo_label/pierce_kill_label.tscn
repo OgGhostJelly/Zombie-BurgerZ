@@ -6,4 +6,4 @@
 
 [node name="Label" parent="." index="0"]
 modulate = Color(0.498039, 0.501961, 1, 1)
-text = "+pikill"
+text = "+pikill 50"

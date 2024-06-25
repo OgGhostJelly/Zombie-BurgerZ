@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://l2v8ig45ugf7"]
+
+[ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_f1kds"]
+[ext_resource type="Script" path="res://objects/player/sirf/sirf_player.gd" id="2_43slv"]
+[ext_resource type="PackedScene" uid="uid://bxp51n4dggtch" path="res://objects/player/sirf/blackhole/blackhole.tscn" id="3_3schb"]
+[ext_resource type="Texture2D" uid="uid://b6j7u02p3grh2" path="res://assets/player/sirf_player/player-idle.svg" id="3_3674h"]
+[ext_resource type="Texture2D" uid="uid://b02usa01ybnr4" path="res://assets/player/sirf_player/player-walk1.svg" id="4_idlue"]
+[ext_resource type="Texture2D" uid="uid://c76guagcuevc0" path="res://assets/player/sirf_player/player-walk2.svg" id="5_txwmc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwa4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3674h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_idlue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_txwmc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[node name="SirfPlayer" instance=ExtResource("1_f1kds")]
+script = ExtResource("2_43slv")
+blackhole_scene = ExtResource("3_3schb")
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_nwa4h")
+animation = &"walk"
+
+[node name="EnergyBar" parent="." index="8"]
+regeneration_speed = 1.0
+
+[connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]
