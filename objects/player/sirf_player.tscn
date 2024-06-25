@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://l2v8ig45ugf7"]
+
+[ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_22b3t"]
+[ext_resource type="Texture2D" uid="uid://b6j7u02p3grh2" path="res://assets/player/sirf_player/player-idle.svg" id="2_ukia1"]
+[ext_resource type="Texture2D" uid="uid://b02usa01ybnr4" path="res://assets/player/sirf_player/player-walk1.svg" id="3_3fqiw"]
+[ext_resource type="Texture2D" uid="uid://c76guagcuevc0" path="res://assets/player/sirf_player/player-walk2.svg" id="4_4ykjw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwa4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ukia1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3fqiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4ykjw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[node name="SirfPlayer" instance=ExtResource("1_22b3t")]
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_nwa4h")
+animation = &"walk"

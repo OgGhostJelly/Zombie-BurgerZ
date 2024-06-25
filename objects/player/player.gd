@@ -20,7 +20,7 @@ static var player_data: Dictionary = {
 	PlayerType.Dash: {
 		scene = preload("res://objects/player/dash_player.tscn"),
 		texture = preload("res://assets/player/dash_player/player-idle.svg"),
-		cost = 100,
+		cost = 200,
 		
 		description = "kill to charge up a dash",
 	},
