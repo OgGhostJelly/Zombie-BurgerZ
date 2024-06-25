@@ -92,13 +92,13 @@ var data: Dictionary = {
 	},
 	AcheivementType.QuintuplePierce: {
 		name = "Ready-Aim-Fire",
-		description = "pierce five zombies with one shot",
+		description = "pierce five zombies with one bullet",
 		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
 	},
 	
 	AcheivementType.DontMove: {
 		name = "Potato",
-		description = "last 60 seconds without moving",
+		description = "survive 60 seconds without moving",
 		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
 	},
 	AcheivementType.Nihilism: {
@@ -143,6 +143,15 @@ func _process(_delta: float) -> void:
 	if has_acheivement(AcheivementType.EveryGun) and has_acheivement(AcheivementType.EverySkin):
 		give_acheivement(AcheivementType.BuyEverything)
 	
+	if has_acheivement(AcheivementType.TripleKill) and not PlayerData.owned_guns.has(Gun.GunType.SniperRifle):
+		PlayerData.owned_guns.append(Gun.GunType.SniperRifle)
+	
+	if has_acheivement(AcheivementType.Nihilism):
+		if not PlayerData.owned_skins.has(Player.PlayerType.OgGhostJelly):
+			PlayerData.owned_skins.append(Player.PlayerType.OgGhostJelly)
+		if not PlayerData.owned_skins.has(Player.PlayerType.SirF_):
+			PlayerData.owned_skins.append(Player.PlayerType.SirF_)
+	
 	var level: Level = get_tree().current_scene as Level
 	if level == null:
 		return
@@ -160,8 +169,6 @@ func _process(_delta: float) -> void:
 			return
 		
 		if bullet.kills >= 3:
-			if not PlayerData.owned_guns.has(Gun.GunType.SniperRifle):
-				PlayerData.owned_guns.append(Gun.GunType.SniperRifle)
 			give_acheivement(AcheivementType.TripleKill)
 		if bullet.hits >= 5:
 			give_acheivement(AcheivementType.QuintuplePierce)

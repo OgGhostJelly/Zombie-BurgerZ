@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmb6fifhx00wb"]
+[gd_scene load_steps=13 format=3 uid="uid://cmb6fifhx00wb"]
 
 [ext_resource type="Script" path="res://userinterfaces/skin_menu/skin_menu.gd" id="1_r0t31"]
 [ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="2_ucyii"]
@@ -28,33 +28,67 @@ font_color = Color(1, 0.27451, 0.211765, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="SkinMenu" type="HBoxContainer"]
-offset_right = 194.0
-offset_bottom = 96.0
+[sub_resource type="LabelSettings" id="LabelSettings_xo5jf"]
+font_color = Color(0.51855, 0.606701, 0.59908, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq5t0"]
+font_size = 12
+font_color = Color(0.51855, 0.606701, 0.59908, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SkinMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 226.0
+offset_bottom = 174.0
 script = ExtResource("1_r0t31")
 
 [node name="LeftButton" parent="." instance=ExtResource("2_ucyii")]
 custom_minimum_size = Vector2(29, 38)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -73.0
+offset_right = 29.0
+offset_bottom = 73.0
+grow_vertical = 2
 texture = ExtResource("3_bf3nj")
 float_distance = 2.0
 
 [node name="WeaponTexture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(128, 96)
-layout_mode = 2
-size_flags_vertical = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -145.0
+offset_right = 64.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
 texture = ExtResource("4_sebby")
 stretch_mode = 3
 
-[node name="OwnedLabel" type="Label" parent="WeaponTexture"]
-visible = false
+[node name="OwnedLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -34.0
-offset_bottom = -11.0
+offset_left = -30.5
+offset_top = -36.0
+offset_right = 30.5
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -62,7 +96,7 @@ text = "OWNED"
 label_settings = SubResource("LabelSettings_ps70m")
 horizontal_alignment = 1
 
-[node name="Selected" type="Label" parent="WeaponTexture/OwnedLabel"]
+[node name="Selected" type="Label" parent="OwnedLabel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -78,13 +112,16 @@ label_settings = SubResource("LabelSettings_cuyks")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="PriceLabel" type="Label" parent="WeaponTexture"]
+[node name="PriceLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -18.5
 offset_top = -23.0
+offset_right = 18.5
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -92,7 +129,7 @@ text = "$100"
 label_settings = SubResource("LabelSettings_wq4vi")
 horizontal_alignment = 1
 
-[node name="BuyButton" parent="WeaponTexture" instance=ExtResource("2_ucyii")]
+[node name="BuyButton" parent="." instance=ExtResource("2_ucyii")]
 custom_minimum_size = Vector2(46, 21)
 layout_mode = 1
 anchors_preset = 7
@@ -101,19 +138,19 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -23.0
-offset_top = -41.0
+offset_top = -45.0
 offset_right = 23.0
-offset_bottom = -20.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_b7yv4")
 float_distance = 0.0
 
-[node name="Sprite2D" parent="WeaponTexture/BuyButton/Sprite" index="0"]
+[node name="Sprite2D" parent="BuyButton/Sprite" index="0"]
 position = Vector2(0, 0)
 texture = ExtResource("5_b7yv4")
 
-[node name="Label" type="Label" parent="WeaponTexture/BuyButton/Sprite/Sprite2D" index="0"]
+[node name="Label" type="Label" parent="BuyButton/Sprite/Sprite2D" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -127,15 +164,17 @@ text = "BUY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InsufficientFundsLabel" type="Label" parent="WeaponTexture"]
-visible = false
+[node name="InsufficientFundsLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -41.0
-offset_bottom = -18.0
+offset_left = -45.5
+offset_top = -43.0
+offset_right = 45.5
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "TOO BROKE"
@@ -143,14 +182,59 @@ label_settings = SubResource("LabelSettings_a7mcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LockedLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.5
+offset_top = -36.0
+offset_right = 32.5
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "LOCKED"
+label_settings = SubResource("LabelSettings_xo5jf")
+horizontal_alignment = 1
+
+[node name="LockedDescriptionLabel" type="Label" parent="LockedLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "???"
+label_settings = SubResource("LabelSettings_oq5t0")
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="RightButton" parent="." instance=ExtResource("2_ucyii")]
 custom_minimum_size = Vector2(29, 38)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -73.0
+offset_right = 0.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("6_kc7k0")
 float_distance = 2.0
 
 [connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
-[connection signal="pressed" from="WeaponTexture/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
 
-[editable path="WeaponTexture/BuyButton"]
+[editable path="BuyButton"]

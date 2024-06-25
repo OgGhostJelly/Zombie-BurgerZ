@@ -1,13 +1,14 @@
-extends HBoxContainer
+extends Control
 
 signal selected_changed
 
 
 @onready var texture: TextureRect = $WeaponTexture
-@onready var owned_label: Label = $WeaponTexture/OwnedLabel
-@onready var price_label: Label = $WeaponTexture/PriceLabel
-@onready var insufficient_funds_label: Label = $WeaponTexture/InsufficientFundsLabel
-@onready var buy_button: Button = $WeaponTexture/BuyButton
+@onready var owned_label: Label = $OwnedLabel
+@onready var price_label: Label = $PriceLabel
+@onready var insufficient_funds_label: Label = $InsufficientFundsLabel
+@onready var buy_button: Button = $BuyButton
+@onready var locked_label: Label = $LockedLabel
 
 var selected: Player.PlayerType: set = set_selected
 
@@ -45,11 +46,12 @@ func set_selected(value: Player.PlayerType) -> void:
 	price_label.visible = false
 	insufficient_funds_label.visible = false
 	buy_button.visible = false
+	locked_label.visible = false
 	
 	if PlayerData.owned_skins.has(selected):
 		owned_label.visible = true
 		PlayerData.selected_skin = selected
-	else:
+	elif Player.player_data[selected].get("cost"):
 		price_label.text = "$%s" % Player.player_data[selected].cost
 		price_label.visible = true
 		
@@ -57,5 +59,7 @@ func set_selected(value: Player.PlayerType) -> void:
 			buy_button.visible = true
 		else:
 			insufficient_funds_label.visible = true
+	else:
+		locked_label.visible = true
 	
 	selected_changed.emit()

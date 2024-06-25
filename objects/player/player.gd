@@ -6,7 +6,9 @@ signal moved
 enum PlayerType {
 	Normal,
 	Dash,
-	Blast
+	Blast,
+	OgGhostJelly,
+	SirF_,
 }
 
 static var player_data: Dictionary = {
@@ -30,6 +32,19 @@ static var player_data: Dictionary = {
 		cost = 200,
 		
 		description = "likes touhou. has bad eyesight",
+	},
+	
+	PlayerType.OgGhostJelly: {
+		scene = preload("res://objects/player/ogghostjelly_player.tscn"),
+		texture = preload("res://assets/player/ogghostjelly_player/player-idle.svg"),
+		
+		description = "addicted to code",
+	},
+	PlayerType.SirF_: {
+		scene = preload("res://objects/player/sirf_player.tscn"),
+		texture = preload("res://assets/player/sirf_player/player-idle.svg"),
+		
+		description = "addicted to art",
 	},
 }
 

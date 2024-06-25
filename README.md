@@ -3,5 +3,6 @@
 - (difficulty select/slider)
 - (bestiary)
 
-- dev skins under nihilism
+- abilities for dev skin
+- make business man skin
 - business man skin for buying everything

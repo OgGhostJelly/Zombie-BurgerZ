@@ -33,3 +33,7 @@ animations = [{
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_nwa4h")
 animation = &"walk"
+
+[node name="EnergyBar" parent="." index="8"]
+visible = false
+disabled = true
