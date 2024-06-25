@@ -122,8 +122,6 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_eoyry"]
 font_color = Color(0.156863, 0.156863, 0.156863, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ie1xi"]
 line_spacing = 0.0

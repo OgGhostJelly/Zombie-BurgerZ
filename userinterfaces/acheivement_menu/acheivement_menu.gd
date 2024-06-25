@@ -15,18 +15,20 @@ func _ready() -> void:
 func set_selected(value: int) -> void:
 	selected = wrapi(value, 0, Acheivement.data.size())
 	
+	var owned: bool = PlayerData.acheivements.has(selected)
+	
 	title_label.text = (
 		Acheivement.data[selected].locked_name
-		if Acheivement.data[selected].get("locked_name") else
+		if Acheivement.data[selected].get("locked_name") and not owned else
 		Acheivement.data[selected].name
 	)
 	description_label.text = (
 		Acheivement.data[selected].locked_description
-		if Acheivement.data[selected].get("locked_description") else
+		if Acheivement.data[selected].get("locked_description") and not owned else
 		Acheivement.data[selected].description
 	)
 	
-	if PlayerData.acheivements.has(selected):
+	if owned:
 		sign_texture.texture = Acheivement.data[selected].texture
 	else:
 		sign_texture.texture = (

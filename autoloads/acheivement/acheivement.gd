@@ -14,8 +14,9 @@ enum AcheivementType {
 	EveryGun,
 	EverySkin,
 	BuyEverything,
-	TriplePikill,
+	TripleKill,
 	QuintuplePierce,
+	DontMove,
 	Nihilism,
 }
 
@@ -84,14 +85,20 @@ var data: Dictionary = {
 		texture = preload("res://assets/acheivement_menu/acheivements/sold_out.svg")
 	},
 	
-	AcheivementType.TriplePikill: {
+	AcheivementType.TripleKill: {
 		name = "3 Birds 1 Stone",
 		description = "kill three zombies with one bullet",
 		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
 	},
 	AcheivementType.QuintuplePierce: {
-		name = "Aim-Fire",
+		name = "Ready-Aim-Fire",
 		description = "pierce five zombies with one shot",
+		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+	},
+	
+	AcheivementType.DontMove: {
+		name = "Potato",
+		description = "last 60 seconds without moving",
 		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
 	},
 	AcheivementType.Nihilism: {
@@ -122,7 +129,7 @@ func _ready() -> void:
 			give_acheivement(AcheivementType.Money100)
 		if PlayerData.total_money >= 1000:
 			give_acheivement(AcheivementType.Money1000)
-		if PlayerData.total_money >= 10000:
+		if PlayerData.total_money >= 10_000:
 			give_acheivement(AcheivementType.Money10000))
 
 
@@ -146,13 +153,20 @@ func _process(_delta: float) -> void:
 		give_acheivement(AcheivementType.Kill50)
 	if level.kill_count >= 100:
 		give_acheivement(AcheivementType.Kill100)
+	
+	for node in get_tree().get_nodes_in_group(&"bullets"):
+		var bullet: Bullet = node as Bullet
+		if bullet == null:
+			return
+		
+		if bullet.kills >= 3:
+			give_acheivement(AcheivementType.TripleKill)
+		if bullet.hits >= 5:
+			give_acheivement(AcheivementType.QuintuplePierce)
 
 
 func has_acheivement(value: AcheivementType) -> bool:
 	return PlayerData.acheivements.has(value)
-
-# GET RID OF THE BORING ACHEIVEMENTS maybe make then challenges
-# !!!!!! BUG NOTE DANGER !!!!!!! 
 
 
 func give_acheivement(value: AcheivementType) -> void:

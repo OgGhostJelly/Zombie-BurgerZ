@@ -25,6 +25,8 @@ var kill_count: int = 0:
 var time: float = 0.0
 var wave: int = 0
 var kill_count_req: int = 20
+var has_moved: bool = false
+var has_fired: bool = false
 
 
 func _init() -> void:
@@ -57,6 +59,9 @@ func _process(delta: float) -> void:
 	if not spawn_timer.is_stopped():
 		time += delta
 		time_label.text = "%.2fs" % time
+	
+	if time >= 60.0 and not has_moved:
+		Acheivement.give_acheivement(Acheivement.AcheivementType.DontMove)
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -98,7 +103,15 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_player_objective_ui_finished() -> void:
 	spawn_timer.start()
+	spawn_timer.timeout.connect(func():
+		player.moved.connect(func():
+			has_moved = true)
+		player.gun.fired.connect(func(_a):
+			has_fired = true)
+		, CONNECT_ONE_SHOT)
 
 
 func _on_player_died() -> void:
+	if time >= 30.0 and not has_fired:
+		Acheivement.give_acheivement(Acheivement.AcheivementType.Nihilism)
 	game_over_menu.game_over(time, PlayerData.money - initial_money, kill_count)

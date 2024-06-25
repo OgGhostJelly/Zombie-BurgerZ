@@ -11,9 +11,13 @@ signal checked_hit(info: HurtInfo2D)
 
 var direction: Vector2
 var history: Array[HurtInfo2D]
+var kills: int = 0
+var hits: int = 0
 
 
 func _ready() -> void:
+	assert(is_in_group(&"bullets"))
+	
 	var spawner_info: Dictionary = get_meta(&"spawner_info")
 	global_position = spawner_info.global_position
 	global_rotation = spawner_info.global_rotation
@@ -45,6 +49,8 @@ func _on_hit(info: HurtInfo2D) -> void:
 	
 	if info.hurtbox.root.health.is_lowest():
 		info.hurtbox.root.killer = self
+		kills += 1
 		killed.emit(info.hurtbox.root)
 	
+	hits += 1
 	checked_hit.emit(info)

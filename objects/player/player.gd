@@ -44,6 +44,7 @@ static var player_data: Dictionary = {
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
 @onready var energy_bar: EnergyBar = $EnergyBar
+@onready var hitbox: Area2D = $HitDetector
 
 static var player: Player
 
@@ -120,4 +121,5 @@ func _on_hit_detector_area_entered(_area: Area2D) -> void:
 
 
 func _on_invincibility_timer_timeout() -> void:
-	pass
+	for area in hitbox.get_overlapping_areas():
+		_on_hit_detector_area_entered(area)

@@ -1,4 +1,4 @@
-- acheivements and some acheivement exclusive skins + weapons
+- acheivement exclusive skins + weapons
 - (could have secondary weapons?)
 - (difficulty select/slider)
 - (bestiary)
