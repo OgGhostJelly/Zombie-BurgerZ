@@ -112,8 +112,6 @@ stream = SubResource("AudioStreamRandomizer_qsqxf")
 
 [node name="EnergyBar" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_3scvw")]
 player = NodePath("..")
-cost = null
-require_full = null
 
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

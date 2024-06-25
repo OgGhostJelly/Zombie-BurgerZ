@@ -5,14 +5,17 @@ extends Area2D
 
 
 func _process(delta: float) -> void:
-	for node in get_overlapping_bodies():
-		var enemy: Enemy = node as Enemy
-		if enemy == null:
+	for value in get_overlapping_bodies():
+		var node: Node2D = value as Node2D
+		if node == null:
 			return
 		
-		enemy.global_position += (
-			enemy.global_position.direction_to(global_position) *
-			enemy.global_position.distance_to(global_position) *
+		if not (node is Player or node is Enemy):
+			return
+		
+		node.global_position += (
+			node.global_position.direction_to(global_position) *
+			node.global_position.distance_to(global_position) *
 			delta
 		)
 

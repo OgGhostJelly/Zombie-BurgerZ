@@ -17,7 +17,8 @@ func _ready() -> void:
 	assert(root)
 
 
-func _on_area_entered(hurtbox: Hurtbox2D) -> void:
+func _on_area_entered(area: Area2D) -> void:
+	var hurtbox: Hurtbox2D = area as Hurtbox2D
 	if hurtbox == null:
 		return
 	

@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7ismsn7vn55t"]
+[gd_scene load_steps=22 format=3 uid="uid://c7ismsn7vn55t"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_v08pg"]
 [ext_resource type="Script" path="res://objects/player/dash/dash_player.gd" id="2_4l56d"]
 [ext_resource type="Texture2D" uid="uid://dadfv8crcapvt" path="res://assets/player/dash_player/player-idle.svg" id="3_v3l02"]
 [ext_resource type="Texture2D" uid="uid://dyf1lxbxocs0" path="res://assets/player/dash_player/player-walk1.svg" id="4_2ji5v"]
 [ext_resource type="Texture2D" uid="uid://dpaxccffrjg67" path="res://assets/player/dash_player/player-walk2.svg" id="5_m558v"]
+[ext_resource type="AudioStream" uid="uid://dbqip7iinfyoi" path="res://assets/player/dash_player/dash.wav" id="6_idwt1"]
+[ext_resource type="Shader" path="res://objects/player/dash/vignette.gdshader" id="7_ltjb4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qi1lu"]
 animations = [{
@@ -31,6 +33,99 @@ animations = [{
 [sub_resource type="Curve" id="Curve_5be6p"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4rk7"]
+playback_mode = 1
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("6_idwt1")
+stream_0/weight = 1.0
+
+[sub_resource type="Gradient" id="Gradient_gurjx"]
+offsets = PackedFloat32Array(0.416185, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ibuj"]
+gradient = SubResource("Gradient_gurjx")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wdwl4"]
+frequency = 0.0119
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f67mi"]
+seamless = true
+noise = SubResource("FastNoiseLite_wdwl4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ppf5h"]
+frequency = 0.0035
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_etkvx"]
+seamless = true
+noise = SubResource("FastNoiseLite_ppf5h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3c3ru"]
+shader = ExtResource("7_ltjb4")
+shader_parameter/speed = 0.23
+shader_parameter/scroll_noise1 = SubResource("NoiseTexture2D_f67mi")
+shader_parameter/scroll_noise2 = SubResource("NoiseTexture2D_etkvx")
+shader_parameter/mask = SubResource("GradientTexture2D_8ibuj")
+
+[sub_resource type="Animation" id="Animation_ewp7q"]
+resource_name = "start_slowmo"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 0), Color(0, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fs7hu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uv5xw"]
+resource_name = "stop_slowmo"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 1), Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6d71g"]
+_data = {
+"RESET": SubResource("Animation_fs7hu"),
+"start_slowmo": SubResource("Animation_ewp7q"),
+"stop_slowmo": SubResource("Animation_uv5xw")
+}
 
 [node name="DashPlayer" instance=ExtResource("1_v08pg")]
 script = ExtResource("2_4l56d")
@@ -61,5 +156,26 @@ initial_velocity_max = 40.0
 scale_amount_min = 2.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_5be6p")
+
+[node name="DashAudio" type="AudioStreamPlayer" parent="." index="10"]
+stream = SubResource("AudioStreamRandomizer_y4rk7")
+volume_db = -15.0
+pitch_scale = 0.9
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="11"]
+
+[node name="SlowmoEffect" type="ColorRect" parent="CanvasLayer" index="0"]
+material = SubResource("ShaderMaterial_3c3ru")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+libraries = {
+"": SubResource("AnimationLibrary_6d71g")
+}
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]

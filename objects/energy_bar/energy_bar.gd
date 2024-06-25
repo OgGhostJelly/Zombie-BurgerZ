@@ -48,7 +48,7 @@ func can_use() -> bool:
 	if require_full:
 		return value <= 0.0
 	else:
-		return value < 0.999 
+		return value < 1.0 - cost + 0.001
 
 
 func use() -> bool:

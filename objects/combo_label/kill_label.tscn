@@ -6,4 +6,4 @@
 modulate = Color(1, 0.231373, 0, 1)
 
 [node name="Label" parent="." index="0"]
-text = "kill 10"
+text = "kill"

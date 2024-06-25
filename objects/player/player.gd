@@ -6,7 +6,7 @@ signal moved
 enum PlayerType {
 	Normal,
 	Dash,
-	Blast,
+	Trapper,
 	OgGhostJelly,
 	SirF_,
 }
@@ -26,12 +26,12 @@ static var player_data: Dictionary = {
 		
 		description = "(over)kill to charge up a dash",
 	},
-	PlayerType.Blast: {
-		scene = preload("res://objects/player/blast/blast_player.tscn"),
-		texture = preload("res://assets/player/blast_player/player-idle.svg"),
+	PlayerType.Trapper: {
+		scene = preload("res://objects/player/trapper/trapper_player.tscn"),
+		texture = preload("res://assets/player/trapper_player/player-idle.svg"),
 		cost = 200,
 		
-		description = "likes touhou",
+		description = "trapper. places traps (duh)",
 	},
 	
 	PlayerType.OgGhostJelly: {
@@ -51,6 +51,7 @@ static var player_data: Dictionary = {
 @export var speed: float = 120.0
 @export var acceleration: float = 600.0
 @export var deceleration: float = 400.0
+@export var knockback_enabled: bool = true
 
 @onready var gun: Gun = $Gun
 @onready var health_ui: Control = $HealthUI
@@ -99,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.play(&"walk")
 	
-	if gun.fire_action():
+	if gun.fire_action() and knockback_enabled:
 		velocity = (velocity + -Vector2.from_angle(gun.global_rotation) * gun.knockback).limit_length(velocity.length() + gun.max_knockback)
 	
 	move_and_slide()
