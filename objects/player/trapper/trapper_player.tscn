@@ -50,7 +50,7 @@ sprite_frames = SubResource("SpriteFrames_523m7")
 animation = &"walk"
 
 [node name="EnergyBar" parent="." index="8"]
-regeneration_speed = 0.5
+regeneration_speed = 0.25
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
 layer = 0

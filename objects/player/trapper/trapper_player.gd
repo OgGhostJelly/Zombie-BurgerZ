@@ -13,6 +13,8 @@ func _process(_delta: float) -> void:
 		energy_bar.use()
 	
 	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", clampf(remap(health.value, health.min_value, health.max_value, 1.0, 0.0), 0.0, 1.0) * 3.0)
+	
+	AudioServer.set_bus_effect_enabled(0, 0, not health.is_highest())
 
 
 func _on_energy_bar_used() -> void:

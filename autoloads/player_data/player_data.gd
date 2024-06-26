@@ -13,6 +13,8 @@ signal total_money_changed
 @export var owned_skins: Array = [Player.PlayerType.Normal]
 @export var acheivements: Array = []
 @export var total_kills: int = 0: set = set_total_kills
+@export var main_menu_seen: bool = false
+@export var acheivement_menu_seen: bool = false
 
 
 func _ready() -> void:

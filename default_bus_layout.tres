@@ -1,3 +1,8 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://boacf7ugeto3u"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://boacf7ugeto3u"]
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_fmtev"]
+resource_name = "LowPassFilter"
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectLowPassFilter_fmtev")
+bus/0/effect/0/enabled = false

@@ -144,10 +144,22 @@ func _process(_delta: float) -> void:
 	if Gun.GunType.values().all(func(value): return PlayerData.owned_guns.has(value)):
 		give_acheivement(AcheivementType.EveryGun)
 	
-	if Player.PlayerType.values().all(func(value): return PlayerData.owned_skins.has(value)):
+	if Player.PlayerType.values().all(func(value):
+		if value == Player.PlayerType.OgGhostJelly or value == Player.PlayerType.SirF_:
+			return true
+		return PlayerData.owned_skins.has(value)):
 		give_acheivement(AcheivementType.EverySkin)
 	
-	if has_acheivement(AcheivementType.EveryGun) and has_acheivement(AcheivementType.EverySkin):
+	if (
+		Gun.GunType.values().all(func(value):
+			if not Gun.gun_data[value].get("cost"):
+				return true
+			return PlayerData.owned_guns.has(value)) and
+		Player.PlayerType.values().all(func(value):
+			if not Player.player_data[value].get("cost"):
+				return true
+			return PlayerData.owned_skins.has(value))
+	):
 		give_acheivement(AcheivementType.BuyEverything)
 	
 	if has_acheivement(AcheivementType.TripleKill) and not PlayerData.owned_guns.has(Gun.GunType.SniperRifle):

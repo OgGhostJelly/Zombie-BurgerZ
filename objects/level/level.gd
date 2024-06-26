@@ -75,9 +75,6 @@ func _on_spawn_timer_timeout() -> void:
 		kill_count += 1
 		PlayerData.total_kills += 1
 		
-		if wave >= 2:
-			spawn_timer.wait_time *= 0.95
-		
 		if kill_count >= kill_count_req:
 			for i in range(int(kill_count_req / 2.0)):
 				var money: Node2D = preload("res://objects/pickup/money_pickup.tscn").instantiate()
@@ -87,6 +84,8 @@ func _on_spawn_timer_timeout() -> void:
 			
 			kill_count_req *= 2
 			wave = mini(wave + 1, 2)
+			if wave >= 2:
+				spawn_timer.wait_time *= 0.9
 		
 		kill_count_label.text = "%s/%s" % [kill_count, kill_count_req])
 	

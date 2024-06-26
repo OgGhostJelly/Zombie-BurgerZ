@@ -1,3 +1,6 @@
+- start screen
+- better dash player dash sound
+- move trapper low hp effect to generic player
 - (could have secondary weapons?)
 - (difficulty select/slider)
 - (bestiary)
