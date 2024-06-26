@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbtjgr5llxv5x"
-path="res://.godot/imported/achievement.svg-6fe91da13b8e647b3a7f99932b9ad165.ctex"
+uid="uid://b02usa01ybnr4"
+path="res://.godot/imported/player-walk1.svg-fa130521f7ccfa83b041dc6f3051803d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/achievement.svg"
-dest_files=["res://.godot/imported/achievement.svg-6fe91da13b8e647b3a7f99932b9ad165.ctex"]
+source_file="res://assets/player/blackhole_player/player-walk1.svg"
+dest_files=["res://.godot/imported/player-walk1.svg-fa130521f7ccfa83b041dc6f3051803d.ctex"]
 
 [params]
 

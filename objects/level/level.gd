@@ -53,9 +53,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(&"info"):
-		$FrontLayer/DebugInfo.visible = not $FrontLayer/DebugInfo.visible
-	
 	if not spawn_timer.is_stopped():
 		time += delta
 		time_label.text = "%.2fs" % time

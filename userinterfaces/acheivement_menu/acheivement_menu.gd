@@ -1,4 +1,5 @@
 extends Control
+class_name AcheivementMenu
 
 
 @onready var sign_texture: TextureRect = $Sign/Sign

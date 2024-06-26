@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bxp51n4dggtch"]
 
-[ext_resource type="Script" path="res://objects/player/sirf/blackhole/blackhole.gd" id="1_l7bmw"]
-[ext_resource type="Texture2D" uid="uid://dupyc03b4stic" path="res://assets/player/sirf_player/blackhole.svg" id="2_fd25f"]
-[ext_resource type="AudioStream" uid="uid://22wtple1f42e" path="res://assets/player/sirf_player/synth.wav" id="3_b6rl3"]
+[ext_resource type="Script" path="res://objects/player/blackhole/blackhole/blackhole.gd" id="1_l7bmw"]
+[ext_resource type="Texture2D" uid="uid://dupyc03b4stic" path="res://assets/player/blackhole_player/blackhole.svg" id="2_fd25f"]
+[ext_resource type="AudioStream" uid="uid://22wtple1f42e" path="res://assets/player/blackhole_player/synth.wav" id="3_b6rl3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_so6j7"]
 

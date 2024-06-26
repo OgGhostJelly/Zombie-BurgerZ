@@ -7,6 +7,7 @@ enum PlayerType {
 	Normal,
 	Dash,
 	Trapper,
+	Blackhole,
 	OgGhostJelly,
 	SirF_,
 }
@@ -32,6 +33,12 @@ static var player_data: Dictionary = {
 		cost = 200,
 		
 		description = "trapper. places traps (duh)",
+	},
+	PlayerType.Blackhole: {
+		scene = preload("res://objects/player/blackhole/blackhole_player.tscn"),
+		texture = preload("res://assets/player/blackhole_player/player-idle.svg"),
+		
+		description = "harness the singularity",
 	},
 	
 	PlayerType.OgGhostJelly: {

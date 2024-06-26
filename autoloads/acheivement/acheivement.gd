@@ -18,6 +18,7 @@ enum AcheivementType {
 	QuintuplePierce,
 	DontMove,
 	Nihilism,
+	DevSkins,
 }
 
 
@@ -38,7 +39,7 @@ var data: Dictionary = {
 		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
 	},
 	AcheivementType.TotalKill500: {
-		name = "Chara?",
+		name = "Jenny Side",
 		description = "kill 500 zombers in total",
 		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
 	},
@@ -109,6 +110,12 @@ var data: Dictionary = {
 		texture = preload("res://assets/acheivement_menu/acheivements/nihilism.svg"),
 		locked_texture = preload("res://assets/acheivement_menu/acheivements/???.svg"),
 	},
+	
+	AcheivementType.DevSkins: {
+		name = "Meet The Devs",
+		description = "wait where did you get that?",
+		texture = preload("res://assets/acheivement_menu/acheivements/dev_skin.svg"),
+	}
 }
 
 
@@ -147,6 +154,15 @@ func _process(_delta: float) -> void:
 		PlayerData.owned_guns.append(Gun.GunType.SniperRifle)
 	
 	if has_acheivement(AcheivementType.Nihilism):
+		if not PlayerData.owned_skins.has(Player.PlayerType.Blackhole):
+			PlayerData.owned_skins.append(Player.PlayerType.Blackhole)
+	
+	if PlayerData.owned_skins.has(Player.PlayerType.OgGhostJelly):
+		give_acheivement(AcheivementType.DevSkins)
+	elif PlayerData.owned_skins.has(Player.PlayerType.SirF_):
+		give_acheivement(AcheivementType.DevSkins)
+	
+	if has_acheivement(AcheivementType.DevSkins):
 		if not PlayerData.owned_skins.has(Player.PlayerType.OgGhostJelly):
 			PlayerData.owned_skins.append(Player.PlayerType.OgGhostJelly)
 		if not PlayerData.owned_skins.has(Player.PlayerType.SirF_):

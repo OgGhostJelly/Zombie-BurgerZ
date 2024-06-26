@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=13 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemy/big_zombie.tscn" id="2_gxf2g"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dc4vwx3ougyp1" path="res://userinterfaces/game_over_menu/game_over_menu.tscn" id="9_rau86"]
 [ext_resource type="Texture2D" uid="uid://c6t2h54m6yjwd" path="res://assets/level/clock.png" id="10_dsnvk"]
 [ext_resource type="Texture2D" uid="uid://dkp8bvuiunr06" path="res://assets/level/kill.png" id="11_cnqjh"]
+[ext_resource type="PackedScene" uid="uid://dt8rhgue47ifu" path="res://userinterfaces/debug_menu/level_debug/level_debug.tscn" id="11_linol"]
 
 [sub_resource type="Curve2D" id="Curve2D_mo7e7"]
 _data = {
@@ -46,14 +47,6 @@ wait_time = 6.0
 one_shot = true
 
 [node name="FrontLayer" type="CanvasLayer" parent="."]
-
-[node name="DebugInfo" type="VBoxContainer" parent="FrontLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Money" parent="FrontLayer" instance=ExtResource("8_naacc")]
 
@@ -95,6 +88,9 @@ layout_mode = 2
 text = "0/20"
 
 [node name="PlayerObjectiveUI" parent="FrontLayer" instance=ExtResource("6_7cgiu")]
+player_path = NodePath("../../Player")
+
+[node name="LevelDebug" parent="FrontLayer" instance=ExtResource("11_linol")]
 player_path = NodePath("../../Player")
 
 [node name="GameOverMenu" parent="FrontLayer" instance=ExtResource("9_rau86")]

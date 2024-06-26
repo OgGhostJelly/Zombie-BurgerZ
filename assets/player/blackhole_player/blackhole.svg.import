@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvno6cjlds45k"
-path="res://.godot/imported/player-walk1.svg-3c1f1fd62d3c159bf7839128b6901a8b.ctex"
+uid="uid://dupyc03b4stic"
+path="res://.godot/imported/blackhole.svg-95574427be6ee445ddf930ef27afb37e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/sirf_player/player-walk1.svg"
-dest_files=["res://.godot/imported/player-walk1.svg-3c1f1fd62d3c159bf7839128b6901a8b.ctex"]
+source_file="res://assets/player/blackhole_player/blackhole.svg"
+dest_files=["res://.godot/imported/blackhole.svg-95574427be6ee445ddf930ef27afb37e.ctex"]
 
 [params]
 

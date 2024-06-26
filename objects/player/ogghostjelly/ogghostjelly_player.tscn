@@ -34,6 +34,10 @@ position = Vector2(2, -4)
 sprite_frames = SubResource("SpriteFrames_mgpoy")
 animation = &"walk"
 
+[node name="InvincibilityTimer" parent="." index="6"]
+one_shot = false
+autostart = true
+
 [node name="EnergyBar" parent="." index="8"]
 visible = false
 disabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ca4kvgsvw0acp"]
+[gd_scene load_steps=20 format=3 uid="uid://ca4kvgsvw0acp"]
 
 [ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="1_ciaxs"]
 [ext_resource type="Script" path="res://userinterfaces/acheivement_menu/acheivement_menu.gd" id="1_dqqfi"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://eywok23xutfu" path="res://assets/acheivement_menu/locked.svg" id="6_etgnq"]
 [ext_resource type="Texture2D" uid="uid://co73gl5x5jkf2" path="res://assets/shop_menu/left.svg" id="7_of2x6"]
 [ext_resource type="Texture2D" uid="uid://b3nkicuxw3tc6" path="res://assets/shop_menu/right.svg" id="8_al1lx"]
+[ext_resource type="PackedScene" uid="uid://cu5r5jhv6p0op" path="res://userinterfaces/debug_menu/acheivement_debug/acheivement_debug.tscn" id="9_k5neg"]
 
 [sub_resource type="Animation" id="Animation_mcpmh"]
 length = 0.001
@@ -259,6 +260,10 @@ custom_minimum_size = Vector2(29, 38)
 layout_mode = 2
 texture = ExtResource("8_al1lx")
 float_distance = 2.0
+
+[node name="AcheivementDebug" parent="." node_paths=PackedStringArray("acheivement_menu") instance=ExtResource("9_k5neg")]
+layout_mode = 1
+acheivement_menu = NodePath("..")
 
 [connection signal="pressed" from="HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1nuca1jeb6ja"]
+[gd_scene load_steps=11 format=3 uid="uid://c1nuca1jeb6ja"]
 
+[ext_resource type="Script" path="res://userinterfaces/shop_menu/shop_menu.gd" id="1_efirf"]
 [ext_resource type="Texture2D" uid="uid://bovtu1db1slcc" path="res://assets/shop_menu/shop.svg" id="1_k4sb2"]
 [ext_resource type="Texture2D" uid="uid://b8q148tiayiq7" path="res://assets/shop_menu/back.png" id="3_sioju"]
 [ext_resource type="PackedScene" uid="uid://cfgv66mdvrjbp" path="res://userinterfaces/money_counter/money_counter.tscn" id="4_6y7d4"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cb3glygsxq7ub" path="res://userinterfaces/weapon_stats_menu/weapon_stats_menu.tscn" id="6_bpfg7"]
 [ext_resource type="PackedScene" uid="uid://cmb6fifhx00wb" path="res://userinterfaces/skin_menu/skin_menu.tscn" id="7_k0ahg"]
 [ext_resource type="PackedScene" uid="uid://dcdi6skdvp808" path="res://userinterfaces/skin_description_menu/skin_description_menu.tscn" id="8_s7l3d"]
+[ext_resource type="PackedScene" uid="uid://bhqfey0yli0hy" path="res://userinterfaces/debug_menu/shop_debug/shop_debug.tscn" id="10_k06kn"]
 
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
@@ -16,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_efirf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -80,3 +83,8 @@ skin_menu = NodePath("../SkinMenu")
 
 [node name="Money" parent="." instance=ExtResource("4_6y7d4")]
 layout_mode = 1
+
+[node name="ShopDebug" parent="." node_paths=PackedStringArray("weapon_menu", "skin_menu") instance=ExtResource("10_k06kn")]
+layout_mode = 0
+weapon_menu = NodePath("../WeaponMenu")
+skin_menu = NodePath("../SkinMenu")

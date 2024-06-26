@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu5r5jhv6p0op"]
+
+[ext_resource type="Script" path="res://userinterfaces/debug_menu/acheivement_debug/acheivement_debug.gd" id="1_diun2"]
+
+[node name="AcheivementDebug" type="VBoxContainer"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_diun2")
+
+[node name="Unlock" type="Button" parent="."]
+layout_mode = 2
+text = "Unlock"
+
+[node name="UnlockAll" type="Button" parent="."]
+layout_mode = 2
+text = "Unlock All"
+
+[connection signal="pressed" from="Unlock" to="." method="_on_unlock_pressed"]
+[connection signal="pressed" from="UnlockAll" to="." method="_on_unlock_all_pressed"]
