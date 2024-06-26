@@ -27,9 +27,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var player: Node2D = get_player()
-	
-	context_steerer.target_direction = global_position.direction_to(player.global_position)
+	context_steerer.target_direction = global_position.direction_to(Player.player.global_position)
 	
 	for area in sight_detector.get_overlapping_areas():
 		context_steerer.target_direction = context_steerer.target_direction.rotated(PI/4.0)
@@ -46,11 +44,6 @@ func _process(_delta: float) -> void:
 	)
 	
 	move_and_slide()
-
-
-func get_player() -> CharacterBody2D:
-	var players: Array[Node] = get_tree().get_nodes_in_group(&"player")
-	return players[0]
 
 
 func _die() -> void:

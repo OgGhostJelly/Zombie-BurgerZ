@@ -7,8 +7,12 @@ var _scene: PackedScene
 var _scene_path: String
 
 
+func is_transitioning() -> bool:
+	return animation_player.is_playing()
+
+
 func to_packed(scene: PackedScene) -> void:
-	if animation_player.is_playing():
+	if is_transitioning():
 		return
 	
 	_scene = scene
@@ -16,7 +20,7 @@ func to_packed(scene: PackedScene) -> void:
 
 
 func to_file(path: String) -> void:
-	if animation_player.is_playing():
+	if is_transitioning():
 		return
 	
 	_scene_path = path

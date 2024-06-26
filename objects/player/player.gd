@@ -25,7 +25,7 @@ static var player_data: Dictionary = {
 		texture = preload("res://assets/player/dash_player/player-idle.svg"),
 		cost = 200,
 		
-		description = "(over)kill to charge up a dash",
+		description = "(ultra)kill to charge up a dash",
 	},
 	PlayerType.Trapper: {
 		scene = preload("res://objects/player/trapper/trapper_player.tscn"),
@@ -68,6 +68,8 @@ static var player_data: Dictionary = {
 @onready var damage_audio: AudioStreamPlayer = $DamageAudio
 @onready var energy_bar: EnergyBar = $EnergyBar
 @onready var hitbox: Area2D = $HitDetector
+@onready var blur_effect: ColorRect = $CanvasLayer/BlurEffect
+@onready var tone_audio: AudioStreamPlayer = $ToneAudio
 
 static var player: Player
 
@@ -84,6 +86,9 @@ func _init() -> void:
 func _ready() -> void:
 	super()
 	player = self
+	
+	tree_exiting.connect(func():
+		AudioServer.set_bus_effect_enabled(0, 0, false))
 
 
 func _physics_process(delta: float) -> void:
@@ -114,7 +119,11 @@ func _physics_process(delta: float) -> void:
 	
 	global_position = global_position.clamp(Vector2.ZERO, Vector2(480.0, 360.0))
 	
-	queue_redraw()
+	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
+	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)
+	
+	if tone_audio.playing != (health.value <= 1):
+		tone_audio.play()
 
 
 func get_input_vector() -> Vector2:

@@ -26,13 +26,13 @@ func _on_right_button_pressed() -> void:
 
 
 func _on_buy_button_pressed() -> void:
-	if PlayerData.owned_skins.has(selected):
+	if PlayerData.has_skin(selected):
 		return
 	
 	if PlayerData.money < Player.player_data[selected].cost:
 		return
 	
-	PlayerData.owned_skins.append(selected)
+	PlayerData.add_skin(selected)
 	PlayerData.money -= Player.player_data[selected].cost
 	PlayerData.data_save()
 	selected = selected

@@ -92,8 +92,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	rotation = global_position.direction_to(get_global_mouse_position()).angle()
-	
+	rotation = (get_global_mouse_position() - global_position).angle()
 	sprite.flip_v = rotation < -PI/2.0 or rotation > PI/2.0
 	
 	sprite.position.x = (

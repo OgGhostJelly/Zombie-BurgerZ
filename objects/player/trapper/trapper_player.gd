@@ -2,7 +2,6 @@ extends Player
 
 
 @export var trap_limit: int = 3
-@onready var blur_effect: ColorRect = $CanvasLayer/BlurEffect
 @onready var place_timer: Timer = $PlaceTimer
 @onready var place_audio: AudioStreamPlayer = $PlaceAudio
 var trap_count: int = 0
@@ -11,10 +10,6 @@ var trap_count: int = 0
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"special") and trap_count < 3:
 		energy_bar.use()
-	
-	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", clampf(remap(health.value, health.min_value, health.max_value, 1.0, 0.0), 0.0, 1.0) * 3.0)
-	
-	AudioServer.set_bus_effect_enabled(0, 0, not health.is_highest())
 
 
 func _on_energy_bar_used() -> void:

@@ -27,13 +27,13 @@ func _on_right_button_pressed() -> void:
 
 
 func _on_buy_button_pressed() -> void:
-	if PlayerData.owned_guns.has(selected):
+	if PlayerData.has_gun(selected):
 		return
 	
 	if PlayerData.money < Gun.gun_data[selected].cost:
 		return
 	
-	PlayerData.owned_guns.append(selected)
+	PlayerData.add_gun(selected)
 	PlayerData.money -= Gun.gun_data[selected].cost
 	PlayerData.data_save()
 	selected = selected

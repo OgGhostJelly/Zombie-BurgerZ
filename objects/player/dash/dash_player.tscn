@@ -41,6 +41,60 @@ streams_count = 1
 stream_0/stream = ExtResource("6_idwt1")
 stream_0/weight = 1.0
 
+[sub_resource type="Animation" id="Animation_fs7hu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ewp7q"]
+resource_name = "start_slowmo"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 0), Color(0, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uv5xw"]
+resource_name = "stop_slowmo"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 1), Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6d71g"]
+_data = {
+"RESET": SubResource("Animation_fs7hu"),
+"start_slowmo": SubResource("Animation_ewp7q"),
+"stop_slowmo": SubResource("Animation_uv5xw")
+}
+
 [sub_resource type="Gradient" id="Gradient_gurjx"]
 offsets = PackedFloat32Array(0.416185, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
@@ -72,60 +126,6 @@ shader_parameter/speed = 0.23
 shader_parameter/scroll_noise1 = SubResource("NoiseTexture2D_f67mi")
 shader_parameter/scroll_noise2 = SubResource("NoiseTexture2D_etkvx")
 shader_parameter/mask = SubResource("GradientTexture2D_8ibuj")
-
-[sub_resource type="Animation" id="Animation_ewp7q"]
-resource_name = "start_slowmo"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 1, 1, 0), Color(0, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_fs7hu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_uv5xw"]
-resource_name = "stop_slowmo"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/SlowmoEffect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 1, 1, 1), Color(0, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6d71g"]
-_data = {
-"RESET": SubResource("Animation_fs7hu"),
-"start_slowmo": SubResource("Animation_ewp7q"),
-"stop_slowmo": SubResource("Animation_uv5xw")
-}
 
 [node name="DashPlayer" instance=ExtResource("1_v08pg")]
 script = ExtResource("2_4l56d")
@@ -162,7 +162,12 @@ stream = SubResource("AudioStreamRandomizer_y4rk7")
 volume_db = -15.0
 pitch_scale = 0.9
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="11"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." index="11"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+libraries = {
+"": SubResource("AnimationLibrary_6d71g")
+}
 
 [node name="SlowmoEffect" type="ColorRect" parent="CanvasLayer" index="0"]
 material = SubResource("ShaderMaterial_3c3ru")
@@ -172,10 +177,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 1, 1, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
-libraries = {
-"": SubResource("AnimationLibrary_6d71g")
-}
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]

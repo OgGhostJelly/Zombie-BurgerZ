@@ -3,15 +3,17 @@ extends Node
 signal money_changed
 signal total_kills_changed
 signal total_money_changed
+signal owned_guns_changed
+signal owned_skins_changed
 
 
 @export var money: int = 0: set = set_money
 @export var total_money: int = 0: set = set_total_money
 @export var selected_gun: Gun.GunType = Gun.GunType.Pistol
 @export var selected_skin: Player.PlayerType = Player.PlayerType.Normal
-@export var owned_guns: Array = [Gun.GunType.Pistol]
-@export var owned_skins: Array = [Player.PlayerType.Normal]
-@export var acheivements: Array = []
+@export var owned_guns: Dictionary = {Gun.GunType.Pistol:true}
+@export var owned_skins: Dictionary = {Player.PlayerType.Normal:true}
+@export var acheivements: Dictionary = {}
 @export var total_kills: int = 0: set = set_total_kills
 @export var main_menu_seen: bool = false
 @export var acheivement_menu_seen: bool = false
@@ -24,6 +26,36 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		data_save()
+
+
+func try_add_skin(skin: Player.PlayerType) -> void:
+	if not has_skin(skin):
+		add_skin(skin)
+
+
+func add_skin(skin: Player.PlayerType) -> void:
+	owned_skins[skin] = true
+	data_save()
+	owned_skins_changed.emit()
+
+
+func has_skin(skin: Player.PlayerType) -> bool:
+	return owned_skins.has(skin)
+
+
+func try_add_gun(gun: Gun.GunType) -> void:
+	if not has_gun(gun):
+		add_gun(gun)
+
+
+func add_gun(gun: Gun.GunType) -> void:
+	owned_guns[gun] = true
+	data_save()
+	owned_guns_changed.emit()
+
+
+func has_gun(gun: Gun.GunType) -> bool:
+	return owned_guns.has(gun)
 
 
 func set_money(value: int) -> void:

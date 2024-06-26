@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://frpqwwnygjvk"]
+[gd_scene load_steps=9 format=3 uid="uid://frpqwwnygjvk"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_ukgq6"]
 [ext_resource type="Script" path="res://objects/player/trapper/trapper_player.gd" id="2_5xhub"]
 [ext_resource type="Texture2D" uid="uid://duqdt7vl22ssf" path="res://assets/player/trapper_player/player-idle.svg" id="3_tqlqa"]
 [ext_resource type="Texture2D" uid="uid://urqpex5ygpur" path="res://assets/player/trapper_player/player-walk1.svg" id="4_r6bdi"]
 [ext_resource type="Texture2D" uid="uid://cfgwq1v56ilqo" path="res://assets/player/trapper_player/player-walk2.svg" id="5_ie31l"]
-[ext_resource type="Shader" path="res://objects/player/trapper/blur.gdshader" id="6_o5o0j"]
 [ext_resource type="AudioStream" uid="uid://dkk8eel8h8ell" path="res://assets/player/trapper_player/place.wav" id="7_06ttu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_523m7"]
@@ -30,10 +29,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_12jqu"]
-shader = ExtResource("6_o5o0j")
-shader_parameter/lod = 0.5
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h3id3"]
 playback_mode = 1
 random_pitch = 1.2
@@ -52,22 +47,11 @@ animation = &"walk"
 [node name="EnergyBar" parent="." index="8"]
 regeneration_speed = 0.25
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
-layer = 0
-
-[node name="BlurEffect" type="ColorRect" parent="CanvasLayer" index="0"]
-material = SubResource("ShaderMaterial_12jqu")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PlaceTimer" type="Timer" parent="." index="10"]
+[node name="PlaceTimer" type="Timer" parent="." index="9"]
 wait_time = 0.5
 one_shot = true
 
-[node name="PlaceAudio" type="AudioStreamPlayer" parent="." index="11"]
+[node name="PlaceAudio" type="AudioStreamPlayer" parent="." index="10"]
 stream = SubResource("AudioStreamRandomizer_h3id3")
 volume_db = 3.0
 

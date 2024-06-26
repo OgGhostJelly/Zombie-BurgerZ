@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://j6yyqdar5jqj"]
+[gd_scene load_steps=19 format=3 uid="uid://j6yyqdar5jqj"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_26mew"]
 [ext_resource type="Texture2D" uid="uid://ddpl4vmsev6cl" path="res://assets/player/normal_player/player-idle.svg" id="2_k4tsx"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://og338o612gh3" path="res://objects/energy_bar/energy_bar.tscn" id="11_3scvw"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="PackedScene" uid="uid://bv8qbklcmdk5x" path="res://userinterfaces/ammo_ui/ammo_ui.tscn" id="11_nsf5n"]
+[ext_resource type="Shader" path="res://objects/player/trapper/blur.gdshader" id="12_40ens"]
+[ext_resource type="AudioStream" uid="uid://ci0nk74akv7ps" path="res://assets/player/heartbeat.mp3" id="13_12oyt"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="15_7piqp"]
 
@@ -45,6 +47,10 @@ random_pitch = 1.4
 streams_count = 1
 stream_0/stream = ExtResource("13_26jhs")
 stream_0/weight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idpd6"]
+shader = ExtResource("12_40ens")
+shader_parameter/lod = 0.5
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_layer = 2
@@ -112,6 +118,21 @@ stream = SubResource("AudioStreamRandomizer_qsqxf")
 
 [node name="EnergyBar" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_3scvw")]
 player = NodePath("..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="BlurEffect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_idpd6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToneAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_12oyt")
+volume_db = -20.0
 
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

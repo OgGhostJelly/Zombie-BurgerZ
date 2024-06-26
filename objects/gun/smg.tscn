@@ -96,8 +96,8 @@ _data = {
 spread = 25.0
 bullet_scene = ExtResource("2_2koqm")
 automatic = true
-knockback = 160.0
-max_knockback = 80.0
+knockback = 80.0
+max_knockback = 60.0
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(20, 0)

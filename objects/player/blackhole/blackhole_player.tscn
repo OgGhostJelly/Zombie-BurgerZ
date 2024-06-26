@@ -39,6 +39,6 @@ sprite_frames = SubResource("SpriteFrames_nwa4h")
 animation = &"walk"
 
 [node name="EnergyBar" parent="." index="8"]
-regeneration_speed = 10.0
+regeneration_speed = 5.0
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]
