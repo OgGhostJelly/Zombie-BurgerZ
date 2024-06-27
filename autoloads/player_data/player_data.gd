@@ -76,37 +76,75 @@ func set_total_kills(value: int) -> void:
 
 
 func data_save() -> void:
-	var data := FileAccess.open("user://save", FileAccess.WRITE)
-	data.store_64(money)
-	
-	data.store_64(selected_gun)
-	data.store_var(owned_guns)
-	
-	data.store_64(selected_skin)
-	data.store_var(owned_skins)
-	
-	data.store_var(achievements)
-	
-	data.store_64(total_kills)
+	create_backup()
+	var file := FileAccess.open("user://save.dat", FileAccess.WRITE)
+	save_to_file(file)
+
+
+func create_backup() -> void:
+	DirAccess.open("user://").rename("save.bak.dat", "save.bak2.dat")
+	DirAccess.open("user://").rename("save.dat", "save.bak.dat")
+
+
+func save_to_file(file: FileAccess) -> void:
+	file.store_string(JSON.stringify({
+		money = money,
+		selected_gun = selected_gun,
+		owned_guns = owned_guns.keys().map(func(value): return Gun.GunType.find_key(value)),
+		selected_skin = selected_skin,
+		owned_skins = owned_skins.keys().map(func(value): return Player.PlayerType.find_key(value)),
+		achievements = achievements.keys().map(func(value): return Achievement.AchievementType.find_key(value)),
+		total_kills = total_kills,
+	}))
 
 
 func data_load() -> void:
+	if FileAccess.file_exists("user://save"):
+		old_data_load()
+		data_save()
+		DirAccess.open("user://").remove("save")
+		return
+	
+	var file := FileAccess.open("user://save.dat", FileAccess.READ)
+	if file == null:
+		return
+	load_from_file(file)
+
+
+func load_from_file(file: FileAccess) -> void:
+	var data: Dictionary = JSON.parse_string(file.get_as_text())
+	money = data.money
+	selected_gun = data.selected_gun
+	selected_skin = data.selected_skin
+	total_kills = data.total_kills
+	
+	owned_guns.clear()
+	for gun in data.owned_guns:
+		owned_guns[Gun.GunType[gun]] = true
+	
+	owned_skins.clear()
+	for skin in data.owned_skins:
+		owned_skins[Player.PlayerType[skin]] = true
+	
+	achievements.clear()
+	for achievement in data.achievements:
+		achievements[Achievement.AchievementType[achievement]] = true
+
+
+func old_data_load() -> void:
 	var data := FileAccess.open("user://save", FileAccess.READ)
 	
 	if data == null:
 		return
 	
 	money = data.get_64()
-	
 	selected_gun = data.get_64() as Gun.GunType
 	owned_guns = data.get_var()
-	
 	selected_skin = data.get_64() as Player.PlayerType
 	owned_skins = data.get_var()
-	
 	achievements = data.get_var()
-	
 	total_kills = data.get_64()
+
 
 func _on_auto_save_timer_timeout() -> void:
 	data_save()

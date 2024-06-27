@@ -157,6 +157,12 @@ func _ready() -> void:
 	
 	gave_achievement.connect(func(_a):
 		check_achievement_items())
+	
+	check_every_skin()
+	check_every_gun()
+	check_buy_everything()
+	check_dev_skin()
+	check_achievement_items()
 
 
 func check_every_gun() -> void:
@@ -187,10 +193,9 @@ func check_buy_everything() -> void:
 
 
 func check_dev_skin() -> void:
-	if PlayerData.owned_skins.has(Player.PlayerType.OgGhostJelly):
-		give_achievement(AchievementType.DevSkins)
-	elif PlayerData.owned_skins.has(Player.PlayerType.SirF_):
-		give_achievement(AchievementType.DevSkins)
+	if not has_achievement(AchievementType.DevSkins):
+		PlayerData.owned_skins.erase(Player.PlayerType.OgGhostJelly)
+		PlayerData.owned_skins.erase(Player.PlayerType.SirF_)
 
 
 func check_achievement_items() -> void:

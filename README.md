@@ -1,5 +1,3 @@
-- import/export saves
-- save.bak or slots
 - try wave-like system
 - (difficulty setting menu with maximum control but lower difficulty = less reward, gun sights indicator)
 - (could have secondary weapons?)

@@ -103,8 +103,8 @@ func get_next_spawn() -> Node2D:
 		
 		kill_count_label.text = "%s/%s" % [kill_count, kill_count_req])
 	
-	if not FileAccess.file_exists("user://thething.save") and kill_count == 15:
-		var file: FileAccess = FileAccess.open("user://thething.save", FileAccess.WRITE)
+	if not FileAccess.file_exists("user://veryimportantgamerfile") and kill_count == 15:
+		var file: FileAccess = FileAccess.open("user://veryimportantgamerfile", FileAccess.WRITE)
 		file.store_line('')
 		obj.speed *= 4
 	
