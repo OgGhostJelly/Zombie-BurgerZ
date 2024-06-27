@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pxtkhkpuvilo"
-path="res://.godot/imported/arms_dealer.svg-575505fa26fd3adf76a43cc8fdcecfed.ctex"
+path="res://.godot/imported/arms_dealer.svg-37d7c76904f3e9df805d9a72926f4b3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/arms_dealer.svg"
-dest_files=["res://.godot/imported/arms_dealer.svg-575505fa26fd3adf76a43cc8fdcecfed.ctex"]
+source_file="res://assets/achievement_menu/achievements/arms_dealer.svg"
+dest_files=["res://.godot/imported/arms_dealer.svg-37d7c76904f3e9df805d9a72926f4b3b.ctex"]
 
 [params]
 

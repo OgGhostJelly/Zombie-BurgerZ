@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2e7okc7d2ltl"
-path="res://.godot/imported/youre_hired.svg-36fc19b31ecb594768a6a1eaf7e247dc.ctex"
+uid="uid://cb8k1lgy7a0w2"
+path="res://.godot/imported/deal.svg-4f1ef4a65515939a8faadabedddf8c73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/youre_hired.svg"
-dest_files=["res://.godot/imported/youre_hired.svg-36fc19b31ecb594768a6a1eaf7e247dc.ctex"]
+source_file="res://assets/achievement_menu/achievements/deal.svg"
+dest_files=["res://.godot/imported/deal.svg-4f1ef4a65515939a8faadabedddf8c73.ctex"]
 
 [params]
 

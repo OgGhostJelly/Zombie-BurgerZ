@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 SceneTransition="*res://autoloads/scene_transition/scene_transition.tscn"
 PlayerData="*res://autoloads/player_data/player_data.tscn"
-Acheivement="*res://autoloads/acheivement/acheivement.tscn"
+Achievement="*res://autoloads/achievement/achievement.tscn"
 
 [display]
 

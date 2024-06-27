@@ -13,10 +13,10 @@ signal owned_skins_changed
 @export var selected_skin: Player.PlayerType = Player.PlayerType.Normal
 @export var owned_guns: Dictionary = {Gun.GunType.Pistol:true}
 @export var owned_skins: Dictionary = {Player.PlayerType.Normal:true}
-@export var acheivements: Dictionary = {}
+@export var achievements: Dictionary = {}
 @export var total_kills: int = 0: set = set_total_kills
 @export var main_menu_seen: bool = false
-@export var acheivement_menu_seen: bool = false
+@export var achievement_menu_seen: bool = false
 
 
 func _ready() -> void:
@@ -85,7 +85,7 @@ func data_save() -> void:
 	data.store_64(selected_skin)
 	data.store_var(owned_skins)
 	
-	data.store_var(acheivements)
+	data.store_var(achievements)
 	
 	data.store_64(total_kills)
 
@@ -104,7 +104,7 @@ func data_load() -> void:
 	selected_skin = data.get_64() as Player.PlayerType
 	owned_skins = data.get_var()
 	
-	acheivements = data.get_var()
+	achievements = data.get_var()
 	
 	total_kills = data.get_64()
 

@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		time_label.text = "%.2fs" % time
 	
 	if time >= 60.0 and not has_moved:
-		Acheivement.give_acheivement(Acheivement.AcheivementType.DontMove)
+		Achievement.give_achievement(Achievement.AchievementType.DontMove)
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -109,5 +109,5 @@ func _on_player_objective_ui_finished() -> void:
 
 func _on_player_died() -> void:
 	if time >= 30.0 and not has_fired:
-		Acheivement.give_acheivement(Acheivement.AcheivementType.Nihilism)
+		Achievement.give_achievement(Achievement.AchievementType.Nihilism)
 	game_over_menu.game_over(time, PlayerData.money - initial_money, kill_count)

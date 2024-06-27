@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br2ue64a06au"]
 
-[ext_resource type="Script" path="res://autoloads/acheivement/acheivement.gd" id="1_behsh"]
+[ext_resource type="Script" path="res://autoloads/achievement/achievement.gd" id="1_vyses"]
 
 [sub_resource type="Animation" id="Animation_1ox7v"]
 length = 0.001
@@ -39,7 +39,7 @@ _data = {
 "pop": SubResource("Animation_slqjp")
 }
 
-[node name="Acheivement" type="Control"]
+[node name="Achievement" type="Control"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -48,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("1_behsh")
+script = ExtResource("1_vyses")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -59,14 +59,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 189.0
-offset_top = 365.0
-offset_right = 480.0
-offset_bottom = 414.0
+offset_left = -291.0
+offset_top = 5.0
+offset_bottom = 54.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "i need to make this popup look better
-but wow you got an acheivement"
+but wow you got an achievement"
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Label"]
 show_behind_parent = true

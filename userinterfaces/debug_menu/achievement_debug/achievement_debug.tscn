@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cu5r5jhv6p0op"]
 
-[ext_resource type="Script" path="res://userinterfaces/debug_menu/acheivement_debug/acheivement_debug.gd" id="1_diun2"]
+[ext_resource type="Script" path="res://userinterfaces/debug_menu/achievement_debug/achievement_debug.gd" id="1_diun2"]
 
-[node name="AcheivementDebug" type="VBoxContainer"]
+[node name="AchievementDebug" type="VBoxContainer"]
 offset_right = 8.0
 offset_bottom = 8.0
 script = ExtResource("1_diun2")

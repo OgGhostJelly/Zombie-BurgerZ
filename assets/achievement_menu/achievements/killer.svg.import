@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b76i02wa58hxu"
-path="res://.godot/imported/???.svg-b74fd808fd9922b3ddef674342392ba0.ctex"
+uid="uid://7fse00racpm2"
+path="res://.godot/imported/killer.svg-cc9d7f77b8f28b8c6d06bf160f71942f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/???.svg"
-dest_files=["res://.godot/imported/???.svg-b74fd808fd9922b3ddef674342392ba0.ctex"]
+source_file="res://assets/achievement_menu/achievements/killer.svg"
+dest_files=["res://.godot/imported/killer.svg-cc9d7f77b8f28b8c6d06bf160f71942f.ctex"]
 
 [params]
 

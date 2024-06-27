@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eywok23xutfu"
-path="res://.godot/imported/locked.svg-03852b861eacb765a048dacb617377ea.ctex"
+uid="uid://bg4qi32y5hxj0"
+path="res://.godot/imported/people_person.svg-b88c9d33c9452811f6116de03f4d7b6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/locked.svg"
-dest_files=["res://.godot/imported/locked.svg-03852b861eacb765a048dacb617377ea.ctex"]
+source_file="res://assets/achievement_menu/achievements/people_person.svg"
+dest_files=["res://.godot/imported/people_person.svg-b88c9d33c9452811f6116de03f4d7b6d.ctex"]
 
 [params]
 

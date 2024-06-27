@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb8k1lgy7a0w2"
-path="res://.godot/imported/deal.svg-c441e9ed6fa9b16dea297fdb83a11e60.ctex"
+uid="uid://dpnjoqv2kvh0w"
+path="res://.godot/imported/nihilism.svg-561b14632fad6d86e8da9d1dbb1ce269.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/deal.svg"
-dest_files=["res://.godot/imported/deal.svg-c441e9ed6fa9b16dea297fdb83a11e60.ctex"]
+source_file="res://assets/achievement_menu/achievements/nihilism.svg"
+dest_files=["res://.godot/imported/nihilism.svg-561b14632fad6d86e8da9d1dbb1ce269.ctex"]
 
 [params]
 

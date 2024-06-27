@@ -1,7 +1,7 @@
 extends Node
 
 
-enum AcheivementType {
+enum AchievementType {
 	Kill10,
 	Kill50,
 	Kill100,
@@ -23,121 +23,121 @@ enum AcheivementType {
 
 
 var data: Dictionary = {
-	AcheivementType.Kill10: {
+	AchievementType.Kill10: {
 		name = "Youre Hired",
 		description = "kill 10 zombers in one run",
-		texture = preload("res://assets/acheivement_menu/acheivements/youre_hired.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/youre_hired.svg"),
 	},
-	AcheivementType.Kill50: {
+	AchievementType.Kill50: {
 		name = "Easy.",
 		description = "kill 50 zombers in one run",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
-	AcheivementType.Kill100: {
+	AchievementType.Kill100: {
 		name = "Agent 47",
 		description = "kill 100 zombers in one run",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
-	AcheivementType.TotalKill500: {
+	AchievementType.TotalKill500: {
 		name = "Jenny Side",
 		description = "kill 500 zombers in total",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
-	AcheivementType.TotalKill1000: {
+	AchievementType.TotalKill1000: {
 		name = "1000!",
 		description = "kill 1000 zombers in total",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
-	AcheivementType.TotalKill10000: {
+	AchievementType.TotalKill10000: {
 		name = "Agrostophobic",
 		description = "kill 10000 zombers in total",
-		texture = preload("res://assets/acheivement_menu/acheivements/agrostophobic.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/agrostophobic.svg"),
 	},
 	
-	AcheivementType.Money100: {
+	AchievementType.Money100: {
 		name = "Business Man in business land",
 		description = "earn 100 money in total",
-		texture = preload("res://assets/acheivement_menu/acheivements/business_man.svg")
+		texture = preload("res://assets/achievement_menu/achievements/business_man.svg")
 	},
-	AcheivementType.Money1000: {
+	AchievementType.Money1000: {
 		name = "Soliciter",
 		description = "earn 1000 money in total",
-		texture = preload("res://assets/acheivement_menu/acheivements/business_man.svg")
+		texture = preload("res://assets/achievement_menu/achievements/business_man.svg")
 	},
-	AcheivementType.Money10000: {
+	AchievementType.Money10000: {
 		name = "Microsoft",
 		description = "earn 10000 money in total",
-		texture = preload("res://assets/acheivement_menu/acheivements/business_man.svg")
+		texture = preload("res://assets/achievement_menu/achievements/business_man.svg")
 	},
 	
-	AcheivementType.EveryGun: {
+	AchievementType.EveryGun: {
 		name = "Arms Dealer",
 		description = "have every gun",
-		texture = preload("res://assets/acheivement_menu/acheivements/arms_dealer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/arms_dealer.svg"),
 	},
-	AcheivementType.EverySkin: {
+	AchievementType.EverySkin: {
 		name = "People Person",
 		description = "have every skin",
-		texture = preload("res://assets/acheivement_menu/acheivements/people_person.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/people_person.svg"),
 	},
-	AcheivementType.BuyEverything: {
+	AchievementType.BuyEverything: {
 		name = "Sold Out",
 		description = "buy every item in the shop",
-		texture = preload("res://assets/acheivement_menu/acheivements/sold_out.svg")
+		texture = preload("res://assets/achievement_menu/achievements/sold_out.svg")
 	},
 	
-	AcheivementType.TripleKill: {
+	AchievementType.TripleKill: {
 		name = "3 Birds 1 Stone",
 		description = "kill three zombies with one bullet",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
-	AcheivementType.QuintuplePierce: {
+	AchievementType.QuintuplePierce: {
 		name = "Ready-Aim-Fire",
 		description = "pierce five zombies with one bullet",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
 	
-	AcheivementType.DontMove: {
+	AchievementType.DontMove: {
 		name = "Potato",
 		description = "survive 60 seconds without moving",
-		texture = preload("res://assets/acheivement_menu/acheivements/killer.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
-	AcheivementType.Nihilism: {
+	AchievementType.Nihilism: {
 		name = "nihilism",
 		locked_name = "???",
 		description = "it doesnt matter anyway",
 		locked_description = "???",
-		texture = preload("res://assets/acheivement_menu/acheivements/nihilism.svg"),
-		locked_texture = preload("res://assets/acheivement_menu/acheivements/???.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/nihilism.svg"),
+		locked_texture = preload("res://assets/achievement_menu/achievements/???.svg"),
 	},
 	
-	AcheivementType.DevSkins: {
+	AchievementType.DevSkins: {
 		name = "Meet The Devs",
 		description = "wait where did you get that?",
-		texture = preload("res://assets/acheivement_menu/acheivements/dev_skin.svg"),
+		texture = preload("res://assets/achievement_menu/achievements/dev_skin.svg"),
 	}
 }
 
 
-signal gave_acheivement(acheivement: AcheivementType)
+signal gave_achievement(achievement: AchievementType)
 
 
 func _ready() -> void:
 	PlayerData.total_kills_changed.connect(func():
 		if PlayerData.total_kills >= 500:
-			give_acheivement(AcheivementType.TotalKill500)
+			give_achievement(AchievementType.TotalKill500)
 		if PlayerData.total_kills >= 1000:
-			give_acheivement(AcheivementType.TotalKill1000)
+			give_achievement(AchievementType.TotalKill1000)
 		if PlayerData.total_kills >= 10_000:
-			give_acheivement(AcheivementType.TotalKill10000))
+			give_achievement(AchievementType.TotalKill10000))
 	
 	PlayerData.total_money_changed.connect(func():
 		if PlayerData.total_money >= 100:
-			give_acheivement(AcheivementType.Money100)
+			give_achievement(AchievementType.Money100)
 		if PlayerData.total_money >= 1000:
-			give_acheivement(AcheivementType.Money1000)
+			give_achievement(AchievementType.Money1000)
 		if PlayerData.total_money >= 10_000:
-			give_acheivement(AcheivementType.Money10000))
+			give_achievement(AchievementType.Money10000))
 	
 	PlayerData.owned_skins_changed.connect(func():
 		check_every_skin()
@@ -149,13 +149,13 @@ func _ready() -> void:
 		check_buy_everything()
 		check_dev_skin())
 	
-	gave_acheivement.connect(func(_a):
-		check_acheivement_items())
+	gave_achievement.connect(func(_a):
+		check_achievement_items())
 
 
 func check_every_gun() -> void:
 	if Gun.GunType.values().all(func(value): return PlayerData.owned_guns.has(value)):
-		give_acheivement(AcheivementType.EveryGun)
+		give_achievement(AchievementType.EveryGun)
 
 
 func check_every_skin() -> void:
@@ -163,7 +163,7 @@ func check_every_skin() -> void:
 		if value == Player.PlayerType.OgGhostJelly or value == Player.PlayerType.SirF_:
 			return true
 		return PlayerData.has_skin(value)):
-		give_acheivement(AcheivementType.EverySkin)
+		give_achievement(AchievementType.EverySkin)
 
 
 func check_buy_everything() -> void:
@@ -177,24 +177,24 @@ func check_buy_everything() -> void:
 				return true
 			return PlayerData.has_skin(value))
 	):
-		give_acheivement(AcheivementType.BuyEverything)
+		give_achievement(AchievementType.BuyEverything)
 
 
 func check_dev_skin() -> void:
 	if PlayerData.owned_skins.has(Player.PlayerType.OgGhostJelly):
-		give_acheivement(AcheivementType.DevSkins)
+		give_achievement(AchievementType.DevSkins)
 	elif PlayerData.owned_skins.has(Player.PlayerType.SirF_):
-		give_acheivement(AcheivementType.DevSkins)
+		give_achievement(AchievementType.DevSkins)
 
 
-func check_acheivement_items() -> void:
-	if has_acheivement(AcheivementType.TripleKill):
+func check_achievement_items() -> void:
+	if has_achievement(AchievementType.TripleKill):
 		PlayerData.try_add_gun(Gun.GunType.SniperRifle)
 	
-	if has_acheivement(AcheivementType.Nihilism):
+	if has_achievement(AchievementType.Nihilism):
 		PlayerData.try_add_skin(Player.PlayerType.Blackhole)
 	
-	if has_acheivement(AcheivementType.DevSkins):
+	if has_achievement(AchievementType.DevSkins):
 		PlayerData.try_add_skin(Player.PlayerType.OgGhostJelly)
 		PlayerData.try_add_skin(Player.PlayerType.SirF_)
 
@@ -205,11 +205,11 @@ func _process(_delta: float) -> void:
 		return
 	
 	if level.kill_count >= 10:
-		give_acheivement(AcheivementType.Kill10)
+		give_achievement(AchievementType.Kill10)
 	if level.kill_count >= 50:
-		give_acheivement(AcheivementType.Kill50)
+		give_achievement(AchievementType.Kill50)
 	if level.kill_count >= 100:
-		give_acheivement(AcheivementType.Kill100)
+		give_achievement(AchievementType.Kill100)
 	
 	for node in get_tree().get_nodes_in_group(&"bullets"):
 		var bullet: Bullet = node as Bullet
@@ -217,20 +217,20 @@ func _process(_delta: float) -> void:
 			return
 		
 		if bullet.kills >= 3:
-			give_acheivement(AcheivementType.TripleKill)
+			give_achievement(AchievementType.TripleKill)
 		if bullet.hits >= 5:
-			give_acheivement(AcheivementType.QuintuplePierce)
+			give_achievement(AchievementType.QuintuplePierce)
 
 
-func has_acheivement(value: AcheivementType) -> bool:
-	return PlayerData.acheivements.has(value)
+func has_achievement(value: AchievementType) -> bool:
+	return PlayerData.achievements.has(value)
 
 
-func give_acheivement(value: AcheivementType) -> void:
-	if has_acheivement(value):
+func give_achievement(value: AchievementType) -> void:
+	if has_achievement(value):
 		return
 	
 	$AnimationPlayer.play("pop")
-	PlayerData.acheivements[value] = true
+	PlayerData.achievements[value] = true
 	PlayerData.data_save()
-	gave_acheivement.emit(value)
+	gave_achievement.emit(value)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cawh73y3t3rwv"
-path="res://.godot/imported/agrostophobic.svg-75325059b98e27ec3ace6f10c78196c0.ctex"
+uid="uid://b0graisipnlb6"
+path="res://.godot/imported/dev_skin.svg-93a83b9d64d9edfd71cad392e0f0a0ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/agrostophobic.svg"
-dest_files=["res://.godot/imported/agrostophobic.svg-75325059b98e27ec3ace6f10c78196c0.ctex"]
+source_file="res://assets/achievement_menu/achievements/dev_skin.svg"
+dest_files=["res://.godot/imported/dev_skin.svg-93a83b9d64d9edfd71cad392e0f0a0ce.ctex"]
 
 [params]
 

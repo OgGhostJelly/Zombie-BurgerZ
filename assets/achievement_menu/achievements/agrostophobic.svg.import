@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpnjoqv2kvh0w"
-path="res://.godot/imported/nihilism.svg-ced125b4b9327098287f974061dd8737.ctex"
+uid="uid://cawh73y3t3rwv"
+path="res://.godot/imported/agrostophobic.svg-81434a0c94f042e3d9be31827e5c89d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/acheivement_menu/acheivements/nihilism.svg"
-dest_files=["res://.godot/imported/nihilism.svg-ced125b4b9327098287f974061dd8737.ctex"]
+source_file="res://assets/achievement_menu/achievements/agrostophobic.svg"
+dest_files=["res://.godot/imported/agrostophobic.svg-81434a0c94f042e3d9be31827e5c89d0.ctex"]
 
 [params]
 
