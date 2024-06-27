@@ -15,5 +15,15 @@ text = "Unlock"
 layout_mode = 2
 text = "Unlock All"
 
+[node name="Lock" type="Button" parent="."]
+layout_mode = 2
+text = "Lock"
+
+[node name="LockAll" type="Button" parent="."]
+layout_mode = 2
+text = "LockAll"
+
 [connection signal="pressed" from="Unlock" to="." method="_on_unlock_pressed"]
 [connection signal="pressed" from="UnlockAll" to="." method="_on_unlock_all_pressed"]
+[connection signal="pressed" from="Lock" to="." method="_on_lock_pressed"]
+[connection signal="pressed" from="LockAll" to="." method="_on_lock_all_pressed"]

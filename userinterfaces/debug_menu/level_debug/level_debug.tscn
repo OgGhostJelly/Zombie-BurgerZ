@@ -11,5 +11,30 @@ script = ExtResource("1_d88hx")
 layout_mode = 2
 text = "Invulnerable"
 
+[node name="InfiniteAmmo" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Infinite Ammo"
+
+[node name="InstantReload" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Instant Reload"
+
+[node name="SpawnTime" type="SpinBox" parent="."]
+layout_mode = 2
+min_value = 0.01
+step = 0.01
+value = 0.01
+allow_greater = true
+prefix = "SpwnSpd"
+custom_arrow_step = 0.1
+
+[node name="GiveHealth" type="Button" parent="."]
+layout_mode = 2
+text = "Give Health"
+
 [node name="SpawnTimerLabel" type="Label" parent="."]
 layout_mode = 2
+
+[connection signal="toggled" from="Invulnerable" to="." method="_on_invulnerable_toggled"]
+[connection signal="value_changed" from="SpawnTime" to="." method="_on_spawn_time_value_changed"]
+[connection signal="pressed" from="GiveHealth" to="." method="_on_give_health_pressed"]

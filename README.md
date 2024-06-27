@@ -1,11 +1,7 @@
-- enemy about to appear indicator
-- smg recoil or tap fire (idea: start timer when holding. stop timer when not holding. percentage of timer is percantage of spread)
-- 3 birds 1 stone should work with all shotgun shrapnels
-- slow mo bullet time when shooting
-- more dev cheats
 - import/export saves
 - save.bak or slots
 - try wave-like system
+- (difficulty setting menu with maximum control but lower difficulty = less reward, gun sights indicator)
 - (could have secondary weapons?)
-- (difficulty setting menu with maximum control but lower difficulty = less reward)
 - (bestiary)
+- (slow mo bullet time when shooting)

@@ -117,7 +117,18 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	global_position = global_position.clamp(Vector2.ZERO, Vector2(480.0, 360.0))
+	if global_position.x < 0.0:
+		global_position.x = 0.0
+		velocity.x = 0.0
+	if global_position.x > 480.0:
+		global_position.x = 480.0
+		velocity.x = 0.0
+	if global_position.y < 0.0:
+		global_position.y = 0.0
+		velocity.y = 0.0
+	if global_position.y > 360.0:
+		global_position.y = 360.0
+		velocity.y = 0.0
 	
 	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
 	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)

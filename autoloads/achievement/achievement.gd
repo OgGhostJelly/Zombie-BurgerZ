@@ -16,6 +16,7 @@ enum AchievementType {
 	BuyEverything,
 	TripleKill,
 	QuintuplePierce,
+	TenPierce,
 	DontMove,
 	Nihilism,
 	DevSkins,
@@ -94,6 +95,11 @@ var data: Dictionary = {
 	AchievementType.QuintuplePierce: {
 		name = "Ready-Aim-Fire",
 		description = "pierce five zombies with one bullet",
+		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
+	},
+	AchievementType.TenPierce: {
+		name = "Tenetehara Pierce",
+		description = "ten zombers. is this even possible?",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
 	
@@ -199,27 +205,46 @@ func check_achievement_items() -> void:
 		PlayerData.try_add_skin(Player.PlayerType.SirF_)
 
 
+var level: Level = null
 func _process(_delta: float) -> void:
-	var level: Level = get_tree().current_scene as Level
+	if is_instance_valid(level):
+		return
+	level = get_tree().current_scene as Level
 	if level == null:
 		return
 	
-	if level.kill_count >= 10:
-		give_achievement(AchievementType.Kill10)
-	if level.kill_count >= 50:
-		give_achievement(AchievementType.Kill50)
-	if level.kill_count >= 100:
-		give_achievement(AchievementType.Kill100)
+	level.kill_count_changed.connect(func() -> void:
+		if level.kill_count >= 10:
+			give_achievement(AchievementType.Kill10)
+		if level.kill_count >= 50:
+			give_achievement(AchievementType.Kill50)
+		if level.kill_count >= 100:
+			give_achievement(AchievementType.Kill100))
 	
-	for node in get_tree().get_nodes_in_group(&"bullets"):
-		var bullet: Bullet = node as Bullet
-		if bullet == null:
-			return
-		
-		if bullet.kills >= 3:
-			give_achievement(AchievementType.TripleKill)
-		if bullet.hits >= 5:
-			give_achievement(AchievementType.QuintuplePierce)
+	level.player.gun.fired.connect(func(bullets: Array[Node]) -> void:
+		for node in bullets:
+			var bullet: Bullet = node as Bullet
+			if bullet == null:
+				return
+			
+			bullet.checked_hit.connect(func(_a):
+				var hits: int = bullets \
+					.filter(func(v): return is_instance_valid(v)) \
+					.reduce(func(a, b): return a + b.hits, 0)
+				if hits >= 5:
+					give_achievement(AchievementType.QuintuplePierce)
+				if hits >= 10:
+					give_achievement(AchievementType.TenPierce)
+			)
+			
+			bullet.killed.connect(func(_a):
+				var kills: int = bullets \
+					.filter(func(v): return is_instance_valid(v)) \
+					.reduce(func(a, b): return a + b.kills, 0)
+				if kills >= 3:
+					give_achievement(AchievementType.TripleKill)
+			)
+	)
 
 
 func has_achievement(value: AchievementType) -> bool:

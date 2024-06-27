@@ -15,6 +15,7 @@ signal kill_count_changed
 @onready var time_label: Label = $FrontLayer/Time/TimeLabel
 @onready var kill_count_label: Label = $FrontLayer/KillCount/KillCountLabel
 @onready var game_over_menu: Control = $FrontLayer/GameOverMenu
+@onready var next_spawn: Node2D = get_next_spawn()
 
 
 var initial_money: int = 0
@@ -27,6 +28,7 @@ var wave: int = 0
 var kill_count_req: int = 20
 var has_moved: bool = false
 var has_fired: bool = false
+var has_indicator: bool = false
 
 
 func _init() -> void:
@@ -59,9 +61,21 @@ func _process(delta: float) -> void:
 	
 	if time >= 60.0 and not has_moved:
 		Achievement.give_achievement(Achievement.AchievementType.DontMove)
+	
+	if not spawn_timer.is_stopped() and spawn_timer.time_left <= 0.5 and not has_indicator:
+		var indicator: Node2D = preload("res://objects/enemy_indicator/enemy_indicator.tscn").instantiate()
+		indicator.global_position = next_spawn.global_position
+		add_child(indicator)
+		has_indicator = true
 
 
 func _on_spawn_timer_timeout() -> void:
+	enemies.add_child(next_spawn)
+	next_spawn = get_next_spawn()
+	has_indicator = false
+
+
+func get_next_spawn() -> Node2D:
 	var enemy: PackedScene = enemy_scenes.slice(0, wave + 1).pick_random()
 	if enemy == null:
 		return
@@ -94,7 +108,7 @@ func _on_spawn_timer_timeout() -> void:
 		file.store_line('')
 		obj.speed *= 4
 	
-	enemies.add_child(obj)
+	return obj
 
 
 func _on_player_objective_ui_finished() -> void:
