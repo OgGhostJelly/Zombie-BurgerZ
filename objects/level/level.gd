@@ -97,8 +97,8 @@ func get_next_spawn() -> Node2D:
 				call_deferred(&"add_child", money)
 			
 			kill_count_req *= 2
-			wave = mini(wave + 1, 2)
-			if wave >= 2:
+			wave = mini(wave + 1, enemy_scenes.size() - 1)
+			if wave >= enemy_scenes.size() - 1:
 				spawn_timer.wait_time *= 0.9
 		
 		kill_count_label.text = "%s/%s" % [kill_count, kill_count_req])

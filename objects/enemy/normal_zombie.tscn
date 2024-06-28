@@ -66,4 +66,4 @@ money_count = Vector2i(1, 2)
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_qklno")
-animation = &"walk2"
+animation = &"walk0"

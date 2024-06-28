@@ -5,6 +5,8 @@ class_name Enemy
 @export var speeds: float = 45.0
 @export var money_count: Vector2i = Vector2i.ZERO
 @export var skin_pierce_strength: int = 0
+@export var face_left_offset: Vector2 = Vector2(-22.0, 0.0)
+
 
 @onready var context_steerer: ContextSteerer = $ContextSteerer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -14,6 +16,7 @@ class_name Enemy
 
 var killer: Bullet
 var speed: float
+var is_dead: bool = false
 
 
 func _ready() -> void:
@@ -38,7 +41,7 @@ func _process(_delta: float) -> void:
 	animated_sprite.flip_h = context_steerer.direction.angle() < -PI/2.0 or context_steerer.direction.angle() > PI/2.0
 	
 	animated_sprite.offset = (
-		Vector2(-22.0, 0.0)
+		face_left_offset
 		if animated_sprite.flip_h else
 		Vector2.ZERO
 	)
@@ -47,6 +50,11 @@ func _process(_delta: float) -> void:
 
 
 func _die() -> void:
+	if is_dead:
+		return
+	
+	is_dead = true
+	
 	var debris: Node2D = preload("res://objects/enemy_debris/enemy_debris.tscn").instantiate()
 	debris.global_position = global_position
 	animated_sprite.reparent(debris)
@@ -71,9 +79,16 @@ func _drop(scene: PackedScene, amount: int) -> void:
 
 
 func _on_hit_detector_hurt(info: HitInfo2D) -> void:
+	if is_invincible():
+		return
+	
 	hit_audio.play()
 	health.value -= info.hitbox.root.damage
 	hurtbox.hurt_info = HurtInfo2D.new()
+
+
+func is_invincible() -> bool:
+	return false
 
 
 func _on_hit_player() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=15 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemy/big_zombie.tscn" id="2_gxf2g"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dkp8bvuiunr06" path="res://assets/level/kill.png" id="11_cnqjh"]
 [ext_resource type="PackedScene" uid="uid://dt8rhgue47ifu" path="res://userinterfaces/debug_menu/level_debug/level_debug.tscn" id="11_linol"]
 [ext_resource type="PackedScene" uid="uid://dbft6lalpctsx" path="res://userinterfaces/pause_menu/pause_menu.tscn" id="12_olpbo"]
+[ext_resource type="PackedScene" uid="uid://s5g667fsm0oj" path="res://objects/enemy/splitter_zombie.tscn" id="13_lpwbq"]
 
 [sub_resource type="Curve2D" id="Curve2D_mo7e7"]
 _data = {
@@ -21,7 +22,7 @@ point_count = 5
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_r6cjg")
-enemy_scenes = Array[PackedScene]([ExtResource("2_rymd6"), ExtResource("2_gxf2g"), ExtResource("2_h8txr")])
+enemy_scenes = Array[PackedScene]([ExtResource("2_rymd6"), ExtResource("2_gxf2g"), ExtResource("2_h8txr"), ExtResource("13_lpwbq")])
 
 [node name="BackLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -98,6 +99,8 @@ player_path = NodePath("../../Player")
 [node name="PauseMenu" parent="FrontLayer" instance=ExtResource("12_olpbo")]
 
 [node name="GameOverMenu" parent="FrontLayer" instance=ExtResource("9_rau86")]
+offset_right = 0.0
+offset_bottom = 0.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="finished" from="FrontLayer/PlayerObjectiveUI" to="." method="_on_player_objective_ui_finished"]

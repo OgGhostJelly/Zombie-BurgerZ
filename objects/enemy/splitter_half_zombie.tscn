@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://blxjjg6npcb72"]
+
+[ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemy/enemy.tscn" id="1_3k7kn"]
+[ext_resource type="Script" path="res://objects/enemy/splitter_half_zombie.gd" id="2_fg4f3"]
+[ext_resource type="Texture2D" uid="uid://dijkc784csah3" path="res://assets/enemy/splitter_half_zombie/zombie-death0.svg" id="3_bgovw"]
+[ext_resource type="Texture2D" uid="uid://dcvp81x0dj18q" path="res://assets/enemy/splitter_half_zombie/zombie-death1.svg" id="4_f1a48"]
+[ext_resource type="Texture2D" uid="uid://ffj72pjc6ire" path="res://assets/enemy/splitter_half_zombie/zombie-death2.svg" id="5_2yo2i"]
+[ext_resource type="Texture2D" uid="uid://bauss042otpd6" path="res://assets/enemy/splitter_half_zombie/zombie0-walk1.svg" id="6_vmetl"]
+[ext_resource type="Texture2D" uid="uid://brpto7lehj1m7" path="res://assets/enemy/splitter_half_zombie/zombie0-walk2.svg" id="7_pwbc5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aabjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bgovw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f1a48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2yo2i")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vmetl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pwbc5")
+}],
+"loop": true,
+"name": &"walk0",
+"speed": 5.0
+}]
+
+[node name="SplitterHalfZombie" instance=ExtResource("1_3k7kn")]
+script = ExtResource("2_fg4f3")
+speeds = 112.5
+money_count = Vector2i(1, 2)
+skin_pierce_strength = 1
+
+[node name="Health" parent="." index="0"]
+max_value = 1
+value = 1
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_aabjy")
+frame = 0
+frame_progress = 0.621619
