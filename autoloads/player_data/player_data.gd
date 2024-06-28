@@ -17,6 +17,7 @@ signal owned_skins_changed
 @export var total_kills: int = 0: set = set_total_kills
 @export var main_menu_seen: bool = false
 @export var achievement_menu_seen: bool = false
+var version: int
 
 
 func _ready() -> void:
@@ -93,12 +94,14 @@ func save_to_file(file: FileAccess) -> void:
 func save_as_string() -> String:
 	return JSON.stringify({
 		money = money,
-		selected_gun = selected_gun,
+		total_money = total_money,
+		selected_gun = Gun.GunType.find_key(selected_gun),
 		owned_guns = owned_guns.keys().map(func(value): return Gun.GunType.find_key(value)),
-		selected_skin = selected_skin,
+		selected_skin = Player.PlayerType.find_key(selected_skin),
 		owned_skins = owned_skins.keys().map(func(value): return Player.PlayerType.find_key(value)),
 		achievements = achievements.keys().map(func(value): return Achievement.AchievementType.find_key(value)),
 		total_kills = total_kills,
+		version = version,
 	})
 
 
@@ -121,10 +124,24 @@ func load_from_file(file: FileAccess) -> void:
 
 func load_from_string(string: String) -> void:
 	var data: Dictionary = JSON.parse_string(string)
+	
+	if not data.has("version"):
+		data.version = 1
+	
+	if not data.has("total_money"):
+		data.total_money = 0
+	
+	if not data.selected_gun is String:
+		data.selected_gun = Gun.GunType.keys()[data.selected_gun]
+	if not data.selected_skin is String:
+		data.selected_skin = Player.PlayerType.keys()[data.selected_skin]
+	
 	money = data.money
-	selected_gun = data.selected_gun
-	selected_skin = data.selected_skin
+	total_money = data.total_money
+	selected_gun = Gun.GunType[data.selected_gun]
+	selected_skin = Player.PlayerType[data.selected_skin]
 	total_kills = data.total_kills
+	version = data.version
 	
 	owned_guns.clear()
 	for gun in data.owned_guns:
