@@ -12,3 +12,7 @@ func _ready() -> void:
 
 func is_invincible() -> bool:
 	return super() or invincible
+
+
+func _on_hit_player() -> void:
+	health.value -= 1

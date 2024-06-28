@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 			last_animation = true
 	else:
 		dashing = false
-		Engine.time_scale = 1.2
+		Engine.time_scale = 1.0
 		if last_animation:
 			animation_player.play(&"stop_slowmo")
 			last_animation = false

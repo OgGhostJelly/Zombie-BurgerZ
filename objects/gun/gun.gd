@@ -69,6 +69,7 @@ static var gun_data: Dictionary = {
 
 @export var knockback: float = 0.0
 @export var max_knockback: float = 0.0
+@export var movement_speed_multiplier: float = 1.0
 
 
 @onready var ammo: StatRangeInt = $Ammo
@@ -119,12 +120,17 @@ func can_fire() -> bool:
 	return not animation_player.is_playing()
 
 
-func fire_action() -> bool:
+func is_firing() -> bool:
 	return (
 		Input.is_action_just_pressed(&"fire")
 		if not automatic else
 		Input.is_action_pressed(&"fire")
-	) and fire()
+	)
+
+
+func fire_action() -> bool:
+	return is_firing() and fire()
+
 
 
 func fire() -> bool:

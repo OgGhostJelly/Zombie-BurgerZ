@@ -112,6 +112,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.play(&"walk")
 	
+	velocity *= gun.movement_speed_multiplier
+	
 	if gun.fire_action() and knockback_enabled:
 		velocity = (velocity + -Vector2.from_angle(gun.global_rotation) * gun.knockback).limit_length(velocity.length() + gun.max_knockback)
 	
