@@ -32,9 +32,8 @@ func _on_buy_button_pressed() -> void:
 	if PlayerData.money < Player.player_data[selected].cost:
 		return
 	
-	PlayerData.add_skin(selected)
 	PlayerData.money -= Player.player_data[selected].cost
-	PlayerData.data_save()
+	PlayerData.add_skin(selected)
 	selected = selected
 
 

@@ -87,7 +87,11 @@ func create_backup() -> void:
 
 
 func save_to_file(file: FileAccess) -> void:
-	file.store_string(JSON.stringify({
+	file.store_string(save_as_string())
+
+
+func save_as_string() -> String:
+	return JSON.stringify({
 		money = money,
 		selected_gun = selected_gun,
 		owned_guns = owned_guns.keys().map(func(value): return Gun.GunType.find_key(value)),
@@ -95,7 +99,7 @@ func save_to_file(file: FileAccess) -> void:
 		owned_skins = owned_skins.keys().map(func(value): return Player.PlayerType.find_key(value)),
 		achievements = achievements.keys().map(func(value): return Achievement.AchievementType.find_key(value)),
 		total_kills = total_kills,
-	}))
+	})
 
 
 func data_load() -> void:
@@ -112,7 +116,11 @@ func data_load() -> void:
 
 
 func load_from_file(file: FileAccess) -> void:
-	var data: Dictionary = JSON.parse_string(file.get_as_text())
+	load_from_string(file.get_as_text())
+
+
+func load_from_string(string: String) -> void:
+	var data: Dictionary = JSON.parse_string(string)
 	money = data.money
 	selected_gun = data.selected_gun
 	selected_skin = data.selected_skin

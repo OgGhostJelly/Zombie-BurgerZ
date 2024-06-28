@@ -1,4 +1,4 @@
-- try wave-like system
+- test wave-like system
 - (difficulty setting menu with maximum control but lower difficulty = less reward, gun sights indicator)
 - (could have secondary weapons?)
 - (bestiary)
