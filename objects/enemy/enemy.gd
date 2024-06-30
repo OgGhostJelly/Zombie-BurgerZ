@@ -27,6 +27,15 @@ func _ready() -> void:
 	
 	health.value_changed.connect(func():
 		if health.value > 0: animated_sprite.play(&"walk" + str(health.max_value - health.value)))
+	
+	var total: float = PlayerData.get_money_multiplier()
+	var money_multiplier: int = floor(total)
+	var decimal_part: float = total - money_multiplier
+	if decimal_part > randf():
+		money_multiplier += 1
+	
+	money_count.x *= money_multiplier
+	money_count.y *= money_multiplier
 
 
 func _process(_delta: float) -> void:

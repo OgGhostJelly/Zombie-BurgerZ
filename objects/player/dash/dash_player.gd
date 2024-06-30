@@ -11,9 +11,6 @@ var last_animation: bool = false
 
 func _ready() -> void:
 	super()
-	
-	tree_exiting.connect(func():
-		Engine.time_scale = 1.0)
 
 
 func _process(delta: float) -> void:
@@ -21,14 +18,14 @@ func _process(delta: float) -> void:
 		energy_bar.use()
 	
 	if dashing and velocity.length() > speed + 100.0:
-		Engine.time_scale = 0.5
+		Engine.time_scale = (1.0 + Settings.bonus_game_speed) / 2.0
 		ghost_process(delta)
 		if not last_animation:
 			animation_player.play(&"start_slowmo")
 			last_animation = true
 	else:
 		dashing = false
-		Engine.time_scale = 1.0
+		Engine.time_scale = 1.0 + Settings.bonus_game_speed
 		if last_animation:
 			animation_player.play(&"stop_slowmo")
 			last_animation = false

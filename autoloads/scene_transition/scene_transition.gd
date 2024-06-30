@@ -34,4 +34,5 @@ func _warp() -> void:
 		get_tree().change_scene_to_file(_scene_path)
 	_scene = null
 	_scene_path = ""
+	Engine.time_scale = 1.0
 	get_tree().paused = false

@@ -52,6 +52,8 @@ func _ready() -> void:
 	player.health.value_changed.connect(func():
 		grace_period_timer.start()
 		spawn_timer.paused = true)
+	
+	Engine.time_scale = 1.0 + Settings.bonus_game_speed
 
 
 func _process(delta: float) -> void:

@@ -260,6 +260,8 @@ func give_achievement(value: AchievementType) -> void:
 	if has_achievement(value):
 		return
 	
+	print(AchievementType.find_key(value))
+	
 	$AnimationPlayer.play("pop")
 	PlayerData.achievements[value] = true
 	PlayerData.data_save()

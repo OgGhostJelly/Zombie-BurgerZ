@@ -15,9 +15,14 @@ signal owned_skins_changed
 @export var owned_skins: Dictionary = {Player.PlayerType.Normal:true}
 @export var achievements: Dictionary = {}
 @export var total_kills: int = 0: set = set_total_kills
+
 @export var main_menu_seen: bool = false
 @export var achievement_menu_seen: bool = false
 var version: int
+
+
+func get_money_multiplier() -> float:
+	return 1.0 + (Settings.bonus_game_speed / 2.0)
 
 
 func _ready() -> void:
@@ -127,21 +132,19 @@ func load_from_string(string: String) -> void:
 	
 	if not data.has("version"):
 		data.version = 1
-	
 	if not data.has("total_money"):
 		data.total_money = 0
+	if not data.has("game_speed"):
+		data.game_speed = 1.0
 	
 	if not data.selected_gun is String:
 		data.selected_gun = Gun.GunType.keys()[data.selected_gun]
 	if not data.selected_skin is String:
 		data.selected_skin = Player.PlayerType.keys()[data.selected_skin]
 	
-	money = data.money
-	total_money = data.total_money
-	selected_gun = Gun.GunType[data.selected_gun]
-	selected_skin = Player.PlayerType[data.selected_skin]
-	total_kills = data.total_kills
-	version = data.version
+	achievements.clear()
+	for achievement in data.achievements:
+		achievements[Achievement.AchievementType[achievement]] = true
 	
 	owned_guns.clear()
 	for gun in data.owned_guns:
@@ -151,9 +154,12 @@ func load_from_string(string: String) -> void:
 	for skin in data.owned_skins:
 		owned_skins[Player.PlayerType[skin]] = true
 	
-	achievements.clear()
-	for achievement in data.achievements:
-		achievements[Achievement.AchievementType[achievement]] = true
+	money = data.money
+	total_money = data.total_money
+	selected_gun = Gun.GunType[data.selected_gun]
+	selected_skin = Player.PlayerType[data.selected_skin]
+	total_kills = data.total_kills
+	version = data.version
 
 
 func old_data_load() -> void:
