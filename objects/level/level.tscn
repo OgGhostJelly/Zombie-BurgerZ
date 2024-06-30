@@ -97,6 +97,7 @@ spawn_timer = NodePath("../../SpawnTimer")
 player_path = NodePath("../../Player")
 
 [node name="PauseMenu" parent="FrontLayer" instance=ExtResource("12_olpbo")]
+visible = false
 
 [node name="GameOverMenu" parent="FrontLayer" instance=ExtResource("9_rau86")]
 

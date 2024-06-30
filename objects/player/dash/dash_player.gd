@@ -18,14 +18,14 @@ func _process(delta: float) -> void:
 		energy_bar.use()
 	
 	if dashing and velocity.length() > speed + 100.0:
-		Engine.time_scale = (1.0 + Settings.bonus_game_speed) / 2.0
+		Engine.time_scale = (1.0 + Challenge.get_bonus_game_speed()) / 2.0
 		ghost_process(delta)
 		if not last_animation:
 			animation_player.play(&"start_slowmo")
 			last_animation = true
 	else:
 		dashing = false
-		Engine.time_scale = 1.0 + Settings.bonus_game_speed
+		Engine.time_scale = 1.0 + Challenge.get_bonus_game_speed()
 		if last_animation:
 			animation_player.play(&"stop_slowmo")
 			last_animation = false

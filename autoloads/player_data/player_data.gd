@@ -21,10 +21,6 @@ signal owned_skins_changed
 var version: int
 
 
-func get_money_multiplier() -> float:
-	return 1.0 + (Settings.bonus_game_speed / 2.0)
-
-
 func _ready() -> void:
 	data_load()
 

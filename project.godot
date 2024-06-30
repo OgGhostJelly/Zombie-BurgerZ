@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 SceneTransition="*res://autoloads/scene_transition/scene_transition.tscn"
 PlayerData="*res://autoloads/player_data/player_data.tscn"
 Achievement="*res://autoloads/achievement/achievement.tscn"
-Settings="*res://autoloads/settings/settings.gd"
+Challenge="*res://autoloads/challenge/challenge.gd"
 
 [display]
 

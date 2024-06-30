@@ -2,7 +2,16 @@ extends Control
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var stats_label: Label = $VBoxContainer/StatsLabel
+@onready var stats_label: Label = $Control/VBoxContainer/StatsLabel
+@onready var challenges_label: Label = $Control/ChallengesLabel
+
+
+func _ready() -> void:
+	challenges_label.text = "Game speed %s%%\nNo moving %s\nGun sights %s" % [
+		(100.0 + Challenge.get_bonus_game_speed() * 100.0),
+		("enabled" if Challenge.no_move else "disabled"),
+		("enabled" if Challenge.gun_sights else "disabled"),
+	]
 
 
 func game_over(time: float, money_earnt: int, kill_count: int) -> void:

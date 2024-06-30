@@ -30,10 +30,12 @@ var player: Player
 func _ready() -> void:
 	player = get_node(player_path)
 	
-	var objectives: Array[Objective] = [
-		Objective.new(player.moved, "Move with WASD"),
-		Objective.new(player.gun.fired, "Shoot with LMB"),
-	]
+	var objectives: Array[Objective] = []
+	
+	if not Challenge.no_move:
+		objectives.append(Objective.new(player.moved, "Move with WASD"))
+	
+	objectives.append(Objective.new(player.gun.fired, "Shoot with LMB"))
 	
 	if not player.energy_bar.disabled:
 		objectives.append(Objective.new(player.energy_bar.used, "Ability with RMB"))

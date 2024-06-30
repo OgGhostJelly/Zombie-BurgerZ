@@ -140,6 +140,9 @@ func _physics_process(delta: float) -> void:
 
 
 func get_input_vector() -> Vector2:
+	if Challenge.no_move:
+		return Vector2.ZERO
+	
 	return Input.get_vector(
 		&"move_left",
 		&"move_right",

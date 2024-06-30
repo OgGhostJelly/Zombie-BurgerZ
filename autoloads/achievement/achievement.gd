@@ -105,7 +105,7 @@ var data: Dictionary = {
 	
 	AchievementType.DontMove: {
 		name = "Potato",
-		description = "survive 60 seconds without moving",
+		description = "survive 60 seconds with 'no moving'",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
 	AchievementType.Nihilism: {
@@ -259,8 +259,6 @@ func has_achievement(value: AchievementType) -> bool:
 func give_achievement(value: AchievementType) -> void:
 	if has_achievement(value):
 		return
-	
-	print(AchievementType.find_key(value))
 	
 	$AnimationPlayer.play("pop")
 	PlayerData.achievements[value] = true

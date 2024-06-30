@@ -15,14 +15,14 @@ func _ready() -> void:
 	game_speed_150.button_pressed = false
 	game_speed_200.button_pressed = false
 	
-	match Settings.bonus_game_speed:
-		0.0:
+	match Challenge.game_speed:
+		Challenge.GameSpeed.GameSpeed100:
 			game_speed_100.button_pressed = true
-		0.2:
+		Challenge.GameSpeed.GameSpeed120:
 			game_speed_120.button_pressed = true
-		0.5:
+		Challenge.GameSpeed.GameSpeed150:
 			game_speed_150.button_pressed = true
-		1.0:
+		Challenge.GameSpeed.GameSpeed200:
 			game_speed_200.button_pressed = true
 
 
@@ -36,26 +36,26 @@ func uncheck_all() -> void:
 func _on_game_speed_100_pressed() -> void:
 	uncheck_all()
 	game_speed_100.button_pressed = true
-	Settings.bonus_game_speed = 0.0
+	Challenge.game_speed = Challenge.GameSpeed.GameSpeed100
 	pressed.emit()
 
 
 func _on_game_speed_120_pressed() -> void:
 	uncheck_all()
 	game_speed_120.button_pressed = true
-	Settings.bonus_game_speed = 0.2
+	Challenge.game_speed = Challenge.GameSpeed.GameSpeed120
 	pressed.emit()
 
 
 func _on_game_speed_150_pressed() -> void:
 	uncheck_all()
 	game_speed_150.button_pressed = true
-	Settings.bonus_game_speed = 0.5
+	Challenge.game_speed = Challenge.GameSpeed.GameSpeed150
 	pressed.emit()
 
 
 func _on_game_speed_200_pressed() -> void:
 	uncheck_all()
 	game_speed_200.button_pressed = true
-	Settings.bonus_game_speed = 1.0
+	Challenge.game_speed = Challenge.GameSpeed.GameSpeed200
 	pressed.emit()

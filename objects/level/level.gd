@@ -26,7 +26,6 @@ var kill_count: int = 0:
 var time: float = 0.0
 var wave: int = 0
 var kill_count_req: int = 20
-var has_moved: bool = false
 var has_fired: bool = false
 var has_indicator: bool = false
 
@@ -53,7 +52,7 @@ func _ready() -> void:
 		grace_period_timer.start()
 		spawn_timer.paused = true)
 	
-	Engine.time_scale = 1.0 + Settings.bonus_game_speed
+	Engine.time_scale = 1.0 + Challenge.get_bonus_game_speed()
 
 
 func _process(delta: float) -> void:
@@ -61,7 +60,7 @@ func _process(delta: float) -> void:
 		time += delta
 		time_label.text = "%.2fs" % time
 	
-	if time >= 60.0 and not has_moved:
+	if time >= 60.0 and Challenge.no_move:
 		Achievement.give_achievement(Achievement.AchievementType.DontMove)
 	
 	if not spawn_timer.is_stopped() and spawn_timer.time_left <= 0.5 and not has_indicator:
@@ -116,8 +115,6 @@ func get_next_spawn() -> Node2D:
 func _on_player_objective_ui_finished() -> void:
 	spawn_timer.start()
 	spawn_timer.timeout.connect(func():
-		player.moved.connect(func():
-			has_moved = true)
 		player.gun.fired.connect(func(_a):
 			has_fired = true)
 		, CONNECT_ONE_SHOT)

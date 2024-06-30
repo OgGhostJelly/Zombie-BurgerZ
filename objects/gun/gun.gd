@@ -185,7 +185,7 @@ func spawn_single(amount: int, idx: int, p_global_position: Vector2 = Vector2.ZE
 			if p_global_rotaton != 0.0 else
 			spawn_marker.global_rotation + deg_to_rad(
 				remap(idx + 0.5, 0, amount, -spread, spread)
-				if bullets_per_shot > 1 else
+				if amount > 1 else
 				randf_range(-spread, spread)
 			)
 		),
