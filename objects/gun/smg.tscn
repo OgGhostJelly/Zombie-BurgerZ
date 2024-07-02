@@ -102,6 +102,7 @@ max_spread = 20.0
 firing_movement_speed_multiplier = 0.7
 bullet_scene = ExtResource("2_2koqm")
 automatic = true
+deterministic_spread = false
 knockback = 80.0
 max_knockback = 60.0
 
@@ -124,7 +125,7 @@ libraries = {
 speed_scale = 2.0
 
 [node name="End" parent="." index="4"]
-position = Vector2(37, -4)
+position = Vector2(16, 0)
 
 [node name="Ammo" parent="." index="5"]
 max_value = 5

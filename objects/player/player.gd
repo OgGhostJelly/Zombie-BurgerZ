@@ -69,7 +69,7 @@ static var player_data: Dictionary = {
 @onready var energy_bar: EnergyBar = $EnergyBar
 @onready var hitbox: Area2D = $HitDetector
 @onready var blur_effect: ColorRect = $CanvasLayer/BlurEffect
-@onready var tone_audio: AudioStreamPlayer = $ToneAudio
+@onready var heartbeat_audio: AudioStreamPlayer = $HeartbeatAudio
 
 static var player: Player
 
@@ -135,8 +135,8 @@ func _physics_process(delta: float) -> void:
 	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
 	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)
 	
-	if tone_audio.playing != (health.value <= 1):
-		tone_audio.play()
+	if heartbeat_audio.playing != (health.value <= 1):
+		heartbeat_audio.play()
 
 
 func get_input_vector() -> Vector2:

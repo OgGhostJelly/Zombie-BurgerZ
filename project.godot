@@ -24,9 +24,10 @@ Challenge="*res://autoloads/challenge/challenge.gd"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=360
+window/size/viewport_width=960
+window/size/viewport_height=720
 window/stretch/mode="viewport"
+window/stretch/scale=2.0
 
 [file_customization]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dajayqy7ycoxw"]
 
 [ext_resource type="Script" path="res://objects/gun/gun.gd" id="1_0a6k8"]
+[ext_resource type="PackedScene" uid="uid://bhycnfxye71uf" path="res://objects/gun_sights_indicator/gun_sights_indicator.tscn" id="3_1t7yb"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="3_5xjdg"]
-[ext_resource type="Script" path="res://objects/gun/GunSightsIndicator.gd" id="4_gkal2"]
 [ext_resource type="AudioStream" uid="uid://5duh0ds7hwqy" path="res://assets/gun/pistol/pistol-shoot.wav" id="5_aomsk"]
 
 [sub_resource type="Curve" id="Curve_eigvx"]
@@ -89,8 +89,7 @@ angle_min = -90.0
 angle_max = 90.0
 color_ramp = SubResource("Gradient_msh5n")
 
-[node name="GunSightsIndicator" type="Node2D" parent="End" node_paths=PackedStringArray("gun")]
-script = ExtResource("4_gkal2")
+[node name="GunSightsIndicator" parent="End" node_paths=PackedStringArray("gun") instance=ExtResource("3_1t7yb")]
 gun = NodePath("../..")
 
 [node name="Ammo" type="Node" parent="."]

@@ -14,6 +14,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().paused = visible
 
 
+func pause() -> void:
+	visible = true
+	get_tree().paused = true
+
+
 func _on_resume_button_pressed() -> void:
 	if SceneTransition.is_transitioning():
 		return

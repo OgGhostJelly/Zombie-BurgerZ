@@ -4,5 +4,6 @@
 resource_name = "LowPassFilter"
 
 [resource]
+bus/0/volume_db = -15.2046
 bus/0/effect/0/effect = SubResource("AudioEffectLowPassFilter_fmtev")
 bus/0/effect/0/enabled = false

@@ -16,6 +16,7 @@ signal kill_count_changed
 @onready var kill_count_label: Label = $FrontLayer/KillCount/KillCountLabel
 @onready var game_over_menu: Control = $FrontLayer/GameOverMenu
 @onready var next_spawn: Node2D = get_next_spawn()
+@onready var pause_menu: Control = $FrontLayer/PauseMenu
 
 
 var initial_money: int = 0
@@ -68,6 +69,12 @@ func _process(delta: float) -> void:
 		indicator.global_position = next_spawn.global_position
 		add_child(indicator)
 		has_indicator = true
+
+
+func _notification(what):
+	match what:
+		NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+			pause_menu.pause()
 
 
 func _on_spawn_timer_timeout() -> void:

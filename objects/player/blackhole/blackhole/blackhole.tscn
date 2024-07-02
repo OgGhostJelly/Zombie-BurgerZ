@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxp51n4dggtch"]
+[gd_scene load_steps=16 format=3 uid="uid://bxp51n4dggtch"]
 
 [ext_resource type="Script" path="res://objects/player/blackhole/blackhole/blackhole.gd" id="1_l7bmw"]
 [ext_resource type="Texture2D" uid="uid://dupyc03b4stic" path="res://assets/player/blackhole_player/blackhole.svg" id="2_fd25f"]
 [ext_resource type="AudioStream" uid="uid://22wtple1f42e" path="res://assets/player/blackhole_player/synth.wav" id="3_b6rl3"]
+[ext_resource type="Shader" path="res://objects/player/blackhole/blackhole/glitch.gdshader" id="4_l6f3a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_so6j7"]
 
@@ -28,6 +29,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_xb0mm"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8caab"]
@@ -67,35 +97,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-80.0, -30.0]
-}
-
-[sub_resource type="Animation" id="Animation_xb0mm"]
-resource_name = "die"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rrk3i"]
@@ -190,6 +191,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2itt4"]
 radius = 256.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o8di"]
+shader = ExtResource("4_l6f3a")
+shader_parameter/shake_power = 0.01
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 122.0
+shader_parameter/shake_color_rate = 0.01
+
 [node name="Blackhole" type="Area2D"]
 z_index = -1
 material = SubResource("ShaderMaterial_so6j7")
@@ -213,9 +222,6 @@ offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_vf6t6")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
 
 [node name="SpawnAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -258,5 +264,16 @@ stream = ExtResource("3_b6rl3")
 volume_db = -55.0
 pitch_scale = 1.2
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="GlitchEffect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_2o8di")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

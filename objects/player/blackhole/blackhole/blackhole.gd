@@ -18,6 +18,9 @@ func _process(delta: float) -> void:
 			node.global_position.distance_to(global_position) *
 			delta
 		)
+	
+	var camera: Camera2D = get_viewport().get_camera_2d()
+	camera.zoom = camera.zoom.lerp(Vector2(1.1, 1.1), 1.0 - pow(0.3, delta))
 
 
 func _on_life_timer_timeout() -> void:

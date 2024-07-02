@@ -111,6 +111,9 @@ position = Vector2(-37.9999, 8.00021)
 volume_db = 0.0
 pitch_scale = 0.4
 
+[node name="End" parent="." index="3"]
+position = Vector2(43, -4)
+
 [node name="Ammo" parent="." index="4"]
 max_value = 1
 value = 1

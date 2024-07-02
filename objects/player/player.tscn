@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://og338o612gh3" path="res://objects/energy_bar/energy_bar.tscn" id="11_3scvw"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="PackedScene" uid="uid://bv8qbklcmdk5x" path="res://userinterfaces/ammo_ui/ammo_ui.tscn" id="11_nsf5n"]
-[ext_resource type="Shader" path="res://objects/player/trapper/blur.gdshader" id="12_40ens"]
+[ext_resource type="Shader" path="res://objects/player/blackhole/blackhole/blur.gdshader" id="12_0yf24"]
 [ext_resource type="AudioStream" uid="uid://ci0nk74akv7ps" path="res://assets/player/heartbeat.mp3" id="13_12oyt"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="15_7piqp"]
@@ -49,8 +49,8 @@ stream_0/stream = ExtResource("13_26jhs")
 stream_0/weight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idpd6"]
-shader = ExtResource("12_40ens")
-shader_parameter/lod = 0.5
+shader = ExtResource("12_0yf24")
+shader_parameter/lod = 0.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_layer = 2
@@ -130,7 +130,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ToneAudio" type="AudioStreamPlayer" parent="."]
+[node name="HeartbeatAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_12oyt")
 volume_db = -20.0
 

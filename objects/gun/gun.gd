@@ -66,6 +66,7 @@ static var gun_data: Dictionary = {
 @export var bullet_scene: PackedScene
 ## Whether this gun is an automatic.
 @export var automatic: bool = false
+@export var deterministic_spread: bool = true
 
 @export var knockback: float = 0.0
 @export var max_knockback: float = 0.0
@@ -185,7 +186,7 @@ func spawn_single(amount: int, idx: int, p_global_position: Vector2 = Vector2.ZE
 			if p_global_rotaton != 0.0 else
 			spawn_marker.global_rotation + deg_to_rad(
 				remap(idx + 0.5, 0, amount, -spread, spread)
-				if amount > 1 else
+				if deterministic_spread else
 				randf_range(-spread, spread)
 			)
 		),

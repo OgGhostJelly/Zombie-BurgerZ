@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(&"special") and blackhole_count <= 2:
+	if Input.is_action_just_pressed(&"special") and blackhole_count <= 1:
 		energy_bar.use()
 
 
