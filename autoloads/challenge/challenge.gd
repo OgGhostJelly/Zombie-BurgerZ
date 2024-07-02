@@ -14,7 +14,11 @@ enum GameSpeed {
 
 
 func get_bonus_game_speed() -> float:
-	match game_speed:
+	return bonus_game_speed(game_speed)
+
+
+func bonus_game_speed(speed: GameSpeed) -> float:
+	match speed:
 		GameSpeed.GameSpeed100:
 			return 0.0
 		GameSpeed.GameSpeed120:
@@ -27,8 +31,12 @@ func get_bonus_game_speed() -> float:
 	return 0.0
 
 
+func game_speed_money_bonus(speed: GameSpeed) -> float:
+	return (Challenge.bonus_game_speed(speed) / 2.0)
+
+
 func get_money_multiplier() -> float:
-	var game_speed_bonus: float = (Challenge.get_bonus_game_speed() / 2.0)
+	var game_speed_bonus: float = game_speed_money_bonus(game_speed)
 	var no_move_bonus: float = 0.5 if Challenge.no_move else 0.0
 	var gun_sights_bonus: float = -0.1 if Challenge.gun_sights else 0.0
 	return 1.0 + game_speed_bonus + no_move_bonus + gun_sights_bonus

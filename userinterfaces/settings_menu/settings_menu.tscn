@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://caa0ygojdeydk"]
+[gd_scene load_steps=9 format=3 uid="uid://caa0ygojdeydk"]
 
 [ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="1_ogwgu"]
 [ext_resource type="Script" path="res://userinterfaces/settings_menu/settings_menu.gd" id="1_vbv6n"]
 [ext_resource type="Texture2D" uid="uid://b8q148tiayiq7" path="res://assets/shop_menu/back.png" id="2_inphv"]
 [ext_resource type="PackedScene" uid="uid://c5obkqmabqwoh" path="res://userinterfaces/settings_menu/save_menu/save_menu.tscn" id="4_c38ui"]
+[ext_resource type="PackedScene" uid="uid://dvg0tflkqf0ud" path="res://userinterfaces/settings_menu/volume/volume.tscn" id="5_df0om"]
 [ext_resource type="Texture2D" uid="uid://bomet1rbb5byq" path="res://assets/money.svg" id="7_im364"]
 [ext_resource type="PackedScene" uid="uid://dq5whna00p574" path="res://userinterfaces/settings_menu/game_speed/game_speed.tscn" id="7_mynse"]
 
@@ -74,11 +75,12 @@ offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameSpeed" parent="Challenges" instance=ExtResource("7_mynse")]
+[node name="Volume" parent="Challenges" instance=ExtResource("5_df0om")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="Challenges"]
+[node name="GameSpeed" parent="Challenges" instance=ExtResource("7_mynse")]
 layout_mode = 2
+size_flags_horizontal = 1
 
 [node name="NoMoving" type="HBoxContainer" parent="Challenges"]
 layout_mode = 2
@@ -104,9 +106,6 @@ vertical_alignment = 1
 layout_mode = 2
 text = "No Moving"
 
-[node name="HSeparator2" type="HSeparator" parent="Challenges"]
-layout_mode = 2
-
 [node name="GunSights" type="HBoxContainer" parent="Challenges"]
 layout_mode = 2
 
@@ -130,9 +129,6 @@ vertical_alignment = 1
 [node name="GunSights" type="CheckBox" parent="Challenges/GunSights"]
 layout_mode = 2
 text = "Gun Sights"
-
-[node name="HSeparator3" type="HSeparator" parent="Challenges"]
-layout_mode = 2
 
 [node name="SquibblysCheckBox" type="CheckBox" parent="Challenges"]
 layout_mode = 2

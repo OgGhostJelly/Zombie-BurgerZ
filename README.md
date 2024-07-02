@@ -4,7 +4,7 @@
 - flickering lights in main menu
 - custom mode when clicking boards in the background
 - garage door for shop
-- why tf dont i have  avolume slider
+- save volume slider settings
 
 - make permanent changes to the map at the start of the game and live with the changes you made
 - turn zombies into minions

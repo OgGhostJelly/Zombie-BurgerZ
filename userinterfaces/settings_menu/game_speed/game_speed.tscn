@@ -11,108 +11,33 @@ script = ExtResource("1_pio15")
 layout_mode = 2
 text = "Game Speed"
 
-[node name="GameSpeed100" type="HBoxContainer" parent="."]
+[node name="Container" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="MoneyTexture" type="TextureRect" parent="GameSpeed100"]
+[node name="MoneyTexture" type="TextureRect" parent="Container"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 texture = ExtResource("1_a5cdf")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="GameSpeed100/MoneyTexture"]
+[node name="Label" type="Label" parent="Container/MoneyTexture"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "$x1"
+text = "$x1.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameSpeed100" type="CheckBox" parent="GameSpeed100"]
-unique_name_in_owner = true
+[node name="GameSpeedSlider" type="HSlider" parent="Container"]
 layout_mode = 2
-button_pressed = true
+size_flags_horizontal = 3
+max_value = 3.0
+
+[node name="GameSpeedLabel" type="Label" parent="Container"]
+layout_mode = 2
 text = "100%"
 
-[node name="GameSpeed120" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="MoneyTexture" type="TextureRect" parent="GameSpeed120"]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-texture = ExtResource("1_a5cdf")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="GameSpeed120/MoneyTexture"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "$x1.1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GameSpeed120" type="CheckBox" parent="GameSpeed120"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "120%"
-
-[node name="GameSpeed150" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="MoneyTexture" type="TextureRect" parent="GameSpeed150"]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-texture = ExtResource("1_a5cdf")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="GameSpeed150/MoneyTexture"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "$x1.25"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GameSpeed150" type="CheckBox" parent="GameSpeed150"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "150%"
-
-[node name="GameSpeed200" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="MoneyTexture" type="TextureRect" parent="GameSpeed200"]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-texture = ExtResource("1_a5cdf")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="GameSpeed200/MoneyTexture"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "$x1.5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GameSpeed200" type="CheckBox" parent="GameSpeed200"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "200%"
-
-[connection signal="pressed" from="GameSpeed100/GameSpeed100" to="." method="_on_game_speed_100_pressed"]
-[connection signal="pressed" from="GameSpeed120/GameSpeed120" to="." method="_on_game_speed_120_pressed"]
-[connection signal="pressed" from="GameSpeed150/GameSpeed150" to="." method="_on_game_speed_150_pressed"]
-[connection signal="pressed" from="GameSpeed200/GameSpeed200" to="." method="_on_game_speed_200_pressed"]
+[connection signal="value_changed" from="Container/GameSpeedSlider" to="." method="_on_game_speed_slider_value_changed"]

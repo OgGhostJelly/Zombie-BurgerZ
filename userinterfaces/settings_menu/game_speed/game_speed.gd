@@ -3,59 +3,24 @@ extends VBoxContainer
 signal pressed
 
 
-@onready var game_speed_100: CheckBox = %GameSpeed100
-@onready var game_speed_120: CheckBox = %GameSpeed120
-@onready var game_speed_150: CheckBox = %GameSpeed150
-@onready var game_speed_200: CheckBox = %GameSpeed200
+@onready var slider: Slider = $Container/GameSpeedSlider
+@onready var money_label: Label = $Container/MoneyTexture/Label
+@onready var game_speed_label: Label = $Container/GameSpeedLabel
 
 
 func _ready() -> void:
-	game_speed_100.button_pressed = false
-	game_speed_120.button_pressed = false
-	game_speed_150.button_pressed = false
-	game_speed_200.button_pressed = false
-	
-	match Challenge.game_speed:
-		Challenge.GameSpeed.GameSpeed100:
-			game_speed_100.button_pressed = true
-		Challenge.GameSpeed.GameSpeed120:
-			game_speed_120.button_pressed = true
-		Challenge.GameSpeed.GameSpeed150:
-			game_speed_150.button_pressed = true
-		Challenge.GameSpeed.GameSpeed200:
-			game_speed_200.button_pressed = true
+	slider.value = Challenge.game_speed
+	slider.max_value = Challenge.GameSpeed.size() - 1
+	update()
 
 
-func uncheck_all() -> void:
-	game_speed_100.button_pressed = false
-	game_speed_120.button_pressed = false
-	game_speed_150.button_pressed = false
-	game_speed_200.button_pressed = false
+func update() -> void:
+	money_label.text = "$x%.1f" % (1.0 + Challenge.game_speed_money_bonus(Challenge.game_speed))
+	game_speed_label.text = "%s%%" % (100.0 + Challenge.get_bonus_game_speed() * 100.0)
 
 
-func _on_game_speed_100_pressed() -> void:
-	uncheck_all()
-	game_speed_100.button_pressed = true
-	Challenge.game_speed = Challenge.GameSpeed.GameSpeed100
-	pressed.emit()
-
-
-func _on_game_speed_120_pressed() -> void:
-	uncheck_all()
-	game_speed_120.button_pressed = true
-	Challenge.game_speed = Challenge.GameSpeed.GameSpeed120
-	pressed.emit()
-
-
-func _on_game_speed_150_pressed() -> void:
-	uncheck_all()
-	game_speed_150.button_pressed = true
-	Challenge.game_speed = Challenge.GameSpeed.GameSpeed150
-	pressed.emit()
-
-
-func _on_game_speed_200_pressed() -> void:
-	uncheck_all()
-	game_speed_200.button_pressed = true
-	Challenge.game_speed = Challenge.GameSpeed.GameSpeed200
+func _on_game_speed_slider_value_changed(value: float) -> void:
+	Challenge.game_speed = value as int as Challenge.GameSpeed
+	print(Challenge.game_speed)
+	update()
 	pressed.emit()
