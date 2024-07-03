@@ -1,6 +1,5 @@
 - update shop ui
 - camera zoom and blur when heart beat
-- flickering lights in main menu
 - custom mode when clicking boards in the background
 - achievement for spamming shop buttons
 - try fix poor quality when lots of zombies using smg gun sights

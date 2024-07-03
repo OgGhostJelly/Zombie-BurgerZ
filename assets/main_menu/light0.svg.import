@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j8x6keiq7spu"
-path="res://.godot/imported/lightbulb.svg-9701cfdff0f8d1305991624aa4c55c8e.ctex"
+uid="uid://drs8nkbbs4m8h"
+path="res://.godot/imported/light0.svg-a068a50289ae010a7bc272cbcca2144d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_menu/lightbulb.svg"
-dest_files=["res://.godot/imported/lightbulb.svg-9701cfdff0f8d1305991624aa4c55c8e.ctex"]
+source_file="res://assets/main_menu/light0.svg"
+dest_files=["res://.godot/imported/light0.svg-a068a50289ae010a7bc272cbcca2144d.ctex"]
 
 [params]
 

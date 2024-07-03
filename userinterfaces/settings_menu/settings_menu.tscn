@@ -29,8 +29,10 @@ expand_mode = 1
 
 [node name="Save" parent="." instance=ExtResource("4_c38ui")]
 layout_mode = 1
-offset_left = -80.0
-offset_right = -4.0
+offset_left = -89.0
+offset_top = -86.0
+offset_right = -13.0
+offset_bottom = -44.0
 
 [node name="Challenges" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -111,6 +113,8 @@ text = "squibblys enabled"
 
 [node name="BackButton" parent="." instance=ExtResource("6_rr8qv")]
 layout_mode = 1
+offset_top = -69.0
+offset_bottom = -38.0
 scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
 animation = &"swipe"
 

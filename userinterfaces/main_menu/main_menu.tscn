@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://b5ml0pa2wknk0"]
+[gd_scene load_steps=29 format=3 uid="uid://b5ml0pa2wknk0"]
 
 [ext_resource type="Script" path="res://userinterfaces/main_menu/main_menu.gd" id="1_t014t"]
 [ext_resource type="Texture2D" uid="uid://8wenyiv0ma4t" path="res://assets/main_menu/bg.svg" id="2_ugncc"]
+[ext_resource type="Texture2D" uid="uid://drs8nkbbs4m8h" path="res://assets/main_menu/light0.svg" id="3_0me1y"]
 [ext_resource type="Texture2D" uid="uid://xupmipdm4cav" path="res://assets/main_menu/sign.png" id="3_c8dnx"]
-[ext_resource type="Texture2D" uid="uid://b8051yyoady5w" path="res://assets/main_menu/light.svg" id="3_gfxlp"]
+[ext_resource type="Texture2D" uid="uid://b8051yyoady5w" path="res://assets/main_menu/light1.svg" id="3_gfxlp"]
 [ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="6_i7gt2"]
 [ext_resource type="Texture2D" uid="uid://by6f47yhrymlu" path="res://assets/main_menu/shop.svg" id="7_sfmd4"]
 [ext_resource type="Texture2D" uid="uid://b2rldncry8ubh" path="res://assets/main_menu/settings.svg" id="8_82o76"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c7yo202eytq3l" path="res://assets/main_menu/play0.svg" id="8_ukc2r"]
 [ext_resource type="Texture2D" uid="uid://t8oymdgj8tvq" path="res://assets/main_menu/play1.svg" id="9_d73kk"]
 [ext_resource type="Texture2D" uid="uid://cx3766gmy5dqn" path="res://assets/main_menu/play2.svg" id="10_lw8q8"]
+[ext_resource type="Texture2D" uid="uid://bm10ukjgmj6kg" path="res://assets/main_menu/light2.svg" id="12_342nr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac1ck"]
 font_color = Color(0.921569, 0.831373, 0.831373, 1)
@@ -286,6 +288,44 @@ _data = {
 "smoke": SubResource("Animation_skouq")
 }
 
+[sub_resource type="Animation" id="Animation_mrja8"]
+resource_name = "flicker_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_0me1y"), ExtResource("12_342nr"), ExtResource("3_0me1y")]
+}
+
+[sub_resource type="Animation" id="Animation_dn4e6"]
+resource_name = "flicker_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_0me1y"), ExtResource("3_gfxlp"), ExtResource("3_0me1y")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spmb1"]
+_data = {
+"flicker_left": SubResource("Animation_mrja8"),
+"flicker_right": SubResource("Animation_dn4e6")
+}
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -315,21 +355,19 @@ offset_top = -96.0
 offset_right = 618.0
 offset_bottom = 455.0
 mouse_filter = 2
-texture = ExtResource("3_gfxlp")
+texture = ExtResource("3_0me1y")
 
 [node name="Presents" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -122.5
+offset_left = -134.0
 offset_top = 8.0
-offset_right = 122.5
-offset_bottom = 57.0
+offset_right = 134.0
+offset_bottom = 31.0
 grow_horizontal = 2
-text = "SerifAnimates and OgGhostJelly
-presents:"
+text = "by SerifAnimates and OgGhostJelly"
 label_settings = SubResource("LabelSettings_ac1ck")
 horizontal_alignment = 1
 
@@ -349,9 +387,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -156.5
+offset_left = -176.5
 offset_top = -70.0
-offset_right = 196.5
+offset_right = 176.5
 offset_bottom = 279.0
 grow_horizontal = 2
 pivot_offset = Vector2(180, 0)
@@ -432,5 +470,16 @@ scene_filepath = "res://userinterfaces/shop_menu/shop_menu.tscn"
 animation = &"garage_door"
 texture = ExtResource("7_sfmd4")
 float_distance = 0.0
+
+[node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="FlickerAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_spmb1")
+}
+
+[connection signal="timeout" from="FlickerTimer" to="." method="_on_flicker_timer_timeout"]
 
 [editable path="PlayButton"]
