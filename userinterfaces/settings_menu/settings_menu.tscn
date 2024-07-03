@@ -1,15 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://caa0ygojdeydk"]
+[gd_scene load_steps=8 format=3 uid="uid://caa0ygojdeydk"]
 
-[ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="1_ogwgu"]
 [ext_resource type="Script" path="res://userinterfaces/settings_menu/settings_menu.gd" id="1_vbv6n"]
-[ext_resource type="Texture2D" uid="uid://b8q148tiayiq7" path="res://assets/shop_menu/back.png" id="2_inphv"]
+[ext_resource type="Texture2D" uid="uid://jel5cbjmqr4l" path="res://assets/settings_menu/bg.png" id="2_dmbdk"]
 [ext_resource type="PackedScene" uid="uid://c5obkqmabqwoh" path="res://userinterfaces/settings_menu/save_menu/save_menu.tscn" id="4_c38ui"]
 [ext_resource type="PackedScene" uid="uid://dvg0tflkqf0ud" path="res://userinterfaces/settings_menu/volume/volume.tscn" id="5_df0om"]
+[ext_resource type="PackedScene" uid="uid://dxugh4mmxrwo6" path="res://userinterfaces/menu_button/back_button.tscn" id="6_rr8qv"]
 [ext_resource type="Texture2D" uid="uid://bomet1rbb5byq" path="res://assets/money.svg" id="7_im364"]
 [ext_resource type="PackedScene" uid="uid://dq5whna00p574" path="res://userinterfaces/settings_menu/game_speed/game_speed.tscn" id="7_mynse"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_kqrfo"]
-font_color = Color(0.278431, 0.278431, 0.278431, 1)
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -20,41 +17,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vbv6n")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-clip_children = 2
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.286275, 0.286275, 0.286275, 1)
-
-[node name="Label" type="Label" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -52.0
-offset_right = 1.0
-offset_bottom = 53.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND VERY DETAILED AND NOT LAZY BACKGROUND "
-label_settings = SubResource("LabelSettings_kqrfo")
-autowrap_mode = 1
-
-[node name="BackButton" parent="." instance=ExtResource("1_ogwgu")]
-custom_minimum_size = Vector2(132, 65)
-layout_mode = 0
-offset_left = 6.0
-offset_top = 322.0
-offset_right = 138.0
-offset_bottom = 387.0
-scale = Vector2(0.5, 0.5)
-scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
-texture = ExtResource("2_inphv")
+texture = ExtResource("2_dmbdk")
+expand_mode = 1
 
 [node name="Save" parent="." instance=ExtResource("4_c38ui")]
 layout_mode = 1
@@ -138,6 +109,11 @@ disabled = true
 button_pressed = true
 text = "squibblys enabled"
 
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[node name="BackButton" parent="." instance=ExtResource("6_rr8qv")]
+layout_mode = 1
+scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
+animation = &"swipe"
+
 [connection signal="toggled" from="Challenges/NoMoving/NoMoving" to="." method="_on_no_moving_toggled"]
 [connection signal="toggled" from="Challenges/GunSights/GunSights" to="." method="_on_gun_sights_toggled"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

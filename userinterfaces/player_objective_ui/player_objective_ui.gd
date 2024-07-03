@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	var objectives: Array[Objective] = []
 	
-	if not Challenge.no_move:
+	if not Settings.no_move:
 		objectives.append(Objective.new(player.moved, "Move with WASD"))
 	
 	objectives.append(Objective.new(player.gun.fired, "Shoot with LMB"))

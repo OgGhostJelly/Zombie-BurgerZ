@@ -53,7 +53,7 @@ func _ready() -> void:
 		grace_period_timer.start()
 		spawn_timer.paused = true)
 	
-	Engine.time_scale = 1.0 + Challenge.get_bonus_game_speed()
+	Engine.time_scale = 1.0 + Settings.get_bonus_game_speed()
 
 
 func _process(delta: float) -> void:
@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 		time += delta
 		time_label.text = "%.2fs" % time
 	
-	if time >= 60.0 and Challenge.no_move:
+	if time >= 60.0 and Settings.no_move:
 		Achievement.give_achievement(Achievement.AchievementType.DontMove)
 	
 	if not spawn_timer.is_stopped() and spawn_timer.time_left <= 0.5 and not has_indicator:

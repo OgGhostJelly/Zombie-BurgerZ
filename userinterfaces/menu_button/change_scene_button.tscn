@@ -7,6 +7,7 @@
 script = ExtResource("2_kewcg")
 scene = null
 scene_filepath = ""
+animation = null
 
 [node name="Sprite2D" parent="Sprite" index="0"]
-position = Vector2(0, 3.95857)
+position = Vector2(0, -0.703357)

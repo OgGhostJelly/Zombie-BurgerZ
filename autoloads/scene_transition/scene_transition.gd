@@ -3,6 +3,9 @@ extends Node
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+const SWIPE: StringName = &"swipe"
+const DOOR: StringName = &"garage_door"
+
 var _scene: PackedScene
 var _scene_path: String
 
@@ -11,20 +14,20 @@ func is_transitioning() -> bool:
 	return animation_player.is_playing()
 
 
-func to_packed(scene: PackedScene) -> void:
+func to_packed(scene: PackedScene, animation: StringName = SWIPE) -> void:
 	if is_transitioning():
 		return
 	
 	_scene = scene
-	animation_player.play(&"swipe")
+	animation_player.play(animation)
 
 
-func to_file(path: String) -> void:
+func to_file(path: String, animation: StringName = SWIPE) -> void:
 	if is_transitioning():
 		return
 	
 	_scene_path = path
-	animation_player.play(&"swipe")
+	animation_player.play(animation)
 
 
 func _warp() -> void:

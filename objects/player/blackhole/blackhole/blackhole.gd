@@ -25,3 +25,15 @@ func _process(delta: float) -> void:
 
 func _on_life_timer_timeout() -> void:
 	animation_player.play(&"die")
+
+
+func _on_life_drain_timer_timeout() -> void:
+	for value in get_overlapping_bodies():
+		var node: Node2D = value as Node2D
+		if node == null:
+			return
+		
+		if not (node is Player or node is Enemy):
+			return
+		
+		node.health.value -= 1

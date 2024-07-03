@@ -6,6 +6,7 @@ signal max_value_changed
 signal min_value_changed
 signal range_changed
 signal value_changed
+signal value_lowered
 signal lowest
 signal highest
 
@@ -29,6 +30,7 @@ func _get_property_list() -> Array[Dictionary]:
 	return properties
 
 func set_value(v: int) -> void:
+	var old_value = value
 	value = clampi(v, min_value, max_value)
 	value_changed.emit()
 	
@@ -36,6 +38,8 @@ func set_value(v: int) -> void:
 		highest.emit()
 	if is_lowest():
 		lowest.emit()
+	if old_value > value:
+		value_lowered.emit()
 
 func set_max_value(v: int) -> void:
 	max_value = v

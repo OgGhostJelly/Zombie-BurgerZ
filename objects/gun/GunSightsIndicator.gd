@@ -7,7 +7,7 @@ var _cached_bullet: Bullet
 
 
 func _ready() -> void:
-	enabled = Challenge.gun_sights
+	enabled = Settings.gun_sights
 	visible = enabled
 	
 	_cached_bullet = gun.bullet_scene.instantiate()
@@ -72,7 +72,7 @@ func _draw() -> void:
 
 
 func simulate_shot(results: Array[Dictionary], space_state: PhysicsDirectSpaceState2D, from: Vector2, to: Vector2, pierce: int, exclude: Array[RID]):
-	var params: = PhysicsRayQueryParameters2D.create(from, to, 4294967295, exclude)
+	var params: = PhysicsRayQueryParameters2D.create(from, to, _cached_bullet.collision_mask, exclude)
 	var result: Dictionary = space_state.intersect_ray(params)
 	
 	if not result:

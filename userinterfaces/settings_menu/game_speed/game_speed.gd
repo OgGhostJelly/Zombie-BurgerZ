@@ -9,18 +9,17 @@ signal pressed
 
 
 func _ready() -> void:
-	slider.value = Challenge.game_speed
-	slider.max_value = Challenge.GameSpeed.size() - 1
+	slider.value = Settings.game_speed
+	slider.max_value = Settings.GameSpeed.size() - 1
 	update()
 
 
 func update() -> void:
-	money_label.text = "$x%.1f" % (1.0 + Challenge.game_speed_money_bonus(Challenge.game_speed))
-	game_speed_label.text = "%s%%" % (100.0 + Challenge.get_bonus_game_speed() * 100.0)
+	money_label.text = "$x%.1f" % (1.0 + Settings.game_speed_money_bonus(Settings.game_speed))
+	game_speed_label.text = "%s%%" % (100.0 + Settings.get_bonus_game_speed() * 100.0)
 
 
 func _on_game_speed_slider_value_changed(value: float) -> void:
-	Challenge.game_speed = value as int as Challenge.GameSpeed
-	print(Challenge.game_speed)
+	Settings.game_speed = value as int as Settings.GameSpeed
 	update()
 	pressed.emit()

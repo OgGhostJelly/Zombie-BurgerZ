@@ -6,17 +6,17 @@ extends Control
 
 
 func _ready() -> void:
-	no_moving.button_pressed = Challenge.no_move
-	gun_sights.button_pressed = Challenge.gun_sights
+	no_moving.button_pressed = Settings.no_move
+	gun_sights.button_pressed = Settings.gun_sights
 
 
 func _on_no_moving_toggled(toggled_on: bool) -> void:
-	Challenge.no_move = toggled_on
+	Settings.no_move = toggled_on
 
 
 func _on_gun_sights_toggled(toggled_on: bool) -> void:
-	Challenge.gun_sights = toggled_on
+	Settings.gun_sights = toggled_on
 
 
 func _on_back_button_pressed() -> void:
-	Challenge.data_save()
+	Settings.data_save()

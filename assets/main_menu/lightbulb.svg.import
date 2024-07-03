@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8q148tiayiq7"
-path="res://.godot/imported/back.png-318ae66805822adad8b469c3b677712f.ctex"
+uid="uid://j8x6keiq7spu"
+path="res://.godot/imported/lightbulb.svg-9701cfdff0f8d1305991624aa4c55c8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shop_menu/back.png"
-dest_files=["res://.godot/imported/back.png-318ae66805822adad8b469c3b677712f.ctex"]
+source_file="res://assets/main_menu/lightbulb.svg"
+dest_files=["res://.godot/imported/lightbulb.svg-9701cfdff0f8d1305991624aa4c55c8e.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

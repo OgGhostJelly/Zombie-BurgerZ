@@ -140,7 +140,7 @@ func _physics_process(delta: float) -> void:
 
 
 func get_input_vector() -> Vector2:
-	if Challenge.no_move:
+	if Settings.no_move:
 		return Vector2.ZERO
 	
 	return Input.get_vector(
@@ -165,9 +165,12 @@ func _on_hit_detector_area_entered(area: Area2D) -> void:
 	
 	area.root._on_hit_player()
 	
+	health.value -= 1
+
+
+func _on_health_value_lowered() -> void:
 	damage_audio.play()
 	invincibility_timer.start()
-	health.value -= 1
 
 
 func _on_invincibility_timer_timeout() -> void:

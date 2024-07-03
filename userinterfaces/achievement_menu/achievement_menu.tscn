@@ -1,14 +1,14 @@
 [gd_scene load_steps=20 format=3 uid="uid://ca4kvgsvw0acp"]
 
-[ext_resource type="PackedScene" uid="uid://dmtpptjbevdi2" path="res://userinterfaces/menu_button/change_scene_button.tscn" id="1_ciaxs"]
 [ext_resource type="Script" path="res://userinterfaces/achievement_menu/achievement_menu.gd" id="1_dqqfi"]
 [ext_resource type="Texture2D" uid="uid://dif03pvt5k1o6" path="res://assets/achievement_menu/bg.svg" id="1_pakht"]
-[ext_resource type="Texture2D" uid="uid://b8q148tiayiq7" path="res://assets/shop_menu/back.png" id="2_66r80"]
 [ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="6_dwlpw"]
 [ext_resource type="Texture2D" uid="uid://eywok23xutfu" path="res://assets/achievement_menu/locked.svg" id="6_etgnq"]
 [ext_resource type="Texture2D" uid="uid://co73gl5x5jkf2" path="res://assets/shop_menu/left.svg" id="7_of2x6"]
 [ext_resource type="Texture2D" uid="uid://b3nkicuxw3tc6" path="res://assets/shop_menu/right.svg" id="8_al1lx"]
+[ext_resource type="PackedScene" uid="uid://dxugh4mmxrwo6" path="res://userinterfaces/menu_button/back_button.tscn" id="9_4hkp6"]
 [ext_resource type="PackedScene" uid="uid://cu5r5jhv6p0op" path="res://userinterfaces/debug_menu/achievement_debug/achievement_debug.tscn" id="9_k5neg"]
+[ext_resource type="Texture2D" uid="uid://hmmfj22l24qt" path="res://assets/achievement_menu/light.svg" id="10_76tgd"]
 
 [sub_resource type="Animation" id="Animation_mcpmh"]
 length = 0.001
@@ -146,17 +146,6 @@ offset_right = 663.0
 offset_bottom = 466.0
 texture = ExtResource("1_pakht")
 
-[node name="BackButton" parent="." instance=ExtResource("1_ciaxs")]
-custom_minimum_size = Vector2(132, 65)
-layout_mode = 0
-offset_left = 6.0
-offset_top = 322.0
-offset_right = 138.0
-offset_bottom = 387.0
-scale = Vector2(0.5, 0.5)
-scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
-texture = ExtResource("2_66r80")
-
 [node name="Sign" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -264,6 +253,20 @@ float_distance = 2.0
 [node name="AchievementDebug" parent="." node_paths=PackedStringArray("achievement_menu") instance=ExtResource("9_k5neg")]
 layout_mode = 1
 achievement_menu = NodePath("..")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.419608)
+layout_mode = 0
+offset_left = -176.0
+offset_top = -67.0
+offset_right = 663.0
+offset_bottom = 466.0
+mouse_filter = 2
+texture = ExtResource("10_76tgd")
+
+[node name="BackButton" parent="." instance=ExtResource("9_4hkp6")]
+layout_mode = 1
+scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
 
 [connection signal="pressed" from="HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]

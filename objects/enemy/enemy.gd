@@ -28,7 +28,7 @@ func _ready() -> void:
 	health.value_changed.connect(func():
 		if health.value > 0: animated_sprite.play(&"walk" + str(health.max_value - health.value)))
 	
-	var total: float = Challenge.get_money_multiplier()
+	var total: float = Settings.get_money_multiplier()
 	var money_multiplier: int = floor(total)
 	var decimal_part: float = total - money_multiplier
 	if decimal_part > randf():
@@ -91,9 +91,13 @@ func _on_hit_detector_hurt(info: HitInfo2D) -> void:
 	if is_invincible():
 		return
 	
-	hit_audio.play()
 	health.value -= info.hitbox.root.damage
 	hurtbox.hurt_info = HurtInfo2D.new()
+
+
+func _on_health_value_lowered() -> void:
+	if hit_audio:
+		hit_audio.play()
 
 
 func is_invincible() -> bool:

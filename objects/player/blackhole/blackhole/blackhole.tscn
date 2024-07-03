@@ -240,6 +240,10 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
+[node name="LifeDrainTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
 scale = Vector2(1.1, 1.1)
@@ -277,3 +281,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="timeout" from="LifeDrainTimer" to="." method="_on_life_drain_timer_timeout"]

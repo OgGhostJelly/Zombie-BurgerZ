@@ -101,4 +101,5 @@ shape = SubResource("RectangleShape2D_fc24u")
 stream = SubResource("AudioStreamRandomizer_38vwa")
 volume_db = -5.0
 
+[connection signal="value_lowered" from="Health" to="." method="_on_health_value_lowered"]
 [connection signal="hurt" from="HitDetector" to="." method="_on_hit_detector_hurt"]

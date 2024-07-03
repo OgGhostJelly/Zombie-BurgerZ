@@ -8,9 +8,9 @@ extends Control
 
 func _ready() -> void:
 	challenges_label.text = "Game speed %s%%\nNo moving %s\nGun sights %s" % [
-		(100.0 + Challenge.get_bonus_game_speed() * 100.0),
-		("enabled" if Challenge.no_move else "disabled"),
-		("enabled" if Challenge.gun_sights else "disabled"),
+		(100.0 + Settings.get_bonus_game_speed() * 100.0),
+		("enabled" if Settings.no_move else "disabled"),
+		("enabled" if Settings.gun_sights else "disabled"),
 	]
 
 
