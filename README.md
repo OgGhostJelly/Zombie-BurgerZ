@@ -3,7 +3,7 @@
 - flickering lights in main menu
 - custom mode when clicking boards in the background
 - achievement for spamming shop buttons
-- show goldplay button on game start
+- try fix poor quality when lots of zombies using smg gun sights
 
 - make permanent changes to the map at the start of the game and live with the changes you made
 - turn zombies into minions

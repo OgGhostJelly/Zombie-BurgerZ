@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx4qmyytrh6bw"]
+[gd_scene load_steps=16 format=3 uid="uid://dx4qmyytrh6bw"]
 
 [ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemy/enemy.tscn" id="1_5f4em"]
 [ext_resource type="Texture2D" uid="uid://sbe3dfvthbma" path="res://assets/enemy/big_zombie/zombie-death0.svg" id="2_8eqnn"]
@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://brkr23dqcyw7s" path="res://assets/enemy/big_zombie/zombie1-walk2.svg" id="8_4f0nq"]
 [ext_resource type="Texture2D" uid="uid://dvlfld4b3hjrc" path="res://assets/enemy/big_zombie/zombie2-walk1.svg" id="9_wuy30"]
 [ext_resource type="Texture2D" uid="uid://bg1eo67fi04ke" path="res://assets/enemy/big_zombie/zombie2-walk2.svg" id="10_guhws"]
+[ext_resource type="Texture2D" uid="uid://bf26bnbui6ol5" path="res://assets/enemy/big_zombie/zombie-death3.svg" id="12_5bvub"]
+[ext_resource type="Texture2D" uid="uid://rg1pnvmprtwm" path="res://assets/enemy/big_zombie/zombie-death4.svg" id="13_obqoo"]
+[ext_resource type="Texture2D" uid="uid://hn3qmy0ph6xd" path="res://assets/enemy/big_zombie/zombie-death5.svg" id="14_bbsil"]
+[ext_resource type="Texture2D" uid="uid://bu83fe4wrxwmr" path="res://assets/enemy/big_zombie/zombie-death6.svg" id="15_id1os"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hdbdu"]
 animations = [{
@@ -22,10 +26,22 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_yojhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5bvub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_obqoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bbsil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_id1os")
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -94,4 +110,6 @@ value = 5
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_hdbdu")
+frame = 0
+frame_progress = 0.224206
 speed_scale = 0.5

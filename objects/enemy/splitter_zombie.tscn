@@ -60,6 +60,7 @@ animations = [{
 script = ExtResource("2_n72e6")
 speeds = 25.0
 face_left_offset = Vector2(0, 0)
+should_flip = false
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_ll5ew")

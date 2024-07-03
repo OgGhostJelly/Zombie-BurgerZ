@@ -6,6 +6,7 @@ class_name Enemy
 @export var money_count: Vector2i = Vector2i.ZERO
 @export var skin_pierce_strength: int = 0
 @export var face_left_offset: Vector2 = Vector2(-22.0, 0.0)
+@export var should_flip: bool = true
 
 
 @onready var context_steerer: ContextSteerer = $ContextSteerer
@@ -47,7 +48,7 @@ func _process(_delta: float) -> void:
 	context_steerer.update_direction()
 	velocity = context_steerer.direction * speed
 	
-	animated_sprite.flip_h = context_steerer.direction.angle() < -PI/2.0 or context_steerer.direction.angle() > PI/2.0
+	animated_sprite.flip_h = should_flip and (context_steerer.direction.angle() < -PI/2.0 or context_steerer.direction.angle() > PI/2.0)
 	
 	animated_sprite.offset = (
 		face_left_offset

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co5l8kbcpt6n0"
-path="res://.godot/imported/pierce.svg-f824108ae2d93a7ca99dccd589f3a317.ctex"
+uid="uid://lig6mctou6y0"
+path="res://.godot/imported/zombie-death5.svg-8ccea50f3533fcf3b143c67e01aa0aff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pierce.svg"
-dest_files=["res://.godot/imported/pierce.svg-f824108ae2d93a7ca99dccd589f3a317.ctex"]
+source_file="res://assets/enemy/fast_zombie/zombie-death5.svg"
+dest_files=["res://.godot/imported/zombie-death5.svg-8ccea50f3533fcf3b143c67e01aa0aff.ctex"]
 
 [params]
 

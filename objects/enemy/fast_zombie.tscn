@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjha660hrr04e"]
+[gd_scene load_steps=13 format=3 uid="uid://cjha660hrr04e"]
 
 [ext_resource type="PackedScene" uid="uid://bcqf1gycu32mf" path="res://objects/enemy/enemy.tscn" id="1_ore27"]
 [ext_resource type="Script" path="res://objects/enemy/fast_zombie.gd" id="2_guahc"]
@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b6qarvedrsxw" path="res://assets/enemy/fast_zombie/zombie-death1.svg" id="3_y63q1"]
 [ext_resource type="Texture2D" uid="uid://ckk1c6sw0gtvx" path="res://assets/enemy/fast_zombie/zombie-death2.svg" id="4_pteiw"]
 [ext_resource type="Texture2D" uid="uid://ef6olh4d23o2" path="res://assets/enemy/fast_zombie/zombie0-walk1.svg" id="5_pse3a"]
+[ext_resource type="Texture2D" uid="uid://cm35yncjaiia1" path="res://assets/enemy/fast_zombie/zombie-death3.svg" id="6_gpayb"]
 [ext_resource type="Texture2D" uid="uid://btgbih6dmioq" path="res://assets/enemy/fast_zombie/zombie0-walk2.svg" id="6_sug3x"]
+[ext_resource type="Texture2D" uid="uid://cwkf3nr563buy" path="res://assets/enemy/fast_zombie/zombie-death4.svg" id="7_g4fjx"]
+[ext_resource type="Texture2D" uid="uid://lig6mctou6y0" path="res://assets/enemy/fast_zombie/zombie-death5.svg" id="8_47c7h"]
+[ext_resource type="Texture2D" uid="uid://ch87tqtf45tqf" path="res://assets/enemy/fast_zombie/zombie-death6.svg" id="9_edrp6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7l7d"]
 animations = [{
@@ -19,10 +23,22 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_pteiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gpayb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g4fjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_47c7h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edrp6")
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -46,5 +62,5 @@ value = 1
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_w7l7d")
-animation = &"death"
+frame = 6
 speed_scale = 2.5
