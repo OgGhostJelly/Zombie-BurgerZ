@@ -112,7 +112,7 @@ volume_db = 0.0
 pitch_scale = 0.4
 
 [node name="End" parent="." index="3"]
-position = Vector2(43, -4)
+position = Vector2(53, -1)
 
 [node name="Ammo" parent="." index="4"]
 max_value = 1

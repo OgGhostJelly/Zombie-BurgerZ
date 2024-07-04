@@ -101,10 +101,16 @@ max_knockback = 80.0
 rotation = 0.0
 texture = ExtResource("2_rsgv3")
 
+[node name="LeftHandle" parent="Sprite2D" index="0"]
+position = Vector2(-2, 0)
+
+[node name="RightHandle" parent="Sprite2D" index="1"]
+position = Vector2(-2, 0)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_6g1y1")
 }
 
 [node name="End" parent="." index="4"]
-position = Vector2(24, -2)
+position = Vector2(24, -3)

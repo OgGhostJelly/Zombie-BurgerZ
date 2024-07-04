@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgh2sns3omtq1"]
+[gd_scene load_steps=15 format=3 uid="uid://dgh2sns3omtq1"]
 
 [ext_resource type="Script" path="res://objects/level/level.gd" id="1_r6cjg"]
 [ext_resource type="PackedScene" uid="uid://dx4qmyytrh6bw" path="res://objects/enemy/big_zombie.tscn" id="2_gxf2g"]
@@ -9,8 +9,7 @@
 [ext_resource type="Script" path="res://objects/level/Camera2D.gd" id="7_wusmp"]
 [ext_resource type="PackedScene" uid="uid://cfgv66mdvrjbp" path="res://userinterfaces/money_counter/money_counter.tscn" id="8_naacc"]
 [ext_resource type="PackedScene" uid="uid://dc4vwx3ougyp1" path="res://userinterfaces/game_over_menu/game_over_menu.tscn" id="9_rau86"]
-[ext_resource type="Texture2D" uid="uid://c6t2h54m6yjwd" path="res://assets/level/clock.png" id="10_dsnvk"]
-[ext_resource type="Texture2D" uid="uid://dkp8bvuiunr06" path="res://assets/level/kill.png" id="11_cnqjh"]
+[ext_resource type="Texture2D" uid="uid://igb4gpnf8cnv" path="res://assets/level/kill_count.svg" id="10_w15rq"]
 [ext_resource type="PackedScene" uid="uid://dt8rhgue47ifu" path="res://userinterfaces/debug_menu/level_debug/level_debug.tscn" id="11_linol"]
 [ext_resource type="PackedScene" uid="uid://dbft6lalpctsx" path="res://userinterfaces/pause_menu/pause_menu.tscn" id="12_olpbo"]
 [ext_resource type="PackedScene" uid="uid://s5g667fsm0oj" path="res://objects/enemy/splitter_zombie.tscn" id="13_lpwbq"]
@@ -59,15 +58,9 @@ one_shot = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = -40.0
-offset_right = 99.0
+offset_top = -23.0
+offset_right = 40.0
 grow_vertical = 0
-
-[node name="TimeTexture" type="TextureRect" parent="FrontLayer/Time"]
-layout_mode = 2
-texture = ExtResource("10_dsnvk")
-stretch_mode = 5
 
 [node name="TimeLabel" type="Label" parent="FrontLayer/Time"]
 layout_mode = 2
@@ -77,15 +70,15 @@ text = "0.00s"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 130.0
-offset_top = -42.0
-offset_right = 200.0
-offset_bottom = -2.0
+offset_left = 63.0
+offset_top = -23.0
+offset_right = 124.0
 grow_vertical = 0
 
 [node name="KillCountTexture" type="TextureRect" parent="FrontLayer/KillCount"]
 layout_mode = 2
-texture = ExtResource("11_cnqjh")
+texture = ExtResource("10_w15rq")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="KillCountLabel" type="Label" parent="FrontLayer/KillCount"]

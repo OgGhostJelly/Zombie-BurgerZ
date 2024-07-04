@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5x31ccxy8wg7"]
+[gd_scene load_steps=3 format=3 uid="uid://c5x31ccxy8wg7"]
 
 [ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullet/bullet.tscn" id="1_mfaf7"]
+[ext_resource type="Texture2D" uid="uid://dm5dmseidk7ef" path="res://assets/gun/sniper_rifle/sniper-bullet.svg" id="2_scgr8"]
 
 [node name="SniperRifleBullet" instance=ExtResource("1_mfaf7")]
 speed = 675.0
 pierce = 3
 damage = 5
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_scgr8")

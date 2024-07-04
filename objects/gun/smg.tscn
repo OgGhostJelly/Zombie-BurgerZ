@@ -125,7 +125,7 @@ libraries = {
 speed_scale = 2.0
 
 [node name="End" parent="." index="4"]
-position = Vector2(16, 0)
+position = Vector2(16, -3)
 
 [node name="Ammo" parent="." index="5"]
 max_value = 5
