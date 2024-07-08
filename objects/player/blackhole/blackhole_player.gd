@@ -10,7 +10,8 @@ func _ready() -> void:
 	assert(blackhole_scene)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	super(delta)
 	if Input.is_action_just_pressed(&"special") and blackhole_count <= 1:
 		energy_bar.use()
 

@@ -7,7 +7,8 @@ extends Player
 var trap_count: int = 0
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	super(delta)
 	if Input.is_action_just_pressed(&"special") and trap_count < 3:
 		energy_bar.use()
 

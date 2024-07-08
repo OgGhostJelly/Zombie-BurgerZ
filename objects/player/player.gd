@@ -91,7 +91,7 @@ func _ready() -> void:
 		AudioServer.set_bus_effect_enabled(0, 0, false))
 
 
-func _physics_process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	energy_bar.global_position = gun.sprite.global_position
 	
 	if is_invincible():
@@ -99,6 +99,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.modulate = Color.WHITE
 	
+	if velocity.is_zero_approx():
+		animated_sprite.play(&"idle")
+	else:
+		animated_sprite.play(&"walk")
+	
+	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
+	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)
+	
+	if heartbeat_audio.playing != (health.value <= 1):
+		heartbeat_audio.play()
+
+
+func _physics_process(delta: float) -> void:
 	var input_vector: Vector2 = get_input_vector()
 	
 	if not input_vector.is_zero_approx():
@@ -106,11 +119,6 @@ func _physics_process(delta: float) -> void:
 		moved.emit()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
-	
-	if velocity.is_zero_approx():
-		animated_sprite.play(&"idle")
-	else:
-		animated_sprite.play(&"walk")
 	
 	velocity *= gun.movement_speed_multiplier
 	
@@ -131,12 +139,6 @@ func _physics_process(delta: float) -> void:
 	if global_position.y > 360.0:
 		global_position.y = 360.0
 		velocity.y = 0.0
-	
-	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
-	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)
-	
-	if heartbeat_audio.playing != (health.value <= 1):
-		heartbeat_audio.play()
 
 
 func get_input_vector() -> Vector2:

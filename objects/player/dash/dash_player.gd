@@ -14,6 +14,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	super(delta)
 	if Input.is_action_just_pressed(&"special"):
 		energy_bar.use()
 	
