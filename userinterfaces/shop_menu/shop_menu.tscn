@@ -54,13 +54,6 @@ offset_left = -138.0
 offset_right = -33.0
 weapon_menu = NodePath("../WeaponMenu")
 
-[node name="SkinMenu" parent="." instance=ExtResource("7_k0ahg")]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 177.0
-offset_right = 238.0
-offset_bottom = 323.0
-
 [node name="SkinDescriptionMenu" parent="." node_paths=PackedStringArray("skin_menu") instance=ExtResource("8_s7l3d")]
 layout_mode = 1
 anchors_preset = 3
@@ -73,6 +66,13 @@ offset_bottom = -17.0
 grow_horizontal = 0
 grow_vertical = 0
 skin_menu = NodePath("../SkinMenu")
+
+[node name="SkinMenu" parent="." instance=ExtResource("7_k0ahg")]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 177.0
+offset_right = 238.0
+offset_bottom = 323.0
 
 [node name="Money" parent="." instance=ExtResource("4_6y7d4")]
 layout_mode = 1

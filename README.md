@@ -1,7 +1,3 @@
-- update ammo textures
-- do the shop for goodness sake
-- done do other stuff later
-
 - camera zoom and blur when heart beat
 - custom mode when clicking boards in the background
 - achievement for spamming shop buttons

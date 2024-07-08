@@ -49,8 +49,8 @@ static var gun_data: Dictionary = {
 		scene = preload("res://objects/gun/sniper_rifle.tscn"),
 		texture = preload("res://assets/gun/sniper_rifle/sniper_rifle.svg"),
 		
-		ammo_texture = preload("res://assets/ammo/shotgun-ammo.svg"),
-		ammo_empty_texture = preload("res://assets/ammo/shotgun-ammo-empty.svg"),
+		ammo_texture = preload("res://assets/ammo/sniper_rifle-ammo.svg"),
+		ammo_empty_texture = preload("res://assets/ammo/sniper_rifle-ammo-empty.svg"),
 		
 		description = "slow but packs a punch",
 		locked_description = "3 Birds 1 Stone"

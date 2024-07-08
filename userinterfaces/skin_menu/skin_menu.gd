@@ -3,12 +3,14 @@ extends Control
 signal selected_changed
 
 
-@onready var texture: TextureRect = $WeaponTexture
-@onready var owned_label: Label = $OwnedLabel
-@onready var price_label: Label = $PriceLabel
-@onready var insufficient_funds_label: Label = $InsufficientFundsLabel
-@onready var buy_button: Button = $BuyButton
-@onready var locked_label: Label = $LockedLabel
+@onready var texture: TextureRect = $Skin/Texture/Texture/SkinTexture
+@onready var texture_container: Control = $Skin/Texture
+@onready var owned_label: Label = $Bottom/OwnedLabel
+@onready var price_label: Label = $Bottom/PriceLabel
+@onready var insufficient_funds_label: Label = $Bottom/InsufficientFundsLabel
+@onready var buy_button: Button = $Bottom/BuyButton
+@onready var locked_label: Label = $Bottom/LockedLabel
+@onready var scroll_animation: AnimationPlayer = $AnimationPlayer
 
 var selected: Player.PlayerType: set = set_selected
 
@@ -18,11 +20,23 @@ func _ready() -> void:
 
 
 func _on_left_button_pressed() -> void:
+	if scroll_animation.is_playing():
+		return
+	
+	scroll_animation.play(&"left")
+	await scroll_animation.animation_finished
 	selected = wrapi(selected - 1, 0, Player.PlayerType.size()) as Player.PlayerType
+	scroll_animation.play_backwards(&"right")
 
 
 func _on_right_button_pressed() -> void:
+	if scroll_animation.is_playing():
+		return
+	
+	scroll_animation.play(&"right")
+	await scroll_animation.animation_finished
 	selected = wrapi(selected + 1, 0, Player.PlayerType.size()) as Player.PlayerType
+	scroll_animation.play_backwards(&"left")
 
 
 func _on_buy_button_pressed() -> void:

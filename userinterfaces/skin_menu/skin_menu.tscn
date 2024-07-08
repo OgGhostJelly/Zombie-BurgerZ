@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmb6fifhx00wb"]
+[gd_scene load_steps=18 format=3 uid="uid://cmb6fifhx00wb"]
 
 [ext_resource type="Script" path="res://userinterfaces/skin_menu/skin_menu.gd" id="1_r0t31"]
 [ext_resource type="PackedScene" uid="uid://c5evis4gxner6" path="res://userinterfaces/menu_button/menu_button.tscn" id="2_ucyii"]
 [ext_resource type="Texture2D" uid="uid://co73gl5x5jkf2" path="res://assets/shop_menu/left.svg" id="3_bf3nj"]
 [ext_resource type="Texture2D" uid="uid://duqdt7vl22ssf" path="res://assets/player/trapper_player/player-idle.svg" id="4_sebby"]
 [ext_resource type="Texture2D" uid="uid://bwhdql3xaxp0o" path="res://assets/shop_menu/buy.svg" id="5_b7yv4"]
+[ext_resource type="Texture2D" uid="uid://c2ovygw1wtt5p" path="res://assets/shop_menu/hanger.svg" id="5_eyqk3"]
 [ext_resource type="Texture2D" uid="uid://b3nkicuxw3tc6" path="res://assets/shop_menu/right.svg" id="6_kc7k0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ps70m"]
@@ -39,28 +40,109 @@ font_color = Color(0.51855, 0.606701, 0.59908, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="SkinMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1.0
-offset_right = 226.0
+[sub_resource type="Animation" id="Animation_8g34w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin/Texture/Texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4jdmq"]
+resource_name = "left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin/Texture/Texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-190, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8alqn"]
+resource_name = "right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin/Texture/Texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(480, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gads"]
+_data = {
+"RESET": SubResource("Animation_8g34w"),
+"left": SubResource("Animation_4jdmq"),
+"right": SubResource("Animation_8alqn")
+}
+
+[node name="SkinMenu" type="VBoxContainer"]
+offset_right = 225.0
 offset_bottom = 174.0
 script = ExtResource("1_r0t31")
 
-[node name="LeftButton" parent="." instance=ExtResource("2_ucyii")]
-custom_minimum_size = Vector2(29, 38)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -73.0
-offset_right = 29.0
-offset_bottom = 73.0
-grow_vertical = 2
+[node name="Skin" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftButton" parent="Skin" instance=ExtResource("2_ucyii")]
+z_index = 1
+custom_minimum_size = Vector2(38, 43)
+layout_mode = 2
 texture = ExtResource("3_bf3nj")
 float_distance = 2.0
 
-[node name="WeaponTexture" type="TextureRect" parent="."]
+[node name="Texture" type="Control" parent="Skin"]
+custom_minimum_size = Vector2(128, 146)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="Texture" type="Control" parent="Skin/Texture"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.5
+offset_top = -146.0
+offset_right = -70.5
+offset_bottom = -146.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Skin/Texture/Texture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -36.0
+offset_right = 95.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_eyqk3")
+
+[node name="SkinTexture" type="TextureRect" parent="Skin/Texture/Texture"]
 custom_minimum_size = Vector2(128, 96)
 layout_mode = 1
 anchors_preset = 7
@@ -68,27 +150,29 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -145.0
-offset_right = 64.0
-offset_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 6
 texture = ExtResource("4_sebby")
 stretch_mode = 3
 
-[node name="OwnedLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -30.5
-offset_top = -36.0
-offset_right = 30.5
-offset_bottom = -13.0
+[node name="RightButton" parent="Skin" instance=ExtResource("2_ucyii")]
+custom_minimum_size = Vector2(38, 43)
+layout_mode = 2
+texture = ExtResource("6_kc7k0")
+float_distance = 2.0
+
+[node name="Bottom" type="Control" parent="."]
+layout_mode = 2
+
+[node name="OwnedLabel" type="Label" parent="Bottom"]
+layout_mode = 2
+offset_left = 76.0
+offset_top = -47.0
+offset_right = 137.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -96,7 +180,7 @@ text = "OWNED"
 label_settings = SubResource("LabelSettings_ps70m")
 horizontal_alignment = 1
 
-[node name="Selected" type="Label" parent="OwnedLabel"]
+[node name="Selected" type="Label" parent="Bottom/OwnedLabel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -112,16 +196,12 @@ label_settings = SubResource("LabelSettings_cuyks")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="PriceLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -18.5
-offset_top = -23.0
-offset_right = 18.5
+[node name="PriceLabel" type="Label" parent="Bottom"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = -46.0
+offset_right = 125.0
+offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -129,28 +209,23 @@ text = "$100"
 label_settings = SubResource("LabelSettings_wq4vi")
 horizontal_alignment = 1
 
-[node name="BuyButton" parent="." instance=ExtResource("2_ucyii")]
+[node name="BuyButton" parent="Bottom" instance=ExtResource("2_ucyii")]
 custom_minimum_size = Vector2(46, 21)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -45.0
-offset_right = 23.0
-offset_bottom = -24.0
+layout_mode = 2
+offset_left = -6.0
+offset_top = -27.0
+offset_right = 219.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_b7yv4")
 float_distance = 0.0
 
-[node name="Sprite2D" parent="BuyButton/Sprite" index="0"]
+[node name="Sprite2D" parent="Bottom/BuyButton/Sprite" index="0"]
 position = Vector2(0, 0)
 texture = ExtResource("5_b7yv4")
 
-[node name="Label" type="Label" parent="BuyButton/Sprite/Sprite2D" index="0"]
+[node name="Label" type="Label" parent="Bottom/BuyButton/Sprite/Sprite2D" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -164,17 +239,12 @@ text = "BUY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InsufficientFundsLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.5
-offset_top = -43.0
-offset_right = 45.5
-offset_bottom = -20.0
+[node name="InsufficientFundsLabel" type="Label" parent="Bottom"]
+layout_mode = 2
+offset_left = -6.0
+offset_top = -35.0
+offset_right = 219.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "TOO BROKE"
@@ -182,17 +252,12 @@ label_settings = SubResource("LabelSettings_a7mcp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LockedLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -30.5
-offset_top = -36.0
-offset_right = 32.5
-offset_bottom = -13.0
+[node name="LockedLabel" type="Label" parent="Bottom"]
+layout_mode = 2
+offset_left = 75.0
+offset_top = -41.0
+offset_right = 138.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -200,7 +265,7 @@ text = "LOCKED"
 label_settings = SubResource("LabelSettings_xo5jf")
 horizontal_alignment = 1
 
-[node name="LockedDescriptionLabel" type="Label" parent="LockedLabel"]
+[node name="LockedDescriptionLabel" type="Label" parent="Bottom/LockedLabel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -216,25 +281,13 @@ label_settings = SubResource("LabelSettings_oq5t0")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="RightButton" parent="." instance=ExtResource("2_ucyii")]
-custom_minimum_size = Vector2(29, 38)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -29.0
-offset_top = -73.0
-offset_right = 0.0
-offset_bottom = 73.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("6_kc7k0")
-float_distance = 2.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4gads")
+}
 
-[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
-[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
-[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="Skin/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="Skin/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="Bottom/BuyButton" to="." method="_on_buy_button_pressed"]
 
-[editable path="BuyButton"]
+[editable path="Bottom/BuyButton"]
