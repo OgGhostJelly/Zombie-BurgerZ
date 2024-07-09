@@ -285,6 +285,7 @@ vertical_alignment = 2
 libraries = {
 "": SubResource("AnimationLibrary_4gads")
 }
+speed_scale = 3.0
 
 [connection signal="pressed" from="Skin/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Skin/RightButton" to="." method="_on_right_button_pressed"]
