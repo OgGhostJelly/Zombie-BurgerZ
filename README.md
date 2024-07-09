@@ -1,3 +1,5 @@
+- shop menu scrolling shows all skins
+
 - camera zoom and blur when heart beat
 - custom mode when clicking boards in the background
 - achievement for spamming shop buttons

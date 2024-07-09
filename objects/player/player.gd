@@ -44,12 +44,14 @@ static var player_data: Dictionary = {
 	PlayerType.OgGhostJelly: {
 		scene = preload("res://objects/player/ogghostjelly/ogghostjelly_player.tscn"),
 		texture = preload("res://assets/player/ogghostjelly_player/player-idle.svg"),
+		preview_offset = Vector2(-8.0, -24.0),
 		
 		description = "addicted to code",
 	},
 	PlayerType.SirF_: {
 		scene = preload("res://objects/player/sirf/sirf_player.tscn"),
 		texture = preload("res://assets/player/sirf_player/player-idle.svg"),
+		preview_offset = Vector2(-24.0, -36.0),
 		
 		description = "addicted to art",
 	},

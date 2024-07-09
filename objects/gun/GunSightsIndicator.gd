@@ -23,7 +23,7 @@ func _draw() -> void:
 	
 	if not gun.deterministic_spread:
 		var half_spread: float = deg_to_rad(gun.spread / 2.0)
-		var samples: int = 10
+		var samples: int = 30
 	
 		var points: PackedVector2Array = []
 		points.append(Vector2.ZERO)

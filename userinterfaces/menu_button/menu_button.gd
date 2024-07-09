@@ -4,10 +4,12 @@ class_name FloatingMenuButton
 
 
 @export var texture: Texture2D : set = set_texture
+@export var texture_scale: float = 1.0
 @export var float_speed: float = 0.002
 @export var float_distance: float = 4.0
 
 @onready var sprite: Sprite2D = $Sprite/Sprite2D
+@onready var sprite_container: Control = $Sprite
 @onready var press_audio: AudioStreamPlayer = $PressAudio
 
 var desired_scale: Vector2 = Vector2.ONE
@@ -20,6 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	sprite.scale = sprite.scale.lerp(desired_scale, 1.0 - 0.01 ** delta)
 	sprite.position.y = sin(Time.get_ticks_msec() * float_speed) * float_distance
+	sprite_container.scale = Vector2.ONE * texture_scale
 
 
 func _on_mouse_entered() -> void:

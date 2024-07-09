@@ -45,13 +45,14 @@ offset_bottom = 96.0
 script = ExtResource("1_mvpp8")
 
 [node name="LeftButton" parent="." instance=ExtResource("1_cf140")]
-custom_minimum_size = Vector2(29, 38)
+custom_minimum_size = Vector2(38, 43)
 layout_mode = 2
 texture = ExtResource("2_7tcrw")
+texture_scale = 0.5
 float_distance = 2.0
 
 [node name="WeaponTexture" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(128, 96)
+custom_minimum_size = Vector2(160, 96)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_w8dwc")
@@ -120,7 +121,11 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_dvp18")
+texture_scale = 1.0
 float_distance = 0.0
+
+[node name="Sprite" parent="WeaponTexture/BuyButton" index="0"]
+scale = Vector2(1, 1)
 
 [node name="Sprite2D" parent="WeaponTexture/BuyButton/Sprite" index="0"]
 position = Vector2(0, 0)
@@ -188,9 +193,10 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="RightButton" parent="." instance=ExtResource("1_cf140")]
-custom_minimum_size = Vector2(29, 38)
+custom_minimum_size = Vector2(38, 43)
 layout_mode = 2
 texture = ExtResource("4_w26ru")
+texture_scale = 0.5
 float_distance = 2.0
 
 [connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]

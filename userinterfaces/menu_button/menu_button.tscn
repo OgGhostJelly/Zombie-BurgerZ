@@ -15,6 +15,7 @@ offset_bottom = 8.0
 focus_mode = 0
 flat = true
 script = ExtResource("1_br05a")
+texture_scale = null
 
 [node name="Sprite" type="Control" parent="."]
 layout_mode = 1
@@ -25,9 +26,11 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite"]
-position = Vector2(0, -3.4341)
+position = Vector2(0, 0.829712)
+scale = Vector2(1, 1)
 
 [node name="PressAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ul518")

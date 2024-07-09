@@ -1,18 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcdi6skdvp808"]
+[gd_scene load_steps=4 format=3 uid="uid://dcdi6skdvp808"]
 
+[ext_resource type="Texture2D" uid="uid://b5a8cesdyvsfp" path="res://assets/shop_menu/skin-description.svg" id="1_lre0c"]
 [ext_resource type="Script" path="res://userinterfaces/skin_description_menu/skin_description_menu.gd" id="1_yyu4q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4gnjk"]
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="SkinDescriptionMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SkinDescriptionMenu" type="TextureRect"]
+offset_right = 123.0
+offset_bottom = 154.0
+texture = ExtResource("1_lre0c")
 script = ExtResource("1_yyu4q")
 
 [node name="Label" type="Label" parent="."]
@@ -22,6 +20,10 @@ anchor_left = 0.02
 anchor_top = 0.02
 anchor_right = 0.98
 anchor_bottom = 0.98
+offset_left = -1.46
+offset_top = 7.92
+offset_right = 0.459999
+offset_bottom = 2.08
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0

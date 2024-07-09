@@ -424,6 +424,7 @@ offset_bottom = 96.0
 scene_filepath = "res://userinterfaces/achievement_menu/achievement_menu.tscn"
 animation = &"swipe"
 texture = ExtResource("8_kpogu")
+texture_scale = 1.0
 
 [node name="SettingsButton" parent="." instance=ExtResource("6_i7gt2")]
 custom_minimum_size = Vector2(39, 127)
@@ -435,6 +436,7 @@ offset_bottom = 96.0
 scene_filepath = "res://userinterfaces/settings_menu/settings_menu.tscn"
 animation = &"swipe"
 texture = ExtResource("8_82o76")
+texture_scale = 1.0
 
 [node name="PlayButton" parent="." instance=ExtResource("6_i7gt2")]
 custom_minimum_size = Vector2(142, 118)
@@ -446,7 +448,11 @@ offset_bottom = 291.0
 scene_filepath = "res://objects/level/level.tscn"
 animation = &"swipe"
 texture = ExtResource("8_ukc2r")
+texture_scale = 1.0
 float_distance = 0.0
+
+[node name="Sprite" parent="PlayButton" index="0"]
+scale = Vector2(1, 1)
 
 [node name="Sprite2D" parent="PlayButton/Sprite" index="0"]
 position = Vector2(0, 0)
@@ -469,6 +475,7 @@ offset_bottom = 286.0
 scene_filepath = "res://userinterfaces/shop_menu/shop_menu.tscn"
 animation = &"garage_door"
 texture = ExtResource("7_sfmd4")
+texture_scale = 1.0
 float_distance = 0.0
 
 [node name="FlickerTimer" type="Timer" parent="."]
