@@ -7,6 +7,9 @@ var rest_speed: float = 0.1
 
 
 func _ready() -> void:
+	Player.player.heartbeat_timer.timeout.connect(func():
+		zoom *= 1.01)
+	
 	Player.player.health.value_lowered.connect(func():
 		zoom *= 1.02)
 	

@@ -73,6 +73,7 @@ static var player_data: Dictionary = {
 @onready var blur_effect: ColorRect = $CanvasLayer/BlurEffect
 @onready var heartbeat_audio: AudioStreamPlayer = $HeartbeatAudio
 @onready var ringing_audio: AudioStreamPlayer = $RingingAudio
+@onready var heartbeat_timer: Timer = $HeartbeatTimer
 
 static var player: Player
 
@@ -110,10 +111,13 @@ func _process(_delta: float) -> void:
 	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
 	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)
 	
-	if heartbeat_audio.playing != (health.value <= 1):
-		heartbeat_audio.play()
-	if ringing_audio.playing != (health.value <= 1):
-		ringing_audio.play()
+	if heartbeat_timer.is_stopped() == (health.value <= 1):
+		if heartbeat_timer.is_stopped():
+			heartbeat_timer.start()
+			ringing_audio.play()
+		else:
+			heartbeat_timer.stop()
+			ringing_audio.stop()
 
 
 func _physics_process(delta: float) -> void:
@@ -183,3 +187,7 @@ func _on_health_value_lowered() -> void:
 func _on_invincibility_timer_timeout() -> void:
 	for area in hitbox.get_overlapping_areas():
 		_on_hit_detector_area_entered(area)
+
+
+func _on_heartbeat_timer_timeout() -> void:
+	heartbeat_audio.play()

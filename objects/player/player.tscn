@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="PackedScene" uid="uid://bv8qbklcmdk5x" path="res://userinterfaces/ammo_ui/ammo_ui.tscn" id="11_nsf5n"]
 [ext_resource type="Shader" path="res://objects/player/blackhole/blackhole/blur.gdshader" id="12_0yf24"]
-[ext_resource type="AudioStream" uid="uid://ci0nk74akv7ps" path="res://assets/player/heartbeat.mp3" id="13_12oyt"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
+[ext_resource type="AudioStream" uid="uid://vyk4t41405jt" path="res://assets/player/player/heartbeat.tres" id="13_sygh3"]
 [ext_resource type="AudioStream" uid="uid://rrefp78klm06" path="res://assets/player/tone.wav" id="14_0u8v1"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="15_7piqp"]
 
@@ -131,7 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HeartbeatAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_12oyt")
+stream = ExtResource("13_sygh3")
 volume_db = -20.0
 
 [node name="RingingAudio" type="AudioStreamPlayer" parent="."]
@@ -139,6 +139,9 @@ stream = ExtResource("14_0u8v1")
 volume_db = -30.0
 pitch_scale = 4.0
 
+[node name="HeartbeatTimer" type="Timer" parent="."]
+
 [connection signal="value_lowered" from="Health" to="." method="_on_health_value_lowered"]
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="HeartbeatTimer" to="." method="_on_heartbeat_timer_timeout"]
