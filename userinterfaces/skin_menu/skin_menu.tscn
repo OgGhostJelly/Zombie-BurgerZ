@@ -30,6 +30,16 @@ theme_override_constants/separation = -8
 layout_mode = 2
 texture = ExtResource("5_eyqk3")
 
+[node name="Marker" type="Control" parent="SkinRack/Skin/HangerTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="SkinTexture" type="TextureRect" parent="SkinRack/Skin"]
 layout_mode = 2
 texture = ExtResource("3_3mql6")

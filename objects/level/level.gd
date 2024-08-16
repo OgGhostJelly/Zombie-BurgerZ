@@ -128,6 +128,6 @@ func _on_player_objective_ui_finished() -> void:
 
 
 func _on_player_died() -> void:
-	if time >= 30.0 and not has_fired:
+	if time <= 5.0:
 		Achievement.give_achievement(Achievement.AchievementType.Nihilism)
 	game_over_menu.game_over(time, PlayerData.money - initial_money, kill_count)

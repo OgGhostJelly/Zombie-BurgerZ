@@ -17,7 +17,6 @@ func _ready() -> void:
 		
 		if Player.player_data[player].has("preview_offset"):
 			var margin: MarginContainer = MarginContainer.new()
-			#margin.add_theme_constant_override(&"margin_right", -Player.player_data[player].preview_offset.x)
 			margin.add_theme_constant_override(&"margin_top", Player.player_data[player].preview_offset.y)
 			texture.reparent(margin)
 			obj.add_child(margin)
@@ -26,13 +25,14 @@ func _ready() -> void:
 	
 	skin.queue_free()
 	
-	center = global_position
+	center = $SkinRack/Skin/HangerTexture/Marker.global_position
 
 
 func set_selected(value: Player.PlayerType) -> void:
 	selected = wrapi(value, 0, Player.PlayerType.size()) as Player.PlayerType
 	var child := skin_rack.get_child(selected)
-	var offset: Vector2 = center - child.global_position
+	var marker: Control = child.get_node(^"HangerTexture/Marker")
+	var offset: Vector2 = center - marker.global_position
 	skin_rack.global_position += offset
 	selected_changed.emit()
 

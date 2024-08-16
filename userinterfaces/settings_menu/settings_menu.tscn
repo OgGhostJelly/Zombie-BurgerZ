@@ -117,6 +117,7 @@ offset_top = -69.0
 offset_bottom = -38.0
 scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
 animation = &"swipe"
+texture_scale = 1.0
 
 [connection signal="toggled" from="Challenges/NoMoving/NoMoving" to="." method="_on_no_moving_toggled"]
 [connection signal="toggled" from="Challenges/GunSights/GunSights" to="." method="_on_gun_sights_toggled"]

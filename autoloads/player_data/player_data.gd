@@ -124,7 +124,11 @@ func load_from_file(file: FileAccess) -> void:
 
 
 func load_from_string(string: String) -> void:
-	var data: Dictionary = JSON.parse_string(string)
+	var ret = JSON.parse_string(string)
+	if ret == null:
+		push_warning("Failed to import data")
+		return
+	var data: Dictionary = ret
 	
 	if not data.has("version"):
 		data.version = 1
@@ -137,6 +141,34 @@ func load_from_string(string: String) -> void:
 		data.selected_gun = Gun.GunType.keys()[data.selected_gun]
 	if not data.selected_skin is String:
 		data.selected_skin = Player.PlayerType.keys()[data.selected_skin]
+	
+	if not data.has("achievements"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("owned_guns"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("owned_skins"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("money"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("total_money"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("selected_gun"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("selected_skin"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("total_kills"):
+		push_warning("Failed to import data")
+		return
+	if not data.has("version"):
+		push_warning("Failed to import data")
+		return
 	
 	achievements.clear()
 	for achievement in data.achievements:
