@@ -39,7 +39,6 @@ playback_mode = 1
 random_pitch = 1.5
 streams_count = 1
 stream_0/stream = ExtResource("6_idwt1")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_fs7hu"]
 length = 0.001
