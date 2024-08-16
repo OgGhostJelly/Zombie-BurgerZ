@@ -2,7 +2,6 @@ extends Node2D
 class_name Gun
 
 signal fired(bullets: Array[Node])
-signal reloaded
 signal killed(bullet: Bullet, enemy: Enemy)
 signal hit(bullet: Bullet, info: HurtInfo2D)
 

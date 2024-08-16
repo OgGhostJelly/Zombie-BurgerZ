@@ -37,7 +37,7 @@ void fragment( )
 		+	TIME
 		) - 0.5
 	) * shake_power * enable_shift;
-	
+
 	vec4 pixel_color = textureLod( SCREEN_TEXTURE, fixed_uv, 0.0 );
 	pixel_color.r = mix(
 		pixel_color.r
