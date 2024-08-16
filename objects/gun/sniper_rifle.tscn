@@ -98,6 +98,7 @@ _data = {
 bullet_scene = ExtResource("2_d3abt")
 knockback = 480.0
 max_knockback = 240.0
+shake_screen_on_fire = true
 
 [node name="Sprite2D" parent="." index="0"]
 rotation = 0.0

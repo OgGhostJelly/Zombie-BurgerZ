@@ -70,6 +70,7 @@ static var gun_data: Dictionary = {
 @export var knockback: float = 0.0
 @export var max_knockback: float = 0.0
 @export var movement_speed_multiplier: float = 1.0
+@export var shake_screen_on_fire: bool = false
 
 
 @onready var ammo: StatRangeInt = $Ammo

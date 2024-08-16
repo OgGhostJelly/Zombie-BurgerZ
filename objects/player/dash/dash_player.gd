@@ -30,7 +30,6 @@ func _process(delta: float) -> void:
 		if last_animation:
 			animation_player.play(&"stop_slowmo")
 			last_animation = false
-	
 
 
 func ghost_process(delta: float) -> void:

@@ -17,7 +17,6 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("5_aomsk")
-stream_0/weight = 1.0
 
 [sub_resource type="Gradient" id="Gradient_msh5n"]
 offsets = PackedFloat32Array(0.72, 1)

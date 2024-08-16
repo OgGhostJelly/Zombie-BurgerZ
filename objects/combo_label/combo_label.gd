@@ -2,7 +2,7 @@ extends Node2D
 class_name ComboLabel
 
 
-@export var text: String: set = set_text
+@export var points_for_graphic: int = 0
 @export var velocity: Vector2 = Vector2.UP * 64.0
 @export var gravity: Vector2 = Vector2.DOWN * 256.0
 @export var torque: float = PI
@@ -14,6 +14,8 @@ class_name ComboLabel
 func _ready() -> void:
 	assert(label)
 	
+	label.text = "+%s" % (points_for_graphic * power)
+	
 	velocity += Vector2(randf_range(-32.0, 32.0), randf_range(-32.0, 32.0))
 	torque += randf_range(-PI/4, PI/4)
 	
@@ -23,8 +25,6 @@ func _ready() -> void:
 	else:
 		velocity += (Vector2.UP + Vector2.LEFT).normalized() * 64.0
 		torque *= -1.0
-	
-	text = label.text
 
 
 func _process(delta: float) -> void:
@@ -35,11 +35,6 @@ func _process(delta: float) -> void:
 	
 	if modulate.a <= 0.0:
 		queue_free()
-
-
-func set_text(value: String) -> void:
-	text = "+".repeat(power) + value
-	if label: label.text = text
 
 
 static func pierce(p_global_position: Vector2, p_power: int = 1) -> ComboLabel:

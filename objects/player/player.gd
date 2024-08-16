@@ -72,6 +72,7 @@ static var player_data: Dictionary = {
 @onready var hitbox: Area2D = $HitDetector
 @onready var blur_effect: ColorRect = $CanvasLayer/BlurEffect
 @onready var heartbeat_audio: AudioStreamPlayer = $HeartbeatAudio
+@onready var ringing_audio: AudioStreamPlayer = $RingingAudio
 
 static var player: Player
 
@@ -111,6 +112,8 @@ func _process(_delta: float) -> void:
 	
 	if heartbeat_audio.playing != (health.value <= 1):
 		heartbeat_audio.play()
+	if ringing_audio.playing != (health.value <= 1):
+		ringing_audio.play()
 
 
 func _physics_process(delta: float) -> void:

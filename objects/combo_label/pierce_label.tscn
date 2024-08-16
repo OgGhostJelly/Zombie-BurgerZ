@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dhmber4gfrpdg" path="res://objects/combo_label/combo_label.tscn" id="1_2jv21"]
 
 [node name="PierceLabel" instance=ExtResource("1_2jv21")]
+points_for_graphic = 10
 
 [node name="Label" parent="." index="0"]
 modulate = Color(0, 1, 1, 1)

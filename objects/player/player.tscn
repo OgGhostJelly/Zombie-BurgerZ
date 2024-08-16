@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://j6yyqdar5jqj"]
+[gd_scene load_steps=20 format=3 uid="uid://j6yyqdar5jqj"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_26mew"]
 [ext_resource type="Texture2D" uid="uid://ddpl4vmsev6cl" path="res://assets/player/normal_player/player-idle.svg" id="2_k4tsx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" path="res://objects/player/blackhole/blackhole/blur.gdshader" id="12_0yf24"]
 [ext_resource type="AudioStream" uid="uid://ci0nk74akv7ps" path="res://assets/player/heartbeat.mp3" id="13_12oyt"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
+[ext_resource type="AudioStream" uid="uid://rrefp78klm06" path="res://assets/player/tone.wav" id="14_0u8v1"]
 [ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="15_7piqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhhaw"]
@@ -46,7 +47,6 @@ animations = [{
 random_pitch = 1.4
 streams_count = 1
 stream_0/stream = ExtResource("13_26jhs")
-stream_0/weight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idpd6"]
 shader = ExtResource("12_0yf24")
@@ -133,6 +133,11 @@ grow_vertical = 2
 [node name="HeartbeatAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_12oyt")
 volume_db = -20.0
+
+[node name="RingingAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_0u8v1")
+volume_db = -30.0
+pitch_scale = 4.0
 
 [connection signal="value_lowered" from="Health" to="." method="_on_health_value_lowered"]
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
