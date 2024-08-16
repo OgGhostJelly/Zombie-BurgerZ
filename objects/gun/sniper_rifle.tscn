@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn2nf6unfhe5y"]
+[gd_scene load_steps=12 format=3 uid="uid://bn2nf6unfhe5y"]
 
 [ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/gun/gun.tscn" id="1_kmrf0"]
 [ext_resource type="PackedScene" uid="uid://c5x31ccxy8wg7" path="res://objects/bullet/sniper_rifle_bullet.tscn" id="2_d3abt"]
 [ext_resource type="Texture2D" uid="uid://nirbu103cr1x" path="res://assets/gun/sniper_rifle/sniper_rifle.svg" id="2_uaxcb"]
+[ext_resource type="AudioStream" uid="uid://be5p4c8m48401" path="res://assets/gun/sniper_rifle/pew.wav" id="4_tny10"]
+[ext_resource type="AudioStream" uid="uid://bxk5k03j6rq5c" path="res://assets/gun/sniper_rifle/pew2.wav" id="5_barcf"]
 
 [sub_resource type="Animation" id="Animation_s2lsq"]
 length = 0.001
@@ -123,3 +125,15 @@ libraries = {
 "": SubResource("AnimationLibrary_0uhp4")
 }
 speed_scale = 0.15
+
+[node name="PewAudio" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("4_tny10")
+volume_db = -2.0
+pitch_scale = 0.1
+
+[node name="PewAudio2" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("5_barcf")
+volume_db = -4.0
+
+[connection signal="fired" from="." to="PewAudio" method="play" unbinds=1]
+[connection signal="fired" from="." to="PewAudio2" method="play" unbinds=1]
