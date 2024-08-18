@@ -4,6 +4,7 @@ extends Player
 @onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var dash_audio: AudioStreamPlayer = $DashAudio
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var speedlines: ColorRect = $CanvasLayer/Speedlines
 var dash_ghost_time: float = 0.0
 var dashing: bool = false
 var last_animation: bool = false
@@ -11,6 +12,9 @@ var last_animation: bool = false
 
 func _ready() -> void:
 	super()
+	
+	died.connect(func():
+		FancyCamera2D.camera.stop_zoom())
 
 
 func _process(delta: float) -> void:
@@ -25,11 +29,21 @@ func _process(delta: float) -> void:
 			animation_player.play(&"start_slowmo")
 			last_animation = true
 	else:
+		if dashing:
+			FancyCamera2D.camera.stop_zoom()
 		dashing = false
 		Engine.time_scale = 1.0 + Settings.get_bonus_game_speed()
 		if last_animation:
 			animation_player.play(&"stop_slowmo")
 			last_animation = false
+	
+	var desired_opacity: float = 0.0
+	if dashing:
+		desired_opacity = 1.0
+	
+	var speedlines_mat: ShaderMaterial = speedlines.material
+	speedlines_mat.set_shader_parameter(&"opacity", lerpf(speedlines_mat.get_shader_parameter(&"opacity"), desired_opacity, delta * 2.0))
+
 
 
 func ghost_process(delta: float) -> void:
@@ -51,3 +65,4 @@ func _on_energy_bar_used() -> void:
 	particles.emitting = true
 	dash_audio.play()
 	dashing = true
+	FancyCamera2D.camera.do_zoom(Vector2.ONE * 1.25)

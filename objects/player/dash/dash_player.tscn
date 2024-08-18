@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7ismsn7vn55t"]
+[gd_scene load_steps=26 format=3 uid="uid://c7ismsn7vn55t"]
 
 [ext_resource type="PackedScene" uid="uid://j6yyqdar5jqj" path="res://objects/player/player.tscn" id="1_v08pg"]
 [ext_resource type="Script" path="res://objects/player/dash/dash_player.gd" id="2_4l56d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dpaxccffrjg67" path="res://assets/player/dash_player/player-walk2.svg" id="5_m558v"]
 [ext_resource type="AudioStream" uid="uid://dbqip7iinfyoi" path="res://assets/player/dash_player/dash.wav" id="6_idwt1"]
 [ext_resource type="Shader" path="res://objects/player/dash/vignette.gdshader" id="7_ltjb4"]
+[ext_resource type="Shader" path="res://shaders/speedlines.gdshader" id="8_87u5l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qi1lu"]
 animations = [{
@@ -126,6 +127,22 @@ shader_parameter/scroll_noise1 = SubResource("NoiseTexture2D_f67mi")
 shader_parameter/scroll_noise2 = SubResource("NoiseTexture2D_etkvx")
 shader_parameter/mask = SubResource("GradientTexture2D_8ibuj")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ludrt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_62vui"]
+noise = SubResource("FastNoiseLite_ludrt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gu6xx"]
+shader = ExtResource("8_87u5l")
+shader_parameter/line_color_a = Color(1, 1, 1, 0.247059)
+shader_parameter/line_color_b = Color(0.313726, 0.313726, 0.313726, 0.247059)
+shader_parameter/line_threshold = 0.6
+shader_parameter/inverse_speed = 10.0
+shader_parameter/line_length = 1000.0
+shader_parameter/angle = 0.0
+shader_parameter/opacity = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_62vui")
+
 [node name="DashPlayer" instance=ExtResource("1_v08pg")]
 script = ExtResource("2_4l56d")
 
@@ -161,9 +178,7 @@ stream = SubResource("AudioStreamRandomizer_y4rk7")
 volume_db = -15.0
 pitch_scale = 0.9
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." index="11"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
 libraries = {
 "": SubResource("AnimationLibrary_6d71g")
 }
@@ -176,5 +191,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 1, 1, 0)
+
+[node name="Speedlines" type="ColorRect" parent="CanvasLayer" index="2"]
+material = SubResource("ShaderMaterial_gu6xx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="used" from="EnergyBar" to="." method="_on_energy_bar_used"]

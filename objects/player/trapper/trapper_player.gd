@@ -1,7 +1,7 @@
 extends Player
 
 
-@export var trap_limit: int = 3
+@export var trap_limit: int = 9
 @onready var place_timer: Timer = $PlaceTimer
 @onready var place_audio: AudioStreamPlayer = $PlaceAudio
 var trap_count: int = 0
@@ -9,7 +9,7 @@ var trap_count: int = 0
 
 func _process(delta: float) -> void:
 	super(delta)
-	if Input.is_action_just_pressed(&"special") and trap_count < 3:
+	if Input.is_action_just_pressed(&"special") and trap_count < trap_limit:
 		energy_bar.use()
 
 

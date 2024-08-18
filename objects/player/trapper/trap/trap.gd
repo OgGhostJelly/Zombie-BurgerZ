@@ -6,6 +6,7 @@ signal died
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var is_dead: bool = false
 var velocity: Vector2 = Vector2.ZERO
+var cooldown: float = 0.1
 
 
 func _ready() -> void:
@@ -14,12 +15,18 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if cooldown > 0.0:
+		cooldown -= delta
+	
 	velocity = velocity.move_toward(Vector2.ZERO, 128.0 * delta)
 	global_position += velocity * delta
 
 
 func _on_area_entered(_area: Area2D) -> void:
 	if is_dead:
+		return
+	
+	if cooldown > 0.0:
 		return
 	
 	is_dead = true

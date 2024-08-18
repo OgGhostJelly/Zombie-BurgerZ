@@ -65,6 +65,13 @@ func _die() -> void:
 	
 	is_dead = true
 	
+	hit_audio.reparent(get_parent())
+	if hit_audio.playing:
+		hit_audio.finished.connect(func():
+			queue_free())
+	else:
+		queue_free()
+	
 	var debris: Node2D = preload("res://objects/enemy_debris/enemy_debris.tscn").instantiate()
 	debris.global_position = global_position
 	animated_sprite.reparent(debris)

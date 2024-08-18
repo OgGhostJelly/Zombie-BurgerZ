@@ -34,18 +34,17 @@ playback_mode = 1
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("7_06ttu")
-stream_0/weight = 1.0
 
 [node name="TrapperPlayer" instance=ExtResource("1_ukgq6")]
 script = ExtResource("2_5xhub")
-trap_limit = 3
+trap_limit = 9
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_523m7")
 animation = &"walk"
 
 [node name="EnergyBar" parent="." index="8"]
-regeneration_speed = 0.25
+regeneration_speed = 0.125
 
 [node name="PlaceTimer" type="Timer" parent="." index="9"]
 wait_time = 0.5

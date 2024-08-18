@@ -1,9 +1,11 @@
 extends Hitbox2D
 
 
-@export var damage: int = 3
+@export var damage: int = 1
 #https://sfxr.me/#84AYGJkhjSWj6hkud2UaRaRuLf8e7B9fxYy6ntkF7Fj5HGLg2qfkDeRN4F7YD77fWy3F4pnj1CNBuwdhFjKQKzuZctjPyLVjNuw8u6yKtMR4YeoEiVR1sKSxP
 func _process(delta: float) -> void:
+	FancyCamera2D.camera.shake(0.05, 12.0)
+	
 	for node in get_overlapping_bodies():
 		node = node as Node2D
 		if node == null:

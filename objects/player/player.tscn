@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://og338o612gh3" path="res://objects/energy_bar/energy_bar.tscn" id="11_3scvw"]
 [ext_resource type="Texture2D" uid="uid://b3e4rnl442ehm" path="res://assets/health/health-empty.svg" id="11_hq7yn"]
 [ext_resource type="PackedScene" uid="uid://bv8qbklcmdk5x" path="res://userinterfaces/ammo_ui/ammo_ui.tscn" id="11_nsf5n"]
-[ext_resource type="Shader" path="res://objects/player/blackhole/blackhole/blur.gdshader" id="12_0yf24"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="12_0yf24"]
 [ext_resource type="AudioStream" uid="uid://ddq3bgm8m0t0g" path="res://assets/player/player-damage.wav" id="13_26jhs"]
 [ext_resource type="AudioStream" uid="uid://vyk4t41405jt" path="res://assets/player/player/heartbeat.tres" id="13_sygh3"]
 [ext_resource type="AudioStream" uid="uid://rrefp78klm06" path="res://assets/player/tone.wav" id="14_0u8v1"]

@@ -51,9 +51,7 @@ playback_mode = 1
 random_pitch = 1.2
 streams_count = 2
 stream_0/stream = ExtResource("14_d4lso")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("15_h14bw")
-stream_1/weight = 1.0
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["enemies"]]
 collision_layer = 4

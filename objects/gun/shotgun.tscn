@@ -98,6 +98,7 @@ spread = 25.0
 bullet_scene = ExtResource("2_wj131")
 knockback = 480.0
 max_knockback = 240.0
+shake_screen_on_near_kill = true
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(21, 0)

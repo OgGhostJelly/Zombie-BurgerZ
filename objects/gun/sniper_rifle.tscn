@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn2nf6unfhe5y"]
+[gd_scene load_steps=14 format=3 uid="uid://bn2nf6unfhe5y"]
 
 [ext_resource type="PackedScene" uid="uid://dajayqy7ycoxw" path="res://objects/gun/gun.tscn" id="1_kmrf0"]
 [ext_resource type="PackedScene" uid="uid://c5x31ccxy8wg7" path="res://objects/bullet/sniper_rifle_bullet.tscn" id="2_d3abt"]
@@ -94,6 +94,16 @@ _data = {
 "shoot-right": SubResource("Animation_xsy5e")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7y03b"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("4_tny10")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_loyws"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("5_barcf")
+
 [node name="SniperRifle" instance=ExtResource("1_kmrf0")]
 bullet_scene = ExtResource("2_d3abt")
 knockback = 480.0
@@ -128,12 +138,12 @@ libraries = {
 speed_scale = 0.15
 
 [node name="PewAudio" type="AudioStreamPlayer" parent="." index="6"]
-stream = ExtResource("4_tny10")
+stream = SubResource("AudioStreamRandomizer_7y03b")
 volume_db = -2.0
 pitch_scale = 0.1
 
 [node name="PewAudio2" type="AudioStreamPlayer" parent="." index="7"]
-stream = ExtResource("5_barcf")
+stream = SubResource("AudioStreamRandomizer_loyws")
 volume_db = -4.0
 
 [connection signal="fired" from="." to="PewAudio" method="play" unbinds=1]

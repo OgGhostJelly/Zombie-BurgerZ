@@ -108,7 +108,12 @@ func _process(_delta: float) -> void:
 	else:
 		animated_sprite.play(&"walk")
 	
-	(blur_effect.material as ShaderMaterial).set_shader_parameter(&"lod", 1.0 if health.value <= 1 else 0.0)
+	var blur_effect_mat: ShaderMaterial = blur_effect.material
+	if health.value <= 1:
+		var t: float = remap(heartbeat_timer.time_left, 0.0, heartbeat_timer.wait_time, 0.0, 1.0)
+		blur_effect_mat.set_shader_parameter(&"lod", t)
+	else:
+		blur_effect_mat.set_shader_parameter(&"lod", 0.0)
 	AudioServer.set_bus_effect_enabled(0, 0, health.value <= 1)
 	
 	if heartbeat_timer.is_stopped() == (health.value <= 1):
