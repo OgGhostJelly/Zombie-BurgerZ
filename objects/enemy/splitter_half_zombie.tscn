@@ -65,3 +65,4 @@ value = 1
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_aabjy")
 frame = 6
+frame_progress = 0.0
