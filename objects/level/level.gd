@@ -32,7 +32,7 @@ var has_indicator: bool = false
 
 
 func _init() -> void:
-	var obj: Player = Player.player_data[PlayerData.selected_skin].scene.instantiate()
+	var obj: Player = Player.player_data[UserData.selected_skin].scene.instantiate()
 	obj.global_position = Vector2(480.0, 360.0) / 2.0
 	obj.name = "Player"
 	add_child(obj)
@@ -44,7 +44,7 @@ func _ready() -> void:
 	
 	player.died.connect(_on_player_died)
 	
-	initial_money = PlayerData.money
+	initial_money = UserData.money
 	
 	grace_period_timer.timeout.connect(func():
 		spawn_timer.paused = false)
@@ -95,7 +95,7 @@ func get_next_spawn() -> Node2D:
 	
 	obj.died.connect(func():
 		kill_count += 1
-		PlayerData.total_kills += 1
+		UserData.total_kills += 1
 		
 		if kill_count >= kill_count_req:
 			for i in range(int(kill_count_req / 2.0)):
@@ -130,4 +130,4 @@ func _on_player_objective_ui_finished() -> void:
 func _on_player_died() -> void:
 	if time <= 5.0:
 		Achievement.give_achievement(Achievement.AchievementType.Nihilism)
-	game_over_menu.game_over(time, PlayerData.money - initial_money, kill_count)
+	game_over_menu.game_over(time, UserData.money - initial_money, kill_count)

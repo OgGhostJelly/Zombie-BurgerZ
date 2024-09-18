@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhd8kegukmys8"]
 
-[ext_resource type="Script" path="res://autoloads/player_data/player_data.gd" id="1_bjrbs"]
+[ext_resource type="Script" path="res://autoloads/user_data/user_data.gd" id="1_inljq"]
 
-[node name="PlayerData" type="Node"]
+[node name="UserData" type="Node"]
 process_mode = 3
-script = ExtResource("1_bjrbs")
+script = ExtResource("1_inljq")
 
 [node name="AutoSaveTimer" type="Timer" parent="."]
 wait_time = 30.0

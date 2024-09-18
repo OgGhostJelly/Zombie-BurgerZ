@@ -25,11 +25,11 @@ func _on_unlock_all_pressed() -> void:
 
 
 func _on_lock_pressed() -> void:
-	PlayerData.achievements.erase(achievement_menu.selected)
+	UserData.achievements.erase(achievement_menu.selected)
 	achievement_menu.selected = achievement_menu.selected
 
 
 func _on_lock_all_pressed() -> void:
 	for ach in Achievement.AchievementType.values():
-		PlayerData.achievements.erase(ach)
+		UserData.achievements.erase(ach)
 	achievement_menu.selected = achievement_menu.selected

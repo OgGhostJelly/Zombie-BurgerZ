@@ -14,17 +14,17 @@ var selected: int = 0: set = set_selected
 func _ready() -> void:
 	selected = selected
 	
-	if PlayerData.achievement_menu_seen:
+	if UserData.achievement_menu_seen:
 		entrance_animation.stop()
 		bop_animation.play(&"bop")
 		return
-	PlayerData.achievement_menu_seen = true
+	UserData.achievement_menu_seen = true
 
 
 func set_selected(value: int) -> void:
 	selected = wrapi(value, 0, Achievement.data.size())
 	
-	var owned: bool = PlayerData.achievements.has(selected)
+	var owned: bool = UserData.achievements.has(selected)
 	
 	title_label.text = (
 		Achievement.data[selected].locked_name

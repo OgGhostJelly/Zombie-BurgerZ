@@ -5,7 +5,7 @@ signal selected_changed
 @onready var skin_rack: HBoxContainer = $SkinRack
 @onready var skin: VBoxContainer = $SkinRack/Skin
 
-var selected: Player.PlayerType = PlayerData.selected_skin
+var selected: Player.PlayerType = UserData.selected_skin
 var marker_center: Vector2 = Vector2.ZERO
 var rack_center: Vector2 = Vector2.ZERO
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	skin.free()
 	
-	selected = PlayerData.selected_skin
+	selected = UserData.selected_skin
 
 
 func _process(_delta: float) -> void:

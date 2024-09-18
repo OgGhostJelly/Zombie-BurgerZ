@@ -8,7 +8,7 @@ extends Control
 
 func _on_export_button_pressed() -> void:
 	if OS.get_name() == "Web":
-		JavaScriptBridge.download_buffer(PlayerData.save_as_string().to_utf8_buffer(), "save.dat")
+		JavaScriptBridge.download_buffer(UserData.save_as_string().to_utf8_buffer(), "save.dat")
 		return
 	export_file_dialog.popup_centered()
 
@@ -18,7 +18,7 @@ func _on_export_file_dialog_file_selected(path: String) -> void:
 		path += ".dat"
 	
 	var file := FileAccess.open(path, FileAccess.WRITE)
-	PlayerData.save_to_file(file)
+	UserData.save_to_file(file)
 
 
 func _on_import_button_pressed() -> void:
@@ -48,13 +48,13 @@ func _on_import_confirmation_dialog_confirmed() -> void:
 var _js_import_file_callback = JavaScriptBridge.create_callback(_on_web_import_file)
 func _on_web_import_file(_args) -> void:
 	var text = JavaScriptBridge.get_interface("window")._godot_file_import_text
-	PlayerData.load_from_string(text)
-	PlayerData.data_save()
+	UserData.load_from_string(text)
+	UserData.data_save()
 	get_tree().reload_current_scene()
 
 
 func _on_import_file_dialog_file_selected(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.READ)
-	PlayerData.load_from_file(file)
-	PlayerData.data_save()
+	UserData.load_from_file(file)
+	UserData.data_save()
 	get_tree().reload_current_scene()

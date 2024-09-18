@@ -27,5 +27,5 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	PlayerData.data_save()
+	UserData.data_save()
 	SceneTransition.to_packed(preload("res://userinterfaces/main_menu/main_menu.tscn"))

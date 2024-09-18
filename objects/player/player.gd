@@ -82,7 +82,7 @@ func _init() -> void:
 	if scene_file_path:
 		return
 	
-	var obj: Gun = Gun.gun_data[PlayerData.selected_gun].scene.instantiate()
+	var obj: Gun = Gun.gun_data[UserData.selected_gun].scene.instantiate()
 	obj.name = "Gun"
 	add_child(obj)
 

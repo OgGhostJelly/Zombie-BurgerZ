@@ -129,28 +129,28 @@ signal gave_achievement(achievement: AchievementType)
 
 
 func _ready() -> void:
-	PlayerData.total_kills_changed.connect(func():
-		if PlayerData.total_kills >= 500:
+	UserData.total_kills_changed.connect(func():
+		if UserData.total_kills >= 500:
 			give_achievement(AchievementType.TotalKill500)
-		if PlayerData.total_kills >= 1000:
+		if UserData.total_kills >= 1000:
 			give_achievement(AchievementType.TotalKill1000)
-		if PlayerData.total_kills >= 10_000:
+		if UserData.total_kills >= 10_000:
 			give_achievement(AchievementType.TotalKill10000))
 	
-	PlayerData.total_money_changed.connect(func():
-		if PlayerData.total_money >= 100:
+	UserData.total_money_changed.connect(func():
+		if UserData.total_money >= 100:
 			give_achievement(AchievementType.Money100)
-		if PlayerData.total_money >= 1000:
+		if UserData.total_money >= 1000:
 			give_achievement(AchievementType.Money1000)
-		if PlayerData.total_money >= 10_000:
+		if UserData.total_money >= 10_000:
 			give_achievement(AchievementType.Money10000))
 	
-	PlayerData.owned_skins_changed.connect(func():
+	UserData.owned_skins_changed.connect(func():
 		check_every_skin()
 		check_buy_everything()
 		check_dev_skin())
 	
-	PlayerData.owned_guns_changed.connect(func():
+	UserData.owned_guns_changed.connect(func():
 		check_every_gun()
 		check_buy_everything()
 		check_dev_skin())
@@ -166,7 +166,7 @@ func _ready() -> void:
 
 
 func check_every_gun() -> void:
-	if Gun.GunType.values().all(func(value): return PlayerData.owned_guns.has(value)):
+	if Gun.GunType.values().all(func(value): return UserData.owned_guns.has(value)):
 		give_achievement(AchievementType.EveryGun)
 
 
@@ -174,7 +174,7 @@ func check_every_skin() -> void:
 	if Player.PlayerType.values().all(func(value):
 		if value == Player.PlayerType.OgGhostJelly or value == Player.PlayerType.SirF_:
 			return true
-		return PlayerData.has_skin(value)):
+		return UserData.has_skin(value)):
 		give_achievement(AchievementType.EverySkin)
 
 
@@ -183,31 +183,31 @@ func check_buy_everything() -> void:
 		Gun.GunType.values().all(func(value):
 			if not Gun.gun_data[value].get("cost"):
 				return true
-			return PlayerData.has_gun(value)) and
+			return UserData.has_gun(value)) and
 		Player.PlayerType.values().all(func(value):
 			if not Player.player_data[value].get("cost"):
 				return true
-			return PlayerData.has_skin(value))
+			return UserData.has_skin(value))
 	):
 		give_achievement(AchievementType.BuyEverything)
 
 
 func check_dev_skin() -> void:
 	if not has_achievement(AchievementType.DevSkins):
-		PlayerData.owned_skins.erase(Player.PlayerType.OgGhostJelly)
-		PlayerData.owned_skins.erase(Player.PlayerType.SirF_)
+		UserData.owned_skins.erase(Player.PlayerType.OgGhostJelly)
+		UserData.owned_skins.erase(Player.PlayerType.SirF_)
 
 
 func check_achievement_items() -> void:
 	if has_achievement(AchievementType.TripleKill):
-		PlayerData.try_add_gun(Gun.GunType.SniperRifle)
+		UserData.try_add_gun(Gun.GunType.SniperRifle)
 	
 	if has_achievement(AchievementType.Nihilism):
-		PlayerData.try_add_skin(Player.PlayerType.Blackhole)
+		UserData.try_add_skin(Player.PlayerType.Blackhole)
 	
 	if has_achievement(AchievementType.DevSkins):
-		PlayerData.try_add_skin(Player.PlayerType.OgGhostJelly)
-		PlayerData.try_add_skin(Player.PlayerType.SirF_)
+		UserData.try_add_skin(Player.PlayerType.OgGhostJelly)
+		UserData.try_add_skin(Player.PlayerType.SirF_)
 
 
 var level: Level = null
@@ -253,7 +253,7 @@ func _process(_delta: float) -> void:
 
 
 func has_achievement(value: AchievementType) -> bool:
-	return PlayerData.achievements.has(value)
+	return UserData.achievements.has(value)
 
 
 func give_achievement(value: AchievementType) -> void:
@@ -261,6 +261,6 @@ func give_achievement(value: AchievementType) -> void:
 		return
 	
 	$AnimationPlayer.play("pop")
-	PlayerData.achievements[value] = true
-	PlayerData.data_save()
+	UserData.achievements[value] = true
+	UserData.data_save()
 	gave_achievement.emit(value)

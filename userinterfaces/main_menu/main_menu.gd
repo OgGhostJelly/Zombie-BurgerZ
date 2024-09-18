@@ -7,11 +7,11 @@ class_name MainMenu
 
 
 func _ready() -> void:
-	if PlayerData.main_menu_seen:
+	if UserData.main_menu_seen:
 		entrance_animation.stop()
 		bop_animation.play(&"bop")
 		return
-	PlayerData.main_menu_seen = true
+	UserData.main_menu_seen = true
 
 
 var flickered: bool = false

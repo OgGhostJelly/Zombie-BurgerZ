@@ -6,7 +6,7 @@ extends Control
 
 
 func _ready() -> void:
-	PlayerData.money_changed.connect(func():
+	UserData.money_changed.connect(func():
 		animation_player.play(&"pickup")
-		label.text = "%s" % PlayerData.money)
-	label.text = "%s" % PlayerData.money
+		label.text = "%s" % UserData.money)
+	label.text = "%s" % UserData.money
