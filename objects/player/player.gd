@@ -3,6 +3,22 @@ class_name Player
 
 signal moved
 
+const NORMAL: StringName = &"normal"
+const DASH: StringName = &"dash"
+const TRAPPER: StringName = &"trapper"
+const BLACKHOLE: StringName = &"blackhole"
+const OGGHOSTJELLY: StringName = &"ogghostjelly"
+const SIRF_: StringName = &"sirf_"
+
+static var data: Dictionary = {
+	NORMAL: preload("res://resources/PlayerData/normal.tres"),
+	DASH: preload("res://resources/PlayerData/dash.tres"),
+	TRAPPER: preload("res://resources/PlayerData/trapper.tres"),
+	BLACKHOLE: preload("res://resources/PlayerData/blackhole.tres"),
+	OGGHOSTJELLY: preload("res://resources/PlayerData/ogghostjelly.tres"),
+	SIRF_: preload("res://resources/PlayerData/sirf_.tres"),
+}
+
 enum PlayerType {
 	Normal,
 	Dash,

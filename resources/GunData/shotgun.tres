@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://dcrj7u08sde5o"]
+
+[ext_resource type="PackedScene" uid="uid://bs0th4yyumu86" path="res://objects/gun/shotgun.tscn" id="1_jiwbg"]
+[ext_resource type="Texture2D" uid="uid://nssls06mjlg2" path="res://assets/gun/shotgun/shotgun.svg" id="2_0dwe0"]
+[ext_resource type="Texture2D" uid="uid://hrn7p3km2ctv" path="res://assets/ammo/shotgun-ammo-empty.svg" id="3_5skur"]
+[ext_resource type="Texture2D" uid="uid://dao0snfeb1axq" path="res://assets/ammo/shotgun-ammo.svg" id="4_thq3a"]
+[ext_resource type="Script" path="res://classes/resources/Data/GunData.gd" id="5_lj88l"]
+
+[resource]
+script = ExtResource("5_lj88l")
+ammo_texture = ExtResource("4_thq3a")
+ammo_empty_texture = ExtResource("3_5skur")
+_scene = ExtResource("1_jiwbg")
+_texture = ExtResource("2_0dwe0")
+_description = "Shotgun."
+type = 0
+_cost = 100
+_use_locked_description = true
+_locked_description = ""

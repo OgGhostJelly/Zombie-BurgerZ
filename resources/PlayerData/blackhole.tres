@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3 uid="uid://q52r0kded5c3"]
+
+[ext_resource type="PackedScene" uid="uid://l2v8ig45ugf7" path="res://objects/player/blackhole/blackhole_player.tscn" id="1_ld15a"]
+[ext_resource type="Texture2D" uid="uid://b6j7u02p3grh2" path="res://assets/player/blackhole_player/player-idle.svg" id="2_bo0tt"]
+[ext_resource type="Script" path="res://classes/resources/Data/PlayerData.gd" id="3_7nhef"]
+
+[resource]
+script = ExtResource("3_7nhef")
+_scene = ExtResource("1_ld15a")
+_texture = ExtResource("2_bo0tt")
+_description = "harness the singularity"
+type = 1
+_cost = 0
+_use_locked_description = true
+_locked_description = "???"

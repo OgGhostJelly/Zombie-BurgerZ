@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3 uid="uid://bmoynt23s3g1l"]
+
+[ext_resource type="PackedScene" uid="uid://k3f7po1j7cgm" path="res://objects/player/sirf/sirf_player.tscn" id="1_25irx"]
+[ext_resource type="Texture2D" uid="uid://c4ona5rk3nbwr" path="res://assets/player/sirf_player/player-idle.svg" id="2_mwdnv"]
+[ext_resource type="Script" path="res://classes/resources/Data/PlayerData.gd" id="3_v404c"]
+
+[resource]
+script = ExtResource("3_v404c")
+preview_offset = Vector2(-24, -36)
+_scene = ExtResource("1_25irx")
+_texture = ExtResource("2_mwdnv")
+_description = "addicted to art"
+type = 1
+_cost = 0
+_use_locked_description = false
+_locked_description = ""

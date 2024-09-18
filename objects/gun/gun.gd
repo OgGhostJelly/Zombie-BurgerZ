@@ -5,6 +5,17 @@ signal fired(bullets: Array[Node])
 signal killed(bullet: Bullet, enemy: Enemy)
 signal hit(bullet: Bullet, info: HurtInfo2D)
 
+const PISTOL: StringName = &"pistol"
+const SHOTGUN: StringName = &"shotgun"
+const SMG: StringName = &"smg"
+const SNIPER_RIFLE: StringName = &"sniper_rifle"
+
+static var data: Dictionary = {
+	PISTOL: preload("res://resources/GunData/pistol.tres"),
+	SHOTGUN: preload("res://resources/GunData/shotgun.tres"),
+	SMG: preload("res://resources/GunData/smg.tres"),
+	SNIPER_RIFLE: preload("res://resources/GunData/sniper_rifle.tres"),
+}
 
 enum GunType {
 	Pistol,
