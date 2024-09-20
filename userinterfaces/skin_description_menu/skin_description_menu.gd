@@ -17,7 +17,8 @@ func _ready() -> void:
 
 func _update() -> void:
 	var selected: Player.PlayerType = skin_menu.selected
-	label.text = Player.player_data[selected].description
+	var data: PlayerData = Player.data[selected]
+	label.text = data.get_description()
 	
 	owned_label.visible = false
 	price_label.visible = false
@@ -28,11 +29,12 @@ func _update() -> void:
 	if UserData.owned_skins.has(selected):
 		owned_label.visible = true
 		UserData.selected_skin = selected
-	elif Player.player_data[selected].get("cost"):
-		price_label.text = "$%s" % Player.player_data[selected].cost
+	elif data.type == Data.Type.Purchaseable:
+		var player_cost: int = data.get_cost()
+		price_label.text = "$%s" % player_cost
 		price_label.visible = true
 		
-		if UserData.money >= Player.player_data[selected].cost:
+		if UserData.money >= player_cost:
 			buy_button.visible = true
 		else:
 			insufficient_funds_label.visible = true
@@ -46,9 +48,12 @@ func _on_buy_button_pressed() -> void:
 	if UserData.has_skin(selected):
 		return
 	
-	if UserData.money < Player.player_data[selected].cost:
+	var data: PlayerData = Player.data[selected]
+	var player_cost: int = data.get_cost()
+	
+	if UserData.money < player_cost:
 		return
 	
-	UserData.money -= Player.player_data[selected].cost
+	UserData.money -= player_cost
 	UserData.add_skin(selected)
 	_update()

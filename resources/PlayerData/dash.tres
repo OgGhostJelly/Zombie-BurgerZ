@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("3_cubm7")
+preview_offset = Vector2(0, 0)
 _scene = ExtResource("1_g0d2y")
 _texture = ExtResource("2_2fpjy")
 _description = "(ultra)kill to charge up a dash"

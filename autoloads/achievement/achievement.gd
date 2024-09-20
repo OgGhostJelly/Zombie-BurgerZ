@@ -181,11 +181,11 @@ func check_every_skin() -> void:
 func check_buy_everything() -> void:
 	if (
 		Gun.GunType.values().all(func(value):
-			if not Gun.gun_data[value].get("cost"):
+			if Gun.data[value].type != GunData.Type.Purchaseable:
 				return true
 			return UserData.has_gun(value)) and
 		Player.PlayerType.values().all(func(value):
-			if not Player.player_data[value].get("cost"):
+			if Player.data[value].type != PlayerData.Type.Purchaseable:
 				return true
 			return UserData.has_skin(value))
 	):

@@ -3,20 +3,13 @@ class_name Player
 
 signal moved
 
-const NORMAL: StringName = &"normal"
-const DASH: StringName = &"dash"
-const TRAPPER: StringName = &"trapper"
-const BLACKHOLE: StringName = &"blackhole"
-const OGGHOSTJELLY: StringName = &"ogghostjelly"
-const SIRF_: StringName = &"sirf_"
-
 static var data: Dictionary = {
-	NORMAL: preload("res://resources/PlayerData/normal.tres"),
-	DASH: preload("res://resources/PlayerData/dash.tres"),
-	TRAPPER: preload("res://resources/PlayerData/trapper.tres"),
-	BLACKHOLE: preload("res://resources/PlayerData/blackhole.tres"),
-	OGGHOSTJELLY: preload("res://resources/PlayerData/ogghostjelly.tres"),
-	SIRF_: preload("res://resources/PlayerData/sirf_.tres"),
+	PlayerType.Normal: preload("res://resources/PlayerData/normal.tres"),
+	PlayerType.Dash: preload("res://resources/PlayerData/dash.tres"),
+	PlayerType.Trapper: preload("res://resources/PlayerData/trapper.tres"),
+	PlayerType.Blackhole: preload("res://resources/PlayerData/blackhole.tres"),
+	PlayerType.OgGhostJelly: preload("res://resources/PlayerData/ogghostjelly.tres"),
+	PlayerType.SirF_: preload("res://resources/PlayerData/sirf_.tres"),
 }
 
 enum PlayerType {
@@ -26,51 +19,6 @@ enum PlayerType {
 	Blackhole,
 	OgGhostJelly,
 	SirF_,
-}
-
-static var player_data: Dictionary = {
-	PlayerType.Normal: {
-		scene = preload("res://objects/player/normal/normal_player.tscn"),
-		texture = preload("res://assets/player/normal_player/player-idle.svg"),
-		cost = 0,
-		
-		description = "normal guy. probably called joe",
-	},
-	PlayerType.Dash: {
-		scene = preload("res://objects/player/dash/dash_player.tscn"),
-		texture = preload("res://assets/player/dash_player/player-idle.svg"),
-		cost = 200,
-		
-		description = "(ultra)kill to charge up a dash",
-	},
-	PlayerType.Trapper: {
-		scene = preload("res://objects/player/trapper/trapper_player.tscn"),
-		texture = preload("res://assets/player/trapper_player/player-idle.svg"),
-		cost = 200,
-		
-		description = "trapper. places traps (duh)",
-	},
-	PlayerType.Blackhole: {
-		scene = preload("res://objects/player/blackhole/blackhole_player.tscn"),
-		texture = preload("res://assets/player/blackhole_player/player-idle.svg"),
-		
-		description = "harness the singularity",
-	},
-	
-	PlayerType.OgGhostJelly: {
-		scene = preload("res://objects/player/ogghostjelly/ogghostjelly_player.tscn"),
-		texture = preload("res://assets/player/ogghostjelly_player/player-idle.svg"),
-		preview_offset = Vector2(-8.0, -24.0),
-		
-		description = "addicted to code",
-	},
-	PlayerType.SirF_: {
-		scene = preload("res://objects/player/sirf/sirf_player.tscn"),
-		texture = preload("res://assets/player/sirf_player/player-idle.svg"),
-		preview_offset = Vector2(-24.0, -36.0),
-		
-		description = "addicted to art",
-	},
 }
 
 @export var speed: float = 120.0
@@ -98,7 +46,7 @@ func _init() -> void:
 	if scene_file_path:
 		return
 	
-	var obj: Gun = Gun.gun_data[UserData.selected_gun].scene.instantiate()
+	var obj: Gun = Gun.data[UserData.selected_gun].get_scene().instantiate()
 	obj.name = "Gun"
 	add_child(obj)
 

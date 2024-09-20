@@ -39,8 +39,11 @@ func get_cost() -> int:
 		push_warning("Trying to get the cost of a non-purchaseable item.")
 	return _cost
 
-func get_description(is_locked: bool) -> String:
-	if type == Type.Unlockable && _use_locked_description && is_locked:
+func get_description() -> String:
+	return _description
+
+func get_locked_description() -> String:
+	if type == Type.Unlockable && _use_locked_description:
 		return _locked_description
 	else:
 		return _description

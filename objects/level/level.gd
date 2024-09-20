@@ -32,7 +32,7 @@ var has_indicator: bool = false
 
 
 func _init() -> void:
-	var obj: Player = Player.player_data[UserData.selected_skin].scene.instantiate()
+	var obj: Player = Player.data[UserData.selected_skin].get_scene().instantiate()
 	obj.global_position = Vector2(480.0, 360.0) / 2.0
 	obj.name = "Player"
 	add_child(obj)

@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("3_7nhef")
+preview_offset = Vector2(0, 0)
 _scene = ExtResource("1_ld15a")
 _texture = ExtResource("2_bo0tt")
 _description = "harness the singularity"

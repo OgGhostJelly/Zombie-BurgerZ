@@ -16,11 +16,11 @@ func _ready() -> void:
 
 
 func update() -> void:
-	var data: Dictionary = Gun.gun_data[weapon_menu.selected]
-	var gun: Gun = data.scene.instantiate()
+	var data: GunData = Gun.data[weapon_menu.selected]
+	var gun: Gun = data.get_scene().instantiate()
 	gun._ready()
 	
-	description.text = data.description
+	description.text = data.get_description()
 	ammo_texture.texture = data.ammo_texture
 	ammo_label.text = "%s" % gun.ammo.max_value
 	

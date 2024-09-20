@@ -30,17 +30,21 @@ func _on_buy_button_pressed() -> void:
 	if UserData.has_gun(selected):
 		return
 	
-	if UserData.money < Gun.gun_data[selected].cost:
+	var gun: GunData = Gun.data[selected]
+	var gun_cost: int = gun.get_cost()
+	
+	if UserData.money < gun_cost:
 		return
 	
-	UserData.money -= Gun.gun_data[selected].cost
+	UserData.money -= gun_cost
 	UserData.add_gun(selected)
 	selected = selected
 
 
 func set_selected(value: Gun.GunType) -> void:
 	selected = value
-	texture.texture = Gun.gun_data[selected].texture
+	var gun: GunData = Gun.data[selected]
+	texture.texture = gun.get_texture()
 	
 	owned_label.visible = false
 	price_label.visible = false
@@ -51,16 +55,18 @@ func set_selected(value: Gun.GunType) -> void:
 	if UserData.owned_guns.has(selected):
 		owned_label.visible = true
 		UserData.selected_gun = selected
-	elif Gun.gun_data[selected].get("cost"):
-		price_label.text = "$%s" % Gun.gun_data[selected].cost
+	elif gun.type == Data.Type.Purchaseable:
+		var gun_cost: int = gun.get_cost()
+		
+		price_label.text = "$%s" % gun_cost
 		price_label.visible = true
 		
-		if UserData.money >= Gun.gun_data[selected].cost:
+		if UserData.money >= gun_cost:
 			buy_button.visible = true
 		else:
 			insufficient_funds_label.visible = true
 	else:
 		locked_label.visible = true
-		locked_description_label.text = Gun.gun_data[selected].locked_description
+		locked_description_label.text = gun.get_locked_description()
 	
 	selected_changed.emit()

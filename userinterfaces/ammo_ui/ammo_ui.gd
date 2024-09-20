@@ -7,8 +7,8 @@ var ammo: StatRangeInt
 
 
 func _ready() -> void:
-	texture = Gun.gun_data[UserData.selected_gun].ammo_texture
-	empty_texture = Gun.gun_data[UserData.selected_gun].ammo_empty_texture
+	texture = Gun.data[UserData.selected_gun].ammo_texture
+	empty_texture = Gun.data[UserData.selected_gun].ammo_empty_texture
 	
 	assert(texture, "Missing `texture`")
 	assert(empty_texture, "Missing `empty_texture`")

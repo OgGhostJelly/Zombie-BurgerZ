@@ -5,16 +5,11 @@ signal fired(bullets: Array[Node])
 signal killed(bullet: Bullet, enemy: Enemy)
 signal hit(bullet: Bullet, info: HurtInfo2D)
 
-const PISTOL: StringName = &"pistol"
-const SHOTGUN: StringName = &"shotgun"
-const SMG: StringName = &"smg"
-const SNIPER_RIFLE: StringName = &"sniper_rifle"
-
 static var data: Dictionary = {
-	PISTOL: preload("res://resources/GunData/pistol.tres"),
-	SHOTGUN: preload("res://resources/GunData/shotgun.tres"),
-	SMG: preload("res://resources/GunData/smg.tres"),
-	SNIPER_RIFLE: preload("res://resources/GunData/sniper_rifle.tres"),
+	GunType.Pistol: preload("res://resources/GunData/pistol.tres"),
+	GunType.SMG: preload("res://resources/GunData/smg.tres"),
+	GunType.Shotgun: preload("res://resources/GunData/shotgun.tres"),
+	GunType.SniperRifle: preload("res://resources/GunData/sniper_rifle.tres"),
 }
 
 enum GunType {
@@ -23,50 +18,6 @@ enum GunType {
 	Shotgun,
 	SniperRifle,
 }
-
-static var gun_data: Dictionary = {
-	GunType.Pistol: {
-		scene = preload("res://objects/gun/pistol.tscn"),
-		texture = preload("res://assets/gun/pistol/pistol.svg"),
-		cost = 0,
-		
-		ammo_texture = preload("res://assets/ammo/pistol-ammo.svg"),
-		ammo_empty_texture = preload("res://assets/ammo/pistol-ammo-empty.svg"),
-		
-		description = "Simple but reliable",
-	},
-	GunType.SMG: {
-		scene = preload("res://objects/gun/smg.tscn"),
-		texture = preload("res://assets/gun/smg/smg.svg"),
-		cost = 100,
-		
-		ammo_texture = preload("res://assets/ammo/smg-ammo.svg"),
-		ammo_empty_texture = preload("res://assets/ammo/smg-ammo-empty.svg"),
-		
-		description = "pew pew pew",
-	},
-	GunType.Shotgun: {
-		scene = preload("res://objects/gun/shotgun.tscn"),
-		texture = preload("res://assets/gun/shotgun/shotgun.svg"),
-		cost = 100,
-		
-		ammo_texture = preload("res://assets/ammo/shotgun-ammo.svg"),
-		ammo_empty_texture = preload("res://assets/ammo/shotgun-ammo-empty.svg"),
-		
-		description = "Shotgun.",
-	},
-	GunType.SniperRifle: {
-		scene = preload("res://objects/gun/sniper_rifle.tscn"),
-		texture = preload("res://assets/gun/sniper_rifle/sniper_rifle.svg"),
-		
-		ammo_texture = preload("res://assets/ammo/sniper_rifle-ammo.svg"),
-		ammo_empty_texture = preload("res://assets/ammo/sniper_rifle-ammo-empty.svg"),
-		
-		description = "slow but packs a punch",
-		locked_description = "3 Birds 1 Stone"
-	}
-}
-
 
 ## How many bullets will be fired per shot.
 @export var bullets_per_shot: int = 1

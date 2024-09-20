@@ -17,11 +17,13 @@ func _ready() -> void:
 	for player in Player.PlayerType.values():
 		var obj := skin.duplicate()
 		var texture: TextureRect = obj.get_node(^"SkinTexture")
-		texture.texture = Player.player_data[player].texture
+		var data: PlayerData = Player.data[player]
+		texture.texture = data.get_texture()
 		
-		if Player.player_data[player].has("preview_offset"):
+		var preview_offset = data.preview_offset
+		if not preview_offset.is_zero_approx():
 			var margin: MarginContainer = MarginContainer.new()
-			margin.add_theme_constant_override(&"margin_top", Player.player_data[player].preview_offset.y)
+			margin.add_theme_constant_override(&"margin_top", preview_offset.y)
 			texture.reparent(margin)
 			obj.add_child(margin)
 		
