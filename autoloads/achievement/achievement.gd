@@ -105,7 +105,7 @@ var data: Dictionary = {
 	
 	AchievementType.DontMove: {
 		name = "Potato",
-		description = "survive 60 seconds with 'no moving'",
+		description = "survive 120 seconds with 'no moving'",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	},
 	AchievementType.Nihilism: {

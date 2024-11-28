@@ -127,6 +127,11 @@ pitch_scale = 0.4
 [node name="End" parent="." index="3"]
 position = Vector2(53, -1)
 
+[node name="SightArea" parent="End" index="1"]
+visible = false
+monitoring = false
+monitorable = false
+
 [node name="Ammo" parent="." index="4"]
 max_value = 1
 value = 1
