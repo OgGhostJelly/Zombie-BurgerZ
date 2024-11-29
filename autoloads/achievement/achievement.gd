@@ -31,7 +31,7 @@ func register_total_money_achievement(p_name: String, money: int, texture: Textu
 	register_achievement(id, AchievementData.create({
 		name = p_name,
 		description = "earn %s money in total" % money,
-		texture = texture if texture != null else preload("res://assets/achievement_menu/achievements/business_man.svg")
+		texture = texture if texture != null else preload("res://assets/achievement_menu/achievements/deal.svg")
 	}))
 	
 	UserData.total_money_changed.connect(func():
