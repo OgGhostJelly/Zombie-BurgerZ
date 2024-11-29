@@ -14,22 +14,22 @@ func _process(_delta: float) -> void:
 
 
 func _on_unlock_pressed() -> void:
-	Achievement.give_achievement(achievement_menu.selected)
-	achievement_menu.selected = achievement_menu.selected
+	Achievement.give_achievement(Achievement.data.keys()[achievement_menu.selected_index])
+	achievement_menu.selected_index = achievement_menu.selected_index
 
 
 func _on_unlock_all_pressed() -> void:
-	for ach in Achievement.AchievementType.values():
+	for ach in Achievement.data:
 		Achievement.give_achievement(ach)
-	achievement_menu.selected = achievement_menu.selected
+	achievement_menu.selected_index = achievement_menu.selected_index
 
 
 func _on_lock_pressed() -> void:
-	UserData.achievements.erase(achievement_menu.selected)
-	achievement_menu.selected = achievement_menu.selected
+	UserData.achievements.erase(Achievement.data.keys()[achievement_menu.selected_index])
+	achievement_menu.selected_index = achievement_menu.selected_index
 
 
 func _on_lock_all_pressed() -> void:
-	for ach in Achievement.AchievementType.values():
+	for ach in Achievement.data:
 		UserData.achievements.erase(ach)
-	achievement_menu.selected = achievement_menu.selected
+	achievement_menu.selected_index = achievement_menu.selected_index

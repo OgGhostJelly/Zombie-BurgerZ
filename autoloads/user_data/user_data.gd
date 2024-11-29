@@ -100,7 +100,7 @@ func save_as_string() -> String:
 		owned_guns = owned_guns.keys().map(func(value): return Gun.GunType.find_key(value)),
 		selected_skin = Player.PlayerType.find_key(selected_skin),
 		owned_skins = owned_skins.keys().map(func(value): return Player.PlayerType.find_key(value)),
-		achievements = achievements.keys().map(func(value): return Achievement.AchievementType.find_key(value)),
+		achievements = achievements.keys(),
 		total_kills = total_kills,
 		version = version,
 	})
@@ -121,7 +121,6 @@ func data_load() -> void:
 
 func load_from_file(file: FileAccess) -> void:
 	load_from_string(file.get_as_text())
-
 
 func load_from_string(string: String) -> void:
 	var ret = JSON.parse_string(string)
@@ -172,7 +171,7 @@ func load_from_string(string: String) -> void:
 	
 	achievements.clear()
 	for achievement in data.achievements:
-		achievements[Achievement.AchievementType[achievement]] = true
+		achievements[achievement] = true
 	
 	owned_guns.clear()
 	for gun in data.owned_guns:

@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 		time_label.text = "%.2fs" % time
 	
 	if time >= 60.0 and Settings.no_move:
-		Achievement.give_achievement(Achievement.AchievementType.DontMove)
+		Achievement.give_achievement(Achievement.NO_MOVING)
 	
 	if not spawn_timer.is_stopped() and spawn_timer.time_left <= 0.5 and not has_indicator:
 		var indicator: Node2D = preload("res://objects/enemy_indicator/enemy_indicator.tscn").instantiate()
@@ -129,5 +129,5 @@ func _on_player_objective_ui_finished() -> void:
 
 func _on_player_died() -> void:
 	if time <= 5.0:
-		Achievement.give_achievement(Achievement.AchievementType.Nihilism)
+		Achievement.give_achievement(Achievement.NIHILISM)
 	game_over_menu.game_over(time, UserData.money - initial_money, kill_count)

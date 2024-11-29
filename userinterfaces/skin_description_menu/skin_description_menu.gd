@@ -29,7 +29,7 @@ func _update() -> void:
 	if UserData.owned_skins.has(selected):
 		owned_label.visible = true
 		UserData.selected_skin = selected
-	elif data.type == Data.Type.Purchaseable:
+	elif data.type == ShopItemData.Type.Purchaseable:
 		var player_cost: int = data.get_cost()
 		price_label.text = "$%s" % player_cost
 		price_label.visible = true

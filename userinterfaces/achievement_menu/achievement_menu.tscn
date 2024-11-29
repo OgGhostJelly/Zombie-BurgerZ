@@ -235,9 +235,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LeftButton" parent="HBoxContainer" instance=ExtResource("6_dwlpw")]
-custom_minimum_size = Vector2(29, 38)
+custom_minimum_size = Vector2(38, 43)
 layout_mode = 2
 texture = ExtResource("7_of2x6")
+texture_scale = 1.0
 float_distance = 2.0
 
 [node name="Pad" type="Control" parent="HBoxContainer"]
@@ -245,9 +246,10 @@ custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 
 [node name="RightButton" parent="HBoxContainer" instance=ExtResource("6_dwlpw")]
-custom_minimum_size = Vector2(29, 38)
+custom_minimum_size = Vector2(38, 43)
 layout_mode = 2
 texture = ExtResource("8_al1lx")
+texture_scale = 1.0
 float_distance = 2.0
 
 [node name="AchievementDebug" parent="." node_paths=PackedStringArray("achievement_menu") instance=ExtResource("9_k5neg")]
@@ -267,6 +269,8 @@ texture = ExtResource("10_76tgd")
 [node name="BackButton" parent="." instance=ExtResource("9_4hkp6")]
 layout_mode = 1
 scene_filepath = "res://userinterfaces/main_menu/main_menu.tscn"
+animation = &"swipe"
+texture_scale = 1.0
 
 [connection signal="pressed" from="HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]

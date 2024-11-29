@@ -55,7 +55,7 @@ func set_selected(value: Gun.GunType) -> void:
 	if UserData.owned_guns.has(selected):
 		owned_label.visible = true
 		UserData.selected_gun = selected
-	elif gun.type == Data.Type.Purchaseable:
+	elif gun.type == ShopItemData.Type.Purchaseable:
 		var gun_cost: int = gun.get_cost()
 		
 		price_label.text = "$%s" % gun_cost

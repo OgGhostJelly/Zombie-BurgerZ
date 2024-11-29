@@ -1,5 +1,5 @@
 @tool
-extends Data
+extends ShopItemData
 class_name PlayerData
 
 

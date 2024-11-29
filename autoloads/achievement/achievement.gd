@@ -1,149 +1,123 @@
 extends Node
 
 
-enum AchievementType {
-	Kill10,
-	Kill50,
-	Kill100,
-	TotalKill500,
-	TotalKill1000,
-	TotalKill10000,
-	Money100,
-	Money1000,
-	Money10000,
-	EveryGun,
-	EverySkin,
-	BuyEverything,
-	TripleKill,
-	QuintuplePierce,
-	TenPierce,
-	DontMove,
-	Nihilism,
-	DevSkins,
-}
+signal gave_achievement(achievement: StringName)
 
+var data: Dictionary = {}
 
-var data: Dictionary = {
-	AchievementType.Kill10: {
-		name = "Youre Hired",
-		description = "kill 10 zombers in one run",
-		texture = preload("res://assets/achievement_menu/achievements/youre_hired.svg"),
-	},
-	AchievementType.Kill50: {
-		name = "Easy.",
-		description = "kill 50 zombers in one run",
-		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.Kill100: {
-		name = "Agent 47",
-		description = "kill 100 zombers in one run",
-		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.TotalKill500: {
-		name = "Jenny Side",
-		description = "kill 500 zombers in total",
-		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.TotalKill1000: {
-		name = "1000!",
-		description = "kill 1000 zombers in total",
-		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.TotalKill10000: {
-		name = "Agrostophobic",
-		description = "kill 10000 zombers in total",
-		texture = preload("res://assets/achievement_menu/achievements/agrostophobic.svg"),
-	},
+func register_kill_achievement(p_name: String, kills: int, texture: Texture2D = null):
+	register_achievement("Kill" + str(kills), AchievementData.create({
+		name = p_name,
+		description = "kill %s zombers in one run" % kills,
+		texture = texture if texture != null else preload("res://assets/achievement_menu/achievements/killer.svg")
+	}))
+
+func register_total_kill_achievement(p_name: String, kills: int, texture: Texture2D = null):
+	var id: StringName = "TotalKill" + str(kills)
 	
-	AchievementType.Money100: {
-		name = "Business Man in business land",
-		description = "earn 100 money in total",
-		texture = preload("res://assets/achievement_menu/achievements/business_man.svg")
-	},
-	AchievementType.Money1000: {
-		name = "Soliciter",
-		description = "earn 1000 money in total",
-		texture = preload("res://assets/achievement_menu/achievements/business_man.svg")
-	},
-	AchievementType.Money10000: {
-		name = "Microsoft",
-		description = "earn 10000 money in total",
-		texture = preload("res://assets/achievement_menu/achievements/business_man.svg")
-	},
+	register_achievement(id, AchievementData.create({
+		name = p_name,
+		description = "kill %s zombers in total" % kills,
+		texture = texture if texture != null else preload("res://assets/achievement_menu/achievements/killer.svg")
+	}))
 	
-	AchievementType.EveryGun: {
+	UserData.total_kills_changed.connect(func():
+		if UserData.total_kills >= kills:
+			give_achievement(id))
+
+func register_total_money_achievement(p_name: String, money: int, texture: Texture2D = null):
+	var id: StringName = "Money" + str(money)
+	
+	register_achievement(id, AchievementData.create({
+		name = p_name,
+		description = "earn %s money in total" % money,
+		texture = texture if texture != null else preload("res://assets/achievement_menu/achievements/business_man.svg")
+	}))
+	
+	UserData.total_money_changed.connect(func():
+		if UserData.total_money >= money:
+			give_achievement(id))
+
+func register_achievement(id: StringName, p_data: AchievementData) -> void:
+	data[id] = p_data
+
+const EVERY_GUN: StringName = &"EveryGun"
+const EVERY_SKIN: StringName = &"EverySkin"
+const BUY_EVERYTHING: StringName = &"BuyEverything"
+const ONESHOT_KILL_3: StringName = &"TripleKill"
+const ONESHOT_PIERCE_5: StringName = &"QuintuplePierce"
+const ONESHOT_PIERCE_10: StringName = &"TenPierce"
+const NO_MOVING: StringName = &"DontMove"
+const NIHILISM: StringName = &"Nihilism"
+const EVERY_DEV_SKIN: StringName = &"DevSkins"
+
+func _ready() -> void:
+	register_kill_achievement("Youre Hired", 10, preload("res://assets/achievement_menu/achievements/youre_hired.svg"))
+	register_kill_achievement("Easy.", 50)
+	register_kill_achievement("Agent 47", 100)
+	
+	register_total_kill_achievement("Jenny Side", 500)
+	register_total_kill_achievement("1000!", 1000)
+	register_total_kill_achievement("Agrostophobic", 10_000, preload("res://assets/achievement_menu/achievements/agrostophobic.svg"))
+	
+	register_total_money_achievement("Business Man in business land", 100)
+	register_total_money_achievement("Soliciter", 1000)
+	register_total_money_achievement("Microsoft", 10_000)
+	
+	register_achievement(EVERY_GUN, AchievementData.create({
 		name = "Arms Dealer",
 		description = "have every gun",
 		texture = preload("res://assets/achievement_menu/achievements/arms_dealer.svg"),
-	},
-	AchievementType.EverySkin: {
+	}))
+	register_achievement(EVERY_SKIN, AchievementData.create({
 		name = "People Person",
 		description = "have every skin",
 		texture = preload("res://assets/achievement_menu/achievements/people_person.svg"),
-	},
-	AchievementType.BuyEverything: {
+	}))
+	register_achievement(BUY_EVERYTHING, AchievementData.create({
 		name = "Sold Out",
 		description = "buy every item in the shop",
-		texture = preload("res://assets/achievement_menu/achievements/sold_out.svg")
-	},
+		texture = preload("res://assets/achievement_menu/achievements/sold_out.svg"),
+	}))
 	
-	AchievementType.TripleKill: {
+	register_achievement(ONESHOT_KILL_3, AchievementData.create({
 		name = "3 Birds 1 Stone",
 		description = "kill three zombies with one bullet",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.QuintuplePierce: {
+	}))
+	
+	register_achievement(ONESHOT_PIERCE_5, AchievementData.create({
 		name = "Ready-Aim-Fire",
 		description = "pierce five zombies with one bullet",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.TenPierce: {
+	}))
+	register_achievement(ONESHOT_PIERCE_10, AchievementData.create({
 		name = "Tenetehara Pierce",
 		description = "ten zombers. is this even possible?",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
+	}))
 	
-	AchievementType.DontMove: {
+	register_achievement(NO_MOVING, AchievementData.create({
 		name = "Potato",
 		description = "survive 60 seconds with 'no moving'",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
-	},
-	AchievementType.Nihilism: {
+	}))
+	
+	register_achievement(NIHILISM, AchievementData.create({
 		name = "nihilism",
 		locked_name = "???",
 		description = "it doesnt matter anyway",
 		locked_description = "???",
 		texture = preload("res://assets/achievement_menu/achievements/nihilism.svg"),
 		locked_texture = preload("res://assets/achievement_menu/achievements/???.svg"),
-	},
+		type = AchievementData.Type.Lockable,
+	}))
 	
-	AchievementType.DevSkins: {
+	register_achievement(EVERY_DEV_SKIN, AchievementData.create({
 		name = "Meet The Devs",
 		description = "wait where did you get that?",
 		texture = preload("res://assets/achievement_menu/achievements/dev_skin.svg"),
-	}
-}
-
-
-signal gave_achievement(achievement: AchievementType)
-
-
-func _ready() -> void:
-	UserData.total_kills_changed.connect(func():
-		if UserData.total_kills >= 500:
-			give_achievement(AchievementType.TotalKill500)
-		if UserData.total_kills >= 1000:
-			give_achievement(AchievementType.TotalKill1000)
-		if UserData.total_kills >= 10_000:
-			give_achievement(AchievementType.TotalKill10000))
-	
-	UserData.total_money_changed.connect(func():
-		if UserData.total_money >= 100:
-			give_achievement(AchievementType.Money100)
-		if UserData.total_money >= 1000:
-			give_achievement(AchievementType.Money1000)
-		if UserData.total_money >= 10_000:
-			give_achievement(AchievementType.Money10000))
+	}))
 	
 	UserData.owned_skins_changed.connect(func():
 		check_every_skin()
@@ -167,7 +141,7 @@ func _ready() -> void:
 
 func check_every_gun() -> void:
 	if Gun.GunType.values().all(func(value): return UserData.owned_guns.has(value)):
-		give_achievement(AchievementType.EveryGun)
+		give_achievement(EVERY_GUN)
 
 
 func check_every_skin() -> void:
@@ -175,7 +149,7 @@ func check_every_skin() -> void:
 		if value == Player.PlayerType.OgGhostJelly or value == Player.PlayerType.SirF_:
 			return true
 		return UserData.has_skin(value)):
-		give_achievement(AchievementType.EverySkin)
+		give_achievement(EVERY_SKIN)
 
 
 func check_buy_everything() -> void:
@@ -189,23 +163,23 @@ func check_buy_everything() -> void:
 				return true
 			return UserData.has_skin(value))
 	):
-		give_achievement(AchievementType.BuyEverything)
+		give_achievement(BUY_EVERYTHING)
 
 
 func check_dev_skin() -> void:
-	if not has_achievement(AchievementType.DevSkins):
+	if not has_achievement(EVERY_DEV_SKIN):
 		UserData.owned_skins.erase(Player.PlayerType.OgGhostJelly)
 		UserData.owned_skins.erase(Player.PlayerType.SirF_)
 
 
 func check_achievement_items() -> void:
-	if has_achievement(AchievementType.TripleKill):
+	if has_achievement(ONESHOT_KILL_3):
 		UserData.try_add_gun(Gun.GunType.SniperRifle)
 	
-	if has_achievement(AchievementType.Nihilism):
+	if has_achievement(NIHILISM):
 		UserData.try_add_skin(Player.PlayerType.Blackhole)
 	
-	if has_achievement(AchievementType.DevSkins):
+	if has_achievement(EVERY_DEV_SKIN):
 		UserData.try_add_skin(Player.PlayerType.OgGhostJelly)
 		UserData.try_add_skin(Player.PlayerType.SirF_)
 
@@ -220,11 +194,11 @@ func _process(_delta: float) -> void:
 	
 	level.kill_count_changed.connect(func() -> void:
 		if level.kill_count >= 10:
-			give_achievement(AchievementType.Kill10)
+			give_achievement(&"Kill10")
 		if level.kill_count >= 50:
-			give_achievement(AchievementType.Kill50)
+			give_achievement(&"Kill50")
 		if level.kill_count >= 100:
-			give_achievement(AchievementType.Kill100))
+			give_achievement(&"Kill100"))
 	
 	level.player.gun.fired.connect(func(bullets: Array[Node]) -> void:
 		for node in bullets:
@@ -237,9 +211,9 @@ func _process(_delta: float) -> void:
 					.filter(func(v): return is_instance_valid(v)) \
 					.reduce(func(a, b): return a + b.hits, 0)
 				if hits >= 5:
-					give_achievement(AchievementType.QuintuplePierce)
+					give_achievement(ONESHOT_PIERCE_5)
 				if hits >= 10:
-					give_achievement(AchievementType.TenPierce)
+					give_achievement(ONESHOT_PIERCE_10)
 			)
 			
 			bullet.killed.connect(func(_a):
@@ -247,16 +221,16 @@ func _process(_delta: float) -> void:
 					.filter(func(v): return is_instance_valid(v)) \
 					.reduce(func(a, b): return a + b.kills, 0)
 				if kills >= 3:
-					give_achievement(AchievementType.TripleKill)
+					give_achievement(ONESHOT_KILL_3)
 			)
 	)
 
 
-func has_achievement(value: AchievementType) -> bool:
+func has_achievement(value: StringName) -> bool:
 	return UserData.achievements.has(value)
 
 
-func give_achievement(value: AchievementType) -> void:
+func give_achievement(value: StringName) -> void:
 	if has_achievement(value):
 		return
 	

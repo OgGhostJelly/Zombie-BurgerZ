@@ -1,5 +1,5 @@
 @tool
-extends Data
+extends ShopItemData
 class_name GunData
 
 @export var ammo_texture: Texture2D

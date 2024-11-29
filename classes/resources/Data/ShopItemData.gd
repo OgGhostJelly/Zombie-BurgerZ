@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name Data
+class_name ShopItemData
 
 @export var _scene: PackedScene
 @export var _texture: Texture2D

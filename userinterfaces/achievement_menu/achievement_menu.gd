@@ -8,11 +8,11 @@ class_name AchievementMenu
 @onready var entrance_animation: AnimationPlayer = $Sign/Sign/EntranceAnimation
 @onready var bop_animation: AnimationPlayer = $Sign/Sign/BopAnimation
 
-var selected: int = 0: set = set_selected
+var selected_index: int = 0: set = set_selected_index
 
 
 func _ready() -> void:
-	selected = selected
+	set_selected_index(selected_index)
 	
 	if UserData.achievement_menu_seen:
 		entrance_animation.stop()
@@ -21,9 +21,10 @@ func _ready() -> void:
 	UserData.achievement_menu_seen = true
 
 
-func set_selected(value: int) -> void:
-	selected = wrapi(value, 0, Achievement.data.size())
+func set_selected_index(value: int) -> void:
+	selected_index = wrapi(value, 0, Achievement.data.size())
 	
+	var selected = Achievement.data.keys()[selected_index]
 	var owned: bool = UserData.achievements.has(selected)
 	
 	title_label.text = (
@@ -48,6 +49,6 @@ func set_selected(value: int) -> void:
 
 
 func _on_left_button_pressed() -> void:
-	selected -= 1
+	selected_index -= 1
 func _on_right_button_pressed() -> void:
-	selected += 1
+	selected_index += 1
