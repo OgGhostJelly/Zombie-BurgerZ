@@ -13,6 +13,7 @@ signal highest
 @export var max_value: int = 0: set = set_max_value
 @export var min_value: int = 0: set = set_min_value
 var value: int = 0: set = set_value
+var _suppress_event: bool = false
 
 func _get_property_list() -> Array[Dictionary]:
 	var properties: Array[Dictionary] = []
@@ -32,6 +33,11 @@ func _get_property_list() -> Array[Dictionary]:
 func set_value(v: int) -> void:
 	var old_value = value
 	value = clampi(v, min_value, max_value)
+	
+	if _suppress_event:
+		_suppress_event = false
+		return
+
 	value_changed.emit()
 	
 	if is_highest():

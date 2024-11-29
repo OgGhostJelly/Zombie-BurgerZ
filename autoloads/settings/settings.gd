@@ -11,6 +11,7 @@ enum GameSpeed {
 @export var game_speed: GameSpeed = GameSpeed.GameSpeed100
 @export var no_move: bool = false
 @export var gun_sights: bool = false
+@export var one_health: bool = false
 @export var volume: float = 0.0:
 	set(value):
 		volume = value
@@ -47,7 +48,8 @@ func get_money_multiplier() -> float:
 	var game_speed_bonus: float = game_speed_money_bonus(game_speed)
 	var no_move_bonus: float = 0.5 if Settings.no_move else 0.0
 	var gun_sights_bonus: float = -0.1 if Settings.gun_sights else 0.0
-	return 1.0 + game_speed_bonus + no_move_bonus + gun_sights_bonus
+	var one_health_bonus: float = 0.5 if Settings.one_health else 0.0
+	return 1.0 + game_speed_bonus + no_move_bonus + gun_sights_bonus + one_health_bonus
 
 
 func _ready() -> void:
@@ -60,6 +62,7 @@ func data_save() -> void:
 		game_speed = GameSpeed.find_key(game_speed),
 		no_move = no_move,
 		gun_sights = gun_sights,
+		one_health = one_health,
 		volume = volume,
 		muted = muted,
 	}))
@@ -75,6 +78,10 @@ func data_load() -> void:
 	if not data.has("muted"):
 		data.muted = false
 	game_speed = GameSpeed[data.game_speed]
+	
+	if data.has("one_health"):
+		one_health = data.one_health
+	
 	no_move = data.no_move
 	gun_sights = data.gun_sights
 	volume = data.volume

@@ -7,10 +7,11 @@ extends Control
 
 
 func _ready() -> void:
-	challenges_label.text = "Game speed %s%%\nNo moving %s\nGun sights %s" % [
+	challenges_label.text = "Game speed %s%%\nNo moving %s\nGun sights %s\n1 HP %s" % [
 		(100.0 + Settings.get_bonus_game_speed() * 100.0),
 		("enabled" if Settings.no_move else "disabled"),
 		("enabled" if Settings.gun_sights else "disabled"),
+		("enabled" if Settings.one_health else "disabled"),
 	]
 
 

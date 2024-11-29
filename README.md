@@ -1,5 +1,6 @@
 - needs some re-architecting to support json modifying or the like and some below features
-- one heart challenge mode
+- for some reason godot isnt displaying the achievement svgs properly??
+- revamp save system
 
 - randomize loadout option
 - update enemy wave/spawn pattern

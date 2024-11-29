@@ -55,6 +55,10 @@ func _ready() -> void:
 	super()
 	player = self
 	
+	if Settings.one_health:
+		health._suppress_event = true
+		health.max_value = 1
+	
 	tree_exiting.connect(func():
 		AudioServer.set_bus_effect_enabled(0, 0, false))
 
@@ -71,6 +75,9 @@ func _process(_delta: float) -> void:
 		animated_sprite.play(&"idle")
 	else:
 		animated_sprite.play(&"walk")
+	
+	if Settings.one_health:
+		return
 	
 	var blur_effect_mat: ShaderMaterial = blur_effect.material
 	if health.value <= 1:
