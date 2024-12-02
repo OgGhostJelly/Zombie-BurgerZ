@@ -58,8 +58,10 @@ one_shot = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
+offset_left = 5.0
+offset_top = -28.0
+offset_right = 45.0
+offset_bottom = -5.0
 grow_vertical = 0
 
 [node name="TimeLabel" type="Label" parent="FrontLayer/Time"]
@@ -70,9 +72,10 @@ text = "0.00s"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 63.0
-offset_top = -23.0
-offset_right = 124.0
+offset_left = 68.0
+offset_top = -28.0
+offset_right = 129.0
+offset_bottom = -5.0
 grow_vertical = 0
 
 [node name="KillCountTexture" type="TextureRect" parent="FrontLayer/KillCount"]

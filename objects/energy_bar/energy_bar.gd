@@ -17,7 +17,11 @@ signal used
 func _ready() -> void:
 	if not player.is_node_ready():
 		await player.ready
-	player.gun.hit.connect(_on_gun_hit)
+	
+	# player.gun doesn't exist while in the editor because Player is not a tool script.
+	# and scripts running in the editor can only access properties from scripts also running in the editor.
+	if not Engine.is_editor_hint():
+		player.gun.hit.connect(_on_gun_hit)
 
 
 func _process(delta: float) -> void:

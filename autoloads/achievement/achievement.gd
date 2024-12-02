@@ -109,7 +109,7 @@ func _ready() -> void:
 		description = "it doesnt matter anyway",
 		locked_description = "???",
 		texture = preload("res://assets/achievement_menu/achievements/nihilism.svg"),
-		locked_texture = preload("res://assets/achievement_menu/achievements/???.svg"),
+		locked_texture = preload("res://assets/achievement_menu/achievements/unknown.svg"),
 		type = AchievementData.Type.Lockable,
 	}))
 	
