@@ -6,10 +6,10 @@ signal killed(bullet: Bullet, enemy: Enemy)
 signal hit(bullet: Bullet, info: HurtInfo2D)
 
 static var data: Dictionary = {
-	GunType.Pistol: preload("res://resources/GunData/pistol.tres"),
-	GunType.SMG: preload("res://resources/GunData/smg.tres"),
-	GunType.Shotgun: preload("res://resources/GunData/shotgun.tres"),
-	GunType.SniperRifle: preload("res://resources/GunData/sniper_rifle.tres"),
+	GunType.Pistol: load("res://resources/GunData/pistol.tres"),
+	GunType.SMG: load("res://resources/GunData/smg.tres"),
+	GunType.Shotgun: load("res://resources/GunData/shotgun.tres"),
+	GunType.SniperRifle: load("res://resources/GunData/sniper_rifle.tres"),
 }
 
 enum GunType {
