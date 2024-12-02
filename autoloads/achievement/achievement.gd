@@ -99,7 +99,7 @@ func _ready() -> void:
 	
 	register_achievement(NO_MOVING, AchievementData.create({
 		name = "Potato",
-		description = "survive 120 seconds with 'no moving'",
+		description = "survive 240 seconds with 'no moving'",
 		texture = preload("res://assets/achievement_menu/achievements/killer.svg"),
 	}))
 	
