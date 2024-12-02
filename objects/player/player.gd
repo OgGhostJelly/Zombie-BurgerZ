@@ -4,12 +4,12 @@ class_name Player
 signal moved
 
 static var data: Dictionary = {
-	PlayerType.Normal: preload("res://resources/PlayerData/normal.tres"),
-	PlayerType.Dash: preload("res://resources/PlayerData/dash.tres"),
-	PlayerType.Trapper: preload("res://resources/PlayerData/trapper.tres"),
-	PlayerType.Blackhole: preload("res://resources/PlayerData/blackhole.tres"),
-	PlayerType.OgGhostJelly: preload("res://resources/PlayerData/ogghostjelly.tres"),
-	PlayerType.SirF_: preload("res://resources/PlayerData/sirf_.tres"),
+	PlayerType.Normal: load("res://resources/PlayerData/normal.tres"),
+	PlayerType.Dash: load("res://resources/PlayerData/dash.tres"),
+	PlayerType.Trapper: load("res://resources/PlayerData/trapper.tres"),
+	PlayerType.Blackhole: load("res://resources/PlayerData/blackhole.tres"),
+	PlayerType.OgGhostJelly: load("res://resources/PlayerData/ogghostjelly.tres"),
+	PlayerType.SirF_:  load("res://resources/PlayerData/sirf_.tres"),
 }
 
 enum PlayerType {
