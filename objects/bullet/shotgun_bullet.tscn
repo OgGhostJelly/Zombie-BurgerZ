@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5ufjf3sl2le"]
-
-[ext_resource type="PackedScene" uid="uid://bce27nip2odea" path="res://objects/bullet/bullet.tscn" id="1_tavrq"]
-[ext_resource type="Texture2D" uid="uid://cq08r0xwcfed7" path="res://assets/gun/shotgun/shotgun-bullet.svg" id="2_v7lms"]
-
-[node name="ShotgunBullet" instance=ExtResource("1_tavrq")]
-
-[node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_v7lms")

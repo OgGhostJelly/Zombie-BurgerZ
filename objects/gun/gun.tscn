@@ -1,97 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dajayqy7ycoxw"]
+[gd_scene load_steps=2 format=3 uid="uid://dajayqy7ycoxw"]
 
 [ext_resource type="Script" path="res://objects/gun/gun.gd" id="1_0a6k8"]
-[ext_resource type="PackedScene" uid="uid://bhycnfxye71uf" path="res://objects/gun_sights_indicator/gun_sights_indicator.tscn" id="3_1t7yb"]
-[ext_resource type="Script" path="res://classes/objects/Stats/StatRangeInt.gd" id="3_5xjdg"]
-[ext_resource type="AudioStream" uid="uid://5duh0ds7hwqy" path="res://assets/gun/pistol/pistol-shoot.wav" id="5_aomsk"]
-
-[sub_resource type="Curve" id="Curve_eigvx"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_fjsn3"]
-offsets = PackedFloat32Array(0.58, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hashf"]
-random_pitch = 1.2
-streams_count = 1
-stream_0/stream = ExtResource("5_aomsk")
-
-[sub_resource type="Gradient" id="Gradient_msh5n"]
-offsets = PackedFloat32Array(0.72, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Gun" type="Node2D"]
 z_index = 1
 script = ExtResource("1_0a6k8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(16, 0)
-rotation = 6.28319
-scale = Vector2(0.5, 0.5)
-
-[node name="LeftHandle" type="Marker2D" parent="Sprite2D"]
-
-[node name="RightHandle" type="Marker2D" parent="Sprite2D"]
-
-[node name="ReloadParticles" type="CPUParticles2D" parent="."]
-emitting = false
-lifetime = 0.4
-one_shot = true
-explosiveness = 1.0
-lifetime_randomness = 0.2
-emission_shape = 2
-emission_sphere_radius = 8.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 80.0
-initial_velocity_max = 80.0
-angular_velocity_min = 12.0
-angular_velocity_max = 12.0
-orbit_velocity_min = -1.2
-orbit_velocity_max = 1.2
-damping_min = 32.0
-damping_max = 32.0
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_eigvx")
-color = Color(1, 1, 0, 1)
-color_ramp = SubResource("Gradient_fjsn3")
-
-[node name="FireAudio" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = SubResource("AudioStreamRandomizer_hashf")
-volume_db = -5.0
-
-[node name="End" type="Node2D" parent="."]
-
-[node name="SpawnMarker" type="Marker2D" parent="End"]
-
-[node name="SightArea" type="Area2D" parent="End"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="End/SightArea"]
-polygon = PackedVector2Array(50, 0, 150, -24, 150, 24)
-
-[node name="FireParticles" type="CPUParticles2D" parent="End"]
-emitting = false
-amount = 4
-lifetime = 0.1
-one_shot = true
-lifetime_randomness = 0.2
-local_coords = true
-gravity = Vector2(0, 0)
-initial_velocity_min = 32.0
-initial_velocity_max = 32.0
-angle_min = -90.0
-angle_max = 90.0
-color_ramp = SubResource("Gradient_msh5n")
-
-[node name="GunSightsIndicator" parent="End" node_paths=PackedStringArray("gun") instance=ExtResource("3_1t7yb")]
-gun = NodePath("../..")
-
-[node name="Ammo" type="Node" parent="."]
-script = ExtResource("3_5xjdg")
-max_value = 3
-value = 3
+[node name="Node" type="Node" parent="."]

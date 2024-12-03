@@ -1,13 +1,7 @@
-- needs some re-architecting to support json modifying or the like and some below features
+# Cannot find class bug (MVP)
 
-- randomize loadout option
-- update enemy wave/spawn pattern
-- achievement for spamming shop buttons
+## Steps to reproduce
 
-- could have secondary weapons or augments
-
-- (custom mode when clicking boards in the background)
-- (make permanent changes to the map at the start of the game and live with the changes you made?)
-- (turn zombies into minions?)
-- (bestiary)
-- (slow mo bullet time when shooting)
+1. Export the project into a folder with an illegal character name.
+2. Run the project in the terminal
+3. See how it spits out a bunch of errors 

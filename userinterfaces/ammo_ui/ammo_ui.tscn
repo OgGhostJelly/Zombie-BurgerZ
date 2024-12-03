@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv8qbklcmdk5x"]
-
-[ext_resource type="Script" path="res://userinterfaces/ammo_ui/ammo_ui.gd" id="1_478n8"]
-
-[node name="AmmoUI" type="HBoxContainer"]
-offset_right = 10.0
-offset_bottom = 18.0
-script = ExtResource("1_478n8")

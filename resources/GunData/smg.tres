@@ -1,19 +1,8 @@
-[gd_resource type="Resource" script_class="GunData" load_steps=6 format=3 uid="uid://c72o0m03o6wwp"]
+[gd_resource type="Resource" script_class="Data" load_steps=3 format=3 uid="uid://c72o0m03o6wwp"]
 
 [ext_resource type="PackedScene" uid="uid://bihhboc3yhcb" path="res://objects/gun/smg.tscn" id="1_634op"]
-[ext_resource type="Texture2D" uid="uid://kdv8eb80hvyp" path="res://assets/gun/smg/smg.svg" id="2_75j1h"]
-[ext_resource type="Texture2D" uid="uid://cyinx80k2ovfe" path="res://assets/ammo/smg-ammo-empty.svg" id="3_5fp5c"]
-[ext_resource type="Texture2D" uid="uid://tanyf24ti2pe" path="res://assets/ammo/smg-ammo.svg" id="4_ysokg"]
-[ext_resource type="Script" path="res://classes/resources/Data/GunData.gd" id="5_e2w8d"]
+[ext_resource type="Script" path="res://classes/resources/Data/Data.gd" id="2_llwoq"]
 
 [resource]
-script = ExtResource("5_e2w8d")
-ammo_texture = ExtResource("4_ysokg")
-ammo_empty_texture = ExtResource("3_5fp5c")
-_scene = ExtResource("1_634op")
-_texture = ExtResource("2_75j1h")
-_description = "pew pew pew"
-type = 0
-_cost = 100
-_use_locked_description = true
-_locked_description = ""
+script = ExtResource("2_llwoq")
+scene = ExtResource("1_634op")

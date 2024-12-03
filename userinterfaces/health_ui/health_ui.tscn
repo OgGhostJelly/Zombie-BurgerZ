@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://buweeb74gwfjw"]
-
-[ext_resource type="Script" path="res://userinterfaces/health_ui/health_ui.gd" id="1_vx882"]
-
-[node name="HealthUI" type="HBoxContainer"]
-offset_right = 10.0
-offset_bottom = 18.0
-script = ExtResource("1_vx882")
