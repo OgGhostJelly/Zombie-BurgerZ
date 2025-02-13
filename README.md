@@ -1,23 +1,5 @@
-- needs some re-architecting to support json modifying or the like and some below features
-- for some reason godot isnt displaying the achievement svgs properly??
-- revamp save system
+# Zombie BurgerZ: Oh No Edition
 
-- creative mode as sirf skin
-- hard mode as ogghostjelly skin
+check out the [itch.io page](https://ogghostjelly.itch.io/zombie-burgerz)
 
-- update death menu cus its ugly
-- make hp water bottle texture
-- add mobile
-- randomize loadout option
-- update enemy wave/spawn pattern
-- achievement for spamming shop buttons
-
-- could have secondary weapons or augments
-
-- (boss fight?)
-- (levels?)
-- (custom mode when clicking boards in the background)
-- (make permanent changes to the map at the start of the game and live with the changes you made?)
-- (turn zombies into minions?)
-- (bestiary)
-- (slow mo bullet time when shooting)
+YOU ALL KNOW IT, YOU ALLL LOVEE IT!! ZOMBIE BURGZ IS HERE BABYY. A shooter game made using [Godot](https://github.com/godotengine/godot), you shoot zombies but there aren't any burgers :? This used to be a [scratch game](https://scratch.mit.edu/projects/564468180/) but I remade it in Godot!
